@@ -1,0 +1,1186 @@
+<!doctype html>
+<html>
+
+  <style>
+  .card:hover {
+    border-color: #2aa8ff; /* hover blue */
+  }
+
+  /* context menu */
+  .menu {
+    position: fixed;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    padding: 6px;
+    width: 180px;
+    z-index: 9999;
+  }
+  .hidden { display: none; }
+
+  .menu-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .menu-item:hover {
+    background: #f3f3f3;
+  }
+
+.card {
+  display: inline-block;
+  margin: 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  border: 1px solid #aaa;
+  cursor: grab;
+}
+
+.card.dragging {
+  opacity: 0.5;
+}
+
+.zone.dragover {
+  outline: 2px dashed #4aa3ff;
+  }
+
+.card.ability-active {
+  outline: 4px solid gold;
+  box-shadow: 0 0 12px gold;
+
+}
+
+.card.skill-active {
+  outline: 4px solid red;
+  box-shadow: 0 0 12px red;
+}
+
+.card-name {
+  font-weight: 600;
+}
+
+.card-stats {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.card-total {
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.8;
+}
+
+.stat-inc { color: green; }
+.stat-dec { color: red; }
+
+.stat-edit {
+  display: grid;
+  grid-template-columns: auto 64px;
+  gap: 6px 8px;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.stat-edit input {
+  width: 64px;
+  padding: 2px 4px;
+}
+
+.stat-edit .row {
+  display: contents;
+}
+
+.stat-actions {
+  margin-top: 6px;
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- Fullscreen Info Modal ---------- */
+
+.info-modal.hidden {
+  display: none;
+}
+
+.info-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.info-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#infoImg {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+#infoClose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#infoTitle,
+#infoSub {
+  display: none;
+}
+
+#infoImg{
+  display:block;
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+}
+
+.card { 
+  width: 220px;
+  height: 320px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.card-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* use contain if you want no cropping */
+  display: block;
+}
+
+.card-img-missing {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: #222;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
+  color: white;
+}
+
+.status-editor{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 1000;
+
+  background: rgba(0,0,0,.85);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+
+
+}
+.card-statuses {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.status-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,.8));
+}
+
+.status-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Individual field slots */
+.field-slot {
+  width: 220px;
+  height: 320px;
+
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 2px dashed rgba(255,255,255,0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optional: subtle lift on hover */
+#hand .card {
+  transition: transform 0.15s ease;
+}
+
+#hand .card:hover {
+  transform: translateY(-10px);
+}
+
+.board{
+  display:flex;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.main{
+  flex: 1;
+  min-width: 700px;
+}
+
+.playfield{
+  background:#cbb2b2;           /* dusty pink like your mock */
+  padding: 22px;
+  border-radius: 10px;
+  min-height: 460px;
+}
+
+.baseline{
+  margin-top: 16px;
+  background:#bfd9b7;           /* soft green */
+  padding: 16px;
+  border-radius: 10px;
+  min-height: 160px;
+}
+
+.zone-title{
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  color:#5b1d1d;
+}
+
+.deckline{
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.sidebar{
+  width: 180px;
+  background:#eadc84;           /* yellow rail */
+  border-radius: 10px;
+  padding: 14px;
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.side-slot{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.side-label{
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 900;
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+
+.side-box{
+  width: 110px;
+  height: 140px;
+  border: 2px solid rgba(0,0,0,0.5);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.25);
+}
+
+.collection-box{
+  height: 170px;
+}
+
+/* FIELD = exactly 3 slots (grid), centered */
+#fieldList{
+  display:grid;
+  grid-template-columns: repeat(3, 220px);
+  justify-content: center;
+  gap: 24px;
+  padding: 10px 0;
+}
+
+/* HAND = horizontal row, scroll if too many */
+#handList{
+  display:flex;
+  gap: 16px;
+  align-items: flex-end;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+}
+
+/* Make baseline (hand) cards smaller than field cards */
+#handList .card {
+  transform: scale(0.70);
+  transform-origin: bottom center;
+}
+
+
+
+</style>
+
+  <body>
+    <h2>WoS Room WebSocket Test</h2>
+
+    <div>
+      Room ID: <input id="room" value="" />
+      User ID: <input id="user" value="" />
+      <button onclick="connect()">Connect</button>
+      <button onclick="joinRoom()">Join (send)</button>
+      <button onclick="shuffleDeck()">Shuffle</button>
+      <button onclick="drawCard()">Draw</button>
+
+    </div>
+
+
+  <hr />
+<div>
+  <div class="board">
+    <div class="main">
+
+      <div class="playfield">
+        <div class="zone-title">Playing Field</div>
+        <div id="fieldList" class="zone field-zone"></div>
+      </div>
+
+      <div class="baseline">
+        <div class="zone-title">Baseline</div>
+        <div id="handList" class="zone hand-zone"></div>
+      </div>
+
+      <!-- optional: keep discard hidden for now but still present so JS doesn't break -->
+      <div id="discardList" class="zone discard-zone" style="display:none;"></div>
+
+      <div class="deckline">
+        <b>Deck:</b> <span id="deckCount">0</span> cards
+      </div>
+
+    </div>
+
+    <div class="sidebar">
+      <div class="side-slot">
+        <div class="side-label">Exile</div>
+        <div class="side-box"></div>
+      </div>
+
+      <div class="side-slot">
+        <div class="side-label">Home</div>
+        <div class="side-box"></div>
+      </div>
+
+      <div class="side-slot">
+        <div class="side-label">Collection</div>
+        <div class="side-box collection-box"></div>
+      </div>
+    </div>
+  </div>
+</div> 
+  <hr />
+
+
+
+    <pre id="log"></pre>
+
+    <script>
+      let ws;
+
+      let cardsDb = {};          // loaded from Cards.json
+      let lastRoomState = null;  // so we can re-render after Cards.json loads
+
+
+// Per-card overrides (client-only for now)
+const statOverrides = {}; // { [cardId]: { banana_size, charm, mischief, total } }
+
+// Per-card status overrides (toggles during play)
+const statusOverrides = {}; // { [cardId]: Set(["briefs","erect",...]) }
+
+const ALL_STATUSES = ["briefs", "nude", "ejaculating", "heat", "erect"];
+
+const STATUS_ICONS = {
+  nude: "/static/status/Status-Nude.png",
+  briefs: "/static/status/Status-Briefs.png",
+  erect: "/static/status/Status-Erection.png",
+  horny: "/static/status/Status-Horny.png",
+  heat: "/static/status/Status-Horny.png", 
+  ejaculating: "/static/status/Status-Ejaculating.png",
+};
+
+
+
+    function baseStatsFor(cardId) {
+      const info = cardsDb[cardId] || {};
+      return {
+        banana_size: Number(info.banana_size ?? 0),
+        charm: Number(info.charm ?? 0),
+        mischief: Number(info.mischief ?? 0),
+        total: Number(info.total ?? (Number(info.banana_size ?? 0) + Number(info.charm ?? 0) + Number(info.mischief ?? 0)))
+      };
+    }
+
+    function effectiveStatsFor(cardId) {
+      const base = baseStatsFor(cardId);
+      const o = statOverrides[cardId] || {};
+      return {
+        banana_size: Number(o.banana_size ?? base.banana_size),
+        charm: Number(o.charm ?? base.charm),
+        mischief: Number(o.mischief ?? base.mischief),
+        total: Number(o.total ?? base.total),
+      };
+    }
+
+    function statClass(baseVal, curVal) {
+      if (curVal > baseVal) return "stat-inc";
+      if (curVal < baseVal) return "stat-dec";
+      return "";
+    }
+
+    // Replace/upgrade your formatStats to use cardId so it can colorize
+    function formatStats(cardId) {
+      const base = baseStatsFor(cardId);
+      const cur = effectiveStatsFor(cardId);
+
+      return {
+        line: `
+          <span class="${statClass(base.banana_size, cur.banana_size)}">Banana ${cur.banana_size}</span>
+          <span class="${statClass(base.charm, cur.charm)}">Charm ${cur.charm}</span>
+          <span class="${statClass(base.mischief, cur.mischief)}">Mischief ${cur.mischief}</span>
+        `,
+        total: `<span class="${statClass(base.total, cur.total)}">Total: ${cur.total}</span>`
+      };
+    }
+
+
+
+      async function loadCardsJson() {
+        try {
+          const res = await fetch("Cards.json");
+          if (!res.ok) throw new Error(`HTTP ${res.status} loading Cards.json`);
+          cardsDb = await res.json();
+          log("Cards.json loaded");
+          if (lastRoomState) renderState(lastRoomState);
+        } catch (e) {
+          log("ERROR loading Cards.json: " + e);
+        }
+      }
+    
+
+    function baseStatusesFor(cardId) {
+      const info = (cardsDb && cardsDb[cardId]) ? cardsDb[cardId] : {};
+
+      // Prefer new array field
+      if (Array.isArray(info.statuses)) {
+        return info.statuses
+          .map(s => String(s).trim().toLowerCase())
+          .filter(Boolean);
+      }
+
+      // Back-compat: if only legacy "status" string exists
+      if (typeof info.status === "string") {
+        return info.status
+          .split(",")
+          .map(s => s.trim().toLowerCase())
+          .filter(Boolean);
+      }
+
+      return [];
+    }
+
+
+    function effectiveStatusesFor(cardId) {
+      const base = baseStatusesFor(cardId);
+
+      // If no override, return base
+      const ov = statusOverrides[cardId];
+      if (!ov) return base;
+
+      // Allow either Set or Array (we’ll probably use Set for toggles)
+      const list = Array.isArray(ov) ? ov : Array.from(ov);
+
+      return list
+        .map(s => String(s).trim().toLowerCase())
+        .filter(Boolean);
+    }
+
+    function formatStatusesText(cardId) {
+      const statuses = effectiveStatusesFor(cardId);
+      if (!statuses || statuses.length === 0) return "";
+      return statuses.map(s => `[${s}]`).join(" ");
+    }
+
+
+
+
+document.addEventListener("DOMContentLoaded", loadCardsJson);
+      
+
+      let openMenuCardId = null;
+
+      function openCardMenuAt(x, y, cardId) {
+        const menu = document.getElementById("cardMenu");
+        openMenuCardId = cardId;
+
+        menu.style.left = x + "px";
+        menu.style.top = y + "px";
+        menu.classList.remove("hidden");
+      }
+
+      function closeCardMenu() {
+        const menu = document.getElementById("cardMenu");
+        menu.classList.add("hidden");
+        openMenuCardId = null;
+      }
+      
+      function cardImageUrl(cardId) {
+        const info = (cardsDb && cardsDb[cardId]) ? cardsDb[cardId] : {};
+        const imgUrl = info.image_url_web || info.image_url_discord || info.image_url || "";
+        if (!imgUrl) return "";
+        return imgUrl.startsWith("/") ? `http://127.0.0.1:8000${imgUrl}` : imgUrl;
+      }
+
+      function openInfoModal(cardId) {
+        const modal = document.getElementById("infoModal");
+        const titleEl = document.getElementById("infoTitle");
+        const imgEl = document.getElementById("infoImg");
+        const subEl = document.getElementById("infoSub");
+
+        const info = (cardsDb && cardsDb[cardId]) ? cardsDb[cardId] : {};
+        const title = info.name || cardId;
+        const imgUrl = info.image_url_web || info.image_url_discord || info.image_url || "";
+        const finalUrl = imgUrl.startsWith("/") ? `http://127.0.0.1:8000${imgUrl}` : imgUrl;
+        log(`INFO: cardId=${cardId} image_url=${JSON.stringify(info.image_url)} imgUrl=${imgUrl}`);
+
+        imgEl.src = finalUrl;
+        imgEl.alt = title;
+
+        modal.classList.remove("hidden");
+
+        if (!imgUrl) {
+          console.warn("No img_url_web for card:", cardId, info);
+        }
+      }
+
+      function closeInfoModal() {
+        document.getElementById("infoModal").classList.add("hidden");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("infoClose")?.addEventListener("click", closeInfoModal);
+        document.querySelector("#infoModal .info-backdrop")?.addEventListener("click", closeInfoModal);
+      });
+
+
+      // close menu when clicking anywhere else
+      document.addEventListener("click", (e) => {
+        const menu = document.getElementById("cardMenu");
+        if (!menu.classList.contains("hidden") && !menu.contains(e.target)) {
+          closeCardMenu();
+        }
+      });
+
+      // ESC closes menu
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeCardMenu();
+      });
+
+
+      function log(x) {
+        document.getElementById("log").textContent += x + "\n";
+      }
+
+      function connect() {
+        const room = document.getElementById("room").value.trim();
+        ws = new WebSocket(`ws://127.0.0.1:8000/ws/room/${room}`);
+
+        ws.onopen = () => log("WS open");
+
+        ws.onmessage = (e) => {
+          log("RECV: " + e.data);
+
+          let msg;
+          try {
+            msg = JSON.parse(e.data);
+          } catch (err) {
+            log("ERROR parsing JSON: " + err);
+            return;
+          }
+
+          if (msg && msg.type === "room_state") {
+            lastRoomState = msg;
+
+            // ✅ apply server-shared stat overrides BEFORE rendering
+            for (const k in statOverrides) delete statOverrides[k];
+            Object.assign(statOverrides, msg.card_stats || {});
+
+            // ✅ apply server-shared STATUS overrides BEFORE rendering
+            for (const k in statusOverrides) delete statusOverrides[k];
+            Object.assign(statusOverrides, msg.card_statuses || {});
+
+
+            // ✅ apply server-shared status overrides BEFORE rendering (convert arrays -> Sets)
+            for (const k in statusOverrides) delete statusOverrides[k];
+
+            const incomingStatuses = msg.card_statuses || {};
+            for (const [cardId, arr] of Object.entries(incomingStatuses)) {
+              statusOverrides[cardId] = new Set(Array.isArray(arr) ? arr : []);
+            }
+            renderState(msg);
+          }
+        };
+
+        ws.onclose = () => log("WS closed");
+      }
+
+
+      function joinRoom() {
+        const user = document.getElementById("user").value.trim();
+        ws.send(JSON.stringify({ type: "join", user_id: user }));
+        log("SENT join for user_id=" + user);
+      }
+
+      function shuffleDeck() {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+        log("ERROR: WebSocket not connected. Click Connect first.");
+        return;
+      }
+      const user = document.getElementById("user").value.trim();
+      ws.send(JSON.stringify({ type: "shuffle", user_id: user }));
+      log("SENT shuffle for user_id=" + user);
+    }
+
+    function drawCard() {
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+      log("ERROR: WebSocket not connected. Click Connect first.");
+      return;
+    }
+      const user = document.getElementById("user").value.trim();
+      ws.send(JSON.stringify({ type: "draw", user_id: user }));
+      log("SENT draw for user_id=" + user);
+    }
+    
+    function renderState(msg) {
+      if (!msg || msg.type !== "room_state") return;
+
+      // pick user to render
+      let user = document.getElementById("user").value.trim();
+      if (!user) {
+        const players = msg.players || [];
+        if (players.length) user = String(players[0]);
+      }
+
+      const table = msg.table || {};
+      const me = table[user];
+      if (!me) return;
+
+      // Deck count
+      const deckCountEl = document.getElementById("deckCount");
+      if (deckCountEl) deckCountEl.textContent = (me.deck || []).length;
+
+      // Ensure zones are droppable (call every render is fine; guarded)
+      ensureDnD();
+
+      // Render zones
+      renderZone("handList", me.hand, "hand");
+      renderZone("fieldList", me.field, "field");
+      renderZone("discardList", me.discard, "discard");
+
+      function buildCardElement(cardId, zoneName) {
+        const user = document.getElementById("user").value.trim();
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.cardId = cardId;
+        card.draggable = true;
+
+        const info = cardsDb[cardId] || {};
+        const title = info.name || cardId;
+        const stats = formatStats(cardId);
+
+        const statuses = effectiveStatusesFor(cardId);
+        const statusIconsHtml = (statuses || [])
+          .filter(s => STATUS_ICONS[s])
+          .map(s => {
+            const path = STATUS_ICONS[s];
+            const url = path.startsWith("/") ? `http://127.0.0.1:8000${path}` : path;
+            return `<img class="status-icon" src="${url}" title="${s}">`;
+          })
+          .join("");
+
+        const img = cardImageUrl(cardId);
+
+        card.innerHTML = `
+          <div class="card-frame">
+            ${img ? `<img class="card-img" src="${img}" alt="${title}" loading="lazy">`
+                  : `<div class="card-img-missing">No image</div>`}
+            <div class="card-overlay">
+              <div class="card-name">${title}</div>
+              <div class="card-stats">${stats.line}</div>
+              <div class="card-footer">
+                <div class="card-total">${stats.total}</div>
+                <div class="card-statuses">${statusIconsHtml}</div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // drag payload
+        card.addEventListener("dragstart", (ev) => {
+          card.classList.add("dragging");
+          ev.dataTransfer.effectAllowed = "move";
+          ev.dataTransfer.setData(
+            "application/json",
+            JSON.stringify({ card_id: cardId, from_zone: zoneName, user_id: user })
+          );
+        });
+
+        card.addEventListener("dragend", () => {
+          card.classList.remove("dragging");
+        });
+
+        // right click menu
+        card.addEventListener("contextmenu", (ev) => {
+          ev.preventDefault();
+          openCardMenuAt(ev.pageX, ev.pageY, cardId);
+        });
+
+        return card;
+      }
+
+
+      function renderZone(zoneId, cards, zoneName) {
+        const zone = document.getElementById(zoneId);
+        if (!zone) return;
+
+        zone.classList.add("zone");
+        zone.dataset.zone = zoneName;
+
+        // SPECIAL: Field becomes 3 fixed slots
+        if (zoneName === "field") {
+          zone.innerHTML = "";
+
+          const maxSlots = 3;
+          const list = Array.isArray(cards) ? cards.slice(0, maxSlots) : [];
+
+          for (let i = 0; i < maxSlots; i++) {
+            const slot = document.createElement("div");
+            slot.className = "field-slot";
+            slot.dataset.slot = String(i);
+
+            // allow dropping onto slot (we'll add the real drop logic next)
+            slot.addEventListener("dragover", (e) => e.preventDefault());
+
+            const cardId = list[i];
+            if (cardId) {
+              const cardEl = buildCardElement(cardId, zoneName);
+              slot.appendChild(cardEl);
+            }
+
+            zone.appendChild(slot);
+          }
+
+          return;
+        }
+
+        // Default behavior for other zones (hand, discard, etc.)
+        zone.innerHTML = "";
+        (cards || []).forEach((cardId) => {
+          const cardEl = buildCardElement(cardId, zoneName);
+          zone.appendChild(cardEl);
+        });
+      }
+
+
+      function ensureDnD() {
+        // prevent double-binding
+        if (window.__wosDnDBound) return;
+        window.__wosDnDBound = true;
+
+        ["handList", "fieldList", "discardList"].forEach((zoneId) => {
+          const zone = document.getElementById(zoneId);
+          if (!zone) return;
+
+          zone.classList.add("zone");
+
+          zone.addEventListener("dragover", (ev) => {
+            ev.preventDefault();
+            zone.classList.add("dragover");
+            ev.dataTransfer.dropEffect = "move";
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("dragover");
+          });
+
+          zone.addEventListener("drop", (ev) => {
+            ev.preventDefault();
+            zone.classList.remove("dragover");
+
+            const raw = ev.dataTransfer.getData("application/json");
+            if (!raw) return;
+
+            let payload;
+            try { payload = JSON.parse(raw); } catch { return; }
+
+            const to_zone = zone.dataset.zone; // "hand" | "field" | "discard"
+            if (!to_zone) return;
+
+            // Step 4: actually tell the server to move it
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+              log("ERROR: WebSocket not connected.");
+              return;
+            }
+
+            ws.send(JSON.stringify({
+              type: "move",
+              user_id: payload.user_id,
+              card_id: payload.card_id,
+              from_zone: payload.from_zone,
+              to_zone: to_zone
+            }));
+
+            log(`SENT move card_id=${payload.card_id} ${payload.from_zone} -> ${to_zone}`);
+          });
+        });
+      }
+    }
+      
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("#cardMenu .menu-item").forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // optional but helps prevent outside-click closers from interfering
+
+            const action = item.dataset.action;
+
+            if (action === "ability" && openMenuCardId) {
+              const cardEl = document.querySelector(`.card[data-card-id="${openMenuCardId}"]`);
+              if (cardEl) {
+                cardEl.classList.remove("skill-active");
+                cardEl.classList.toggle("ability-active");
+              }
+              closeCardMenu();
+              return;
+            }
+
+            if (action === "skill" && openMenuCardId) {
+              const cardEl = document.querySelector(`.card[data-card-id="${openMenuCardId}"]`);
+             if (cardEl) {
+                cardEl.classList.remove("ability-active");
+                cardEl.classList.toggle("skill-active");
+              }
+              closeCardMenu();
+              return;
+            }
+
+            if (action === "stats" && openMenuCardId) {
+              startStatEdit(openMenuCardId);
+              closeCardMenu();
+              return;
+            }
+
+            if (action === "status" && openMenuCardId) {
+              const cardEl = document.querySelector(`.card[data-card-id="${openMenuCardId}"]`);
+              if (cardEl) openStatusEditor(openMenuCardId, cardEl);
+              closeCardMenu();
+              return;
+            }
+
+            if (action === "info" && openMenuCardId) {
+              openInfoModal(openMenuCardId);
+              closeCardMenu();
+              return;
+            }
+          });
+        });
+      });
+
+
+    function startStatEdit(cardId) {
+      const cardEl = document.querySelector(`.card[data-card-id="${cardId}"]`);
+      if (!cardEl) return;
+
+      const base = baseStatsFor(cardId);
+      const cur = effectiveStatsFor(cardId);
+
+      // If already editing, do nothing
+      if (cardEl.dataset.editing === "1") return;
+      cardEl.dataset.editing = "1";
+
+      const statsEl = cardEl.querySelector(".card-stats");
+      const totalEl = cardEl.querySelector(".card-total");
+
+      statsEl.innerHTML = `
+        <div class="stat-edit">
+          <div class="row"><div>Banana</div><input id="edit-banana" type="number" value="${cur.banana_size}"></div>
+          <div class="row"><div>Charm</div><input id="edit-charm" type="number" value="${cur.charm}"></div>
+          <div class="row"><div>Mischief</div><input id="edit-mischief" type="number" value="${cur.mischief}"></div>
+          <div class="row"><div>Total</div><input id="edit-total" type="number" value="${cur.total}"></div>
+        </div>
+        <div class="stat-actions">
+          <button class="save-stats">Save</button>
+          <button class="reset-stats">Reset to base</button>
+          <button class="cancel-stats">Cancel</button>
+        </div>
+      `;
+
+      totalEl.innerHTML = ""; // total is being edited in the grid now
+
+      const bananaIn = statsEl.querySelector("#edit-banana");
+      const charmIn = statsEl.querySelector("#edit-charm");
+      const mischiefIn = statsEl.querySelector("#edit-mischief");
+      const totalIn = statsEl.querySelector("#edit-total");
+
+      function commit() {
+        const next = {
+          banana_size: Number(bananaIn.value),
+          charm: Number(charmIn.value),
+          mischief: Number(mischiefIn.value),
+          total: Number(totalIn.value),
+        };
+
+        const user = document.getElementById("user").value.trim();
+
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({
+            type: "set_card_stats",
+            user_id: user,
+            card_id: cardId,
+      stats: next
+          }));
+        } else {
+          log("ERROR: WebSocket not connected; stat update not sent");
+        }
+
+        // optimistic local update
+        statOverrides[cardId] = next;
+
+        const rendered = formatStats(cardId);
+        statsEl.innerHTML = rendered.line;
+        totalEl.innerHTML = rendered.total;
+
+        delete cardEl.dataset.editing;
+      }
+
+
+      function cancel() {
+        const rendered = formatStats(cardId);
+        statsEl.innerHTML = rendered.line;
+        totalEl.innerHTML = rendered.total;
+        delete cardEl.dataset.editing;
+      }
+
+      statsEl.querySelector(".save-stats").addEventListener("click", commit);
+      statsEl.querySelector(".cancel-stats").addEventListener("click", cancel);
+
+      // Enter = save, Escape = cancel
+      [bananaIn, charmIn, mischiefIn, totalIn].forEach(inp => {
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") commit();
+          if (e.key === "Escape") cancel();
+        });
+      });
+
+      // Color feedback *while editing* (optional but nice)
+      function liveColor() {
+        const b = Number(bananaIn.value), c = Number(charmIn.value), m = Number(mischiefIn.value), t = Number(totalIn.value);
+        bananaIn.className = statClass(base.banana_size, b);
+        charmIn.className = statClass(base.charm, c);
+        mischiefIn.className = statClass(base.mischief, m);
+        totalIn.className = statClass(base.total, t);
+      }
+
+      const baseNow = baseStatsFor(cardId);
+
+      [bananaIn, charmIn, mischiefIn, totalIn].forEach(inp =>
+        inp.addEventListener("input", () => refreshInputColors(baseNow))
+      );
+    
+      refreshInputColors(baseNow);
+
+
+    function refreshInputColors(baseNow) {
+      const b = Number(bananaIn.value);
+      const c = Number(charmIn.value);
+      const m = Number(mischiefIn.value);
+      const t = Number(totalIn.value);
+
+      bananaIn.className = statClass(baseNow.banana_size, b);
+      charmIn.className = statClass(baseNow.charm, c);
+      mischiefIn.className = statClass(baseNow.mischief, m);
+      totalIn.className = statClass(baseNow.total, t);
+    }
+
+
+    // 🔽 ADD RESET HANDLER RIGHT HERE
+    cardEl.querySelector(".reset-stats").addEventListener("click", () => {
+      const baseNow2 = baseStatsFor(cardId);
+
+      bananaIn.value = baseNow2.banana_size;
+      charmIn.value  = baseNow2.charm;
+      mischiefIn.value = baseNow2.mischief;
+      totalIn.value  = baseNow2.total;
+
+      refreshInputColors(baseNow2);
+
+      // sync reset to server
+      const user = document.getElementById("user").value.trim();
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+          type: "set_card_stats",
+          user_id: user,
+          card_id: cardId,
+          stats: null
+        }));
+      }
+    });
+
+  }
+
+    function openStatusEditor(cardId, cardEl) {
+      // Remove any existing editor on this card
+      cardEl.querySelector(".status-editor")?.remove();
+
+      const base = baseStatusesFor(cardId);               // array
+      const current = new Set(effectiveStatusesFor(cardId)); // set for quick lookup
+
+      const editor = document.createElement("div");
+      editor.className = "status-editor";
+
+      // Build rows for all 5 statuses
+      ALL_STATUSES.forEach((status) => {
+        const row = document.createElement("label");
+        row.className = "status-row";
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = current.has(status);
+
+        cb.addEventListener("change", () => {
+          // ✅ always ensure it's a Set (it might be an Array if something slips through)
+          let set = statusOverrides[cardId];
+          if (!(set instanceof Set)) {
+          set = new Set(Array.isArray(set) ? set : base);
+          statusOverrides[cardId] = set;
+        }
+
+        if (cb.checked) set.add(status);
+        else set.delete(status);
+
+
+          // Update the card display immediately
+          const statusText = formatStatusesText(cardId);
+          const statusEl = cardEl.querySelector(".card-statuses");
+          if (statusEl) statusEl.textContent = statusText;
+
+          // ✅ sync status to server (so everyone sees it)
+          const user = document.getElementById("user").value.trim();
+
+          if (ws && ws.readyState === WebSocket.OPEN) {
+            const setOrArr = statusOverrides[cardId];            // might be Set
+            const statusesArr = Array.isArray(setOrArr)
+              ? setOrArr
+              : Array.from(setOrArr || []);
+
+            ws.send(JSON.stringify({
+              type: "set_card_statuses",
+              user_id: user,
+              card_id: cardId,
+              statuses: statusesArr
+            }));
+          } else {
+           log("ERROR: WebSocket not connected; status update not sent");
+          }
+
+        });
+
+        row.appendChild(cb);
+        row.append(" " + status);
+        editor.appendChild(row);
+      });
+
+      const frame = cardEl.querySelector(".card-frame");
+      (frame || cardEl).appendChild(editor);
+
+    }
+
+    </script>
+
+    <!-- Fullscreen Card Info Modal (hidden by default) -->
+    <div id="infoModal" class="info-modal hidden">
+      <div class="info-backdrop"></div>
+
+      <div class="info-content">
+        <button id="infoClose">X</button>
+        <div id="infoTitle"></div>
+        <img id="infoImg" />
+        <div id="infoSub"></div>
+      </div>
+    </div>
+
+    <!-- Right-click Card Menu -->
+<div id="cardMenu" class="menu hidden">
+  <div class="menu-item" data-action="ability">Toggle Ability</div>
+  <div class="menu-item" data-action="skill">Toggle Skill</div>
+  <div class="menu-item" data-action="stats">Edit Stats</div>
+  <div class="menu-item" data-action="status">Edit Status</div>
+  <div class="menu-item" data-action="info">More Info</div>
+</div>
+
+  </body>
+
+</html>

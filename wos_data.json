@@ -1,0 +1,71 @@
+{
+  "1295073412980674682": {
+    "cards": [
+      "beat_boy_bloo",
+      "young_chimp_scrappy",
+      "guzzling_guy_gabe",
+      "little_minx",
+      "bubbles_the_aqueous_adventurer",
+      "weeno_the_willie_waver",
+      "knox_child_of_crimsimia",
+      "little_hands",
+      "the_relentless_zevally"
+    ],
+    "banana_chips": 13,
+    "last_discover_date": "2026-01-15",
+    "level": 3,
+    "xp": 20,
+    "last_trade_at": null,
+    "decks": {
+      "default": {
+        "name": "Default Deck",
+        "cards": [
+          "beat_boy_bloo",
+          "little_minx",
+          "young_chimp_scrappy",
+          "knox_child_of_crimsimia",
+          "bubbles_the_aqueous_adventurer"
+        ]
+      }
+    },
+    "active_deck": "default",
+    "shop_date": "2026-01-07",
+    "shop_offers": [
+      {
+        "card_id": "tai_aspiring_veyrak",
+        "rarity": "uncommon",
+        "price": 32,
+        "sold": false
+      },
+      {
+        "card_id": "golden_boy_luke",
+        "rarity": "common",
+        "price": 15,
+        "sold": false
+      },
+      {
+        "card_id": "waveform_walker_whytte",
+        "rarity": "common",
+        "price": 16,
+        "sold": false
+      },
+      {
+        "card_id": "knox_child_of_crimsimia",
+        "rarity": "uncommon",
+        "price": 37,
+        "sold": true
+      },
+      {
+        "card_id": "hope_the_happy_chimp",
+        "rarity": "uncommon",
+        "price": 35,
+        "sold": false
+      }
+    ]
+  },
+  "1380973593579753482": {
+    "cards": [
+      "waveform_walker_whytte"
+    ]
+  }
+}

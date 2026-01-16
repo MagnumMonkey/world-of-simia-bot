@@ -1,0 +1,1617 @@
+{
+  "archie_ever_the_intellectual": {
+    "name": "Archie, Ever the Intellectual",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 39,
+    "charm": 65,
+    "mischief": 3,
+    "total": 107,
+    "image_url_discord": "https://media.discordapp.net/attachments/1452555091029786799/1453693653661782056/Archie_Ever_the_Intellectual.png?ex=694e6137&is=694d0fb7&hm=74660b79989e1c7740ae988f0d0db37838ed4add9a4a04c08ecb490baaedbf9c&=&format=webp&quality=lossless&width=1316&height=1977",
+    "image_url_web": "/static/cards/archie_ever_the_intellectual.png",
+    "status": "Briefs, Erect, Ejaculating, Heat",
+    "statuses": [
+      "briefs",
+      "erect",
+      "ejaculating",
+      "heat"
+    ]
+  },
+  "rhythm_runner_rhed": {
+    "name": "Rhythm Runner Rhed",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 79,
+    "mischief": 11,
+    "total": 110,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556513385250856/Rhythm_Runner_Rhed.png?ex=694a3e2b&is=6948ecab&hm=bd2ec6037644fe732d8a1ec14f1de7469e94efc36844030d548c3c9a1e16bf0c&",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/rhythm_runner_rhed.png"
+  },
+  "beat_boy_bloo": {
+    "name": "Beat boy Bloo",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 20,
+    "charm": 11,
+    "mischief": 79,
+    "total": 110,
+    "image_url_discord": "https://media.discordapp.net/attachments/1452555091029786799/1452556485581344931/Beat_boy_Bloo.png?ex=695c0a65&is=695ab8e5&hm=80c31eadee7ac90c886f6c6b2c65f2df8eeb3823c9093c75ae45fe4b615963ee&=&format=webp&quality=lossless&width=1322&height=1983",
+    "image_url_web": "/static/cards/beat_boy_bloo.png",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ]
+  },
+  "gimbal_nudist_explorer": {
+    "name": "Gimbal, Nudist Explorer",
+    "rarity": "uncommon",
+    "personality": "Bravado",
+    "banana_size": 55,
+    "charm": 51,
+    "mischief": 25,
+    "total": 131,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556499019628735/Gymbal_Nudist_Explorer.png?ex=694a3e28&is=6948eca8&hm=35deaec04ec8bfa120a1a8614e21f2090a2d4e519ca0e684a96cb90fa1913bde&",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/gimbal_nudist_explorer.png"
+  },
+  "riff_the_unruly": {
+    "name": "Riff the Unruly",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 57,
+    "charm": 3,
+    "mischief": 51,
+    "total": 111,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1452556527797014589/Riff_the_Unruly.png?ex=694a3e2f&is=6948ecaf&hm=249b75032bcf8d8b47c414f4fb354be2308f8110650795ab8d97c65181a98095&=&format=webp&quality=lossless&width=1300&height=1951",
+    "status": "Erect, Ejaculating, Nude",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/riff_the_unruly.png"
+  },
+  "scruff_charming_chaos": {
+    "name": "Scruff, Charming Chaos",
+    "rarity": "common",
+    "personality": "Flirty",
+    "banana_size": 23,
+    "charm": 50,
+    "mischief": 51,
+    "total": 104,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556540564340878/Scruff_Charming_Chaos.png?ex=694a3e32&is=6948ecb2&hm=7d5846060cdd8b88777842cc4fd60d33196a98a56a443ecc28775a4e10d5bfde&",
+    "status": "Briefs, Erect, Ejaculating",
+    "statuses": [
+      "briefs",
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/scruff_charming_chaos.png"
+  },
+  "sprig_novice_guardian": {
+    "name": "Sprig, Novice Guardian",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 37,
+    "charm": 72,
+    "mischief": 9,
+    "total": 118,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556566808105001/Sprig_novice_guardian.png?ex=694a3e38&is=6948ecb8&hm=5bb5c46fbc59b42da6830e3da13244c75a0a53bf0b0390a135df5a6c0443d8fe&",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/sprig_novice_guardian.png"
+  },
+  "the_relentless_zevally": {
+    "name": "The Relentless Zevally",
+    "rarity": "common",
+    "personality": "Alpha",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 50,
+    "total": 150,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556581614125179/The_relentless_Zevally.png?ex=694a3e3c&is=6948ecbc&hm=6a9af1c15ea715e712ef7a2475f23343a49fd7cfcb1716e95413aedd3d0f45dd&",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/the_relentless_zevally.png"
+  },
+  "zazu_and_the_beast": {
+    "name": "Zazu and The Beast",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 70,
+    "charm": 2,
+    "mischief": 58,
+    "total": 130,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452937461972996107/Zazu_and_the_beast.png?ex=694ba0f5&is=694a4f75&hm=ff38d140e2174d1dc27949534960e0d906651b362af431c6bed77bf5e4ba545d&",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/zazu_and_the_beast.png"
+  },
+  "self_adoring_maxx": {
+    "name": "Self-Adoring Maxx",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 25,
+    "charm": 40,
+    "mischief": 30,
+    "total": 95,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452937381190697116/Self-adoring_Maxx.png?ex=694ba0e1&is=694a4f61&hm=ee5df0cbf60880ea36469630c0281d279e82e2831b4ae818b752bbf641b0f9e8&",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/self_adoring_maxx.png"
+  },
+  "ollie_streetwise_swingster": {
+    "name": "Ollie Streetwise Swingster",
+    "rarity": "common",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 60,
+    "mischief": 0,
+    "total": 110,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947221120028736/Ollie_Street_Swinger.png?ex=694baa0b&is=694a588b&hm=cc3e9a7dd43ad7d13f73ba2bec6e4724338af7a1e48b1f3cb68220df3be38b15&",
+    "status": "Nude, Ejaculating",
+    "statuses": [
+      "nude",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/ollie_streetwise_swingster.png"
+  },
+  "guzzling_guy_gabe": {
+    "name": "Guzzling Guy Gabe",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 39,
+    "charm": 53,
+    "mischief": 8,
+    "total": 100,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452949369014718515/Guzzling_Guy_Gabe.png?ex=694bac0c&is=694a5a8c&hm=f526ff9c05eb4c8328f99a7101d71854e188f311eb6570ae0e49e669b7653e96&",
+    "status": "Nude, Ejaculating, Heat",
+    "statuses": [
+      "nude",
+      "ejaculating",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/guzzling_guy_gabe.png"
+  },
+  "ezekiel_the_cherubic_charm": {
+    "name": "Ezekiel, The Cherubic Charm",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 37,
+    "charm": 100,
+    "mischief": 0,
+    "total": 137,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947260433498214/Ezekiel_The_Cherubic_Charm.png?ex=694baa15&is=694a5895&hm=58f12514123e8b959f5ed92e8f7ec16ff9d2768772766725e2079029a3381a3e&",
+    "status": "Briefs, Erect,",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/ezekiel_the_cherubic_charm.png"
+  },
+  "trouble_muffin_maxi": {
+    "name": "Trouble Muffin Maxi",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 75,
+    "charm": 1,
+    "mischief": 60,
+    "total": 136,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947269992189962/Trouble_Muffin_Maxi.png?ex=694baa17&is=694a5897&hm=b720767e129b10aee088fe8123123867ffbf0bb1788cc5ee5abe9b143497d736&",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/trouble_muffin_maxi.png"
+  },
+  "dewey_and_the_thickness": {
+    "name": "Dewey, and The Thickness",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 69,
+    "charm": 16,
+    "mischief": 30,
+    "total": 115,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947280473624616/Dewey_and_The_Thickness.png?ex=694baa1a&is=694a589a&hm=856e2bbfbe8bd3ae588802c91815cfb09476be65effe53ad04d21654b73da653&",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/dewey_and_the_thickness.png"
+  },
+  "nico_and_zane": {
+    "name": "Nico and Zane",
+    "rarity": "uncommon",
+    "personality": "Confident/Sweetheart",
+    "banana_size": 40,
+    "charm": 40,
+    "mischief": 40,
+    "total": 120,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947289575264348/Nico_and_Zane.png?ex=694baa1c&is=694a589c&hm=85b1958182f3279891653ac3c0a544eb6e70430c41833e88ae40e8842934ab7a&",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/nico_and_zane.png"
+  },
+  "gyzmo_the_outlaw": {
+    "name": "Gyzmo The Outlaw",
+    "rarity": "common",
+    "personality": "Flirty",
+    "banana_size": 34,
+    "charm": 54,
+    "mischief": 52,
+    "total": 140,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452953642071101451/Gyzmo_the_Outlaw.png?ex=694bb006&is=694a5e86&hm=1702cc5928a4dde7e4e1c2eed2f18b7e29be78b967fcd3af7023b0e90cbe5835&",
+    "status": "Briefs, Heat,",
+    "statuses": [
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/gyzmo_the_outlaw.png"
+  },
+  "blaze_and_the_stallion": {
+    "name": "Blaze and The Stallion",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 64,
+    "charm": 20,
+    "mischief": 50,
+    "total": 134,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452954650822185122/Blaze_and_the_Stallion.png?ex=694bb0f7&is=694a5f77&hm=8b4728788d0dab29dfc78cf9c61f59a038d6d1fefa37b702a17967dafe942807&",
+    "status": "Briefs, Erect,",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/blaze_and_the_stallion.png"
+  },
+  "jakx_runaway_royalty": {
+    "name": "Jakx, Runaway Royalty",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 20,
+    "charm": 42,
+    "mischief": 45,
+    "total": 115,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947319187177545/Jakx_Runaway_Royalty.png?ex=694baa23&is=694a58a3&hm=e96ea83590df15396e963d57a80696f97ed72dc9effd3f50390b474b735e65c0&",
+    "status": "Briefs,",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/jakx_runaway_royalty.png"
+  },
+  "spry_sprout": {
+    "name": "Spry Sprout",
+    "rarity": "rare",
+    "personality": "Prankster",
+    "banana_size": 34,
+    "charm": 2,
+    "mischief": 66,
+    "total": 102,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947335045976207/Sly_Sprout.png?ex=694baa27&is=694a58a7&hm=12fdeb79feef5823e0c8ef7f4895fc6fcef5eaa1ffd46e5154098869dbb07648&",
+    "status": "Briefs,",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/spry_sprout.png"
+  },
+  "nikolaj_the_rear_ender": {
+    "name": "Nikolaj, The Rear Ender",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 80,
+    "charm": 51,
+    "mischief": 4,
+    "total": 140,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453157621769965588/Nikolaj_The_Rear_Ender.png?ex=694c6dff&is=694b1c7f&hm=2c0e2dd1a1aadbb6a9fb717bfdcb8ee9bb439c11804752955c51e6d8be0015b4&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/nikolaj_the_rear_ender.png"
+  },
+  "gibble_the_wildspark": {
+    "name": "Gibble, The Wildspark",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 34,
+    "charm": 53,
+    "mischief": 30,
+    "total": 117,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453252090267828275/Gibble_The_wildspark.png?ex=694cc5fa&is=694b747a&hm=0ba6d39ee4c635d03721f0beba9b67114aed244cee4f4b9f008b3e19dd6543c9&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs, Erect, Heat",
+    "statuses": [
+      "briefs",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/gibble_the_wildspark.png"
+  },
+  "bronco_the_last": {
+    "name": "Bronco, The Last",
+    "rarity": "legendary",
+    "personality": "Confident",
+    "banana_size": 51,
+    "charm": 40,
+    "mischief": 49,
+    "total": 140,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453252141949911155/Bronco-The-Last.gif?ex=694cc606&is=694b7486&hm=4e887298b01f12c7df34f300b97557a85ba76acab77f26a37c08462fc5229d8f&=&width=1315&height=1977",
+    "status": "Briefs, Heat",
+    "statuses": [
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/bronco_the_last.png"
+  },
+  "rollo_kin_of_the_moon": {
+    "name": "Rollo, Kin of the Moon",
+    "rarity": "legendary",
+    "personality": "Gentle",
+    "banana_size": 70,
+    "charm": 75,
+    "mischief": 0,
+    "total": 145,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453352000635801646/Rollo-Kin-of-the-Moon.gif?ex=694d2306&is=694bd186&hm=6733f8e063eb07d2fd385770014cd98bee331aac34e8cea995a224cb00668ea7&=&width=1315&height=1977",
+    "status": "Erect, Ejaculating, Nude",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/rollo_kin_of_the_moon.png"
+  },
+  "knox_child_of_crimsimia": {
+    "name": "Knox, Child Of Crimsimia",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 75,
+    "charm": 0,
+    "mischief": 50,
+    "total": 125,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453352801139691520/Knox_Child_of_Crimsimia.png?ex=694d23c5&is=694bd245&hm=989ebd440363b73110ac477bf87b4f5ed9ee3633dcc31977f7681275d9b81c17&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Briefs, Heat",
+    "statuses": [
+      "erect",
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/knox_child_of_crimsimia.png"
+  },
+  "bandit_the_magnum_monkey": {
+    "name": "Bandit, The Magnum Monkey",
+    "rarity": "legendary",
+    "personality": "Rascal",
+    "banana_size": "??",
+    "charm": 30,
+    "mischief": 70,
+    "total": "???",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453355980908925029/Bandit-The-Magnum-Monkey.gif?ex=694d26bb&is=694bd53b&hm=f3ade300c1bd7c7267a5b476beee1963ab8fab12570a709dde1f705caf6941a0&=&width=1315&height=1977",
+    "status": "Heat, Nude",
+    "statuses": [
+      "heat",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/bandit_the_magnum_monkey.png"
+  },
+  "little_minx": {
+    "name": "Little Minx",
+    "rarity": "Common",
+    "personality": "Confident",
+    "banana_size": 51,
+    "charm": 50,
+    "mischief": 13,
+    "total": 114,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667913767587871/Little_Minx.png?ex=694e493e&is=694cf7be&hm=31929a86e2e6f2e1729010962443b1a6078e52eaee488cff72ec3a68368797bd&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect",
+    "statuses": [
+      "erect"
+    ],
+    "image_url_web": "/static/cards/little_minx.png"
+  },
+  "theo_socially_confused": {
+    "name": "Theo, Socially Confused",
+    "rarity": "Common",
+    "personality": "Sweetheart",
+    "banana_size": 14,
+    "charm": 65,
+    "mischief": 11,
+    "total": 90,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667925088145478/Theo_Socially_Confused.png?ex=694e4941&is=694cf7c1&hm=4ebe0c6c2103a35494b443ad3fef61a88949428d094593435f038e123cad58e6&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Briefs",
+    "statuses": [
+      "erect",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/theo_socially_confused.png"
+  },
+  "bubbles_the_aqueous_adventurer": {
+    "name": "Bubbles, The Aqueous Adventurer",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 38,
+    "charm": 46,
+    "mischief": 28,
+    "total": 112,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667938413580298/Bubbles_The_Aqueous_Adventurer.png?ex=694e4944&is=694cf7c4&hm=d7d4eb370cbd49da70b9ac1f43ae74a895e25c3a03dbc52b8d5f9f6e8df85f6b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/bubbles_the_aqueous_adventurer.png"
+  },
+  "zeal_the_ruthless": {
+    "name": "Zeal, The Ruthless",
+    "rarity": "Common",
+    "personality": "Alpha",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 50,
+    "total": 150,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667949863763990/Zeal_the_Ruthless.png?ex=694e4947&is=694cf7c7&hm=1bcfcb5e00116a19789bc6300ee6f33e627980f58cd126931171a059af26bfcc&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/zeal_the_ruthless.png"
+  },
+  "layzer_metrokin_street_lurker": {
+    "name": "Layzer, Metrokin Street Lurker",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 45,
+    "charm": 20,
+    "mischief": 55,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667964619329607/Layzer_Metrokin_Street_Lurker.png?ex=694e494a&is=694cf7ca&hm=e54026e9e5028091942ad4bb61d165bc9c42889a6bd2befb4e126aca6b6c3ad7&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Heat, Nude",
+    "statuses": [
+      "heat",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/layzer_metrokin_street_lurker.png"
+  },
+  "the_boy_in_the_woods": {
+    "name": "The Boy in the Woods",
+    "rarity": "Common",
+    "personality": "Gentle",
+    "banana_size": 20,
+    "charm": 40,
+    "mischief": 40,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453671676238630932/The_boy_in_the_Woods.png?ex=694e4cbf&is=694cfb3f&hm=a1009688dbf71176c138f50ba487d70d230615ef204ae7037dd614219c155b5c&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/the_boy_in_the_woods.png"
+  },
+  "cyroi_the_skywatcher": {
+    "name": "Cyroi, The Skywatcher",
+    "rarity": "Common",
+    "personality": "Confident",
+    "banana_size": 60,
+    "charm": 40,
+    "mischief": 18,
+    "total": 116,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667993845502085/Cyroi_the_Skywatcher.png?ex=694e4951&is=694cf7d1&hm=7504c3f75e4c601cd622bea6bd492e19d6ab19f5d3d2c68bae53a8e0bf705b15&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/cyroi_the_skywatcher.png"
+  },
+  "free_spirited_echo": {
+    "name": "Free-Spirited Echo",
+    "rarity": "Common",
+    "personality": "Confident",
+    "banana_size": 50,
+    "charm": 0,
+    "mischief": 0,
+    "total": 50,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453668009897099375/Free-Spirited_Echo.png?ex=694e4955&is=694cf7d5&hm=59da5cf039b0d58e90916a03046b91574043d4a21b7fec09a73edf6d8096a088&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/free_spirited_echo.png"
+  },
+  "atlas_cinderfang_paragon": {
+    "name": "Atlas, Cinderfang Paragon",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 55,
+    "charm": 30,
+    "mischief": 40,
+    "total": 125,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775305473789952/Atlas_Cinderfang_Paragon.png?ex=694ead42&is=694d5bc2&hm=17a0ea0c2888a031e15e13d496220976e8c18b7ca06b3002c8d8b5af95205ec6&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/atlas_cinderfang_paragon.png"
+  },
+  "zippy_the_extremist": {
+    "name": "Zippy, The Extremist",
+    "rarity": "uncommon",
+    "personality": "Bravado",
+    "banana_size": 65,
+    "charm": 50,
+    "mischief": 20,
+    "total": 135,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453675565612662845/Zippy_the_Extremist.png?ex=694e505e&is=694cfede&hm=64f9850655bba6977fdaea54c04d6ab11fde0a46d0ce9347cd559e9886e81a60&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs, Erect,",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/zippy_the_extremist.png"
+  },
+  "drexel_steel_blue_stud": {
+    "name": "Drex, Steel Blue Stud",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 72,
+    "charm": 3,
+    "mischief": 27,
+    "total": 127,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775322439876840/Drexel_Steel_Blue_Stud.png?ex=694ead46&is=694d5bc6&hm=1108cc04d6c0912f4083e8dcdf947e5248c553885c3a96808efbd7821ee0e07a&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/drexel_steel_blue_stud.png"
+  },
+  "the_inkarri_behemoth": {
+    "name": "The Inkarri Behemoth",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 80,
+    "charm": 60,
+    "mischief": 50,
+    "total": 190,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775336889126972/The_Inkarri_Behemoth.png?ex=694ead4a&is=694d5bca&hm=7d131f70a4d131e4ec27604bd9848b38d651260f5822612e75ac70a81d96881c&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect",
+    "statuses": [
+      "erect"
+    ],
+    "image_url_web": "/static/cards/the_inkarri_behemoth.png"
+  },
+  "golden_boy_luke": {
+    "name": "Golden Boy Luke",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 70,
+    "mischief": 10,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775353872122101/Golden_boy_Luke.png?ex=694ead4e&is=694d5bce&hm=94e05b370da726a28d86f4c0c72ef855701323773c31596debda666756ab6d0c&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/golden_boy_luke.png"
+  },
+  "liar_lux": {
+    "name": "Liar Lux",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 54,
+    "charm": 10,
+    "mischief": 51,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775368988131481/Liar_Lux.png?ex=694ead51&is=694d5bd1&hm=af3a19998145472ca5b911a49130b3f8e0c047a756f3dbb3c8f8132ddecad25b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/liar_lux.png"
+  },
+  "rebellious_ryder": {
+    "name": "Rebellious Ryder",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 51,
+    "charm": 18,
+    "mischief": 51,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140822063939786/Rebellious_Ryder.png?ex=695001ac&is=694eb02c&hm=50c28d339d4606630d794541bed3c6d2a00bad26195f98d1d86034c976f5947b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/rebellious_ryder.png"
+  },
+  "pipsqueak": {
+    "name": "Pipsqueak",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 60,
+    "charm": 0,
+    "mischief": 0,
+    "total": 60,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140838568267934/Pipsqueak.png?ex=695001b0&is=694eb030&hm=f5083ea79a610b35b4d78be3832a05c880c53dba97af98ddb019dd22ffed413c&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating, Nude",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/pipsqueak.png"
+  },
+  "fizzy_felix": {
+    "name": "Fizzy Felix",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 55,
+    "charm": 5,
+    "mischief": 10,
+    "total": 70,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140889004773580/Fizzy_Felix.png?ex=695001bc&is=694eb03c&hm=05687cd48cc6d66510a4999f08ac78b252596bc2d9c69d63fd67bec160637d29&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/fizzy_felix.png"
+  },
+  "azure_the_monkey_boy_wonder": {
+    "name": "Azure, The Monkey boy Wonder",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 45,
+    "charm": 45,
+    "mischief": 35,
+    "total": 70,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140904775483578/Azure_The_Monkey_Boy_Wonder.png?ex=695001c0&is=694eb040&hm=0fdd4f6c152c1bec6a21346f15e30ec97c8252b6a76be3ee9946c09bd32a49aa&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Briefs",
+    "statuses": [
+      "erect",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/azure_the_monkey_boy_wonder.png"
+  },
+  "banana_beach_bruno": {
+    "name": "Banana Beach Bruno",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 30,
+    "total": 130,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454684586981196001/Banana_Beach_Bruno.png?ex=6951fc18&is=6950aa98&hm=05a40b0279bacf2cc4c6be6ed0a95ef7726865e1890585245b93f04d5f191ecc&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/banana_beach_bruno.png"
+  },
+  "tree_climber_clemo": {
+    "name": "Tree Climber Clemo",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 50,
+    "charm": 10,
+    "mischief": 40,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140931040219337/Tree_Climber_Clemo.png?ex=695001c6&is=694eb046&hm=c175884a9e6e8b8d9505a4ae8981f76fe0776d9861e1a153339b04617c56dc3d&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/tree_climber_clemo.png"
+  },
+  "tuk_sensational_swinger": {
+    "name": "Tuk, Sensational Swinger",
+    "rarity": "uncommon",
+    "personality": "Bravado",
+    "banana_size": 70,
+    "charm": 5,
+    "mischief": 30,
+    "total": 105,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140945963421727/Tuk_Sensational_Swinger.png?ex=695001ca&is=694eb04a&hm=8ecca365ddf1795bd11633df851a19c9122e3e6c7f5889e010d1390f1b489b3a&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, nude",
+    "statuses": [
+      "erect",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/tuk_sensational_swinger.png"
+  },
+  "benji_the_tree_hugger": {
+    "name": "Benji, The Tree Hugger",
+    "rarity": "common",
+    "personality": "Confident",
+    "banana_size": 50,
+    "charm": 20,
+    "mischief": 20,
+    "total": 90,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140960379240703/Benji_The_tree_Hugger.png?ex=695001cd&is=694eb04d&hm=bd2a051a1a6748b1a4c5a803929384a019840c9d37f2f7a7c0ebaf2e9ab9d40b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/benji_the_tree_hugger.png"
+  },
+  "revy_rascal": {
+    "name": "Revy Rascal",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 75,
+    "charm": 20,
+    "mischief": 15,
+    "total": 110,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140972777603182/Revy_Rascal.png?ex=695001d0&is=694eb050&hm=d50a5c960952519ccb0c970031274f12dd13150fcd0502e118cbc17c91fbc9d4&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/revy_rascal.png"
+  },
+  "lior_the_devoted": {
+    "name": "Lior, The Devoted",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 40,
+    "charm": 40,
+    "mischief": 40,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140988552511659/Lior_the_Devoted.png?ex=695001d4&is=694eb054&hm=e073f268d048a27b064557e226d1b5a7450dd5505666d5dff163dab5354ab195&=&format=webp&quality=lossless&width=1317&height=1977",
+    "status": "Erect, Ejaculating, Briefs",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/lior_the_devoted.png"
+  },
+  "tai_aspiring_veyrak": {
+    "name": "Tai, Aspiring Veyrak",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 30,
+    "charm": 70,
+    "mischief": 15,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691286660546601/Tai_Aspiring_Veyrak.png?ex=69520255&is=6950b0d5&hm=7c8b8f72a3f6e427bc3cdb357b2be001253c41ca354124f898611f60cf6e032c&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Briefs",
+    "statuses": [
+      "erect",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/tai_aspiring_veyrak.png"
+  },
+  "leo_of_urbanwood": {
+    "name": "Leo of Urbanwood",
+    "rarity": "rare",
+    "personality": "Flirty",
+    "banana_size": 60,
+    "charm": 20,
+    "mischief": 20,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691299503374449/Leo_of_Urbanwood.png?ex=69520258&is=6950b0d8&hm=8de3d08e790199d46c10a1fd53e1ab7b7d7e77cd094d0cdb94e59bb7bfa63139&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Briefs",
+    "statuses": [
+      "erect",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/leo_of_urbanwood.png"
+  },
+  "fluffy_the_irresistable": {
+    "name": "Fluffy, the Irresistable",
+    "rarity": "uncommon",
+    "personality": "Sweetheart",
+    "banana_size": 10,
+    "charm": 90,
+    "mischief": 20,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691304624885833/Fluffy_the_Irresistable.png?ex=69520259&is=6950b0d9&hm=d1367ead308eec45c2ed00f7fb52fe6764078defcec336f3225c51ec0eb9db96&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/fluffy_the_irresistable.png"
+  },
+  "caelum_regal_ruler": {
+    "name": "Caelum, Regal Ruler",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 10,
+    "charm": 50,
+    "mischief": 10,
+    "total": 70,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691311637631128/Caelum_Regal_Ruler.png?ex=6952025b&is=6950b0db&hm=9f9842e0b46023114611cfe283d61563598bc2d2e4200c5a03515b685fd971bb&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/caelum_regal_ruler.png"
+  },
+  "sy_the_devoted": {
+    "name": "Sy, The Devoted",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 8,
+    "charm": 50,
+    "mischief": 50,
+    "total": 108,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691318558228584/Sy_The_Modest.png?ex=6952025d&is=6950b0dd&hm=28afe2ea498b00c07d6ea24b9ea879c8bf9db116d6ce04a5a1224980fa2070d6&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/sy_the_devoted.png"
+  },
+  "fiendish_twitch": {
+    "name": "Fiendish Twitch",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 100,
+    "charm": 0,
+    "mischief": 0,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691325747269632/Fiendish_Twitch.png?ex=6952025e&is=6950b0de&hm=c5648f07c575f674ec5a0596553361fbfb0a2b8516f0bac856e4dd480c605f0e&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Heat",
+    "statuses": [
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/fiendish_twitch.png"
+  },
+  "funtime_flynn": {
+    "name": "Funtime Flynn",
+    "rarity": "Common",
+    "personality": "Sweetheart",
+    "banana_size": 40,
+    "charm": 50,
+    "mischief": 20,
+    "total": 110,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691329303904426/Funtime_Flynn.png?ex=6952025f&is=6950b0df&hm=8062355bc1d8f27b7a084bf187f89f8ade7546ab754f9a83d7d5b251bafc4ee7&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/funtime_flynn.png"
+  },
+  "dizzy_daze": {
+    "name": "Dizzy Daze",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 65,
+    "charm": 60,
+    "mischief": 5,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691336954576896/Dizzy_Daze.png?ex=69520261&is=6950b0e1&hm=2596d5b9a029ef38ea2ad3aaa367e5322413ef85c4e38779e47188bf57856dfb&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Ejaculating",
+    "statuses": [
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/dizzy_daze.png"
+  },
+  "rambunctious_ryno": {
+    "name": "Rambunctious Ryno",
+    "rarity": "Common",
+    "personality": "Rascal",
+    "banana_size": 50,
+    "charm": 5,
+    "mischief": 65,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691344063660209/Rambunctious_Ryno.png?ex=69520263&is=6950b0e3&hm=0b54e2a64d1325746c4595c216ba471443da22f0562da946e03e853fd1934596&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs, Heat",
+    "statuses": [
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/rambunctious_ryno.png"
+  },
+  "hope_the_happy_chimp": {
+    "name": "Hope, the Happy Chimp",
+    "rarity": "uncommon",
+    "personality": "Sweetheart",
+    "banana_size": 45,
+    "charm": 50,
+    "mischief": 15,
+    "total": 110,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691349780762695/Hope_The_Happy_Chimp.png?ex=69520264&is=6950b0e4&hm=c9d668a5c262fc65281891db824a4e349192b27b19514431f2152f2ae1601d0e&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Ejaculating, Nude",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/hope_the_happy_chimp.png"
+  },
+  "samari_exposed": {
+    "name": "Samari, Exposed",
+    "rarity": "uncommon",
+    "personality": "Sweetheart",
+    "banana_size": 45,
+    "charm": 60,
+    "mischief": 10,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691364468953100/Samari_Exposed.png?ex=69520268&is=6950b0e8&hm=c538dbf7659154769f96869c48cbff3c31c4e7e1d6e8bd398972997ccf5cf576&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/samari_exposed.png"
+  },
+  "young_chimp_scrappy": {
+    "name": "Young Chimp Scrappy",
+    "rarity": "Common",
+    "personality": "Rascal",
+    "banana_size": 50,
+    "charm": 5,
+    "mischief": 50,
+    "total": 105,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1457586976684511374/Young_Chimp_Scrappy.png?ex=695c8b27&is=695b39a7&hm=0cef07b3d8b6207549100d83e4616b267d12b9d97bc8303f1abc2853b0b8fd20&=&format=webp&quality=lossless&width=1322&height=1983",
+    "status": "Erect",
+    "statuses": [
+      "erect"
+    ],
+    "image_url_web": "/static/cards/young_chimp_scrappy.png"
+  },
+  "raging_ragnar": {
+    "name": "Raging Ragnar",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 60,
+    "charm": 60,
+    "mischief": 10,
+    "total": 130,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691370856874045/Raging_Ragnar.png?ex=69520269&is=6950b0e9&hm=7d27b18717961dad851154953a9e7a98a3f3c614ff4792c94ba7059cfc62a792&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/raging_ragnar.png"
+  },
+  "reks_the_dreamer": {
+    "name": "Reks, The Dreamer",
+    "rarity": "Common",
+    "personality": "Flirty",
+    "banana_size": 20,
+    "charm": 50,
+    "mischief": 50,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691378037788692/Reks_the_Dreamer.png?ex=6952026b&is=6950b0eb&hm=2b3e8e52753077cd52f9ddce836ea8de70e63df717d761268f194bfeece3d161&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Erect, Nude",
+    "statuses": [
+      "erect",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/reks_the_dreamer.png"
+  },
+  "tree_log_bearer_zweih": {
+    "name": "Tree-log Bearer Zweih",
+    "rarity": "rare",
+    "personality": "Flirty",
+    "banana_size": 80,
+    "charm": 0,
+    "mischief": 50,
+    "total": 130,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454704737323712572/Tree-log_Bearer_Zweih.png?ex=69520edc&is=6950bd5c&hm=4d33ba7e58ade2ee8127ea7b4adb9f3fa3be1f4b7d587313ef122ff784fa1a56&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/tree_log_bearer_zweih.png"
+  },
+  "aspiring_monkey_boy": {
+    "name": "Aspiring Monkey Boy",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 10,
+    "charm": 10,
+    "mischief": 10,
+    "total": 30,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691397570531421/Aspiring_Monkey_Boy.png?ex=69520270&is=6950b0f0&hm=1d540be606fd06d877cc222450bbaf3b3688646c30534f91b7eefba361b93fda&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/aspiring_monkey_boy.png"
+  },
+  "ripple_the_aqueous_adventurer": {
+    "name": "Ripple the Aqueous Adventurer",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 38,
+    "charm": 26,
+    "mischief": 48,
+    "total": 112,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691401714372803/Ripple_The_Aqueous_Adventurer.png?ex=69520271&is=6950b0f1&hm=4c13768f732acae5b813708dbf0c928e136402c5a4a976356539fe086d24fa1f&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/ripple_the_aqueous_adventurer.png"
+  },
+  "hydrix_the_aqueous_adventurer": {
+    "name": "Hydrix, The Aqueous Adventurer",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 38,
+    "charm": 26,
+    "mischief": 48,
+    "total": 112,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691405825052745/Hydrix_The_Aqueous_Adventurer.png?ex=69520272&is=6950b0f2&hm=8ea0a58e6467aa505373a1c741195f8e3c21e71b59f9e4d838af97491ae1d888&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/hydrix_the_aqueous_adventurer.png"
+  },
+  "necal_the_senseless": {
+    "name": "Necal, the Senseless",
+    "rarity": "Common",
+    "personality": "Alpha",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 50,
+    "total": 150,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691411789090918/Necal_The_Senseless.png?ex=69520273&is=6950b0f3&hm=00272e38a982ae89052641e077e19c90bd193adb69d617ab1724fd3eff18c2ce&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/necal_the_senseless.png"
+  },
+  "calix_the_monkey_boy": {
+    "name": "Calix, The Monkey Boy",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 15,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691419158478888/Calix_The_Monkey_boy.png?ex=69520275&is=6950b0f5&hm=616586fe7bdb1639646fd003dcd075aded5aca4af7f19f1807c0a84a2890580e&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/calix_the_monkey_boy.png"
+  },
+  "ash_cinderfang": {
+    "name": "Ash, Cinderfang",
+    "rarity": "Common",
+    "personality": "Prankster",
+    "banana_size": 25,
+    "charm": 25,
+    "mischief": 65,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455065387103162535/Ash_Cinderfang.png?ex=69535ebe&is=69520d3e&hm=532904eebde0bdb7b63b6bf94d0c103a37fdec504faa6ba3b2be97da7d965f93&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/ash_cinderfang.png"
+  },
+  "ace_cinderfang_prodigy": {
+    "name": "Ace, Cinderfang prodigy",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 60,
+    "charm": 40,
+    "mischief": 25,
+    "total": 125,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455065914805321801/Ace_Cinderfang_Prodigy.png?ex=69535f3b&is=69520dbb&hm=341336732a0d45f397cc0a86f20529886c1cc2dcaa0d7a0d384ac415a6aef22e&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/ace_cinderfang_prodigy.png"
+  },
+  "drayco_cindrfang_watcher": {
+    "name": "Ace, Cinderfang prodigy",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 65,
+    "charm": 5,
+    "mischief": 50,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455066445082787890/Drayco_Cinderfang_Watcher.png?ex=69535fba&is=69520e3a&hm=9d1423a7ede66cd83c55d7daaa81fb3a251e4516ecd03984697c57f4ec6b19cf&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/drayco_cindrfang_watcher.png"
+  },
+  "Ignivar_child_of_crimsimia": {
+    "name": "Ignivar, Child of Crimsimia",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 50,
+    "total": 150,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455066563416817827/Ignivar_Child_of_Crimsimia.png?ex=69535fd6&is=69520e56&hm=3017e6323b941a550dd5ea8a5804b25d874580652b89da2d96822a586c691ada&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Briefs, Heat",
+    "statuses": [
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/Ignivar_child_of_crimsimia.png"
+  },
+  "fenryx_child_of_crimsimia": {
+    "name": "Fenryx, Child of Crimsimia",
+    "rarity": "uncommon",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 15,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455066688440635526/Fenryx_Child_of_Crimsimia.png?ex=69535ff4&is=69520e74&hm=29af352210dc1203ef864b9b6a2ba2fd0aaf252c588e7521460412fd6b7615c6&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/fenryx_child_of_crimsimia.png"
+  },
+  "Ruin_child_of_crimsimia": {
+    "name": "Ruin, Child of Crimsimia",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 65,
+    "charm": 5,
+    "mischief": 50,
+    "total": 120,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455067366894342216/Ruin_Child_of_Crimsimia.png?ex=69536096&is=69520f16&hm=cbfe2777146688752c1ab390270ba8af50d21c69c67d24adfd75a8def14f8951&=&format=webp&quality=lossless&width=1226&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/Ruin_child_of_crimsimia.png"
+  },
+  "mangy_milo": {
+    "name": "Mangy Milo",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 75,
+    "charm": 5,
+    "mischief": 35,
+    "total": 115,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455067436557664321/Mangy_Milo.png?ex=695360a6&is=69520f26&hm=af6148777e8db13d0f813ced351ca947dae9534711c67d3fc13fa6234b6ee700&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude, Erect, Heat",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/mangy_milo.png"
+  },
+  "astro_guardian_three": {
+    "name": "Astro, Guardian Three",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 20,
+    "mischief": 20,
+    "total": 60,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455067659782586380/Astro_Guardian_Three.png?ex=695360db&is=69520f5b&hm=f4bd1cffa2a6ffb205782ad77179c930fc01cda94e295526a2c351051fce2803&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/astro_guardian_three.png"
+  },
+  "astryx_guardian_three": {
+    "name": "Astryx, Guardian Three",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 20,
+    "mischief": 20,
+    "total": 60,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455067676513800212/Astryx_Guardian_Three.png?ex=695360df&is=69520f5f&hm=27e03ea220053fbcb8bb22299ad1010a3dd013cd00d1f7759ab907cb2be136b9&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/astryx_guardian_three.png"
+  },
+  "astral_guardian_three": {
+    "name": "Astral, Guardian Three",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 20,
+    "mischief": 20,
+    "total": 60,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455067691407769733/Astral_Guardian_Three.png?ex=695360e3&is=69520f63&hm=c88cc9f13c32ec30942eafd89fec61a5ced86db71bc5a17efa2650a0dba65947&=&format=webp&quality=lossless&width=1221&height=1831",
+    "status": "Nude",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/astral_guardian_three.png"
+  },
+  "little_hands": {
+    "name": "Little Hands",
+    "rarity": "legendary",
+    "personality": "Sweetheart",
+    "banana_size": 60,
+    "charm": 40,
+    "mischief": 10,
+    "total": 110,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455208646752469202/Little-Hands.gif?ex=6953e429&is=695292a9&hm=af570206eff5e6b8933e8ff82e6b4d491904b1971665fc45d3b690208284b5a3&=&width=1229&height=1847",
+    "status": "Nude, Erect",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/little_hands.gif"
+  },
+  "willie_the_weenie_waver": {
+    "name": "Willie, The Weenie Waver",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 30,
+    "charm": 5,
+    "mischief": 80,
+    "total": 115,
+    "status": "Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971802823135232/Willie_The_Weenie_Waver.png?ex=6956aae8&is=69555968&hm=146009974faabdb2d3fd4a508195fe31e415b75013700f3093b13c8b8da15db7&=&format=webp&quality=lossless&width=1232&height=1849",
+    "statuses": [
+      "erect"
+    ],
+    "image_url_web": "/static/cards/willie_the_weenie_waver.png"
+  },
+  "weeno_the_willie_waver": {
+    "name": "Weeno, The Willie Waver",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 25,
+    "charm": 20,
+    "mischief": 73,
+    "total": 118,
+    "status": "Erect, Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971815288606740/Weeno_The_willie_Waver.png?ex=6956aaeb&is=6955596b&hm=3584cc7c6502b40b62fe8c874d7861ceb5a60806e41996971a6a76ae6dab82ad&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "erect",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/weeno_the_willie_waver.png"
+  },
+  "juan_the_weenie_waver": {
+    "name": "Juan, The Weenie Waver",
+    "rarity": "Common",
+    "personality": "Flirty",
+    "banana_size": 10,
+    "charm": 50,
+    "mischief": 55,
+    "total": 115,
+    "status": "Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971826252382392/Juan_The_Willie_Waver.png?ex=6956aaee&is=6955596e&hm=a3ce6dd838d8a7a8833ccb93ef8dae71986bf4dcc26d46d87266fdb68a42a7df&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "erect"
+    ],
+    "image_url_web": "/static/cards/juan_the_weenie_waver.png"
+  },
+  "chip_the_eager_chimp": {
+    "name": "Chip, The Eager Chimp",
+    "rarity": "Common",
+    "personality": "Gentle",
+    "banana_size": 20,
+    "charm": 49,
+    "mischief": 40,
+    "total": 109,
+    "status": "Erect, Ejaculating, Briefs",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455980237094518794/Chip_The_Eager_Chimp.png?ex=6956b2c3&is=69556143&hm=17ba8a398555919cdea0f64694c1fc2c011aab888adb9878233f383e69c4e25d&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "erect",
+      "ejaculating",
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/chip_the_eager_chimp.png"
+  },
+  "thor_nonchalant_chimp": {
+    "name": "Thor, Nonchalant Chimp",
+    "rarity": "Common",
+    "personality": "Sweetheart",
+    "banana_size": 40,
+    "charm": 50,
+    "mischief": 26,
+    "total": 116,
+    "status": "Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455981683504582758/Thor_Nonchalant_Chimp.png?ex=6956b41c&is=6955629c&hm=74ad2540740e8a776f67eab9c796368132b12b18d0a75d09151792d70995af18&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/thor_nonchalant_chimp.png"
+  },
+  "umrael_blessed": {
+    "name": "Umbrael, Blessed",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 40,
+    "charm": 60,
+    "mischief": 10,
+    "total": 110,
+    "status": "Nude, Erect, Heat",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455983009563148318/Umbrael_Blessed.png?ex=6956b558&is=695563d8&hm=7f9be90486a40c367a82490ef47e1796d58fc66736e5898b3b927c0974919aa6&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude",
+      "erect",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/umrael_blessed.png"
+  },
+  "remy_longest_tail": {
+    "name": "Remy, Longest Tail",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 70,
+    "charm": 50,
+    "mischief": 5,
+    "total": 125,
+    "status": "Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971865188372511/Remy_Longest_Tail.png?ex=6956aaf7&is=69555977&hm=3a44204310adc0ac94ab95074d2876754365dc345ca85f5f866cd60b0084d286&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/remy_longest_tail.png"
+  },
+  "myo_simiki_of_the_lake": {
+    "name": "Myo, Simiki of the Lake",
+    "rarity": "uncommon",
+    "personality": "Gentle",
+    "banana_size": 10,
+    "charm": 50,
+    "mischief": 0,
+    "total": 60,
+    "status": "Nude, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971873165672508/Myo_Simiki_of_the_Lake.png?ex=6956aaf9&is=69555979&hm=f38d7e752cb3dbe16674c7a6bb5197bce7b57ca32d76e66b8c8fe94c50732772&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/myo_simiki_of_the_lake.png"
+  },
+  "delza_the_prime_form": {
+    "name": "Delza, The Prime Form",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 70,
+    "charm": 50,
+    "mischief": 5,
+    "total": 125,
+    "status": "Nude, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971889439838321/Delza_The_Prime_Form.png?ex=6956aafd&is=6955597d&hm=71b8b4364f0668847f47eadfa7b29b79307314b0d633339ec6664d6e64a59bd6&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/delza_the_prime_form.png"
+  },
+  "forest_boy_fang": {
+    "name": "Forest Boy Fang",
+    "rarity": "common",
+    "personality": "Bravado",
+    "banana_size": 35,
+    "charm": 50,
+    "mischief": 20,
+    "total": 105,
+    "status": "Briefs, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971901498331136/Forest_Boy_Fang.png?ex=6956aaff&is=6955597f&hm=09b22c3d523419de2e54777415502480ed174817c44f60a090801fbaa90ba0eb&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/forest_boy_fang.png"
+  },
+  "drexlei_canopy_hero": {
+    "name": "Drexlei, Canopy Hero",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 35,
+    "charm": 43,
+    "mischief": 40,
+    "total": 118,
+    "status": "Briefs, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971922193158145/Drexlei_Canopy_Hero.png?ex=6956ab04&is=69555984&hm=49547fd2e23e7bbda4b54a5139ca4c1e2f466f608772b657704a3aeec714f758&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/drexlei_canopy_hero.png"
+  },
+  "savryn_trouble_with_a_smile": {
+    "name": "Savryn, Trouble with a Smile",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 43,
+    "charm": 25,
+    "mischief": 50,
+    "total": 118,
+    "status": "Briefs, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971935824642282/Savryn_Trouble_with_a_Smile.png?ex=6956ab08&is=69555988&hm=e36bed880078f4eabf81af56d6ca1dda6c65a36970a3ea2955f6ac42137d688b&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs",
+      "erect"
+    ],
+    "image_url_web": "/static/cards/savryn_trouble_with_a_smile.png"
+  },
+  "wyvern_the_unbroken": {
+    "name": "Wyern, the Unbroken",
+    "rarity": "Common",
+    "personality": "Sweetheart",
+    "banana_size": 40,
+    "charm": 60,
+    "mischief": 20,
+    "total": 120,
+    "status": "Briefs, Erect, Ejaculating",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971953671147621/Wyvern_The_Unbroken.png?ex=6956ab0c&is=6955598c&hm=ea85793b2bc26e90c8fc580b539548149933d20711089b70024062bf7a5607f3&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs",
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/wyvern_the_unbroken.png"
+  },
+  "ramu": {
+    "name": "Ramu",
+    "rarity": "uncommon",
+    "personality": "Sweetheart",
+    "banana_size": 10,
+    "charm": 90,
+    "mischief": 0,
+    "total": 100,
+    "status": "Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971971077640410/Ramu.png?ex=6956ab10&is=69555990&hm=7b1b22a41cac8465ac907e3dce10fe9c7fee92476f58544e17cfc2533eb984c8&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/ramu.png"
+  },
+  "lumo_unsupervised": {
+    "name": "Lumo, Unsupervised",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 70,
+    "charm": 0,
+    "mischief": 50,
+    "total": 120,
+    "status": "Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971995564114021/Lumo_Unsupervised.png?ex=6956ab16&is=69555996&hm=274078d22e85e36b3d84d7f5306bc230ffceaded386409220d13e81668b28652&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/lumo_unsupervised.png"
+  },
+  "lemo_unsupervised": {
+    "name": "Lemo, Unsupervised",
+    "rarity": "uncommon",
+    "personality": "Rascal",
+    "banana_size": 70,
+    "charm": 0,
+    "mischief": 50,
+    "total": 120,
+    "status": "Nude",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455972006205067447/Lemo_Unsupervised.png?ex=6956ab18&is=69555998&hm=5209fb62987f8676dfa264db0ee95b9d164f013c4211aa2e774259b3bb2a2468&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "/static/cards/lemo_unsupervised.png"
+  },
+  "supersoaker_nyro": {
+    "name": "Supersoaker Nyro",
+    "rarity": "uncommon",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 55,
+    "mischief": 5,
+    "total": 110,
+    "status": "Nude, Erect, Ejaculating",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455989635451850803/Supersoaker_Nyro.png?ex=6956bb84&is=69556a04&hm=393d6fa90f94f7574b3bb587fab59b538d4078a70746988f012123b696fad1c2&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "nude",
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/supersoaker_nyro.png"
+  },
+  "zero_cinderfang_ace": {
+    "name": "Zero, Cinderfang Ace",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 55,
+    "charm": 55,
+    "mischief": 8,
+    "total": 110,
+    "status": "Briefs",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455972061796237378/Zero_Cinderfang_Ace.png?ex=6956ab26&is=695559a6&hm=e301ad9d8d09336a0f7b509ddd77e81bef927c3aceab4c2e56cd56885c1c1fc0&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/zero_cinderfang_ace.png"
+  },
+  "messy_pants_mavi": {
+    "name": "Messy Pants Mavi",
+    "rarity": "Common",
+    "personality": "Flirty",
+    "banana_size": 20,
+    "charm": 50,
+    "mischief": 20,
+    "total": 120,
+    "status": "Briefs, Erect, Ejaculating",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455974215822999642/Messy_pants_Mavi.png?ex=6956ad27&is=69555ba7&hm=e3e32e8417ae2cfb31521af7cc36526c4029eda077de889dce5310a0f87c693d&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs",
+      "erect",
+      "ejaculating"
+    ],
+    "image_url_web": "/static/cards/messy_pants_mavi.png"
+  },
+  "waveform_walker_whytte": {
+    "name": "Waveform Walker Whytte",
+    "rarity": "Common",
+    "personality": "Confident",
+    "banana_size": 79,
+    "charm": 20,
+    "mischief": 11,
+    "total": 120,
+    "status": "Briefs",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1457222807170580602/Waveform_Walker_Whytte.jpg.png?ex=695b37ff&is=6959e67f&hm=e63171818e0e72835d78412386cb50deadc134e9529536ef4a406fa676cb33f7&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/waveform_walker_whytte.png"
+  },
+
+  "kaboom_boner_boy": {
+    "name": "Kaboom, Boner Boy",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 65,
+    "charm": 30,
+    "mischief": 20,
+    "total": 115,
+    "status": "Briefs, Erect",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1458336853517275146/Kaboom_Boner_Boy.png?ex=695f4588&is=695df408&hm=16ee40a250e39b7357f334eec62460b78232efa9b91bf71bc2d282f24f25ec35&=&format=webp&quality=lossless&width=1322&height=1983",
+    "statuses": [
+      "briefs, erect"
+    ],
+    "image_url_web": "/static/cards/kaboom_boner_boy.png"
+  }
+}
