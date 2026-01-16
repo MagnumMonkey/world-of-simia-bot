@@ -56,6 +56,37 @@ DUP_SELL_VALUES = {
     "legendary": 100
 }
 
+IMAGE_BASE_URL = os.getenv("IMAGE_BASE_URL", "").rstrip("/")
+
+def resolve_card_image_url(card: dict) -> str | None:
+    """
+    Prefer image_url_web (stable). If it's relative (/static/...),
+    prepend IMAGE_BASE_URL. Fall back to discord/url fields for legacy.
+    """
+    url = (
+        card.get("image_url_web")
+        or card.get("image_url_discord")
+        or card.get("image_url")
+        or ""
+    )
+
+    if not url:
+        return None
+
+    # ✅ strip whitespace ONCE, early
+    url = url.strip()
+
+    # If it's a relative path, it needs a public base URL
+    if url.startswith("/"):
+        if not IMAGE_BASE_URL:
+            print(f"[WARN] IMAGE_BASE_URL not set; cannot resolve {url}")
+            return None
+        return f"{IMAGE_BASE_URL}{url}"
+
+    return url
+
+
+
 TRADE_COOLDOWN_SECONDS = 2 * 60 * 60  # 2 hours
 TRADE_XP_REWARD = 10
 
@@ -555,6 +586,9 @@ class DiscoverButton(discord.ui.Button):
             card.get("image_url_discord")
             or card.get("image_url")
         )
+
+        if image_url:
+            embed.set_image(url=image_url)
 
 
         # Disable buttons after selection
