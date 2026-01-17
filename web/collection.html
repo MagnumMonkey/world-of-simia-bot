@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>WoS Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: system-ui, Arial; margin: 0; padding: 16px; }
+
+    header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+
+    input { padding: 10px; width: 340px; max-width: 90vw; }
+
+    button { padding: 10px 14px; cursor: pointer; }
+
+    #status { margin: 12px 0; opacity: .8; }
+
+    h1 {
+        font-family: 'Luckiest Guy', cursive; /* or whatever font you chose */
+        text-align: center;                  /* 👈 this is the key line */
+        margin: 0 0 12px 0;
+        }
+
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        position: relative;
+        min-height: 100vh;
+        }
+
+        /* Background image layer */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("/static/backgrounds/wos_forest_frame.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        opacity: 1;           /* 👈 adjust this */
+        z-index: -1;
+        pointer-events: none;
+        }
+
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.35);
+        z-index: -1;
+        pointer-events: none;
+        }
+
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        background: #fff;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+    .card { cursor: pointer; }
+    
+
+
+    .img { width:100%; aspect-ratio: 2/3; background:#111; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; color:#888; }
+
+    .img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .name { font-weight:400; margin-top:8px; font-family: 'Baloo 2', sans-serif; text-align: center; }
+    
+    .meta { font-size:12px; opacity:.7; margin-top:2px; }
+
+    /* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.modal {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  max-width: 580px;   /* BIGGER */
+  width: 95%;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  animation: pop 0.2s ease-out;
+}
+
+
+/* Pop animation */
+@keyframes pop {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modal image */
+.modal img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Meta text */
+.modal-meta {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.modal-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.modal-id {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+.modal-rarity {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+  </style>
+</head>
+<body>
+  <h1>The Naughty Playpen</h1>
+    
+  <header id="controls">
+    <label>
+      Discord User ID:
+      <input id="uid" placeholder="1295073412980674682" />
+    </label>
+    <button id="loadBtn">Load</button>
+  </header>
+
+  <div id="status"></div>
+  <div id="grid" class="grid"></div>
+
+  <!-- Modal -->
+<div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+    <img id="modalImg" alt="" />
+    <div class="modal-meta">
+      <div id="modalName" class="modal-name"></div>
+      <div id="modalRarity" class="modal-rarity"></div>
+    </div>
+  </div>
+</div>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const gridEl = document.getElementById("grid");
+    const uidEl = document.getElementById("uid");
+    // Auto-load if URL is /collection/<user_id>
+    const controlsEl = document.getElementById("controls");
+    const pathMatch = window.location.pathname.match(/^\/collection\/(\d+)\/?$/);
+    const urlUser = new URLSearchParams(window.location.search).get("u");
+
+    const autoUserId = (pathMatch && pathMatch[1]) ? pathMatch[1] : (urlUser || null);
+
+    if (autoUserId) {
+      uidEl.value = autoUserId;
+      loadCollection();
+
+      // Hide input UI in shareable mode
+      if (controlsEl) controlsEl.style.display = "none";
+    }
+
+    // Modal elements
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalClose = document.getElementById("modalClose");
+    const modalImg = document.getElementById("modalImg");
+    const modalName = document.getElementById("modalName");
+    const modalRarity = document.getElementById("modalRarity");
+
+    function openModal({ name, cardId, imgUrl, rarity }) {
+        modalName.textContent = name || "";
+        modalRarity.textContent = rarity ? `Rarity: ${rarity}` : "";
+
+        if (imgUrl) {
+            modalImg.src = imgUrl;
+            modalImg.style.display = "block";
+        } else {
+            modalImg.removeAttribute("src");
+            modalImg.style.display = "none";
+        }
+
+        modalOverlay.style.display = "flex";
+        modalOverlay.setAttribute("aria-hidden", "false");
+        }
+
+    function closeModal() {
+        modalOverlay.style.display = "none";
+        modalOverlay.setAttribute("aria-hidden", "true");
+    }
+
+    // Close actions
+    modalClose.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", (e) => {
+    // Only close if they click the dark overlay, not the modal itself
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+    });
+
+
+    document.getElementById("loadBtn").addEventListener("click", loadCollection);
+
+    async function loadCollection() {
+      const userId = uidEl.value.trim();
+      if (!userId) return;
+
+      statusEl.textContent = "Loading…";
+      gridEl.innerHTML = "";
+
+      const res = await fetch(`/api/collection/${encodeURIComponent(userId)}`);
+
+      if (!res.ok) {
+        statusEl.textContent = "User not found (no record in wos_data.json).";
+        return;
+      }
+
+      const col = await res.json();
+
+      statusEl.textContent = `Cards: ${col.count}`;
+
+      for (const c of col.cards) {
+        const name = c.name || c.card_id;
+        const imgUrl = c.image_url || "";
+        const rarity = c.rarity || "";
+
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+          <div class="img">${imgUrl ? `<img src="${imgUrl}" alt="">` : "No image"}</div>
+          <div class="name">${name}</div>
+        `;
+
+        div.addEventListener("click", () => {
+          openModal({
+            name,
+            cardId: c.card_id,
+            imgUrl,
+            rarity
+          });
+        });
+
+        gridEl.appendChild(div);
+      }
+    }
+
+  </script>
+</body>
+</html>
