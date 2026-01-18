@@ -1107,6 +1107,10 @@ async def wos_starter(interaction: discord.Interaction):
 async def wos_collection(interaction: discord.Interaction):
     user_id = str(interaction.user.id)
 
+    collection_url = (
+        "https://magnummonkey.github.io/world-of-simia-bot/"
+        f"?user_id={user_id}"
+    )
     data = load_data()
     cards_db = load_cards()
 
@@ -1129,10 +1133,14 @@ async def wos_collection(interaction: discord.Interaction):
     view = CollectionView(card_ids, cards_db)
 
     await interaction.response.send_message(
-        "📜 **Your World of Simia Collection**\nSelect a card to view:",
+        "📜 **Your World of Simia Collection**\n\n"
+        "🖥️ **View your full collection online:**\n"
+        f"{collection_url}\n\n"
+        "👇 **Or select a card below to view it here:**",
         view=view,
         ephemeral=True
     )
+
 
 
 
