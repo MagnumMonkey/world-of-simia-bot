@@ -6,6 +6,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import Request
 from fastapi.responses import FileResponse
 from pathlib import Path
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # -----------------------------
 # App + paths
@@ -17,6 +19,18 @@ WEB_DIR = Path(BASE_DIR) / "web"
 
 
 app = FastAPI(title="World of Simia — Collection Server")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "https://magnummonkey.github.io",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Serve /static/*
 app.mount("/static", StaticFiles(directory="static"), name="static")
