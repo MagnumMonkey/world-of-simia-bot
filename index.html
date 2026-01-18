@@ -294,6 +294,21 @@
       }
     }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const userIdFromUrl = params.get("user_id");
+
+      if (userIdFromUrl) {
+        const input = document.getElementById("userIdInput");
+        if (input) {
+            input.value = userIdFromUrl;
+        }
+
+        // Automatically load the collection
+        loadCollection();
+    }
+});
+
   </script>
 </body>
 </html>
