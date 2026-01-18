@@ -194,21 +194,26 @@
     const uidEl = document.getElementById("uid");
     // Auto-load if URL is /collection/<user_id>
     const controlsEl = document.getElementById("controls");
+
     const pathMatch = window.location.pathname.match(/^\/collection\/(\d+)\/?$/);
-    const urlUser = new URLSearchParams(window.location.search).get("u");
-    const API_BASE = "https://wos-api-production.up.railway.app";
 
-
+    // support BOTH ?user_id= (your Discord link) and ?u= (old)
+    const params = new URLSearchParams(window.location.search);
+    const urlUser = params.get("user_id") || params.get("u");
 
     const autoUserId = (pathMatch && pathMatch[1]) ? pathMatch[1] : (urlUser || null);
 
     if (autoUserId) {
-      uidEl.value = autoUserId;
+      uidEl.value = autoUserId;     // <-- this is the key (real value, not placeholder)
       loadCollection();
 
       // Hide input UI in shareable mode
       if (controlsEl) controlsEl.style.display = "none";
     }
+
+
+    const API_BASE = "https://wos-api-production.up.railway.app";
+
 
     // Modal elements
     const modalOverlay = document.getElementById("modalOverlay");
@@ -293,22 +298,6 @@
         gridEl.appendChild(div);
       }
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      const userIdFromUrl = params.get("user_id");
-
-      if (userIdFromUrl) {
-        const input = document.getElementById("userIdInput");
-        if (input) {
-            input.value = userIdFromUrl;
-        }
-
-        // Automatically load the collection
-        loadCollection();
-    }
-});
-
   </script>
 </body>
 </html>
