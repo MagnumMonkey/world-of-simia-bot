@@ -23,7 +23,7 @@ app = FastAPI(title="World of Simia — Collection Server")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://magummonkey.github.io",
+        "https://magnummonkey.github.io",
         "http://127.0.0.1:8000",
         "http://localhost:8000",
     ],
