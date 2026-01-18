@@ -36,7 +36,7 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: url("/static/backgrounds/wos_forest_frame.png");
+        background-image: url("static/backgrounds/wos_forest_frame.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -196,6 +196,9 @@
     const controlsEl = document.getElementById("controls");
     const pathMatch = window.location.pathname.match(/^\/collection\/(\d+)\/?$/);
     const urlUser = new URLSearchParams(window.location.search).get("u");
+    const API_BASE = "https://wos-api-production.up.railway.app";
+
+
 
     const autoUserId = (pathMatch && pathMatch[1]) ? pathMatch[1] : (urlUser || null);
 
@@ -255,7 +258,7 @@
       statusEl.textContent = "Loading…";
       gridEl.innerHTML = "";
 
-      const res = await fetch(`/api/collection/${encodeURIComponent(userId)}`);
+      const res = await fetch(`${API_BASE}/api/collection/${encodeURIComponent(userId)}`);
 
       if (!res.ok) {
         statusEl.textContent = "User not found (no record in wos_data.json).";

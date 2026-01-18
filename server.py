@@ -7,6 +7,7 @@ from fastapi import Request
 from fastapi.responses import FileResponse
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Body
 
 
 # -----------------------------
@@ -64,6 +65,10 @@ def load_json(path: str) -> Dict[str, Any]:
 
 def load_user_data() -> Dict[str, Any]:
     return load_json(DATA_FILE)
+
+def save_user_data(data: Dict[str, Any]) -> None:
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
 
 # -----------------------------
 # Routes
@@ -170,3 +175,25 @@ def collection_page():
 def collection_page_user(user_id: str):
     # user_id is used by the frontend JS (URL), so we just serve the same page.
     return FileResponse(WEB_DIR / "collection.html")
+
+@app.post("/api/collection/{user_id}/add")
+def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
+    card_id = payload.get("card_id")
+    if not card_id or not isinstance(card_id, str):
+        raise HTTPException(status_code=400, detail="Missing or invalid card_id")
+
+    data = load_user_data()
+    user = data.get(user_id)
+    if not isinstance(user, dict):
+        user = {"cards": []}
+        data[user_id] = user
+
+    cards = user.get("cards")
+    if not isinstance(cards, list):
+        cards = []
+        user["cards"] = cards
+
+    cards.append(card_id)  # or prevent duplicates if you want
+    save_user_data(data)
+
+    return {"status": "ok", "user_id": user_id, "added": card_id, "count": len(cards)}

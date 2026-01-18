@@ -8,7 +8,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from datetime import timezone
-
+import httpx
 
 
 # ==========================
@@ -385,6 +385,11 @@ def can_trade(user: dict) -> bool:
 def mark_trade(user: dict):
     user["last_trade_at"] = datetime.datetime.now(timezone.utc).isoformat()
 
+async def grant_card(user_id: str, card_id: str, data: dict):
+    ensure_user_record(data, user_id)
+    data[user_id]["cards"].append(card_id)
+    save_data(data)
+    await add_card_via_api(user_id, card_id)
 
 
 # ================================
@@ -525,6 +530,7 @@ class DiscoverButton(discord.ui.Button):
         if is_new:
             owned.append(chosen_id)
             data[user_id]["cards"] = owned
+            await add_card_via_api(user_id, chosen_id)
             title_line = "🎉 New discovery!"
             desc_line = "Added to your collection."
         else:
@@ -653,6 +659,8 @@ class ShopBuyButton(discord.ui.Button):
         user["banana_chips"] = chips - price
         user["cards"].append(cid)
         offer["sold"] = True
+
+        await add_card_via_api(user_id, cid)
 
         # XP for shop purchase
         level_msgs = add_xp(user, 5)
@@ -859,6 +867,9 @@ class TradeView(discord.ui.View):
         u_from["cards"].append(want_id)
         u_to["cards"].append(give_id)
 
+        await add_card_via_api(from_id, want_id)
+        await add_card_via_api(to_id, give_id) 
+
         # XP reward (both players)
         msgs_from = add_xp(u_from, TRADE_XP_REWARD)
         msgs_to = add_xp(u_to, TRADE_XP_REWARD)
@@ -1002,6 +1013,14 @@ class TradeConfirmButton(discord.ui.Button):
         # Otherwise update embed status
         await view.refresh_message(interaction, trade)
 
+WOS_API_BASE = "https://wos-api-production.up.railway.app"
+
+async def add_card_via_api(user_id: str, card_id: str) -> None:
+    url = f"{WOS_API_BASE}/api/collection/{user_id}/add"
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.post(url, json={"card_id": card_id})
+        r.raise_for_status()
+
 
 
 # ==========================
@@ -1065,6 +1084,7 @@ async def wos_starter(interaction: discord.Interaction):
     # Create user record and give starter (store only the id)
     data[user_id] = {"cards": [starter_card_id]}
     save_data(data)
+    await add_card_via_api(user_id, starter_card_id)
 
     # Read fields exactly as your JSON uses them
     name = starter.get("name", starter_card_id)
