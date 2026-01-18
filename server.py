@@ -22,15 +22,12 @@ app = FastAPI(title="World of Simia — Collection Server")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:8000",
-        "http://localhost:8000",
-        "https://magnummonkey.github.io",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Serve /static/*
 app.mount("/static", StaticFiles(directory="static"), name="static")
