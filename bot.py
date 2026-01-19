@@ -9,7 +9,13 @@ from discord import app_commands
 from discord.ext import commands
 from datetime import timezone
 import httpx
+from pathlib import Path
 
+# Persistent storage directory (Railway volume mount)
+WOS_DATA_DIR = Path(os.getenv("WOS_DATA_DIR", "/data"))
+WOS_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+WOS_DATA_PATH = WOS_DATA_DIR / "wos_data.json"
 
 # ==========================
 # CONFIG
@@ -19,8 +25,6 @@ import httpx
 BOT_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # File to store player collections for now
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(BASE_DIR, "wos_data.json")
 CARDS_FILE = os.path.join(BASE_DIR, "Cards.json")
 
 STARTER_CARD_POOL = ["rhythm_runner_rhed", "beat_boy_bloo", "waveform_walker_whytte"]
@@ -141,11 +145,11 @@ def add_xp(user: dict, amount: int) -> list[str]:
 # DATA HELPER FUNCTIONS
 # ==========================
 def load_data() -> dict:
-    if not os.path.exists(DATA_FILE):
+    if not WOS_DATA_PATH.exists():
         return {}
 
     try:
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
+        with open(WOS_DATA_PATH, "r", encoding="utf-8") as f:
             raw = f.read().strip()
             if not raw:
                 return {}
@@ -157,9 +161,11 @@ def load_data() -> dict:
         print(f"⚠️ Failed to load data: {e}")
         return {}
 
+
 def save_data(data):
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
+    with open(WOS_DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
+
 
 
 def load_cards():
@@ -1047,7 +1053,7 @@ async def on_ready():
         print(f"Error syncing commands: {e}")
 
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
-    print("💾 Using wos_data.json at:", os.path.abspath(DATA_FILE))
+    print("💾 Using wos_data.json at:", WOS_DATA_PATH)
     print("------ World of Simia Bot is ready! ------")
 
 
