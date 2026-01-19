@@ -27,6 +27,7 @@ STARTER_CARD_POOL = ["rhythm_runner_rhed", "beat_boy_bloo", "waveform_walker_why
 GUILD_ID = 1295075929806344234  # <- replace with your real server ID
 OWNER_ID = 1295073412980674682  # replace with YOUR Discord ID
 CATALOG_FORUM_CHANNEL_ID = 1454778038737834088
+DEV_USER_IDS = {1295073412980674682}  # <-- replace/add your ID(s)
 
 
 # ==========================
@@ -1750,6 +1751,53 @@ async def wos_deck_remove(interaction: discord.Interaction, card_id: str):
 
     name = cards_db.get(card_id, {}).get("name", card_id)
     await interaction.response.send_message(f"✅ Removed **{name}** from your active deck.", ephemeral=True)
+
+
+
+
+
+@bot.tree.command(name="wos_dev_addcard", description="DEV ONLY: Add a single card to your collection (no duplicates).")
+@app_commands.describe(card_id="Exact card_id from Cards.json")
+async def wos_dev_addcard(interaction: discord.Interaction, card_id: str):
+    # 🔒 DEV lock
+    if interaction.user.id not in DEV_USER_IDS:
+        await interaction.response.send_message("❌ You don’t have permission to use this command.", ephemeral=True)
+        return
+
+    await interaction.response.defer(ephemeral=True)
+
+    # 📘 Validate card exists
+    cards_db = load_cards()
+    if card_id not in cards_db:
+        await interaction.followup.send(
+            f"❌ Unknown card_id `{card_id}` (not found in Cards.json).",
+            ephemeral=True
+        )
+        return
+
+    user_id = str(interaction.user.id)
+    data = load_data()
+
+    # 🧍 Ensure user exists
+    users = data.setdefault("users", {})
+    user = users.setdefault(user_id, {})
+    cards = user.setdefault("cards", [])
+
+    # 🚫 Prevent duplicates
+    if card_id in cards:
+        await interaction.followup.send(
+            f"⚠️ You already own `{card_id}`. No duplicate added.",
+            ephemeral=True
+        )
+        return
+
+    # ✅ Grant exactly ONE card (uses your existing logic + API update)
+    await grant_card(user_id, card_id, data)
+
+    await interaction.followup.send(
+        f"✅ Added `{card_id}` to your collection.",
+        ephemeral=True
+    )
 
 # ==========================
 # RUN BOT
