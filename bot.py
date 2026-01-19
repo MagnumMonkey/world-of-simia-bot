@@ -26,7 +26,7 @@ BOT_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # File to store player collections for now
 CARDS_FILE = os.path.join(BASE_DIR, "Cards.json")
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STARTER_CARD_POOL = ["rhythm_runner_rhed", "beat_boy_bloo", "waveform_walker_whytte"]
 GUILD_ID = 1295075929806344234  # <- replace with your real server ID
 OWNER_ID = 1295073412980674682  # replace with YOUR Discord ID
