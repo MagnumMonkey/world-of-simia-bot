@@ -1157,16 +1157,13 @@ async def wos_collection(interaction: discord.Interaction):
             seen.add(cid)
             card_ids.append(cid)
 
-    view = CollectionView(card_ids, cards_db)
-
     await interaction.response.send_message(
         "📜 **Your World of Simia Collection**\n\n"
-        "🖥️ **View your full collection online:**\n"
-        f"{collection_url}\n\n"
-        "👇 **Or select a card below to view it here:**",
-        view=view,
+        "🖥️ **View your full collection at the Naughty Playpen:**\n"
+        f"{collection_url}\n\n",
         ephemeral=True
     )
+
 
 
 
