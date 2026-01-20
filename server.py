@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Body
+from fastapi.responses import Response
 
 
 # -----------------------------
@@ -23,13 +24,19 @@ app = FastAPI(title="World of Simia — Collection Server")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://magnummonkey.github.io",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
+@app.options("/{path:path}")
+def options_handler(path: str):
+    return Response(status_code=204)
 
 
 
