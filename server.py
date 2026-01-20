@@ -193,3 +193,7 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
     save_user_data(data)
 
     return {"status": "ok", "user_id": user_id, "added": card_id, "count": len(cards)}
+
+    @app.get("/debug/cors")
+    def debug_cors():
+        return {"ok": True}
