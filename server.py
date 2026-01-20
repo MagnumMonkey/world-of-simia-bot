@@ -197,3 +197,7 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
     @app.get("/debug/cors")
     def debug_cors():
         return {"ok": True}
+
+    @app.get("/")
+    def root():
+        return {"running": "SERVER.PY", "cors": "ON"}
