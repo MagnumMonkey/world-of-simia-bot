@@ -14,7 +14,7 @@ from fastapi import Body
 # App + paths
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(BASE_DIR, "wos_data.json")
+DATA_FILE = "/data/wos_data.json"
 CARDS_FILE = os.path.join(BASE_DIR, "Cards.json")
 WEB_DIR = Path(BASE_DIR) / "web"
 
@@ -25,8 +25,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://magnummonkey.github.io",
-        "http://127.0.0.1:8000",
         "http://localhost:8000",
+        "http://127.0.0.1:8000",
     ],
     allow_credentials=False,
     allow_methods=["*"],
