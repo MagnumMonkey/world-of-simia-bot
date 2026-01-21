@@ -211,41 +211,43 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
     return {"status": "ok", "user_id": user_id, "added": card_id, "count": len(cards)}
 
 
-    @app.get("/debug/cors")
-    def debug_cors():
-        return {"ok": True}
+@app.get("/debug/cors")
+def debug_cors():
+    return {"ok": True}
 
-    @app.get("/")
-    def root():
-        return {"running": "SERVER.PY", "cors": "ON"}
+@app.get("/")
+def root():
+    return {"running": "SERVER.PY", "cors": "ON"}
 
-    @app.post("/api/collection/{user_id}/dedupe")
-    def api_dedupe(user_id: str):
-        data = load_user_data()
-        user = data.get(user_id, {})
-        cards = user.get("cards", [])
+@app.post("/api/collection/{user_id}/dedupe")
+def api_dedupe(user_id: str):
+    data = load_user_data()
+    user = data.get(user_id)
 
-        if not isinstance(cards, list):
-            return {"status": "ok", "removed": 0, "count": 0}
-
-        seen = set()
-        deduped = []
-        for c in cards:
-            if c not in seen:
-                seen.add(c)
-                deduped.append(c)
-
-        removed = len(cards) - len(deduped)
-        user["cards"] = deduped
+    if not isinstance(user, dict):
+        user = {"cards": []}
         data[user_id] = user
-        save_user_data(data)
 
-        return {
-            "status": "ok",
-            "removed": removed,
-            "count": len(deduped),
-            "cards": deduped,
-        }
+    cards = user.get("cards", [])
+    if not isinstance(cards, list):
+        cards = []
+        user["cards"] = cards
+
+    seen = set()
+    deduped = []
+    for cid in cards:
+        if cid not in seen:
+            seen.add(cid)
+            deduped.append(cid)
+
+    removed = len(cards) - len(deduped)
+    user["cards"] = deduped
+    save_user_data(data)
+
+    return {"status": "ok", "user_id": user_id, "removed": removed, "count": len(deduped), "cards": deduped}
+
+
+    
 
     
 
