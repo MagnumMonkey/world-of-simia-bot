@@ -219,5 +219,33 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
     def root():
         return {"running": "SERVER.PY", "cors": "ON"}
 
+    @app.post("/api/collection/{user_id}/dedupe")
+def api_dedupe(user_id: str):
+    data = load_user_data()
+    user = data.get(user_id, {})
+    cards = user.get("cards", [])
+
+    if not isinstance(cards, list):
+        return {"status": "ok", "removed": 0, "count": 0}
+
+    seen = set()
+    deduped = []
+    for c in cards:
+        if c not in seen:
+            seen.add(c)
+            deduped.append(c)
+
+    removed = len(cards) - len(deduped)
+    user["cards"] = deduped
+    data[user_id] = user
+    save_user_data(data)
+
+    return {
+        "status": "ok",
+        "removed": removed,
+        "count": len(deduped),
+        "cards": deduped,
+    }
+
     
 
