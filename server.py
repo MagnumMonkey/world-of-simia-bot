@@ -196,10 +196,20 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
         cards = []
         user["cards"] = cards
 
-    cards.append(card_id)  # or prevent duplicates if you want
+    # Prevent duplicates (no duplicates allowed yet)
+    if card_id in cards:
+        return {
+            "status": "exists",
+            "user_id": user_id,
+            "card_id": card_id,
+            "count": len(cards),
+        }
+
+    cards.append(card_id)
     save_user_data(data)
 
     return {"status": "ok", "user_id": user_id, "added": card_id, "count": len(cards)}
+
 
     @app.get("/debug/cors")
     def debug_cors():
@@ -208,3 +218,6 @@ def api_add_card(user_id: str, payload: Dict[str, Any] = Body(...)):
     @app.get("/")
     def root():
         return {"running": "SERVER.PY", "cors": "ON"}
+
+    
+

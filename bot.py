@@ -10,6 +10,7 @@ from discord.ext import commands
 from datetime import timezone
 import httpx
 from pathlib import Path
+import aiohttp
 
 # Persistent storage directory (Railway volume mount)
 WOS_DATA_DIR = Path(os.getenv("WOS_DATA_DIR", "/data"))
@@ -397,6 +398,16 @@ async def grant_card(user_id: str, card_id: str, data: dict):
     data[user_id]["cards"].append(card_id)
     save_data(data)
     await add_card_via_api(user_id, card_id)
+
+
+async def get_collection_from_api(user_id: str) -> list[str]:
+    url = f"{API_BASE}/api/collection/{user_id}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return []
+            payload = await resp.json()
+            return payload.get("cards", []) or []
 
 
 # ================================
@@ -1065,16 +1076,17 @@ async def on_ready():
 async def wos_starter(interaction: discord.Interaction):
     user_id = str(interaction.user.id)
 
-    data = load_data()
     cards_db = load_cards()
 
     # If they already have any cards, block starter claim (prevents repeats)
-    if user_id in data and data[user_id].get("cards"):
+    existing_cards = await get_collection_from_api(user_id)
+    if existing_cards:
         await interaction.response.send_message(
             "You already claimed your starter card! 🐒\nUse `/wos_collection` to see your cards.",
             ephemeral=True
         )
         return
+
 
     # Pick a starter at random from the pool
     starter_card_id = random.choice(STARTER_CARD_POOL)
@@ -1089,8 +1101,6 @@ async def wos_starter(interaction: discord.Interaction):
         return
 
     # Create user record and give starter (store only the id)
-    data[user_id] = {"cards": [starter_card_id]}
-    save_data(data)
     await add_card_via_api(user_id, starter_card_id)
 
     # Read fields exactly as your JSON uses them
@@ -1138,10 +1148,10 @@ async def wos_collection(interaction: discord.Interaction):
         "https://magnummonkey.github.io/world-of-simia-bot/"
         f"?user_id={user_id}"
     )
-    data = load_data()
-    cards_db = load_cards()
+    
 
-    user_cards = data.get(user_id, {}).get("cards", [])
+    user_cards = await get_collection_from_api(user_id)
+
     if not user_cards:
         await interaction.response.send_message(
             "You don't have any cards yet. Try `/wos_starter` to get your first card!",
