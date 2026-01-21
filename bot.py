@@ -407,7 +407,9 @@ async def get_collection_from_api(user_id: str) -> list[str]:
             if resp.status != 200:
                 return []
             payload = await resp.json()
-            return payload.get("cards", []) or []
+            cards = payload.get("cards", []) or []
+            # Convert list[dict] -> list[str]
+            return [c.get("card_id") for c in cards if isinstance(c, dict) and c.get("card_id")]
 
 
 # ================================
