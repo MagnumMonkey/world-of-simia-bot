@@ -1031,10 +1031,11 @@ class TradeConfirmButton(discord.ui.Button):
         # Otherwise update embed status
         await view.refresh_message(interaction, trade)
 
-WOS_API_BASE = "https://wos-api-production.up.railway.app"
+API_BASE = "https://wos-api-production.up.railway.app".rstrip("/")
+
 
 async def add_card_via_api(user_id: str, card_id: str) -> None:
-    url = f"{WOS_API_BASE}/api/collection/{user_id}/add"
+    url = f"{API_BASE}/api/collection/{user_id}/add"
     async with httpx.AsyncClient(timeout=10) as client:
         r = await client.post(url, json={"card_id": card_id})
         r.raise_for_status()
