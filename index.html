@@ -271,6 +271,26 @@
   }
 }
 
+/* Force two-column sizing */
+.modal {
+  display: flex;
+  gap: 40px;
+  width: min(1400px, 94vw);
+}
+
+/* Keep the card from hogging the whole modal */
+#modalImg {
+  width: min(520px, 46vw);
+  flex: 0 0 auto;
+}
+
+/* Let the text panel actually grow */
+.modal-meta {
+  flex: 1 1 0;
+  min-width: 360px;      /* important: forces it to claim space */
+  max-width: none;       /* max-width was limiting you */
+}
+
 
 
   </style>
