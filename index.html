@@ -177,6 +177,66 @@
   line-height: 1.35;
 }
 
+/* --- MODAL LAYOUT: card left, info right --- */
+.modal {
+  display: flex;
+  flex-direction: row;      /* was column */
+  align-items: flex-start;
+  gap: 28px;
+  width: min(1200px, 92vw);
+  max-height: 90vh;
+  overflow: hidden;         /* keeps panel scrolling clean */
+  padding: 24px;
+}
+
+/* Card image left */
+#modalImg {
+  width: min(420px, 40vw);
+  height: auto;
+  border-radius: 14px;
+  flex: 0 0 auto;           /* don’t shrink weirdly */
+}
+
+/* Info panel right */
+.modal-meta {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 520px;         /* controls how wide the red area feels */
+  padding: 10px 6px;
+  text-align: left;         /* feels better as a side panel */
+  overflow-y: auto;         /* scroll if lots of text */
+  max-height: calc(90vh - 48px);
+}
+
+/* Optional: make section spacing nicer */
+.modal-section {
+  margin-top: 16px;
+}
+
+.modal-label {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+/* Responsive: on small screens, stack again */
+@media (max-width: 900px) {
+  .modal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #modalImg {
+    width: min(520px, 92vw);
+  }
+
+  .modal-meta {
+    max-width: 92vw;
+    max-height: none;
+    overflow: visible;
+    text-align: center;
+  }
+}
+
   </style>
 </head>
 <body>
