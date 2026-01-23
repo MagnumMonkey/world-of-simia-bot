@@ -159,6 +159,23 @@
   cursor: pointer;
 }
 
+.modal-section {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.modal-label {
+  font-weight: 700;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.modal-text {
+  white-space: pre-line; /* allows \n to show as line breaks */
+  opacity: 0.95;
+  line-height: 1.35;
+}
 
   </style>
 </head>
@@ -178,15 +195,31 @@
 
   <!-- Modal -->
 <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Card details">
     <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+
     <img id="modalImg" alt="" />
+
     <div class="modal-meta">
-      <div id="modalName" class="modal-name"></div>
-      <div id="modalRarity" class="modal-rarity"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-rarity" id="modalRarity"></div>
+
+      <div class="modal-section">
+        <div class="modal-label">Ability</div>
+        <div class="modal-text" id="modalAbility"></div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-label">Skill</div>
+        <div class="modal-text" id="modalSkills"></div>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
 
   <script>
     const API_BASE = "https://wos-api-production.up.railway.app";
@@ -213,31 +246,49 @@
     }
 
 
-    
-
-
     // Modal elements
     const modalOverlay = document.getElementById("modalOverlay");
     const modalClose = document.getElementById("modalClose");
     const modalImg = document.getElementById("modalImg");
     const modalName = document.getElementById("modalName");
     const modalRarity = document.getElementById("modalRarity");
+    const modalAbility = document.getElementById("modalAbility");
+    const modalSkills  = document.getElementById("modalSkills");
 
-    function openModal({ name, cardId, imgUrl, rarity }) {
-        modalName.textContent = name || "";
-        modalRarity.textContent = rarity ? `Rarity: ${rarity}` : "";
 
-        if (imgUrl) {
-            modalImg.src = imgUrl;
-            modalImg.style.display = "block";
-        } else {
-            modalImg.removeAttribute("src");
-            modalImg.style.display = "none";
-        }
+    async function openModal({ name, cardId, imgUrl, rarity }) {
+      modalName.textContent = name || "";
+      modalRarity.textContent = rarity ? `Rarity: ${rarity}` : "";
 
-        modalOverlay.style.display = "flex";
-        modalOverlay.setAttribute("aria-hidden", "false");
-        }
+      if (imgUrl) {
+        modalImg.src = imgUrl;
+        modalImg.style.display = "block";
+      } else {
+        modalImg.removeAttribute("src");
+        modalImg.style.display = "none";
+      }
+
+      // Load abilities/skills from Cards.json by cardId
+      try {
+        const db = await loadCardsDbOnce();
+        const card = db?.[cardId] || null;
+
+        const ability = card?.ability;
+        // Your Cards.json uses "skill" (singular) in many places
+        const skill = card?.skill ?? card?.skills;
+
+        modalAbility.textContent = (ability && String(ability).trim()) ? String(ability).trim() : "None";
+        modalSkills.textContent  = (skill && String(skill).trim()) ? String(skill).trim() : "None";
+      } catch (err) {
+        modalAbility.textContent = "Could not load Cards.json";
+        modalSkills.textContent = "";
+        console.error(err);
+      }
+
+      modalOverlay.style.display = "flex";
+      modalOverlay.setAttribute("aria-hidden", "false");
+    }
+
 
     function closeModal() {
         modalOverlay.style.display = "none";
@@ -253,6 +304,21 @@
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeModal();
     });
+
+  let CARDS_DB = null;
+
+  async function loadCardsDbOnce() {
+    if (CARDS_DB) return CARDS_DB;
+
+    // On GitHub Pages this must match the exact filename/case: "Cards.json"
+    const res = await fetch("Cards.json");
+    if (!res.ok) throw new Error(`Failed to load Cards.json (${res.status})`);
+
+    CARDS_DB = await res.json();
+    return CARDS_DB;
+  }
+
+
 
 
     document.getElementById("loadBtn").addEventListener("click", loadCollection);
