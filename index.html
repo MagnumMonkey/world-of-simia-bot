@@ -180,67 +180,97 @@
 
 
 
-/* --- DARK, TRANSPARENT MODAL STYLE --- */
+/* --- FINAL MODAL LAYOUT: SIDE PANEL VERSION --- */
+
 .modal {
-  background: transparent;          /* remove white panel */
-  box-shadow: none;                 /* remove white card shadow */
-  padding: 24px 32px;
+  display: flex;
+  flex-direction: row;          /* side-by-side */
+  align-items: center;
+  gap: 40px;
+  background: transparent;     /* no white background */
+  box-shadow: none;
+  padding: 32px 40px;
+  width: min(1400px, 94vw);
+  max-height: 92vh;
 }
 
-/* Dark overlay already exists; keep it */
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.85);   /* darker backdrop */
-}
-
-/* Make card bigger */
+/* Card image */
 #modalImg {
-  width: min(480px, 42vw);          /* was ~420px */
-  max-height: 82vh;
+  width: min(500px, 42vw);     /* nice and big */
+  max-height: 88vh;
   object-fit: contain;
+  border-radius: 14px;
+  flex: 0 0 auto;
 }
 
-/* Right-side panel */
+/* Right-side text panel */
 .modal-meta {
+  flex: 1 1 auto;
   max-width: 520px;
-  color: #ffffff;                  /* make all text white */
-  text-align: center;              /* center align text */
-  padding-top: 12px;
+  color: #ffffff;
+  text-align: center;         /* centered like your screenshot */
+  padding-top: 8px;
 }
 
 /* Name */
 .modal-name {
   color: #ffffff;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 800;
   margin-bottom: 6px;
 }
 
 /* Rarity */
 .modal-rarity {
-  color: #dddddd;
-  margin-bottom: 18px;
+  color: #cccccc;
+  font-size: 18px;
+  margin-bottom: 26px;
 }
 
 /* Section labels */
 .modal-label {
   color: #ffffff;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  margin-top: 22px;
   text-align: center;
 }
 
 /* Ability / Skill text */
 .modal-text {
   color: #f0f0f0;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.7;
   text-align: center;
 }
 
-/* Close button visible on dark bg */
+/* Darker overlay backdrop */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.88);
+}
+
+/* Close button */
 .modal-close {
   color: #ffffff;
 }
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  .modal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #modalImg {
+    width: min(520px, 92vw);
+  }
+
+  .modal-meta {
+    max-width: 92vw;
+  }
+}
+
 
 
   </style>
