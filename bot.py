@@ -1325,25 +1325,39 @@ async def wos_shop(interaction: discord.Interaction):
     # SUBMIT TO COMMUNITY CATALOG
     #========================
 async def owned_card_id_autocomplete(interaction: discord.Interaction, current: str):
-    """Autocomplete card_id to ONLY show cards the user owns."""
+    """Autocomplete card_id to ONLY show cards the user owns (from API)."""
     user_id = str(interaction.user.id)
-    data = load_data()
+
+    # Pull owned cards from the API (source of truth)
+    owned_ids = await get_collection_from_api(user_id)  # list[str]
+
+    # Load card names/rarity for pretty labels
     cards_db = load_cards()
-    user = ensure_user_record(data, user_id)
 
-    owned_ids = user.get("cards", [])
     cur = (current or "").lower()
-
     choices = []
+
+    # Optional: de-dupe while preserving order
+    seen = set()
     for cid in owned_ids:
-        if cur and cur not in cid.lower():
+        if not cid or cid in seen:
             continue
-        nm = cards_db.get(cid, {}).get("name", cid)
-        label = f"{nm} — {cid}"
+        seen.add(cid)
+
+        if cur and cur not in cid.lower() and cur not in str(cards_db.get(cid, {}).get("name", "")).lower():
+            continue
+
+        c = cards_db.get(cid, {})
+        nm = c.get("name", cid)
+        rarity = str(c.get("rarity", "Unknown")).title()
+        label = f"{nm} ({rarity}) — {cid}"
+
         choices.append(app_commands.Choice(name=label[:100], value=cid))
         if len(choices) >= 25:
             break
+
     return choices
+
 
 async def active_deck_card_id_autocomplete(interaction: discord.Interaction, current: str):
     """Autocomplete card_id to ONLY show cards currently in the user's active deck."""
@@ -1387,12 +1401,14 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
 
     data = load_data()
     cards_db = load_cards()
-    user = ensure_user_record(data, user_id)
 
-    # Must own the card
-    if card_id not in user.get("cards", []):
+    # Must own the card (check the API, not local JSON)
+    owned_ids = await get_collection_from_api(user_id)  # this should return list[str] card_ids
+    if card_id not in owned_ids:
         await interaction.response.send_message("❌ You can only submit cards you own.", ephemeral=True)
         return
+
+
 
     # Must exist in Cards.json
     card = cards_db.get(card_id)
@@ -1521,8 +1537,7 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
     }
     save_data(data)
     # XP reward for successful submit
-    level_msgs = add_xp(user, 10)  # <-- XP amount here
-    save_data(data)
+    level_msgs = []
 
     msg = f"✅ Added **{name}** to the Community Catalog!\n+10 XP"
     if level_msgs:
