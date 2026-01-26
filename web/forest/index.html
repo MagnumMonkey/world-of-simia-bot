@@ -211,6 +211,76 @@
     opacity: 1;
   }
 
+  /* --- Intro overlay --- */
+  .introOverlay{
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 9; /* below the GIF modal (10), above rooms (2) */
+    pointer-events: none; /* intro should not catch clicks */
+  }
+
+  .introOverlay.show .introTitle{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+
+  .introMain{
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    margin-top: 6px;
+  }
+
+  
+
+  /* --- Blur/unblur during intro --- */
+  .scene.intro .bgLayer,
+  .scene.intro .particleOverlay{
+    filter: blur(7px) brightness(0.92);
+    transition: filter 900ms ease;
+  }
+
+/* lock rooms during intro */
+  .scene.intro .room{
+    pointer-events: none;
+    opacity: 0.20;
+    transition: opacity 500ms ease;
+  }
+
+  .introOverlay{
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 9;
+    pointer-events: none;
+  }
+
+  .introImage{
+    max-width: 70%;
+    max-height: 60%;
+    object-fit: contain;
+
+    opacity: 0;
+    transition: opacity 1200ms ease;
+  }
+
+  /* visible state */
+  .introOverlay.show .introImage{
+    opacity: 1;
+  }
+
+  @keyframes titleGlow {
+    0%   { filter: drop-shadow(0 0 6px rgba(255,220,160,0.6)); }
+    50%  { filter: drop-shadow(0 0 16px rgba(255,220,160,0.9)); }
+    100% { filter: drop-shadow(0 0 6px rgba(255,220,160,0.6)); }
+  }
+
+  .introOverlay.show .introImage{
+    opacity: 1;
+    animation: titleGlow 4s ease-in-out infinite;
+  }
 
   </style>
 </head>
@@ -224,6 +294,11 @@
     <div class="room" id="room1" title="Room 1"></div>
     <div class="room" id="room2" title="Room 2"></div>
     <div class="room" id="room3" title="Room 3"></div>
+
+    <div class="introOverlay" id="introOverlay">
+      <img class="introImage" src="./intro/title.png" alt="Nyhillia Forest">
+    </div>
+
 
     <div class="overlay" id="overlay">
       <div class="card">
@@ -276,28 +351,28 @@
   }
 
   function showGif(roomKey) {
+    if (scene.classList.contains("intro")) return;
+
     const list = GIFS?.[roomKey] || [];
     const relPath = pickDailyGif(roomKey, list);
-    document.querySelector(".scene").classList.add("zoom");
-    setTimeout(() => overlay.classList.add("show"), 140);
+
     animBox.innerHTML = "";
 
-
     if (!relPath) {
-      animTitle.textContent = "No GIFs configured for this room yet.";
-      animBox.textContent = "Add paths to gifs/manifest.json";
+      animTitle.textContent = GIFS ? "No GIFs configured for this room yet." : "Loading…";
+      animBox.textContent = GIFS ? "Add paths to gifs/manifest.json" : "Please try again in a moment.";
       return;
     }
+
+    // Open after we know we have a gif
+    scene.classList.add("zoom");
+    setTimeout(() => overlay.classList.add("show"), 140);
 
     animTitle.textContent = `Room ${roomKey.replace("room", "")} — today's animation`;
 
     const img = document.createElement("img");
     const bust = Date.now();
     img.src = `./gifs/${relPath}?v=${bust}`;
-    img.style.maxWidth = "100%";
-    img.style.maxHeight = "100%";
-    img.style.borderRadius = "14px";
-    img.style.display = "block";
     animBox.appendChild(img);
   }
 
@@ -340,7 +415,33 @@
     particles.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
     });
 
-  
+    scene.addEventListener("mouseleave", () => {
+      bg.style.transform = "translate(0px, 0px) scale(1.03)";
+      particles.style.transform = "translate(0px, 0px)";
+    });
+
+
+  // ---- Intro sequence ----
+  const introOverlay = document.getElementById("introOverlay");
+
+  // Start intro immediately
+  scene.classList.add("intro");
+
+  // Fade in title
+  setTimeout(() => {
+    introOverlay.classList.add("show");
+  }, 200); // tiny delay so blur is visible first
+
+  // Stay visible for 5 seconds, then fade out
+  setTimeout(() => {
+    introOverlay.classList.remove("show");
+  }, 5200); // 200ms fade-in delay + 5s display
+
+  // After fade-out finishes, unblur and unlock rooms
+  setTimeout(() => {
+    scene.classList.remove("intro");
+  }, 6800); // allows fade-out animation to finish
+
 </script>
 </body>
 </html>
