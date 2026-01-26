@@ -7,11 +7,11 @@
   <style>
     html, body { height: 100%; margin: 0; font-family: system-ui, Arial; }
     .scene {
-      position: relative;
-      height: 100%;
-      background: url("./forest_bg.png") center/cover no-repeat;
-      overflow: hidden;
-    }
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        }
+
 
     /* clickable room hotspots */
     .room {
@@ -142,28 +142,49 @@
     .hint { margin-top: 10px; opacity: 0.75; font-size: 13px; }
 
     .particleOverlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
 
-  /* ✅ black background disappears, particles brighten */
-  mix-blend-mode: screen;
+        /* ✅ black background disappears, particles brighten */
+        mix-blend-mode: screen;
 
-  /* ✅ don’t block clicks */
-  pointer-events: none;
-}
+        /* ✅ don’t block clicks */
+        pointer-events: none;
+        }
 
-.particleOverlay { z-index: 1; }
-.room { z-index: 2; }
-.overlay { z-index: 10; }
+        .particleOverlay { z-index: 1; }
+        .room { z-index: 2; }
+        .overlay { z-index: 10; }
+
+        .scene { perspective: 800px; }
+
+        .bgLayer, .particleOverlay, .room {
+        will-change: transform;
+        }
+
+    .bgLayer{
+        position: absolute;
+        inset: 0;
+        background: url("./forest_bg.png") center/cover no-repeat;
+        transform: translate(0px, 0px) scale(1.03); /* slight scale prevents edges showing */
+        z-index: 0;
+        will-change: transform;
+        }
+
+        .bgLayer,
+        .particleOverlay {
+            transition: transform 120ms ease-out;
+        }
 
 
   </style>
 </head>
 <body>
   <div class="scene">
+    <div class="bgLayer"></div>
     <video class="particleOverlay" autoplay muted loop playsinline>
         <source src="./overlays/particles.mp4" type="video/mp4">
     </video>
@@ -261,6 +282,21 @@
     animTitle.textContent = "Manifest load failed";
     animBox.textContent = "Could not load ./gifs/manifest.json (check path + hosting).";
   });
+
+  // ---- Ambient parallax ----
+    const scene = document.querySelector(".scene");
+    const bg = document.querySelector(".bgLayer");
+    const particles = document.querySelector(".particleOverlay");
+
+    scene.addEventListener("mousemove", (e) => {
+    const r = scene.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;   // -0.5 .. +0.5
+    const y = (e.clientY - r.top) / r.height - 0.5;
+
+    // background moves slower, particles a bit faster
+    bg.style.transform = `translate(${x * 12}px, ${y * 12}px) scale(1.03)`;
+    particles.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+    });
 
   
 </script>
