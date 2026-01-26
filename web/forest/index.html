@@ -93,7 +93,7 @@
         border-radius: 14px;
         display: block;
         }
-        
+
     /* fireflies */
     .firefly {
       position: absolute;
@@ -140,10 +140,40 @@
     }
 
     .hint { margin-top: 10px; opacity: 0.75; font-size: 13px; }
+
+    .particleOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* ✅ black background disappears, particles brighten */
+  mix-blend-mode: screen;
+
+  /* ✅ adjust intensity */
+  opacity: 0.55;
+
+  /* ✅ don’t block clicks */
+  pointer-events: none;
+
+  /* optional: soften it */
+  filter: blur(0.2px);
+}
+
+.particleOverlay { z-index: 1; }
+.room { z-index: 2; }
+.overlay { z-index: 10; }
+
+
   </style>
 </head>
 <body>
   <div class="scene">
+    <video class="particleOverlay" autoplay muted loop playsinline>
+        <source src="./overlays/particles.mp4" type="video/mp4">
+    </video>
+
     <div class="room" id="room1" title="Room 1"></div>
     <div class="room" id="room2" title="Room 2"></div>
     <div class="room" id="room3" title="Room 3"></div>
