@@ -3,7 +3,8 @@ from discord import app_commands
 from discord.ext import commands
 
 # Change this to wherever you host the forest page (GitHub Pages or your API server)
-FOREST_URL = "https://YOURNAME.github.io/YOURREPO/forest/"
+FOREST_URL = "https://magnummonkey.github.io/world-of-simia-bot/forest/"
+
 
 class Forest(commands.Cog):
     def __init__(self, bot: commands.Bot):
