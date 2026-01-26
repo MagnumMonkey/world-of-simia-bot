@@ -179,6 +179,15 @@
             transition: transform 120ms ease-out;
         }
 
+    .scene{
+        transition: transform 240ms ease;
+    }
+
+    .scene.zoom{
+        transform: scale(1.02);
+    }
+    
+
 
   </style>
 </head>
@@ -246,8 +255,10 @@
   function showGif(roomKey) {
     const list = GIFS?.[roomKey] || [];
     const relPath = pickDailyGif(roomKey, list);
-    overlay.classList.add("show");
+    document.querySelector(".scene").classList.add("zoom");
+    setTimeout(() => overlay.classList.add("show"), 140);
     animBox.innerHTML = "";
+
 
     if (!relPath) {
       animTitle.textContent = "No GIFs configured for this room yet.";
@@ -271,10 +282,18 @@
   document.getElementById("room2").addEventListener("click", () => showGif("room2"));
   document.getElementById("room3").addEventListener("click", () => showGif("room3"));
 
-  closeBtn.addEventListener("click", () => overlay.classList.remove("show"));
+  closeBtn.addEventListener("click", () => {
+    overlay.classList.remove("show");
+    document.querySelector(".scene").classList.remove("zoom");
+    });
+
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.classList.remove("show");
-  });
+    if (e.target === overlay) {
+        overlay.classList.remove("show");
+        document.querySelector(".scene").classList.remove("zoom");
+    }
+    });
+
 
   loadManifest().catch(err => {
     console.error(err);
