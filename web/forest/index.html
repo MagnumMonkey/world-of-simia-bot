@@ -15,22 +15,31 @@
 
     /* clickable room hotspots */
     .room {
-      position: absolute;
-      width: 140px;
-      height: 110px;
-      border-radius: 18px;
-      cursor: pointer;
-      border: 2px solid rgba(255,255,255,0.25);
-      background: rgba(0,0,0,0.10);
-      backdrop-filter: blur(2px);
-      transition: transform 120ms ease, border-color 120ms ease;
-    }
-    .room:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.6); }
+        position: absolute;
+        width: 170px;
+        height: 130px;
+        border-radius: 18px;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.25);
+        background: rgba(0,0,0,0.10);
+        backdrop-filter: blur(2px);
+        transition: transform 120ms ease, border-color 120ms ease;
+
+        /* NEW: make left/top be the CENTER point */
+        transform: translate(-50%, -50%);
+        }
+
+    .room:hover {
+        /* NEW: keep the translate while scaling */
+        transform: translate(-50%, -50%) scale(1.03);
+        border-color: rgba(255,255,255,0.6);
+        }
+
 
     /* Adjust these 3 positions to match your image */
-    #room1 { left: 48%; top: 38%; }  /* main mid area */
-    #room2 { left: 58%; top: 22%; }  /* upper area */
-    #room3 { left: 42%; top: 56%; }  /* lower area */
+    #room1 { left: 8.8%; top: 79.7%; }  /* main mid area */
+    #room2 { left: 48.1%; top: 76.7%; }  /* upper area */
+    #room3 { left: 76.1%; top: 81.7%; width: 120px; height: 90px;}  /* lower area */
 
     /* overlay animation layer */
     .overlay {
@@ -64,17 +73,27 @@
 
     /* simple “random animations” (placeholders) */
     .animBox {
-      margin-top: 14px;
-      height: 240px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-    }
+        margin-top: 14px;
+        width: 100%;
+        aspect-ratio: 1 / 1;     /* ✅ square box */
+        max-height: 70vh;        /* ✅ don’t exceed viewport */
+        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+        }
 
+    .animBox img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;   /* ✅ show whole gif, no cropping */
+        border-radius: 14px;
+        display: block;
+        }
+        
     /* fireflies */
     .firefly {
       position: absolute;
@@ -218,6 +237,8 @@
     animTitle.textContent = "Manifest load failed";
     animBox.textContent = "Could not load ./gifs/manifest.json (check path + hosting).";
   });
+
+  
 </script>
 </body>
 </html>
