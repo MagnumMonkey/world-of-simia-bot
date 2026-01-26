@@ -271,28 +271,28 @@
 
   .cornerTitle{
     position: absolute;
-    top: 18px;
-    left: 20px;
+    top: 22px;
+    right: 26px;   /* ✅ right side */
+    left: auto;    /* ✅ ensure it’s not anchored left */
 
-    z-index: 3; /* above bg + particles, below intro overlay */
-
+    z-index: 3;
     opacity: 0;
     transform: translateY(-6px);
     transition: opacity 800ms ease, transform 800ms ease;
 
-    pointer-events: none; /* never block clicks */
-  }
-
-  .cornerTitle img{
-    height: 48px;          /* adjust size here */
-    max-width: 240px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+    pointer-events: none;
   }
 
   .cornerTitle.show{
-    opacity: 0.85;
+    opacity: 0.90;
     transform: translateY(0px);
+  }
+
+  .cornerTitle img{
+    height: clamp(70px, 7vw, 120px);   /* ✅ much bigger, responsive */
+    max-width: 420px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.65));
   }
 
   </style>
