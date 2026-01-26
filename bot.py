@@ -1053,18 +1053,27 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+async def load_cogs():
+    await bot.load_extension("cogs.forest")
+
 
 @bot.event
 async def on_ready():
-    # Sync slash commands
+    # Load cogs/extensions first
+    try:
+        await load_cogs()
+        print("✅ Cogs loaded.")
+    except Exception as e:
+        print("❌ Failed to load cogs:", e)
+
+    # Sync slash commands (guild sync for fast updates)
     guild = discord.Object(id=GUILD_ID)
     try:
-        # copy all global commands into this guild, then sync them
         bot.tree.copy_global_to(guild=guild)
         synced = await bot.tree.sync(guild=guild)
-        print(f"Synced {len(synced)} command(s) to guild {GUILD_ID}.")
+        print(f"✅ Synced {len(synced)} command(s) to guild {GUILD_ID}.")
     except Exception as e:
-        print(f"Error syncing commands: {e}")
+        print(f"❌ Error syncing commands: {e}")
 
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
     print("💾 Using wos_data.json at:", WOS_DATA_PATH)

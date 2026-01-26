@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WOS — Forest Home</title>
+  <style>
+    html, body { height: 100%; margin: 0; font-family: system-ui, Arial; }
+    .scene {
+      position: relative;
+      height: 100%;
+      background: url("./forest_bg.png") center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    /* clickable room hotspots */
+    .room {
+      position: absolute;
+      width: 140px;
+      height: 110px;
+      border-radius: 18px;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.10);
+      backdrop-filter: blur(2px);
+      transition: transform 120ms ease, border-color 120ms ease;
+    }
+    .room:hover { transform: scale(1.03); border-color: rgba(255,255,255,0.6); }
+
+    /* Adjust these 3 positions to match your image */
+    #room1 { left: 48%; top: 38%; }  /* main mid area */
+    #room2 { left: 58%; top: 22%; }  /* upper area */
+    #room3 { left: 42%; top: 56%; }  /* lower area */
+
+    /* overlay animation layer */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(0,0,0,0.45);
+    }
+    .overlay.show { display: grid; }
+
+    .card {
+      width: min(520px, 92vw);
+      border-radius: 22px;
+      background: rgba(10, 14, 22, 0.72);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.45);
+      padding: 18px;
+      color: #fff;
+    }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .title { font-size: 18px; font-weight: 700; opacity: 0.95; }
+    .close {
+      cursor: pointer;
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    /* simple “random animations” (placeholders) */
+    .animBox {
+      margin-top: 14px;
+      height: 240px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* fireflies */
+    .firefly {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 240, 170, 0.95);
+      filter: blur(0.3px);
+      animation: drift 2.8s ease-in-out infinite;
+      opacity: 0.0;
+    }
+    @keyframes drift {
+      0% { transform: translate(0,0) scale(0.9); opacity: 0.0; }
+      20% { opacity: 1.0; }
+      50% { transform: translate(120px,-60px) scale(1.1); opacity: 0.9; }
+      80% { opacity: 0.8; }
+      100% { transform: translate(220px,-120px) scale(0.8); opacity: 0.0; }
+    }
+
+    /* sparkle burst */
+    .spark {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(180, 220, 255, 0.95);
+      animation: pop 900ms ease-out forwards;
+    }
+    @keyframes pop {
+      0% { transform: translate(0,0) scale(0.6); opacity: 0.0; }
+      20% { opacity: 1.0; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(1.0); opacity: 0.0; }
+    }
+
+    /* gentle glow pulse */
+    .glow {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,220,160,0.55), rgba(255,220,160,0.0) 65%);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.92); opacity: 0.65; }
+      50% { transform: scale(1.08); opacity: 0.95; }
+      100% { transform: scale(0.92); opacity: 0.65; }
+    }
+
+    .hint { margin-top: 10px; opacity: 0.75; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="room" id="room1" title="Room 1"></div>
+    <div class="room" id="room2" title="Room 2"></div>
+    <div class="room" id="room3" title="Room 3"></div>
+
+    <div class="overlay" id="overlay">
+      <div class="card">
+        <div class="row">
+          <div class="title" id="animTitle">A room awakens…</div>
+          <button class="close" id="closeBtn">Close</button>
+        </div>
+        <div class="animBox" id="animBox"></div>
+        <div class="hint">Click another room for a different random animation.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const overlay = document.getElementById("overlay");
+  const closeBtn = document.getElementById("closeBtn");
+  const animBox = document.getElementById("animBox");
+  const animTitle = document.getElementById("animTitle");
+
+  let GIFS = null;
+
+  async function loadManifest() {
+    const res = await fetch("./gifs/manifest.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("Could not load manifest.json");
+    GIFS = await res.json();
+  }
+
+  function getLocalDayKey() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function hashStringToInt(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h >>> 0);
+  }
+
+  function pickDailyGif(roomKey, list) {
+    if (!Array.isArray(list) || list.length === 0) return null;
+    const seed = `${getLocalDayKey()}:${roomKey}`;
+    const idx = hashStringToInt(seed) % list.length;
+    return list[idx];
+  }
+
+  function showGif(roomKey) {
+    const list = GIFS?.[roomKey] || [];
+    const relPath = pickDailyGif(roomKey, list);
+    overlay.classList.add("show");
+    animBox.innerHTML = "";
+
+    if (!relPath) {
+      animTitle.textContent = "No GIFs configured for this room yet.";
+      animBox.textContent = "Add paths to gifs/manifest.json";
+      return;
+    }
+
+    animTitle.textContent = `Room ${roomKey.replace("room", "")} — today's animation`;
+
+    const img = document.createElement("img");
+    const bust = Date.now();
+    img.src = `./gifs/${relPath}?v=${bust}`;
+    img.style.maxWidth = "100%";
+    img.style.maxHeight = "100%";
+    img.style.borderRadius = "14px";
+    img.style.display = "block";
+    animBox.appendChild(img);
+  }
+
+  document.getElementById("room1").addEventListener("click", () => showGif("room1"));
+  document.getElementById("room2").addEventListener("click", () => showGif("room2"));
+  document.getElementById("room3").addEventListener("click", () => showGif("room3"));
+
+  closeBtn.addEventListener("click", () => overlay.classList.remove("show"));
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.classList.remove("show");
+  });
+
+  loadManifest().catch(err => {
+    console.error(err);
+    overlay.classList.add("show");
+    animTitle.textContent = "Manifest load failed";
+    animBox.textContent = "Could not load ./gifs/manifest.json (check path + hosting).";
+  });
+</script>
+</body>
+</html>
