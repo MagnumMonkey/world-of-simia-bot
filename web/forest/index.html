@@ -12,6 +12,14 @@
         overflow: hidden;
         }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;   /* ✅ disables scrollbars completely */
+    }
+
 
     /* Adjust these 3 positions to match your image */
     #room1 { left: 20.8%; top: 72.7%; }
@@ -335,6 +343,11 @@
     -webkit-user-drag: none;
     user-select: none;
     -webkit-touch-callout: none; /* iOS long-press menu */
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
   }
 
   </style>
