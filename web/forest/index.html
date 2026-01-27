@@ -244,10 +244,10 @@
   }
 
   .cornerTitle img{
-    height: clamp(70px, 7vw, 120px);   /* ✅ much bigger, responsive */
-    max-width: 420px;
+    height: clamp(100px, 10vw, 180px);   /* ✅ much bigger, responsive */
+    max-width: 520px;
     object-fit: contain;
-    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.65));
+    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.65));
   }
 
   /* --- Room Orbs --- */
@@ -326,6 +326,16 @@
   #room2{ animation: orbFloat 5.4s ease-in-out infinite; }
   #room3{ animation: orbFloat 4.3s ease-in-out infinite; }
 
+  img {
+    -webkit-user-drag: none;  /* Chrome, Edge, Safari */
+    user-select: none;       /* Prevent selection highlight */
+  }
+
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS long-press menu */
+  }
 
   </style>
 </head>
@@ -495,6 +505,17 @@
   setTimeout(() => {
     document.getElementById("cornerTitle").classList.add("show");
   }, 6800);
+
+  // Disable right-click context menu on the scene
+  const sceneEl = document.querySelector(".scene");
+
+  sceneEl.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener("dragstart", (e) => {
+    e.preventDefault();
+  });
 
 </script>
 </body>
