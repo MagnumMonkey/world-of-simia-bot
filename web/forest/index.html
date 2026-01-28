@@ -568,6 +568,20 @@
 
   window.addEventListener("blur", () => closeAnimation());
 
+  // ---- Day / Night background switch ----
+  function applyDayNightTheme() {
+    const hour = new Date().getHours(); // user's local time
+    const isDay = hour >= 7 && hour < 19; // 7am–6:59pm
+
+    scene.classList.toggle("day", isDay);
+    scene.classList.toggle("night", !isDay);
+  }
+
+  // Run on load
+  applyDayNightTheme();
+
+  // Re-check every 5 minutes
+  setInterval(applyDayNightTheme, 5 * 60 * 1000);
 
 
 </script>
