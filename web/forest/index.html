@@ -450,10 +450,20 @@
 
     animTitle.textContent = `Room ${roomKey.replace("room", "")} — today's animation`;
 
-    const img = document.createElement("img");
-    const bust = Date.now();
-    img.src = `./gifs/${relPath}?v=${bust}`;
-    animBox.appendChild(img);
+    const video = document.createElement("video");
+    video.src = `./gifs/${relPath}`;
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    video.style.width = "70%";
+    video.style.height = "70%";
+    video.style.objectFit = "contain";
+    video.style.borderRadius = "14px";
+
+    animBox.appendChild(video);
+
   }
 
   document.getElementById("room1").addEventListener("click", () => showGif("room1"));
@@ -480,20 +490,6 @@
     animBox.textContent = "Could not load ./gifs/manifest.json (check path + hosting).";
   });
 
-  function preloadGif(path) {
-    const img = new Image();
-    img.src = `./gifs/${path}`;
-  }
-
-  function preloadDailyGifs() {
-    ["room1","room2","room3"].forEach(room => {
-      const list = GIFS?.[room] || [];
-      const gif = pickDailyGif(room, list);
-      if (gif) preloadGif(gif);
-    });
-  }
-
-loadManifest().then(preloadDailyGifs);
 
 
   // ---- Ambient parallax ----
