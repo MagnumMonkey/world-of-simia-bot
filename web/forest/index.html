@@ -151,14 +151,21 @@
         will-change: transform;
         }
 
+    /* Default (night) */
     .bgLayer{
-        position: absolute;
-        inset: 0;
-        background: url("./forest_bg.png") center/cover no-repeat;
-        transform: translate(0px, 0px) scale(1.03); /* slight scale prevents edges showing */
-        z-index: 0;
-        will-change: transform;
-        }
+      position: absolute;
+      inset: 0;
+      background: url("./forest_bg.png") center/cover no-repeat;
+      transform: translate(0px, 0px) scale(1.03);
+      z-index: 0;
+      will-change: transform;
+    }
+
+    /* Day theme */
+    .scene.day .bgLayer{
+      background-image: url("./forest_bg_day.png");
+    }
+
 
         .bgLayer,
         .particleOverlay {
@@ -472,6 +479,22 @@
     animTitle.textContent = "Manifest load failed";
     animBox.textContent = "Could not load ./gifs/manifest.json (check path + hosting).";
   });
+
+  function preloadGif(path) {
+    const img = new Image();
+    img.src = `./gifs/${path}`;
+  }
+
+  function preloadDailyGifs() {
+    ["room1","room2","room3"].forEach(room => {
+      const list = GIFS?.[room] || [];
+      const gif = pickDailyGif(room, list);
+      if (gif) preloadGif(gif);
+    });
+  }
+
+loadManifest().then(preloadDailyGifs);
+
 
   // ---- Ambient parallax ----
     const scene = document.querySelector(".scene");
