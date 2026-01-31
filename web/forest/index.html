@@ -423,9 +423,30 @@
     return (h >>> 0);
   }
 
-  function pickDailyGif(roomKey, list) {
+  function getThemeKey() {
+  // use the scene class if present; fallback to clock
+  if (scene.classList.contains("day")) return "day";
+  if (scene.classList.contains("night")) return "night";
+  return isDaytimeNow() ? "day" : "night";
+}
+
+  function getRoomList(roomKey) {
+    const entry = GIFS?.[roomKey];
+
+    // Backward compatible: old manifest format is an array
+    if (Array.isArray(entry)) return entry;
+
+    // New format: { day: [...], night: [...] }
+    const theme = getThemeKey();
+    const themed = entry?.[theme];
+    return Array.isArray(themed) ? themed : [];
+  }
+
+  function pickDailyMedia(roomKey, list) {
     if (!Array.isArray(list) || list.length === 0) return null;
-    const seed = `${getLocalDayKey()}:${roomKey}`;
+
+    // include theme so day and night can pick different “today” files
+    const seed = `${getLocalDayKey()}:${roomKey}:${getThemeKey()}`;
     const idx = hashStringToInt(seed) % list.length;
     return list[idx];
   }
@@ -433,38 +454,42 @@
   function showGif(roomKey) {
     if (scene.classList.contains("intro")) return;
 
-    const list = GIFS?.[roomKey] || [];
-    const relPath = pickDailyGif(roomKey, list);
+    const list = getRoomList(roomKey);
+    const relPath = pickDailyMedia(roomKey, list);
 
     animBox.innerHTML = "";
 
     if (!relPath) {
-      animTitle.textContent = GIFS ? "No GIFs configured for this room yet." : "Loading…";
-      animBox.textContent = GIFS ? "Add paths to gifs/manifest.json" : "Please try again in a moment.";
+      animTitle.textContent = GIFS ? "No animations configured for this theme yet." : "Loading…";
+      animBox.textContent = GIFS ? "Add day/night paths to gifs/manifest.json" : "Please try again in a moment.";
       return;
     }
 
-    // Open after we know we have a gif
+    // Open after we know we have something
     scene.classList.add("zoom");
     setTimeout(() => overlay.classList.add("show"), 140);
 
-    animTitle.textContent = `Room ${roomKey.replace("room", "")} — today's animation`;
+    const themeLabel = getThemeKey() === "day" ? "daylight" : "nightfall";
+    animTitle.textContent = `Room ${roomKey.replace("room", "")} — ${themeLabel} animation`;
 
+    // ✅ Use video for mp4/webm (faster than <img>)
     const video = document.createElement("video");
     video.src = `./gifs/${relPath}`;
     video.autoplay = true;
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
-
+    video.preload = "auto";
     video.style.width = "100%";
     video.style.height = "100%";
     video.style.objectFit = "contain";
     video.style.borderRadius = "14px";
 
     animBox.appendChild(video);
-
+    video.load();
+    video.play().catch(() => {});
   }
+
 
   document.getElementById("room1").addEventListener("click", () => showGif("room1"));
   document.getElementById("room2").addEventListener("click", () => showGif("room2"));
@@ -511,6 +536,20 @@
       bg.style.transform = "translate(0px, 0px) scale(1.03)";
       particles.style.transform = "translate(0px, 0px)";
     });
+
+    function isDaytimeNow() {
+      const hour = new Date().getHours(); // user's local time
+      return hour >= 7 && hour < 19;      // 7:00–18:59
+    }
+
+    function applyDayNightTheme() {
+      const isDay = isDaytimeNow();
+      scene.classList.toggle("day", isDay);
+      scene.classList.toggle("night", !isDay);
+  }
+
+    applyDayNightTheme();
+    setInterval(applyDayNightTheme, 5 * 60 * 1000);
 
 
   // ---- Intro sequence ----

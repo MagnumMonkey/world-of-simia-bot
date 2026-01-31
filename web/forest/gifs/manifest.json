@@ -1,5 +1,14 @@
 {
-  "room1": ["room1/1.mp4", "room1/2.mp4", "room1/3.mp4"],
-  "room2": ["room2/1.mp4", "room2/2.mp4", "room2/3.mp4"],
-  "room3": ["room3/1.mp4", "room3/2.mp4", "room3/3.mp4"]
+  "room1": {
+    "day": ["room1/day/1.mp4", "room1/day/2.mp4", "room1/day/3.mp4"],
+    "night": ["room1/night/1.mp4", "room1/night/2.mp4", "room1/night/3.mp4"]
+  },
+  "room2": {
+    "day": ["room2/day/1.mp4", "room2/day/2.mp4", "room2/day/3.mp4"],
+    "night": ["room2/night/1.mp4", "room2/night/2.mp4", "room2/night/3.mp4"]
+  },
+  "room3": {
+    "day": ["room3/day/1.mp4", "room3/day/2.mp4", "room3/day/3.mp4"],
+    "night": ["room3/night/1.mp4", "room3/night/2.mp4", "room3/night/3.mp4"]
+  }
 }
