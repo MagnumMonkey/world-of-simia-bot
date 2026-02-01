@@ -588,12 +588,6 @@
     e.preventDefault();
   });
 
-  function closeAnimation() {
-    overlay.classList.remove("show");
-    scene.classList.remove("zoom");
-    animBox.innerHTML = ""; // optional: stop video playback immediately
-  }
-
   document.addEventListener("keydown", (e) => {
     if (e.key === "PrintScreen") {
       e.preventDefault();
