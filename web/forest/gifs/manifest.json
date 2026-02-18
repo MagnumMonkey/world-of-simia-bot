@@ -4,7 +4,7 @@
     "night": ["room1/night/1.mp4", "room1/night/2.mp4", "room1/night/3.mp4", "room1/night/4.mp4", "room1/night/5.mp4" ]
   },
   "room2": {
-    "day": ["room2/day/1.mp4", "room2/day/2.mp4", "room2/day/3.mp4", "room2/day/4.mp4", "room2/day/5.mp4"],
+    "day": ["room2/day/1.mp4", "room2/day/2.mp4", "room2/day/3.mp4", "room2/day/4.mp4", "room2/day/5.mp4", "room2/day/6.mp4"],
     "night": ["room2/night/1.mp4", "room2/night/2.mp4", "room2/night/3.mp4", "room2/night/4.mp4", "room2/night/5.mp4", "room2/night/6.mp4"]
   },
   "room3": {
