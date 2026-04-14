@@ -356,6 +356,47 @@
     position: fixed;
     inset: 0;
   }
+  .zoneArrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 8;
+
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+
+  background: rgba(10,14,22,0.45);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+
+  transition: transform 140ms ease, background 140ms ease, opacity 180ms ease;
+}
+
+.zoneArrow:hover{
+  background: rgba(255,255,255,0.12);
+}
+
+.zoneArrow.left{
+  left: 18px;
+}
+
+.zoneArrow.right{
+  right: 18px;
+}
+
+.zoneArrow.hidden{
+  opacity: 0;
+  pointer-events: none;
+}
 
   </style>
 </head>
@@ -366,9 +407,10 @@
         <source src="./overlays/particles.mp4" type="video/mp4">
     </video>
 
-    <div class="room" id="room1" title="The Private Canopy"></div>
-    <div class="room" id="room2" title="The Delightful Acacia"></div>
-    <div class="room" id="room3" title="Soft Touch Grove"></div>
+    <div id="roomsContainer"></div>
+    
+    <button class="zoneArrow right" id="zoneNext" aria-label="Next zone">❯</button>
+    <button class="zoneArrow left" id="zonePrev" aria-label="Previous zone">❮</button>
 
     <div class="cornerTitle" id="cornerTitle">
       <img src="./intro/title.png" alt="Nyhillia Forest">
@@ -393,6 +435,36 @@
   </div>
 
   <script>
+
+  const roomsContainer = document.getElementById("roomsContainer");
+  const zoneNext = document.getElementById("zoneNext");
+  const zonePrev = document.getElementById("zonePrev");
+
+  let currentZone = 0;
+
+  const ZONES = [
+    {
+      key: "forest_main",
+      nightBg: "./forest_bg.png",
+      dayBg: "./forest_bg_day.png",
+      rooms: [
+        { key: "room1", title: "The Private Canopy", left: "20.8%", top: "72.7%" },
+        { key: "room2", title: "The Delightful Acacia", left: "45.1%", top: "43.7%" },
+        { key: "room3", title: "Soft Touch Grove", left: "80.1%", top: "74.7%" }
+      ]
+    },
+    {
+      key: "forest_zone2",
+      nightBg: "./spring_bg.png",
+      dayBg: "./spring_bg_day.png",
+      rooms: [
+        { key: "zone2_room1", title: "Hot Spring Grove", left: "24%", top: "68%" },
+        { key: "zone2_room2", title: "Firefly Pond", left: "54%", top: "46%" },
+        { key: "zone2_room3", title: "Waterfall Spring", left: "79%", top: "70%" }
+      ]
+   }
+  ]; 
+
   const overlay = document.getElementById("overlay");
   const closeBtn = document.getElementById("closeBtn");
   const animBox = document.getElementById("animBox");
@@ -490,6 +562,40 @@
     video.play().catch(() => {});
   }
 
+  function renderZone() {
+    const zone = ZONES[currentZone];
+    roomsContainer.innerHTML = "";
+
+    zone.rooms.forEach((room, index) => {
+      const el = document.createElement("div");
+      el.className = "room";
+      el.id = room.key;
+      el.title = room.title;
+      el.style.left = room.left;
+      el.style.top = room.top;
+
+      el.style.animation = `orbFloat ${4.3 + index * 0.5}s ease-in-out infinite`;
+
+      el.addEventListener("click", () => showGif(room.key));
+
+      roomsContainer.appendChild(el);
+    });
+
+    updateZoneBackground();
+    updateZoneArrows();
+  }
+
+  function updateZoneBackground() {
+    const zone = ZONES[currentZone];
+    const isDay = scene.classList.contains("day");
+    bg.style.backgroundImage = `url("${isDay ? zone.dayBg : zone.nightBg}")`;
+  }
+
+  function updateZoneArrows() {
+    zonePrev.classList.toggle("hidden", currentZone === 0);
+    zoneNext.classList.toggle("hidden", currentZone === ZONES.length - 1);
+  }  
+
 
   document.getElementById("room1").addEventListener("click", () => showGif("room1"));
   document.getElementById("room2").addEventListener("click", () => showGif("room2"));
@@ -542,16 +648,6 @@
       return hour >= 7 && hour < 19;      // 7:00–18:59
     }
 
-    function applyDayNightTheme() {
-      const isDay = isDaytimeNow();
-      scene.classList.toggle("day", isDay);
-      scene.classList.toggle("night", !isDay);
-  }
-
-    applyDayNightTheme();
-    setInterval(applyDayNightTheme, 5 * 60 * 1000);
-
-
   // ---- Intro sequence ----
   const introOverlay = document.getElementById("introOverlay");
 
@@ -603,12 +699,18 @@
 
   // ---- Day / Night background switch ----
   function applyDayNightTheme() {
-    const hour = new Date().getHours(); // user's local time
-    const isDay = hour >= 7 && hour < 19; // 7am–6:59pm
+    const hour = new Date().getHours();
+    const isDay = hour >= 7 && hour < 19;
 
     scene.classList.toggle("day", isDay);
     scene.classList.toggle("night", !isDay);
+
+    updateZoneBackground();
   }
+
+  renderZone();
+  applyDayNightTheme();
+  setInterval(applyDayNightTheme, 5 * 60 * 1000);
 
   // Run on load
   applyDayNightTheme();
@@ -632,7 +734,19 @@
     closeAnimation();
   });
 
+  zoneNext.addEventListener("click", () => {
+    if (currentZone < ZONES.length - 1) {
+      currentZone++;
+      renderZone();
+    }
+  });
 
+  zonePrev.addEventListener("click", () => {
+    if (currentZone > 0) {
+      currentZone--;
+      renderZone();
+    }
+  });
 
 </script>
 </body>
