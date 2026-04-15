@@ -147,11 +147,23 @@
 
         .scene { perspective: 800px; }
 
-        .bgLayer, .particleOverlay, .room {
+        .bgLayer, .bgVideo, .particleOverlay, .room {
         will-change: transform;
         }
 
     /* Default (night) */
+
+    .bgVideo{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transform: translate(0px, 0px) scale(1.03);
+    will-change: transform;
+    display: none;
+  }
     .bgLayer{
       position: absolute;
       inset: 0;
@@ -168,6 +180,7 @@
 
 
         .bgLayer,
+        .bgVideo,
         .particleOverlay {
             transition: transform 120ms ease-out;
         }
@@ -202,6 +215,7 @@
 
   /* --- Blur/unblur during intro --- */
   .scene.intro .bgLayer,
+  .scene.intro .bgVideo
   .scene.intro .particleOverlay{
     filter: blur(7px) brightness(0.92);
     transition: filter 900ms ease;
@@ -402,6 +416,7 @@
 </head>
 <body>
   <div class="scene">
+    <video class="bgVideo" id="bgVideo" autoplay muted loop playsinline></video>
     <div class="bgLayer"></div>
     <video class="particleOverlay" autoplay muted loop playsinline>
         <source src="./overlays/particles.mp4" type="video/mp4">
@@ -445,8 +460,8 @@
   const ZONES = [
     {
       key: "forest_main",
-      nightBg: "./forest_bg.png",
-      dayBg: "./forest_bg_day.png",
+      nightBg: "./forest_bg.mp4",
+      dayBg: "./forest_bg_day.mp4",
       rooms: [
         { key: "room1", title: "The Private Canopy", left: "20.8%", top: "72.7%" },
         { key: "room2", title: "The Delightful Acacia", left: "45.1%", top: "43.7%" },
@@ -588,7 +603,29 @@
   function updateZoneBackground() {
     const zone = ZONES[currentZone];
     const isDay = scene.classList.contains("day");
-    bg.style.backgroundImage = `url("${isDay ? zone.dayBg : zone.nightBg}")`;
+
+    const videoSrc = isDay ? zone.dayVideo : zone.nightVideo;
+    const imageSrc = isDay ? zone.dayBg : zone.nightBg;
+
+    if (videoSrc) {
+      bg.style.display = "none";
+      bgVideo.style.display = "block";
+
+      const resolved = new URL(videoSrc, window.location.href).href;
+      if (bgVideo.src !== resolved) {
+        bgVideo.src = videoSrc;
+        bgVideo.load();
+        bgVideo.play().catch(() => {});
+      }
+    } else {
+      bgVideo.pause();
+      bgVideo.removeAttribute("src");
+      bgVideo.load();
+      bgVideo.style.display = "none";
+
+      bg.style.display = "block";
+      bg.style.backgroundImage = `url("${imageSrc}")`;
+    }
   }
 
   function updateZoneArrows() {
@@ -622,6 +659,7 @@
   // ---- Ambient parallax ----
     const scene = document.querySelector(".scene");
     const bg = document.querySelector(".bgLayer");
+    const bgVideo = document.getElementById("bgVideo");
     const particles = document.querySelector(".particleOverlay");
 
     scene.addEventListener("mousemove", (e) => {
@@ -631,11 +669,13 @@
 
     // background moves slower, particles a bit faster
     bg.style.transform = `translate(${x * 12}px, ${y * 12}px) scale(1.03)`;
+    bgVideo.style.transform = `translate(${x * 12}px, ${y * 12}px) scale(1.03)`;
     particles.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
     });
 
     scene.addEventListener("mouseleave", () => {
       bg.style.transform = "translate(0px, 0px) scale(1.03)";
+      bgVideo.style.transform = "translate(0px, 0px) scale(1.03)";
       particles.style.transform = "translate(0px, 0px)";
     });
 
@@ -706,12 +746,6 @@
 
   renderZone();
   applyDayNightTheme();
-  setInterval(applyDayNightTheme, 5 * 60 * 1000);
-
-  // Run on load
-  applyDayNightTheme();
-
-  // Re-check every 5 minutes
   setInterval(applyDayNightTheme, 5 * 60 * 1000);
 
   function closeAnimation() {
