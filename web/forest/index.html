@@ -215,7 +215,7 @@
 
   /* --- Blur/unblur during intro --- */
   .scene.intro .bgLayer,
-  .scene.intro .bgVideo
+  .scene.intro .bgVideo,
   .scene.intro .particleOverlay{
     filter: blur(7px) brightness(0.92);
     transition: filter 900ms ease;
@@ -460,6 +460,8 @@
   const ZONES = [
     {
       key: "forest_main",
+      nightVideo: "./forest_bg.mp4",
+      dayVideo: "./forest_bg_day.mp4",
       nightBg: "./forest_bg.mp4",
       dayBg: "./forest_bg_day.mp4",
       rooms: [
