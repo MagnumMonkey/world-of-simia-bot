@@ -1738,7 +1738,7 @@
       "nude, erect"
     ],
     "image_url_web": "/static/cards/zen_the_enforcer_inkarri.png",
-    "ability": "you may summon Zen the Enforcer Inkarri During your opponent's snooze phase if they have gained a playtime point this turn. If Zen was summoned this way, select an opposing Monkey Boy. Selected Monkey boy total stat value shrinks by 15",
+    "ability": "you may summon Zen the Enforcer Inkarri During your opponent's snooze phase if they have gained a playtime point this turn. If Zen was summoned this way, select an opposing Monkey Boy. Selected Monkey boy total stat value shrinks by 15"
   },
   "kusiq_the_inkarri_monkey": {
     "name": "Kusiq, The Inkarri Monkey",
@@ -1754,7 +1754,6 @@
       "nude, erect"
     ],
     "image_url_web": "/static/cards/kusiq_the_inkarri_monkey.png",
-    "ability": "You ma summon kusiq, the inkarri monkey during your opponents snooze phase. If you do, you may only recall during your next ready phase. When you recall a monkey boy during your ready phase, that monkey boy's and Kusiq's Banana size grows by 5.",
-  },
-
+    "ability": "You may summon kusiq, the inkarri monkey during your opponents snooze phase. If you do, you may only recall during your next ready phase. When you recall a monkey boy during your ready phase, that monkey boy's and Kusiq's Banana size grows by 5.",
+  }
 }
