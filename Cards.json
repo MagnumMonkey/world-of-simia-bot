@@ -1723,5 +1723,38 @@
     "image_url_web": "/static/cards/kaboom_boner_boy.png",
     "ability": "When Kaboom's Banana Size reach 75 or greater, He will gain the Heat Status.",
     "skill" : " (2) Erogenous Engorgement: Kaboom's banana size grows by X whenever there is a stat change. Where x is equal to the change amount. Kaboom's Banana Size cannot excced 75 this way."
-  }
+  },
+  "zen_the_enforcer_inkarri": {
+    "name": "Zen, The Enforcer Inkarri",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 70,
+    "charm": 20,
+    "mischief": 25,
+    "total": 120,
+    "status": "Nude, Erect",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510293521041461319/Zen_The_Enforcer_Inkarri.png?ex=6a1c49f3&is=6a1af873&hm=ef2c522c2a21dad938560c93c5fef8da2bbe6bde6c2d4c0e9dc0931839dd814c&",
+    "statuses": [
+      "nude, erect"
+    ],
+    "image_url_web": "/static/cards/zen_the_enforcer_inkarri.png",
+    "ability": "you may summon Zen the Enforcer Inkarri During your opponent's snooze phase if they have gained a playtime point this turn. If Zen was summoned this way, select an opposing Monkey Boy. Selected Monkey boy total stat value shrinks by 15",
+  },
+  "kusiq_the_inkarri_monkey": {
+    "name": "Kusiq, The Inkarri Monkey",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 70,
+    "charm": 30,
+    "mischief": 25,
+    "total": 125,
+    "status": "Nude, Erect",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510293557368328192/Kusiq_The_Inkarri_Monkey.jpg.png?ex=6a1c49fb&is=6a1af87b&hm=41308755425d965b0a84bfcbbb06c800f077184d954686f84845c644d1dbc9c7&",
+    "statuses": [
+      "nude, erect"
+    ],
+    "image_url_web": "/static/cards/kusiq_the_inkarri_monkey.png",
+    "ability": "You ma summon kusiq, the inkarri monkey during your opponents snooze phase. If you do, you may only recall during your next ready phase. When you recall a monkey boy during your ready phase, that monkey boy's and Kusiq's Banana size grows by 5.",
+  },
+
 }
