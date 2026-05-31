@@ -1755,5 +1755,85 @@
     ],
     "image_url_web": "/static/cards/kusiq_the_inkarri_monkey.png",
     "ability": "You may summon kusiq, the inkarri monkey during your opponents snooze phase. If you do, you may only recall during your next ready phase. When you recall a monkey boy during your ready phase, that monkey boy's and Kusiq's Banana size grows by 5."
+  },
+  "kuro_the_grinning_shadow": {
+    "name": "Kuro, The Grinning Shadow",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 65,
+    "charm": 0,
+    "mischief": 65,
+    "total": 130,
+    "status": "Nude, Erect, Heat",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510517619969622198/Kuro_The_Grinning_Shadow.png?ex=6a1d1aa8&is=6a1bc928&hm=ca2ef50c6a54d39fca2f60f1cebcab7f26a4877299a9f6991ba49c0881545d61&",
+    "statuses": [
+      "nude, erect, heat"
+    ],
+    "image_url_web": "/static/cards/kuro_the_grinning_shadow.png",
+    "ability": "This Monkey boy counts as Inkarri. You may summon Kuro during your opponent’s Snooze Phase if a Playtime Encounter occurred this turn. If you do, choose an opposing Monkey Boy. If that Monkey Boy was involved in a Playtime Encounter this turn and has Heat status, Kuro’s Banana Size is doubled during your next Playtime Phase until end of turn."
+  },
+  "rai_the_inkarri_dynamo": {
+    "name": "Rai, The Inkarri Dynamo",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 50,
+    "charm": 40,
+    "mischief": 25,
+    "total": 115,
+    "status": "Ejaculating, Erect, Nude",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510517638701519008/Rai_The_Inkarri_Dynamo.png?ex=6a1d1aad&is=6a1bc92d&hm=d4358eebb6018d206444f664cf3cad32bd02ff334ec2a56ee57956ce9c849737&",
+    "statuses": [
+      "ejaculating, erect, nude"
+    ],
+    "image_url_web": "/static/cards/rai_the_inkarri_dynamo.png",
+    "ability": "You may summon Rai during your opponent’s Snooze Phase if you have at least 3 fewer playtime points than your opponent. If you do, your opponent gains an additional Playtime Phase this turn. If an opposing Monkey Boy wins a Playtime Encounter during that phase, they are sent home. If no Playtime Encounter is initiated, or your opponent skips the additional phase, Rai’s Mischief grows by 30."
+  },
+  "inkarri_kiddo": {
+    "name": "Inkarri Kiddo",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 0,
+    "total": 100,
+    "status": "Erect, Nude",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510517665570099230/Inkarri_Kiddo.png?ex=6a1d1ab3&is=6a1bc933&hm=12d6918f980d6dc9528442672beefb059f60be3d72a67bd422021adcb94f0e2b&",
+    "statuses": [
+      "erect, nude"
+    ],
+    "image_url_web": "/static/cards/inkarri_kiddo.png",
+    "ability": "You may summon Inkarri Kiddo during your opponent snooze phase if there is another Inkarri Monkey boy at home. If you do, Inkarri Kiddo's Mischief grows by as many playtime points you have multiplied by 5 this turn. During your opponent playtime phase, If your opponent would earn a second playtime point, you may summon Inkarri Kiddo. If you do Kiddo's Mischief is multiplied by 10 per playtime point instead, and the opposing Monkey Boy must target this card for playtime encounter."
+  },
+  "zaraki": {
+    "name": "Zaraki",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 50,
+    "charm": 0,
+    "mischief": 35,
+    "total": 85,
+    "status": "Erect, Heat, Nude",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510517692568698972/Zaraki.png?ex=6a1d1ab9&is=6a1bc939&hm=d4b275a8ec0f868f81c742bbc8cb5a881fced6050b7574ad8a8c93004c28f3b4&",
+    "statuses": [
+      "erect, heat, nude"
+    ],
+    "image_url_web": "/static/cards/zaraki.png",
+    "ability": "This Monkey boy counts as Inkarri. Except for the first turn, you may summon Zaraki during your opponent’s Snooze Phase if they have not declared any Playtime Encounters. If you do, Zaraki Enters the Playing field with Banana Size 70. Playtime encounters involving Zaraki are decided by the higher Banana Size Stat Value. After a playtime encounter involving Zaraki, Send Zaraki Home."
+  },
+  "reaver_raze": {
+    "name": "Reaver Raze",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 65,
+    "charm": 5,
+    "mischief": 55,
+    "total": 125,
+    "status": "Briefs, Erect",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510517721043964085/Reaver_Raze.png?ex=6a1d1ac0&is=6a1bc940&hm=744e13135a72862a5fd3ad5468b66d78676d9023095457d0db2eea52bdb7404d&",
+    "statuses": [
+      "erect, briefs"
+    ],
+    "image_url_web": "/static/cards/reaver_raze.png",
+    "ability": "This card counts as Inkarri. You may summon Reaver Raze during your opponent’s Snooze Phase if your opponent recalled a Monkey Boy this turn.If you do, you may summon up to 2 additional Inkarri Monkey Boys from your baseline or Home. Those Monkey Boys enter play with their abilities negated and their total stat values grow by 5 for each Inkarri Monkey Boy on the playing field."
   }
 }
