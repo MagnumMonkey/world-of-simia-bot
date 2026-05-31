@@ -1835,5 +1835,21 @@
     ],
     "image_url_web": "/static/cards/reaver_raze.png",
     "ability": "You May summon Reaver Raze During your opponent Snooze phase. If you do Raze cannot be recalled. When Raze Enters the playing field During your opponents snooze phase, you may summon one additional Inkarri and Negate their abilities. That Monkey boy total stat value grows by 5 for each Inkarri in play."
+  },
+   "ashe_and_thorn_inkarri_twin_chaos": {
+    "name": "Ashe & Thorn, Inkarri Twin Chaos",
+    "rarity": "legendary",
+    "personality": "Alpha, Bravado",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 50,
+    "total": 150,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510747168724619284/Ashe_and_Thorn_Inkarri_Chaos_Twins.gif?ex=6a1df071&is=6a1c9ef1&hm=84e58e96eb1a6e69f4c2505b23993e46ff215e14933b41a0febe11bcc8e76188&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/ashe_and_thorn_inkarri_twin_chaos.gif",
+    "ability": "You may summon Ashe & Thorn during your opponent’s Playtime Phase only if you would lose the game from a Playtime Encounter this turn. If you do, expel 3 Inkarri Monkey Boys from your baseline or playing field. Then, expel Ashe & Thorn. Prevent that Playtime Point, send all opposing Monkey Boys home, and subtract 1 Playtime Point from opponent for each Monkey Boy sent home this way."
   }
 }
