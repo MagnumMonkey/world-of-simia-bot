@@ -1851,5 +1851,88 @@
     ],
     "image_url_web": "/static/cards/ashe_and_thorn_inkarri_twin_chaos.gif",
     "ability": "You may summon Ashe & Thorn during your opponent’s Playtime Phase only if you would lose the game from a Playtime Encounter this turn. If you do, expel 3 Inkarri Monkey Boys from your baseline or playing field. Then, expel Ashe & Thorn. Prevent that Playtime Point, send all opposing Monkey Boys home, and subtract 1 Playtime Point from opponent for each Monkey Boy sent home this way."
+  },
+  "inkarri_sprout_zihppi": {
+    "name": "Inkarri Sprout Zihppi",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 35,
+    "charm": 35,
+    "mischief": 35,
+    "total": 105,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860937475784875/Inkarri_Sprout_Zihppi.png?ex=6a1e5a65&is=6a1d08e5&hm=1970b79ea929a3b00cfef7b700e2d549f42e0ce91158ff99400db902ef3418c5&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/inkarri_sprout_zihppy.png",
+    "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase. If you do Zihppi cannot be recalled.",
+    "skill": "(1) Sprout and Shout!: Send Zihppi home to summon Inkarri Sprout Zahppi or Inkarri Sprout Zhoom from your baseline or collection."
+  },
+  "inkarri_sprout_zahppi": {
+    "name": "Inkarri Sprout Zahppi",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 35,
+    "charm": 35,
+    "mischief": 35,
+    "total": 105,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860964889890876/Inkarri_Sprout_Zahppi.png?ex=6a1e5a6c&is=6a1d08ec&hm=b562028ab99961c7cfa6dcbcaa4d989554f51c36fef2a1bf855b179a7bf83dec&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/inkarri_sprout_zahppy.png",
+    "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase. If you do Zahppi cannot be recalled.",
+    "skill": "(1) Sprout and Shout!: Send Zahppi home to summon Inkarri Sprout Zihppi or Inkarri Sprout Zhoom from your baseline or collection."
+  },
+  "inkarri_sprout_zhoom": {
+    "name": "Inkarri Sprout Zhoom",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 35,
+    "charm": 35,
+    "mischief": 35,
+    "total": 105,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860998024626316/Inkarri_Sprout_Zhoom.png?ex=6a1e5a74&is=6a1d08f4&hm=a4e9f11758a04df44e9f8a3c8fe9b201e67488d808492dd73583e8edf8d03ec1&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/inkarri_sprout_zhoom.png",
+    "ability": "You may summon Inkarri Sprout Zhoom During your opponent Snooze phase. If you do Zhoom cannot be recalled.",
+    "skill": "(1) Sprout and Shout!: Send Zhoom home to summon Inkarri Sprout Zihppi or Inkarri Sprout Zahppi from your baseline or collection."
+  },
+  "zihppi_zahppi_zhoom_inkarri_sprout_trio": {
+    "name": "Zihppi, Zahppi, Zoom, Inkarri Sprout Trio",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 55,
+    "total": 155,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510861023161094245/Zihppi_Zahppi_Zhoom_Inkarri_Sprout_Trio.png?ex=6a1e5a7a&is=6a1d08fa&hm=9a92630363a3bce89da06a11cb6b7e918651ccd7a242321c9eca035497d66c08&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/zihppi_zahppi_zhoom_inkarri_sprout_trio.png",
+    "ability": "This card cannot be summoned during your Ready Phase, cannot be resummoned, and cannot be recalled. You may summon Zihppi, Zahppi & Zhoom, Inkarri Sprout Trio during your opponent’s Snooze Phase by expelling Zihppi, Zahppi, and Zhoom from your playing field and/or Home. While this card is in play, it can initiate a Playtime Encounter up to three times per turn."
+  },
+  "varrik_the_unseen_inkarri": {
+    "name": "Varrik, The unseen Inkarri",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 50,
+    "charm": 40,
+    "mischief": 35,
+    "total": 125,
+    "status": "Briefs",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510861048939544676/Varrik_The_Unseen_Inkarri.png?ex=6a1e5a80&is=6a1d0900&hm=af0bb1d0484c0b8d165662c3299cf38fdbae7f2ae5bf57e895bd2c9a8f02b3e7&",
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "/static/cards/varrik_the_unseen_inkarri.png",
+    "ability": "You May summon Varrik the unseen during your opponent's snooze Phase. If you do Varrik cannot be recalled. If Varrik is summoned this way you may also resummon 1 monkey boy that was sent to your home this turn from a playtime encounter. That Monkey Boy banana size Grows by 10."
   }
 }
