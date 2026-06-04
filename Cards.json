@@ -3,21 +3,20 @@
     "name": "Archie, Ever the Intellectual",
     "rarity": "rare",
     "personality": "Sweetheart",
-    "banana_size": 39,
+    "banana_size": 40,
     "charm": 65,
-    "mischief": 3,
-    "total": 107,
-    "image_url_discord": "https://media.discordapp.net/attachments/1452555091029786799/1453693653661782056/Archie_Ever_the_Intellectual.png?ex=694e6137&is=694d0fb7&hm=74660b79989e1c7740ae988f0d0db37838ed4add9a4a04c08ecb490baaedbf9c&=&format=webp&quality=lossless&width=1316&height=1977",
+    "mischief": 5,
+    "total": 110,
+    "image_url_discord": "https://media.discordapp.net/attachments/1452555091029786799/1511958286268760075/Archie_Ever_the_Intellectual.png?ex=6a225862&is=6a2106e2&hm=20b988de110fe4fd2956b45eb3b72c04e610605fee19ac79d5ea7fc2ef2e910a&=&format=webp&quality=lossless&width=1231&height=1847",
     "image_url_web": "/static/cards/archie_ever_the_intellectual.png",
-    "status": "Briefs, Erect, Ejaculating, Heat",
+    "status": "Briefs, Erect, Ejaculating",
     "statuses": [
       "briefs",
       "erect",
-      "ejaculating",
-      "heat"
+      "ejaculating"
     ],
-    "ability": "Summoning Condition: Archie Ever the intellectual can be summoned by sending 1 monkey boy from your team to home. During the ready phase, Archie's mischief grows by 4 for each turn he is in play. Archie recieves heat status when his mischief reaches 15 or greater.",
-    "skill": "fascinating: During the ready Phase, while Archie has the heat status, select an opposing monkey boy. The Opposing Monkey boy's total stat value shrinks by 1 for each mischief point Archie Currently has. Archie's Erect status is removed. Archie's mischief shrinks to 0."
+    "ability": "You may summon Archie, Ever the Intellectual by sending 1 Monkey Boy on your team Home. During your Ready Phase, Archie’s Mischief grows by 5. If Archie’s Mischief is 15 or greater, Archie gains the Heat status.",
+    "skill": "Fascinating: During your Ready Phase, if Archie has Heat, select 1 opposing Monkey Boy. That Monkey Boy’s Total shrinks by Archie’s Mischief. Then remove Archie’s Erect status and reduce Archie’s Mischief to 0.."
   },
   "rhythm_runner_rhed": {
     "name": "Rhythm Runner Rhed",
@@ -27,13 +26,13 @@
     "charm": 79,
     "mischief": 11,
     "total": 110,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556513385250856/Rhythm_Runner_Rhed.png?ex=694a3e2b&is=6948ecab&hm=bd2ec6037644fe732d8a1ec14f1de7469e94efc36844030d548c3c9a1e16bf0c&",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511524186722406510/Rhythm_Runner_Rhed.png?ex=6a20c418&is=6a1f7298&hm=22e7ff27bf8f1164d8bd77173de41cbc67d540f32097a89fab634bf27cab916a&",
     "status": "Briefs",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/rhythm_runner_rhed.png",
-    "ability": "During your Playtime Phase, Rhed's Charm grows by 5."
+    "ability": "During your Playtime Phase,If Rhed Initiates a playtime encounter, Rhed's Charm grows by 5."
   },
   "beat_boy_bloo": {
     "name": "Beat boy Bloo",
@@ -43,13 +42,13 @@
     "charm": 11,
     "mischief": 79,
     "total": 110,
-    "image_url_discord": "https://media.discordapp.net/attachments/1452555091029786799/1452556485581344931/Beat_boy_Bloo.png?ex=695c0a65&is=695ab8e5&hm=80c31eadee7ac90c886f6c6b2c65f2df8eeb3823c9093c75ae45fe4b615963ee&=&format=webp&quality=lossless&width=1322&height=1983",
+    "image_url_discord": "https://cdn.discordapp.com/attachments/1452555091029786799/1511525678447726743/Beat_boy_Bloo.png?ex=6a20c57c&is=6a1f73fc&hm=08da11ec720c5d6e1b8eceeabc3fac672bce61f483cef012a2dde3b1d876084f&",
     "image_url_web": "/static/cards/beat_boy_bloo.png",
     "status": "Briefs",
     "statuses": [
       "briefs"
     ],
-    "ability": "During your Playtime Phase, Bloo's Mischief grows by 5."
+    "ability": "During your Playtime Phase, If Bloo Initiates a playtime encounter, Bloo's Mischief grows by 5."
   },
   "gimbal_nudist_explorer": {
     "name": "Gimbal, Nudist Explorer",
@@ -59,13 +58,13 @@
     "charm": 51,
     "mischief": 25,
     "total": 131,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556499019628735/Gymbal_Nudist_Explorer.png?ex=694a3e28&is=6948eca8&hm=35deaec04ec8bfa120a1a8614e21f2090a2d4e519ca0e684a96cb90fa1913bde&",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511961629615718441/Gymbal_Nudist_Explorer.png?ex=6a225b7f&is=6a2109ff&hm=88813534372238be1372480af4a0928340e782d9c34caed729d852958751aab7&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Nude",
     "statuses": [
       "nude"
     ],
-    "image_url_web": "/static/cards/gimbal_nudist_explorer.png",
-    "ability": "During each of your Wake up phases, If Gimbal was not involved in any playtime encounters the turn before, then Gimbal's Jungle joystick thickens and gains Erect Status. Gimbal Grow his Banana Size to 62 only while he has Erect Status."
+    "image_url_web": "/static/cards/gymbal_nudist_explorer.png",
+    "ability": "During your Wake-Up Phase, if Gimbal was on your team last turn and was not involved in a Playtime encounter, Gimbal gains the Erect status. While Gimbal has the Erect status, his Banana Size is adjusted to 65."
   },
   "riff_the_unruly": {
     "name": "Riff the Unruly",
@@ -107,27 +106,27 @@
     "name": "Sprig, Novice Guardian",
     "rarity": "rare",
     "personality": "Sweetheart",
-    "banana_size": 37,
+    "banana_size": 39,
     "charm": 72,
     "mischief": 9,
-    "total": 118,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556566808105001/Sprig_novice_guardian.png?ex=694a3e38&is=6948ecb8&hm=5bb5c46fbc59b42da6830e3da13244c75a0a53bf0b0390a135df5a6c0443d8fe&",
+    "total": 120,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511587001126752376/Sprig_novice_guardian.png?ex=6a20fe98&is=6a1fad18&hm=673496b73e664be1ffec12b26fbd0799997b843cd23e349c1c553920c74ca48f&",
     "status": "Briefs",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/sprig_novice_guardian.png",
-    "ability": "Summoning Condition: Sprig, novice Guardian can be summoned when there's at least 1 monkey boy from your team at home. When Sprig Enters the playing area, Sprig Banana Size grows by 5 for each other monkey boy with Briefs Status. Once per turn, When your opponent initiates a playtime encounter with a monkey boy that does not involve Sprig, you may have sprig be the new target. If you do, Sprig's Banana Size Grows by 5. If there are 2 or more monkey boys with Briefs Status Sprig Gains the Erect Status."
+    "ability": "You may summon Sprig, Novice Guardian if you have at least 1 Monkey Boy at Home and another Monkey Boy on your team is targeted for a Playtime encounter. During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving another Monkey Boy on your team, you may have Sprig become the target instead. If you do, Sprig gains the Erect status and his Banana Size grows by 10 for that encounter. If Sprig wins that encounter, you may return 1 Monkey Boy from your Home to your baseline."
   },
   "the_relentless_zevally": {
     "name": "The Relentless Zevally",
     "rarity": "common",
     "personality": "Alpha",
-    "banana_size": 50,
-    "charm": 50,
-    "mischief": 50,
-    "total": 150,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452556581614125179/The_relentless_Zevally.png?ex=694a3e3c&is=6948ecbc&hm=6a9af1c15ea715e712ef7a2475f23343a49fd7cfcb1716e95413aedd3d0f45dd&",
+    "banana_size": 45,
+    "charm": 45,
+    "mischief": 45,
+    "total": 135,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511963719645532281/The_relentless_Zevally.png?ex=6a225d71&is=6a210bf1&hm=a2ab59cf72d6152ff2cf1e64dcd802739ab878e800a1529b7da4c670d3bb00c1&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Briefs",
     "statuses": [
       "briefs"
@@ -160,7 +159,7 @@
     "charm": 40,
     "mischief": 30,
     "total": 95,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452937381190697116/Self-adoring_Maxx.png?ex=694ba0e1&is=694a4f61&hm=ee5df0cbf60880ea36469630c0281d279e82e2831b4ae818b752bbf641b0f9e8&",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511590535872385126/Self-adoring_Maxx.png?ex=6a2101e3&is=6a1fb063&hm=7899b89186dde23458a1d9e8070b9c479031a1aef09fe7184e3641106b5cb907&",
     "status": "Nude, Erect, Heat",
     "statuses": [
       "nude",
@@ -168,7 +167,7 @@
       "heat"
     ],
     "image_url_web": "/static/cards/self_adoring_maxx.png",
-    "ability": "During the playtime phase, If Maxx Banana Size is Greater than the opposing monkey's During a playtime encounter Maxx will automatically win the encounter and the opposing monkey is sent home. When Maxx enters the playing field, choose a player. If the choosen player Initiates a playtime encounter involving Maxx, you may Grow Maxx Banana size by 25. If you do, Maxx's Charm and Mischief will become 0 for the remainder of the playtime phase. All of Maxx's Stat changes will return to Normal at the beginning of the snooze phase."
+    "ability": "During your opponent's Playtime Phase, When Maxx is involved in a playtime encounter you may grow Maxx’s Banana Size by 25 for that encounter. If you do, Maxx’s Charm and Mischief become 0 for that encounter. During a Playtime encounter involving Maxx, if Maxx’s Banana Size is greater than the opposing Monkey Boy’s Banana Size, Maxx wins that encounter."
   },
   "ollie_streetwise_swingster": {
     "name": "Ollie Streetwise Swingster",
@@ -246,13 +245,13 @@
     "charm": 16,
     "mischief": 30,
     "total": 115,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947280473624616/Dewey_and_The_Thickness.png?ex=694baa1a&is=694a589a&hm=856e2bbfbe8bd3ae588802c91815cfb09476be65effe53ad04d21654b73da653&",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511967457093484574/Dewey_and_The_Thickness.png?ex=6a2260ec&is=6a210f6c&hm=cf5715fb3d2f86be96f8d6c203176e18a1166e8cf7b109ccbee489fc9d9eacae&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Nude",
     "statuses": [
       "nude"
     ],
     "image_url_web": "/static/cards/dewey_and_the_thickness.png",
-    "ability": "When Dewey enters the Playing Field, His banana size grows by 5 for each monkey boy on the Playing Field."
+    "ability": "When Dewey enters the Playing Field, his Banana Size grows by 5 for each other Monkey Boy on the Playing Field. If there are at least 2 other Monkey Boys on the Playing Field, Dewey gains the Erect status."
   },
   "nico_and_zane": {
     "name": "Nico and Zane",
@@ -321,21 +320,21 @@
     "image_url_web": "/static/cards/jakx_runaway_royalty.png",
     "ability": "Once per turn, during the Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving Jakx, you may choose one: Reduce the initiating Monkey Boy's Banana Size by 10 for this Playtime phase. Reduce the initiating Monkey Boy's Charm by 10 for this Playtime phase."
   },
-  "spry_sprout": {
-    "name": "Spry Sprout",
+  "sly_sprout": {
+    "name": "Sly Sprout",
     "rarity": "rare",
     "personality": "Prankster",
     "banana_size": 34,
     "charm": 2,
     "mischief": 66,
     "total": 102,
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1452947335045976207/Sly_Sprout.png?ex=694baa27&is=694a58a7&hm=12fdeb79feef5823e0c8ef7f4895fc6fcef5eaa1ffd46e5154098869dbb07648&",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511977250004799610/Sly_Sprout.png?ex=6a226a0b&is=6a21188b&hm=1aabe461ff357e5c6d924e37c0f113035542295341eb85097f3c14315f898e11&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Briefs,",
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/spry_sprout.png",
-    "ability": "During the playtime Phase, if your opponent selects a monkey boy with the Briefs status on your team, you may summon Spry Sprout from your baseline. If you do, send the selected monkey boy back to your baseline and end the current playtime phase. Sprout cannot be Recalled."
+    "image_url_web": "/static/cards/sly_sprout.png",
+    "ability": "During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team with the Briefs status, you may summon Sly Sprout from your baseline. If you do, return that Monkey Boy to your baseline, and Sly Sprout becomes the target instead. During that encounter, Sly Sprout’s Mischief grows by 20. If Sly Sprout is sent Home during that encounter, your opponent does not gain a Playtime Point. Spry Sprout cannot be recalled."
   },
   "nikolaj_the_rear_ender": {
     "name": "Nikolaj, The Rear Ender",
@@ -344,8 +343,8 @@
     "banana_size": 80,
     "charm": 51,
     "mischief": 4,
-    "total": 140,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453157621769965588/Nikolaj_The_Rear_Ender.png?ex=694c6dff&is=694b1c7f&hm=2c0e2dd1a1aadbb6a9fb717bfdcb8ee9bb439c11804752955c51e6d8be0015b4&=&format=webp&quality=lossless&width=1317&height=1977",
+    "total": 135,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511595322588266616/Nikolaj_The_Rear_Ender.png?ex=6a210658&is=6a1fb4d8&hm=f0213105baa4affdb1366eef5df7155c51f80f2e3b01d03a38355452fd9c0b45&",
     "status": "Nude, Erect, Heat",
     "statuses": [
       "nude",
@@ -353,7 +352,7 @@
       "heat"
     ],
     "image_url_web": "/static/cards/nikolaj_the_rear_ender.png",
-    "ability": "Summoning Condition: You may summon Nikolaj, The Rear Ender when you have no other monkey boy's on your team except on the first turn. If you resummon any monkey boy with a Total stat Value of 130 or fewer, You may resummon them and grow their Total stat value by 20."
+    "ability": "Except on the first turn of the game, you may summon Nikolaj, The Rear Ender if you have no other monkey boys on your team. While Nikolaj is in play, when you resummon a Monkey Boy with a Total stat value of 110 or fewer, you may choose one of that Monkey Boy’s stats. The chosen stat grows by 20. If you do, Nikolaj cannot initiate a Playtime encounter this turn."
   },
   "gibble_the_wildspark": {
     "name": "Gibble, The Wildspark",
@@ -381,14 +380,14 @@
     "charm": 40,
     "mischief": 49,
     "total": 140,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453252141949911155/Bronco-The-Last.gif?ex=694cc606&is=694b7486&hm=4e887298b01f12c7df34f300b97557a85ba76acab77f26a37c08462fc5229d8f&=&width=1315&height=1977",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511601399828320356/Bronco-The-Last.gif?ex=6a210c01&is=6a1fba81&hm=c0a1e7a3b106dc83fb19b488222d4df2042f6b30c3c7a007b3a4c0e8e2a92849&",
     "status": "Briefs, Heat",
     "statuses": [
       "briefs",
       "heat"
     ],
     "image_url_web": "/static/cards/bronco_the_last.png",
-    "ability": "Summoning Condition: Bronco the last must be summoned during the snooze phase. You may only summon Brono if 2 or more of your monkey boys was sent home this turn. For each of your monkey boy's your opponent sent home during the last playtime phase, Bronco, the last recieves 1 playtime encounter for a maximum of 3 for as long as he remains on the playing field."
+    "ability": "During your opponent’s Snooze Phase, if 2 or more Monkey Boys on your team were sent Home by your opponent this turn, you may summon Bronco, The Last from your baseline or collection. If Bronco is summoned this way, during this snooze phase, Bronco Must initiate a playtime encounter with an opposing monkey boy who was involved in a playtime encounter this turn. Bronco cannot earn a playtime point from this encounter."
   },
   "rollo_kin_of_the_moon": {
     "name": "Rollo, Kin of the Moon",
@@ -398,7 +397,7 @@
     "charm": 75,
     "mischief": 0,
     "total": 145,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453352000635801646/Rollo-Kin-of-the-Moon.gif?ex=694d2306&is=694bd186&hm=6733f8e063eb07d2fd385770014cd98bee331aac34e8cea995a224cb00668ea7&=&width=1315&height=1977",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511606202679951472/Rollo-Kin-of-the-Moon.gif?ex=6a21107b&is=6a1fbefb&hm=c4984e9eede57eefe9711a93e0d7bfbad77c99bfcf4580180f042c44730d91e5&",
     "status": "Erect, Ejaculating, Nude",
     "statuses": [
       "erect",
@@ -406,7 +405,7 @@
       "nude"
     ],
     "image_url_web": "/static/cards/rollo_kin_of_the_moon.png",
-    "ability": "Summoning Condition: You may Summon Rollo, Kin of the Moon if there's 1 other opposing Monkey Boy with Mischief 15 or fewer. Rollo cannot be sent home During your playtime phase. Whenever Rollo is involved in a playtime encounter and is not sent home, select a monkey boy and select a stat. The selected monkey boy's selected stat grows by 15. "
+    "ability": "You may summon Rollo, Kin of the Moon if your opponent controls a Monkey Boy with Mischief 15 or fewer. During your Playtime Phase, Rollo cannot be sent Home by Playtime encounters. After a Playtime encounter involving Rollo resolves, if Rollo was not sent Home, select 1 other Monkey Boy and choose 1 stat. The chosen stat grows by 10."
   },
   "knox_child_of_crimsimia": {
     "name": "Knox, Child Of Crimsimia",
@@ -496,11 +495,11 @@
     "name": "Zeal, The Ruthless",
     "rarity": "Common",
     "personality": "Alpha",
-    "banana_size": 50,
-    "charm": 50,
-    "mischief": 50,
-    "total": 150,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667949863763990/Zeal_the_Ruthless.png?ex=694e4947&is=694cf7c7&hm=1bcfcb5e00116a19789bc6300ee6f33e627980f58cd126931171a059af26bfcc&=&format=webp&quality=lossless&width=1317&height=1977",
+    "banana_size": 45,
+    "charm": 45,
+    "mischief": 45,
+    "total": 135,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511964347767980123/Zeal_the_Ruthless.png?ex=6a225e07&is=6a210c87&hm=66844eefe95e3e7518e518bdf598680e6639ff1f06f072e9127c4bfc7111fde5&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Briefs",
     "statuses": [
       "briefs"
@@ -516,14 +515,14 @@
     "charm": 20,
     "mischief": 55,
     "total": 120,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667964619329607/Layzer_Metrokin_Street_Lurker.png?ex=694e494a&is=694cf7ca&hm=e54026e9e5028091942ad4bb61d165bc9c42889a6bd2befb4e126aca6b6c3ad7&=&format=webp&quality=lossless&width=1317&height=1977",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511610024282165369/Layzer_Metrokin_Street_Lurker.png?ex=6a21140a&is=6a1fc28a&hm=e7bb1b8c79ff4f4f1ec81da3a755c2641d9e078815bf23cc21c819ce87c91f2a&",
     "status": "Heat, Nude",
     "statuses": [
       "heat",
       "nude"
     ],
     "image_url_web": "/static/cards/layzer_metrokin_street_lurker.png",
-    "ability": "If Layzer is in your baseline when your opponent initiate a playtime encounter with any opposing monkey boy, you may send this card from baseline to Home. If you do then the opposing boy Mischief shrinks by 7 if they have the Briefs Status. When this Layzer is resummoned his Charm shrinks by 7."
+    "ability": "During your opponent's playtime Phase, If a playtime encounter is initiated, you may send Layzer, Metrokin Street Lurker from your baseline to your home. If you do, then shrink the opposing monkey boy's banana size by 10 for that encounter. When Layzer is resummoned shrink his banana size by 10."
   },
   "the_boy_in_the_woods": {
     "name": "The Boy in the Woods",
@@ -583,14 +582,14 @@
     "charm": 30,
     "mischief": 40,
     "total": 125,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775305473789952/Atlas_Cinderfang_Paragon.png?ex=694ead42&is=694d5bc2&hm=17a0ea0c2888a031e15e13d496220976e8c18b7ca06b3002c8d8b5af95205ec6&=&format=webp&quality=lossless&width=1317&height=1977",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511909505972305998/Atlas_Cinderfang_Paragon.png?ex=6a222af4&is=6a20d974&hm=aa1ee07215eb0ed336c1e7031aee87a9987a7574bd36fa2d9938a58b4982e3f6&",
     "status": "Briefs",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/atlas_cinderfang_paragon.png",
-    "ability": "Summoning Condition: You may summon Atlas, the Cinderfang Simia by Sending two monkey boys from the baseline to home. They cannot be resummon while Atlas is on the Playing Area.",
-    "skill" : "(2) Cinderfang Call: During the ready phase, Drop all of atlas' stats to 0, then summon a additional common monkey boy. Atlas' Stats returns to base values at the beginning of your Wake up Phase. If Altas' total stat value is equal 0, He cannot be sent home as a result of a playtime encounter by an opposing monkey boy with a total stat value of 120 or greater. You may activate Cinderfang Call once per turn."
+    "ability": "You may summon Atlas, the Cinderfang Simia by sending 2 Monkey Boys from your baseline to Home. Monkey Boys sent Home this way cannot be resummoned while Atlas is on the Playing Field.",
+    "skill" : "(1) Cinderfang Call: During your Ready Phase, adjust Atlas’ stats to 0. If you do, summon 1 additional common Monkey Boy from your baseline. Atlas’ stats return to their base values at the beginning of your next Wake-Up Phase. While Atlas’ Total is 0, he cannot be sent Home by a Playtime encounter involving an opposing Monkey Boy with Total 120 or greater."
   },
   "zippy_the_extremist": {
     "name": "Zippy, The Extremist",
@@ -632,16 +631,16 @@
     "rarity": "rare",
     "personality": "Alpha",
     "banana_size": 80,
-    "charm": 60,
+    "charm": 0,
     "mischief": 50,
-    "total": 190,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453775336889126972/The_Inkarri_Behemoth.png?ex=694ead4a&is=694d5bca&hm=7d131f70a4d131e4ec27604bd9848b38d651260f5822612e75ac70a81d96881c&=&format=webp&quality=lossless&width=1317&height=1977",
+    "total": 130,
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511890246881771640/The_Inkarri_Behemoth.png?ex=6a221904&is=6a20c784&hm=f03aed76a77513c893b426d042e9fa71dce355bcf01b9b4fa73816fb4f8027c8&",
     "status": "Erect",
     "statuses": [
       "erect"
     ],
     "image_url_web": "/static/cards/the_inkarri_behemoth.png",
-    "ability": "Summoning Conditions: You may Summon The Inkarri Behemoth by Dropping one monkey boy on your team with the Alpha Personality to 0. During the Ready phase, if you summon or resummon a Monkey Boy with the Alpha, or Bravado personality, all of their stat values are adjusted to 0. The Inkarri Behemoth enters the Playing Field with a total stat value adjusted to 140. During your Snooze phase, If The Inkarri Behemoth was not involved in a playtime encounter his total stat value grows by 10 for each of your Snooze phases (Max total: 190). When The Inkarri Behemoth enters the play area Select 1 Monkey Boy in your baseline. The Selected Monkey Boy gains the skill: Send this card home, if you do prevent 1 Playtime encounter."
+    "ability": "During your opponent’s Ready Phase, when your opponent summons or resummons a Monkey Boy, you may summon Inkarri Behemoth from your baseline. If you do, prevent all abilities of that Monkey Boy from activating this turn. Then Inkarri Behemoth’s Mischief shrinks by 30."
   },
   "golden_boy_luke": {
     "name": "Golden Boy Luke",
@@ -719,14 +718,14 @@
     "charm": 5,
     "mischief": 10,
     "total": 70,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140889004773580/Fizzy_Felix.png?ex=695001bc&is=694eb03c&hm=05687cd48cc6d66510a4999f08ac78b252596bc2d9c69d63fd67bec160637d29&=&format=webp&quality=lossless&width=1317&height=1977",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511539553838829698/Fizzy_Felix.png?ex=6a20d268&is=6a1f80e8&hm=1f48ba5ad4a4528101c3a3275a7aea8e4c37299208d78716c1be87bd51b275d8&",
     "status": "Erect, Ejaculating",
     "statuses": [
       "erect",
       "ejaculating"
     ],
     "image_url_web": "/static/cards/fizzy_felix.png",
-    "ability": "During the Ready Phase, if Fizzy Felix is in your baseline, you may send him Home. If you do, randomly select a Monkey boy from your opponent's baseline. If the selected monkey boy's total Stat value is 150 or greater, the selected Monkey boy is sent home. While Felix is the only monkey boy at Home, your opponent may not resummon the selected Monkey Boy."
+    "ability": "During your Ready Phase, if Fizzy Felix is in your Baseline, you may send him Home. If you do, select a Monkey Boy with a Total stat value of 150 or greater. That Monkey Boy loses 20 Total until the start of your opponent's Snooze Phase. "
   },
   "azure_the_monkey_boy_wonder": {
     "name": "Azure, The Monkey boy Wonder",
@@ -1156,11 +1155,11 @@
     "name": "Necal, the Senseless",
     "rarity": "Common",
     "personality": "Alpha",
-    "banana_size": 50,
-    "charm": 50,
-    "mischief": 50,
-    "total": 150,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454691411789090918/Necal_The_Senseless.png?ex=69520273&is=6950b0f3&hm=00272e38a982ae89052641e077e19c90bd193adb69d617ab1724fd3eff18c2ce&=&format=webp&quality=lossless&width=1221&height=1831",
+    "banana_size": 45,
+    "charm": 45,
+    "mischief": 45,
+    "total": 135,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511965026599305358/Necal_The_Senseless.png?ex=6a225ea9&is=6a210d29&hm=c3ead7fca286018e5c78f2d1514306a98928b685d237018eacf3a0890e91afdc&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Briefs",
     "statuses": [
       "briefs"
@@ -1700,12 +1699,12 @@
     "mischief": 11,
     "total": 120,
     "status": "Briefs",
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1457222807170580602/Waveform_Walker_Whytte.jpg.png?ex=695b37ff&is=6959e67f&hm=e63171818e0e72835d78412386cb50deadc134e9529536ef4a406fa676cb33f7&=&format=webp&quality=lossless&width=1322&height=1983",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511527506564481115/Waveform_Walker_Whytte.png?ex=6a20c730&is=6a1f75b0&hm=2c3c2387599b4e126906c142dc30cdfc1bbef171f5c73b3dea4b03608091d1cc&",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/waveform_walker_whytte.png",
-    "ability": "During the Playtime Phase, Whytte's Banana Size Grow by 5"
+    "ability": "During the Playtime Phase, if white initiate a playtime encounter, Whytte's charm grows by 5"
   },
   "kaboom_boner_boy": {
     "name": "Kaboom, Boner Boy",
@@ -1861,13 +1860,13 @@
     "mischief": 35,
     "total": 105,
     "status": "Briefs",
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860937475784875/Inkarri_Sprout_Zihppi.png?ex=6a1e5a65&is=6a1d08e5&hm=1970b79ea929a3b00cfef7b700e2d549f42e0ce91158ff99400db902ef3418c5&",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511532168135053475/Inkarri_Sprout_Zihppi.png?ex=6a20cb87&is=6a1f7a07&hm=c7338da77f7d280a07e2ea9ff14f425845e5a7898b3729ccb9223023139ec3e0&",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/inkarri_sprout_zihppy.png",
-    "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase. If you do Zihppi cannot be recalled.",
-    "skill": "(1) Sprout and Shout!: Send Zihppi home to summon Inkarri Sprout Zahppi or Inkarri Sprout Zhoom from your baseline or collection."
+    "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase. If you do Zihppi cannot be recalled. If Zihppi was summoned from the skill Sprout and shout, Zihppi may not use any skills this turn.",
+    "skill": "(1) Sprout and Shout!: Send Zihppi home from your playing field to summon Inkarri Sprout Zahppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
   "inkarri_sprout_zahppi": {
     "name": "Inkarri Sprout Zahppi",
@@ -1878,13 +1877,13 @@
     "mischief": 35,
     "total": 105,
     "status": "Briefs",
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860964889890876/Inkarri_Sprout_Zahppi.png?ex=6a1e5a6c&is=6a1d08ec&hm=b562028ab99961c7cfa6dcbcaa4d989554f51c36fef2a1bf855b179a7bf83dec&",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511532185474043904/Inkarri_Sprout_Zahppi.png?ex=6a20cb8b&is=6a1f7a0b&hm=022fd0b7b914d6e0688de47862e6a269bcd325b37ab3956060ef121b00b4f995&",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/inkarri_sprout_zahppy.png",
-    "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase. If you do Zahppi cannot be recalled.",
-    "skill": "(1) Sprout and Shout!: Send Zahppi home to summon Inkarri Sprout Zihppi or Inkarri Sprout Zhoom from your baseline or collection."
+    "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase. If you do Zahppi cannot be recalled. If Zahppi was summoned from the skill Sprout and shout, Zahppi may not use any skills this turn.",
+    "skill": "(1) Sprout and Shout!: Send Zahppi home from your playing field to summon Inkarri Sprout Zihppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
   "inkarri_sprout_zhoom": {
     "name": "Inkarri Sprout Zhoom",
@@ -1895,13 +1894,13 @@
     "mischief": 35,
     "total": 105,
     "status": "Briefs",
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510860998024626316/Inkarri_Sprout_Zhoom.png?ex=6a1e5a74&is=6a1d08f4&hm=a4e9f11758a04df44e9f8a3c8fe9b201e67488d808492dd73583e8edf8d03ec1&",
+    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511532201404141649/Inkarri_Sprout_Zhoom.png?ex=6a20cb8f&is=6a1f7a0f&hm=087cdc5ebc3063fde46be6b1008ddfa8251891dd824ac6b343ee08acc9b93db9&",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/inkarri_sprout_zhoom.png",
-    "ability": "You may summon Inkarri Sprout Zhoom During your opponent Snooze phase. If you do Zhoom cannot be recalled.",
-    "skill": "(1) Sprout and Shout!: Send Zhoom home to summon Inkarri Sprout Zihppi or Inkarri Sprout Zahppi from your baseline or collection."
+    "ability": "You may summon Inkarri Sprout Zhoom During your opponent Snooze phase. If you do Zhoom cannot be recalled. If Zhoom was summoned from the skill Sprout and shout, Zhoom may not use any skills this turn.",
+    "skill": "(1) Sprout and Shout!: Send Zhoom home from your playing field to summon Inkarri Sprout Zihppi or Inkarri Sprout Zahppi from your baseline or collection."
   },
   "zihppi_zahppi_zhoom_inkarri_sprout_trio": {
     "name": "Zihppi, Zahppi, Zoom, Inkarri Sprout Trio",
