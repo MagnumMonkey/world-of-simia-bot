@@ -1865,7 +1865,7 @@
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/inkarri_sprout_zihppy.png",
+    "image_url_web": "/static/cards/inkarri_sprout_zihppi.png",
     "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase. If you do Zihppi cannot be recalled. If Zihppi was summoned from the skill Sprout and shout, Zihppi may not use any skills this turn.",
     "skill": "(1) Sprout and Shout!: Send Zihppi home from your playing field to summon Inkarri Sprout Zahppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
@@ -1882,7 +1882,7 @@
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/inkarri_sprout_zahppy.png",
+    "image_url_web": "/static/cards/inkarri_sprout_zahppi.png",
     "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase. If you do Zahppi cannot be recalled. If Zahppi was summoned from the skill Sprout and shout, Zahppi may not use any skills this turn.",
     "skill": "(1) Sprout and Shout!: Send Zahppi home from your playing field to summon Inkarri Sprout Zihppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
