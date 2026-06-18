@@ -62,7 +62,10 @@ DUP_SELL_VALUES = {
     "legendary": 100
 }
 
-IMAGE_BASE_URL = os.getenv("IMAGE_BASE_URL", "").rstrip("/")
+IMAGE_BASE_URL = os.getenv(
+    "IMAGE_BASE_URL",
+    "https://magnummonkey.github.io/world-of-simia-bot"
+).rstrip("/")
 
 def resolve_card_image_url(card: dict) -> str | None:
     """
@@ -459,10 +462,7 @@ class CollectionSelect(discord.ui.Select):
         embed.add_field(name="Mischief", value=str(mischief), inline=True)
         embed.add_field(name="Total", value=str(total), inline=True)
 
-        image_url = (
-            card.get("image_url_discord")
-            or card.get("image_url")
-        )
+        image_url = resolve_card_image_url(card)
 
         if image_url:
             embed.set_image(url=image_url)
@@ -576,7 +576,7 @@ class DiscoverButton(discord.ui.Button):
         charm = card.get("charm", "?")
         mischief = card.get("mischief", "?")
         total = card.get("total", "?")
-        image_url = card.get("image_url")
+        image_url = resolve_card_image_url(card)
 
         # Level-up text
         level_text = "\n\n".join(level_msgs) if level_msgs else ""
@@ -608,10 +608,7 @@ class DiscoverButton(discord.ui.Button):
         embed.add_field(name="Mischief", value=str(mischief), inline=True)
         embed.add_field(name="Total", value=str(total), inline=True)
 
-        image_url = (
-            card.get("image_url_discord")
-            or card.get("image_url")
-        )
+        image_url = resolve_card_image_url(card)
 
         if image_url:
             embed.set_image(url=image_url)
@@ -1123,7 +1120,7 @@ async def wos_starter(interaction: discord.Interaction):
     charm = starter.get("charm", "?")
     mischief = starter.get("mischief", "?")
     total = starter.get("total", "?")
-    image_url = starter.get("image_url")
+    image_url = resolve_card_image_url(starter)
 
     # Build embed (same style as /wos_card)
     embed = discord.Embed(
@@ -1238,10 +1235,7 @@ async def wos_card(interaction: discord.Interaction, card_id: str):
     embed.add_field(name="Total", value=str(total), inline=True)
 
     # Image
-    image_url = (
-        card.get("image_url_discord")
-        or card.get("image_url")
-    )
+    image_url = resolve_card_image_url(card)
 
     if image_url:
         embed.set_image(url=image_url)
@@ -1492,10 +1486,7 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
     charm = card.get("charm", "?")
     mischief = card.get("mischief", "?")
     total = card.get("total", "?")
-    image_url = (
-        card.get("image_url_discord")
-        or card.get("image_url")
-    )
+    image_url = resolve_card_image_url(card)
 
 
     embed = discord.Embed(
