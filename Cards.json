@@ -318,23 +318,23 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/jakx_runaway_royalty.png",
-    "ability": "Once per turn, during the Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving Jakx, you may choose one: Reduce the initiating Monkey Boy's Banana Size by 10 for this Playtime phase. Reduce the initiating Monkey Boy's Charm by 10 for this Playtime phase."
+    "ability": "Once per turn, during your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving Jakx, you may choose one: The initiating Monkey Boy’s Banana Size shrinks by 10 for that encounter. The initiating Monkey Boy’s Charm shrinks by 10 for that encounter."
   },
-  "sly_sprout": {
-    "name": "Sly Sprout",
+  "spry_sprout": {
+    "name": "Spry Sprout",
     "rarity": "rare",
     "personality": "Prankster",
-    "banana_size": 34,
-    "charm": 2,
-    "mischief": 66,
-    "total": 102,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511977250004799610/Sly_Sprout.png?ex=6a226a0b&is=6a21188b&hm=1aabe461ff357e5c6d924e37c0f113035542295341eb85097f3c14315f898e11&=&format=webp&quality=lossless&width=1231&height=1847",
+    "banana_size": 30,
+    "charm": 0,
+    "mischief": 70,
+    "total": 100,
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1511977250004799610/Spry_Sprout.png?ex=6a226a0b&is=6a21188b&hm=1aabe461ff357e5c6d924e37c0f113035542295341eb85097f3c14315f898e11&=&format=webp&quality=lossless&width=1231&height=1847",
     "status": "Briefs,",
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/sly_sprout.png",
-    "ability": "During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team with the Briefs status, you may summon Sly Sprout from your baseline. If you do, return that Monkey Boy to your baseline, and Sly Sprout becomes the target instead. During that encounter, Sly Sprout’s Mischief grows by 20. If Sly Sprout is sent Home during that encounter, your opponent does not gain a Playtime Point. Sly Sprout cannot be recalled."
+    "image_url_web": "/static/cards/spry_sprout_v2.png",
+    "ability": "During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team with the Briefs status, you may summon Spry Sprout from your baseline. If you do, return that Monkey Boy to your baseline, and Spry Sprout becomes the target instead. During that encounter, Spry Sprout’s Mischief grows by 20. If Spry Sprout is sent Home during that encounter, your opponent does not gain any Playtime Points. Spry Sprout cannot be recalled."
   },
   "nikolaj_the_rear_ender": {
     "name": "Nikolaj, The Rear Ender",
@@ -596,7 +596,7 @@
     "rarity": "uncommon",
     "personality": "Bravado",
     "banana_size": 65,
-    "charm": 50,
+    "charm": 35,
     "mischief": 20,
     "total": 135,
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453675565612662845/Zippy_the_Extremist.png?ex=694e505e&is=694cfede&hm=64f9850655bba6977fdaea54c04d6ab11fde0a46d0ce9347cd559e9886e81a60&=&format=webp&quality=lossless&width=1317&height=1977",
@@ -605,8 +605,8 @@
       "briefs",
       "erect"
     ],
-    "image_url_web": "/static/cards/zippy_the_extremist.png",
-    "skill": "(1) Limit Break: During your Playtime Phase, If Zippy would lose a Playtime encounter, Before the resolution stage, Increase Zippy's Banana Size by 3 for each monkey boy on your team."
+    "image_url_web": "/static/cards/zippy_the_extremist_v2.png",
+    "skill": "(1) Limit Break: During your Playtime Phase, if Zippy would lose a Playtime encounter, before that encounter resolves, Zippy’s Banana Size grows by 3 for each Monkey Boy on your team for that encounter."
   },
   "drexel_steel_blue_stud": {
     "name": "Drexel, Steel Blue Stud",
@@ -675,22 +675,22 @@
     "image_url_web": "/static/cards/liar_lux.png",
     "ability": "When Lux enters the playing Field, Until the end of the snooze phase, Select 1 Monkey Boy on your team. If the Selected Monkey Boy has an acquired Status, that monkey boy may have two playtime encounters this turn."
   },
-  "rebellious_ryder": {
-    "name": "Rebellious Ryder",
+  "rebellious_ryden": {
+    "name": "Rebellious Ryden",
     "rarity": "uncommon",
     "personality": "Rascal",
     "banana_size": 51,
     "charm": 18,
     "mischief": 51,
     "total": 120,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140822063939786/Rebellious_Ryder.png?ex=695001ac&is=694eb02c&hm=50c28d339d4606630d794541bed3c6d2a00bad26195f98d1d86034c976f5947b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140822063939786/Rebellious_Ryden.png?ex=695001ac&is=694eb02c&hm=50c28d339d4606630d794541bed3c6d2a00bad26195f98d1d86034c976f5947b&=&format=webp&quality=lossless&width=1317&height=1977",
     "status": "Erect, Ejaculating",
     "statuses": [
       "erect",
       "ejaculating"
     ],
-    "image_url_web": "/static/cards/rebellious_ryder.png",
-    "ability": "While Rebellious Ryder is on the Playing Field, If your opponent summons a Monkey Boy with 150 or more total stat value, The total gets adjusted to 125 until your opponent's next Ready Phase."
+    "image_url_web": "/static/cards/rebellious_ryden.png",
+    "ability": "While Rebellious Ryden is on the Playing Field, If your opponent summons a Monkey Boy with 150 or more total stat value, The total gets adjusted to 125 until your opponent's next Ready Phase."
   },
   "pipsqueak": {
     "name": "Pipsqueak",
@@ -1840,17 +1840,17 @@
     "name": "Ashe & Thorn, Inkarri Twin Chaos",
     "rarity": "legendary",
     "personality": "Alpha, Bravado",
-    "banana_size": 50,
+    "banana_size": "x",
     "charm": 50,
     "mischief": 50,
-    "total": 150,
+    "total": "100 + x",
     "status": "Briefs",
     "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510747168724619284/Ashe_and_Thorn_Inkarri_Chaos_Twins.gif?ex=6a1df071&is=6a1c9ef1&hm=84e58e96eb1a6e69f4c2505b23993e46ff215e14933b41a0febe11bcc8e76188&",
     "statuses": [
       "briefs"
     ],
     "image_url_web": "/static/cards/ashe_and_thorn_inkarri_twin_chaos.gif",
-    "ability": "You may summon Ashe & Thorn during your opponent’s Playtime Phase only if you would lose the game from a Playtime Encounter this turn. If you do, expel 3 Inkarri Monkey Boys from your baseline or playing field. Then, expel Ashe & Thorn. Prevent that Playtime Point, send all opposing Monkey Boys home, and subtract 1 Playtime Point from opponent for each Monkey Boy sent home this way."
+    "ability": "You may only summon Ashe & Thorn during your opponent’s Snooze Phase. To summon Ashe & Thorn, expel 2 Monkey Boys from your baseline. Ashe & Thorn’s Banana Size is X, where X is the combined Banana Size of the expelled Monkey Boys, up to 100. Ashe and thorn cannot initiate a playtime encounter unless your opponent has a monkey boy with confident or flirty personality on their team."
   },
   "inkarri_sprout_zihppi": {
     "name": "Inkarri Sprout Zihppi",
