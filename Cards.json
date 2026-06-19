@@ -16,7 +16,7 @@
       "ejaculating"
     ],
     "ability": "You may summon Archie, Ever the Intellectual by sending 1 Monkey Boy on your team Home. During your Ready Phase, Archie’s Mischief grows by 5. If Archie’s Mischief is 15 or greater, Archie gains the Heat status.",
-    "skill": "Fascinating: During your Ready Phase, if Archie has Heat, select 1 opposing Monkey Boy. That Monkey Boy’s Total shrinks by Archie’s Mischief. Then remove Archie’s Erect status and reduce Archie’s Mischief to 0.."
+    "skill": "Fascinating: During your Ready Phase, if Archie has Heat, select 1 opposing Monkey Boy. That Monkey Boy’s Total shrinks by Archie’s Mischief. Then remove Archie’s Erect status and reduce Archie’s Mischief to 0."
   },
   "rhythm_runner_rhed": {
     "name": "Rhythm Runner Rhed",
@@ -386,7 +386,7 @@
       "briefs",
       "heat"
     ],
-    "image_url_web": "/static/cards/bronco_the_last.png",
+    "image_url_web": "/static/cards/bronco_the_last.gif",
     "ability": "During your opponent’s Snooze Phase, if 2 or more Monkey Boys on your team were sent Home by your opponent this turn, you may summon Bronco, The Last from your baseline or collection. If Bronco is summoned this way, during this snooze phase, Bronco Must initiate a playtime encounter with an opposing monkey boy who was involved in a playtime encounter this turn. Bronco cannot earn a playtime point from this encounter."
   },
   "rollo_kin_of_the_moon": {
@@ -404,7 +404,7 @@
       "ejaculating",
       "nude"
     ],
-    "image_url_web": "/static/cards/rollo_kin_of_the_moon.png",
+    "image_url_web": "/static/cards/rollo_kin_of_the_moon.gif",
     "ability": "You may summon Rollo, Kin of the Moon if your opponent controls a Monkey Boy with Mischief 15 or fewer. During your Playtime Phase, Rollo cannot be sent Home by Playtime encounters. After a Playtime encounter involving Rollo resolves, if Rollo was not sent Home, select 1 other Monkey Boy and choose 1 stat. The chosen stat grows by 10."
   },
   "knox_child_of_crimsimia": {
@@ -439,7 +439,7 @@
       "heat",
       "nude"
     ],
-    "image_url_web": "/static/cards/bandit_the_magnum_monkey.png",
+    "image_url_web": "/static/cards/bandit_the_magnum_monkey.gif",
     "ability": "You may summon Bandit by expelling any number of monkey boys from your baseline and/or team. Bandit's Banana size is equal to the number of expelled monkey boys used to summon bandit multiplied by 15. At the start of your opponent’s Snooze Phase, before statuses are removed, if Bandit has higher Banana Size than each other Monkey Boy on the Playing Field, you may select 1 opposing Monkey Boy with the Erect status and send it Home."
   },
   "little_minx": {
@@ -547,7 +547,7 @@
     "banana_size": 60,
     "charm": 40,
     "mischief": 18,
-    "total": 116,
+    "total": 118,
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1453667993845502085/Cyroi_the_Skywatcher.png?ex=694e4951&is=694cf7d1&hm=7504c3f75e4c601cd622bea6bd492e19d6ab19f5d3d2c68bae53a8e0bf705b15&=&format=webp&quality=lossless&width=1317&height=1977",
     "status": "Nude, Erect",
     "statuses": [
@@ -1282,8 +1282,8 @@
       "erect",
       "heat"
     ],
-    "image_url_web": "/static/cards/Ruin_child_of_crimsimia.png",
-    "ability": "While Ruin, Child of Crimsimia is on the playing Field, during each of your Playtime phases, Ruin must initiate a Playtime encounter if able. Ruin cannot be recalled. If Ruin were to be sent to Home, you may expel him instead. if you do, adjust ans opposing monkey boy total stat value to 0."
+    "image_url_web": "/static/cards/ruin_child_of_crimsimia.png",
+    "ability": "While Ruin, Child of Crimsimia is on the playing Field, during each of your Playtime phases, Ruin must initiate a Playtime encounter if able. Ruin cannot be recalled. If Ruin were to be sent to Home, you may expel him instead. if you do, adjust an opposing monkey boy total stat value to 0."
   },
   "mangy_milo": {
     "name": "Mangy Milo",
@@ -1735,7 +1735,7 @@
     "status": "Nude, Erect",
     "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510680628629209219/Zen_The_Enforcer_Inkarri.png?ex=6a1db278&is=6a1c60f8&hm=9d40bf7ccf6668683b8ce88dd63cb4b78eb77d0824ab32b71933e60827d47307&",
     "statuses": [
-      "nude, erect"
+      "nude", "erect"
     ],
     "image_url_web": "/static/cards/zen_the_enforcer_inkarri.png",
     "ability": "You may summon Zen during your opponent’s Snooze Phase. If you do, Zen cannot be recalled. When Zen is summoned this way, choose an opposing Monkey Boy. That Monkey Boy’s Total shrinks by 15 until the end of your turn."
@@ -1751,7 +1751,7 @@
     "status": "Nude, Erect",
     "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510680984214044772/Kusiq_The_Inkarri_Monkey.png?ex=6a1db2cd&is=6a1c614d&hm=48654201626c982418669f484d63020b450e4f4f0fb8f4e119f192eab95796c5&",
     "statuses": [
-      "nude, erect"
+      "nude", "erect"
     ],
     "image_url_web": "/static/cards/kusiq_the_inkarri_monkey.png",
     "ability": "You May summon Kusiq, The Inkarri Monkey During your opponent's snooze phase. If you do, Kusiq Cannot be recalled. If Kusiq was summoned during your opponents snooze phase, monkey boys you resummon total stat value grow by 5 while Kusiq is in Play."
