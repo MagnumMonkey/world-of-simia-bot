@@ -334,7 +334,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/sly_sprout.png",
-    "ability": "During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team with the Briefs status, you may summon Sly Sprout from your baseline. If you do, return that Monkey Boy to your baseline, and Sly Sprout becomes the target instead. During that encounter, Sly Sprout’s Mischief grows by 20. If Sly Sprout is sent Home during that encounter, your opponent does not gain a Playtime Point. Spry Sprout cannot be recalled."
+    "ability": "During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team with the Briefs status, you may summon Sly Sprout from your baseline. If you do, return that Monkey Boy to your baseline, and Sly Sprout becomes the target instead. During that encounter, Sly Sprout’s Mischief grows by 20. If Sly Sprout is sent Home during that encounter, your opponent does not gain a Playtime Point. Sly Sprout cannot be recalled."
   },
   "nikolaj_the_rear_ender": {
     "name": "Nikolaj, The Rear Ender",
@@ -1067,7 +1067,7 @@
       "heat"
     ],
     "image_url_web": "/static/cards/raging_ragnar.png",
-    "ability": "You may summon Raging Ragnar by sending 1 uncommon Monkey Boy on your team to Home. A Monkey Boy sent Home this way cannot be resummoned while Ragnar is on the Playing Field. During your opponent’s Playtime Phase, if Ragnar would lose a Playtime encounter, you may adjust Ragnar’s Total to 0. If you do, send the opposing Monkey Boy involved in that encounter Home. your opponent still wins a playtime point. If Ragnar is sent Home from your team while his Total is 0, you may summon 1 Rare Monkey Boy from your collection or baseline, ignoring its summon text. Then shuffle your collection."
+    "ability": "You may summon Raging Ragnar by sending 1 uncommon Monkey Boy on your team to Home. A Monkey Boy sent Home this way cannot be resummoned while Ragnar is on the Playing Field. During your opponent’s Playtime Phase, if Ragnar would lose a Playtime encounter, you may adjust Ragnar’s Total to 0. If you do, send the opposing Monkey Boy involved in that encounter Home. your opponent still gains 1 playtime point. If Ragnar is sent Home from your team while his Total is 0, you may summon 1 Rare Monkey Boy from your collection or baseline, ignoring its summon text. Then shuffle your collection."
   },
   "reks_the_dreamer": {
     "name": "Reks, The Dreamer",
@@ -1698,7 +1698,7 @@
     "banana_size": 79,
     "charm": 20,
     "mischief": 11,
-    "total": 120,
+    "total": 110,
     "status": "Briefs",
     "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1511527506564481115/Waveform_Walker_Whytte.png?ex=6a20c730&is=6a1f75b0&hm=2c3c2387599b4e126906c142dc30cdfc1bbef171f5c73b3dea4b03608091d1cc&",
     "statuses": [
