@@ -488,8 +488,8 @@
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/bubbles_the_aqueous_adventurer.png",
-    "ability": "While Bubbles the Aqueous Adventurer is on the playing Field, once per turn, when another Monkey Boy on your team gains a status, you may choose one: That Monkey Boy gains +5 Charm, or  That Monkey Boy gains +5 Mischief. If the monkey boy Gains Heat Status Choose both."
+    "image_url_web": "/static/cards/bubbles_the_aqueous_adventurer_v2.png",
+    "ability": "While Bubbles, The Aqueous Adventurer is on the Playing Field, once per turn, when another Monkey Boy on your team gains a status, you may choose one: that Monkey Boy’s Charm grows by 5, or that Monkey Boy’s Mischief grows by 5. If that Monkey Boy gained the Heat status, choose both instead."
   },
   "zeal_the_ruthless": {
     "name": "Zeal, The Ruthless",
@@ -655,8 +655,8 @@
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/golden_boy_luke.png",
-    "ability": "During a playtime encounter, you may reveal Golden boy Luke in from your baseline. If you do, select a monkey boy on your team. The selected Monkey Boy Mischief grow by 5, and Golden boy Luke is sent home."
+    "image_url_web": "/static/cards/golden_boy_luke_v2.png",
+    "ability": "During a Playtime encounter involving a Monkey Boy on your team, you may reveal Golden Boy Luke from your baseline. If you do, select that Monkey Boy. The selected Monkey Boy’s Mischief grows by 10 for that encounter. Then send Golden Boy Luke Home."
   },
   "liar_lux": {
     "name": "Liar Lux",
@@ -825,8 +825,8 @@
       "erect",
       "ejaculating"
     ],
-    "image_url_web": "/static/cards/revy_rascal.png",
-    "ability": "During your Ready Phase, While Revy is at home, If you summon or resummon a Monkey Boy, The Monkey boy total Stat value grows by 10. During your Ready Phase, If you summoned or resummoned any number of monkey boys beyond the first, Increase their total stat value by 20."
+    "image_url_web": "/static/cards/revy_rascal_v2.png",
+    "ability": "Once per turn, during your Ready Phase, if Revy is at Home, when you summon or resummon another Monkey Boy, that Monkey Boy’s Total grows by 10 until the start of your Snooze Phase."
   },
   "lior_the_devoted": {
     "name": "Lior, The Devoted",
@@ -843,9 +843,9 @@
       "ejaculating",
       "briefs"
     ],
-    "image_url_web": "/static/cards/lior_the_devoted.png",
-    "ability": "During your opponent Playtime Phase, If your Opponent declare Playtime, Opposing Monkey boys with Heat Status Must select Lior for encounters.",
-    "skill" : "(1) Provoke: Select an opposing Monkey boy, That Monkey Boy gain the Heat Status and their Banana Grows by 5."
+    "image_url_web": "/static/cards/lior_the_devoted_v2.png",
+    "ability": "During your opponent’s Playtime Phase, opposing Monkey Boys with the Heat status must select Lior, The Devoted for Playtime encounters if able.",
+    "skill" : "(1) Provoke: During your Ready Phase, select 1 opposing Monkey Boy. That Monkey Boy gains the Heat status and its Banana Size grows by 5."
   },
   "tai_aspiring_veyrak": {
     "name": "Tai, Aspiring Veyrak",
@@ -1705,7 +1705,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/waveform_walker_whytte.png",
-    "ability": "During the Playtime Phase, if white initiate a playtime encounter, Whytte's charm grows by 5"
+    "ability": "During your Playtime Phase, if whytte initiate a playtime encounter, Whytte's charm grows by 5"
   },
   "kaboom_boner_boy": {
     "name": "Kaboom, Boner Boy",
