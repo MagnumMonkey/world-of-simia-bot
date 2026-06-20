@@ -1486,7 +1486,7 @@
       "nude"
     ],
     "image_url_web": "/static/cards/remy_longest_tail.png",
-    "ability": "When Remy, Longest tail enter the Playing Field, You may send a Monkey Boy in your baseline to home. If you do, Select an opposing Monkey boy. That monkey boy Total Stat Value Shrinks by 15."
+    "ability": "When Remy, Longest Tail enters the Playing Field, you may send 1 Monkey Boy from your baseline to Home. If you do, each opposing Monkey Boy with the Bravado, Confident, or Alpha personality has its Banana Size shrink by 20 while Remy remains on the Playing Field."
   },
   "myo_simiki_of_the_lake": {
     "name": "Myo, Simiki of the Lake",
@@ -1655,7 +1655,7 @@
       "ejaculating"
     ],
     "image_url_web": "/static/cards/supersoaker_nyro.png",
-    "ability": "When Supersoaker Nyro enters the Playing Field, Select an opposing Monkey boy. The Selected Monkey Boy May not activate any skills until the beginning of your Snooze Thase."
+    "ability": "When Supersoaker Nyro enters the Playing Field, opposing Monkey Boys cannot activate skills until the start of your opponent's Snooze Phase."
   },
   "zero_cinderfang_ace": {
     "name": "Zero, Cinderfang Ace",
