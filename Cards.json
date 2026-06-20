@@ -862,7 +862,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/tai_aspiring_veyrak.png",
-    "ability": "When Tai, Aspiring Veyrak enters the Playing Field, select 1 Monkey Boy on your team with the Erect status. While Tai remains on the Playing Field, if the selected Monkey Boy would lose a Playtime encounter by more than 20, that Monkey Boy is not sent Home and playtime points are preveneted."
+    "ability": "When Tai, Aspiring Veyrak enters the Playing Field, select 1 Monkey Boy on your team with the Erect status. While Tai remains on the Playing Field, if the selected Monkey Boy would lose a Playtime encounter by more than 20, that Monkey Boy is not sent Home. No Playtime Points are gained from that encounter."
   },
   "leo_of_urbanwood": {
     "name": "Leo of Urbanwood",
@@ -1664,7 +1664,7 @@
     "banana_size": 55,
     "charm": 55,
     "mischief": 8,
-    "total": 110,
+    "total": 118,
     "status": "Briefs",
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455972061796237378/Zero_Cinderfang_Ace.png?ex=6956ab26&is=695559a6&hm=e301ad9d8d09336a0f7b509ddd77e81bef927c3aceab4c2e56cd56885c1c1fc0&=&format=webp&quality=lossless&width=1322&height=1983",
     "statuses": [
@@ -1679,7 +1679,7 @@
     "personality": "Flirty",
     "banana_size": 20,
     "charm": 50,
-    "mischief": 20,
+    "mischief": 50,
     "total": 120,
     "status": "Briefs, Erect, Ejaculating",
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455974215822999642/Messy_pants_Mavi.png?ex=6956ad27&is=69555ba7&hm=e3e32e8417ae2cfb31521af7cc36526c4029eda077de889dce5310a0f87c693d&=&format=webp&quality=lossless&width=1322&height=1983",
@@ -1831,7 +1831,7 @@
     "status": "Briefs, Erect",
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1516236901647126709/Reaver_Raze.png?ex=6a31e927&is=6a3097a7&hm=e5993149ebc929cdac85e274cab0510831b0cbde5679586dea5a6254f7684841&=&format=webp&quality=lossless&width=1322&height=1983",
     "statuses": [
-      "erect, briefs"
+      "erect", "briefs"
     ],
     "image_url_web": "/static/cards/reaver_raze.png",
     "ability": "You May summon Reaver Raze During your opponent Snooze phase. If you do Raze cannot be recalled. When Raze Enters the playing field During your opponents snooze phase, you may summon one additional Inkarri from your baseline and Negate their abilities. That Monkey boy total stat value grows by 5 for each Inkarri in play."
@@ -1840,10 +1840,10 @@
     "name": "Ashe & Thorn, Inkarri Twin Chaos",
     "rarity": "legendary",
     "personality": "Alpha, Bravado",
-    "banana_size": "x",
+    "banana_size": "X",
     "charm": 50,
     "mischief": 50,
-    "total": "100 + x",
+    "total": "100 + X",
     "status": "Briefs",
     "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510747168724619284/Ashe_and_Thorn_Inkarri_Chaos_Twins.gif?ex=6a1df071&is=6a1c9ef1&hm=84e58e96eb1a6e69f4c2505b23993e46ff215e14933b41a0febe11bcc8e76188&",
     "statuses": [
