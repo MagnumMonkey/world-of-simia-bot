@@ -538,7 +538,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/the_boy_in_the_woods.png",
-    "ability": "When The Boy in the Woods enters the Playing area, Monkey boys on the opposing team with Ejaculating status Banana size shrinks by 5 until the end of Snooze phase."
+    "ability": "When The Boy in the Woods enters the Playing Field, Monkey boys on the opposing team with Ejaculating status Banana size shrinks by 10 until the end of Snooze phase."
   },
   "cyroi_the_skywatcher": {
     "name": "Cyroi, The Skywatcher",
@@ -708,7 +708,7 @@
       "nude"
     ],
     "image_url_web": "/static/cards/pipsqueak.png",
-    "ability": "During the playtime phase, If Pipsqueak is in your Baseline you may send it Home. If you do, Select an opposing Monkey boy. If the selected Monkey Boy has a total stat value of 150 or greater, shrink it by 30.Otherwise, shrink it by 10. Pipsqueak cannot be resummoned."
+    "ability": "During any Playtime Phase, if Pipsqueak is in your baseline, you may send Pipsqueak Home. If you do, select 1 opposing Monkey Boy. If that Monkey Boy has Total 140 or greater, its Total shrinks by 30 until the end of this Playtime Phase. Otherwise, its Total shrinks by 10 until the end of this Playtime Phase. Pipsqueak cannot be resummoned."
   },
   "fizzy_felix": {
     "name": "Fizzy Felix",
@@ -758,7 +758,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/banana_beach_bruno.png",
-    "ability": "Summoning Condition: You may summon Banana Beach Bruno by sending 1 Monkey Boy Home from your Playing Field that Monkey Boy Cannot be resummoned while Bruno is on the Playing Field. When Banana Beach Bruno Enters the Playing Field you may select an opposing monkey boy with a total stat value of 150 or greater. You may send that Monkey boy Home and cannot be resummoned. If you do all of Bruno's Stats becomes 0."
+    "ability": "You may summon Banana Beach Bruno by sending 1 Monkey Boy on your team to Home. A Monkey Boy sent Home this way cannot be resummoned while Bruno is on the Playing Field. When Bruno enters the Playing Field, you may select 1 opposing Monkey Boy with Total 140 or greater and send it Home. A Monkey Boy sent Home this way cannot be resummoned while Bruno is on the Playing Field. If you do, adjust Bruno’s Banana Size, Charm, and Mischief to 0 until your opponent's next snooze phase. If Bruno is sent Home by a Playtime encounter while his Total is 0, no Playtime Points are gained from that encounter."
   },
   "tree_climber_clemo": {
     "name": "Tree Climber Clemo",
@@ -775,7 +775,7 @@
       "ejaculating"
     ],
     "image_url_web": "/static/cards/tree_climber_clemo.png",
-    "ability": "During your Ready Phase, send a Monkey Boy from your Baseline Home. If you do, you may summon one additional Monkey Boy this phase."
+    "ability": "When Tree Climber Clemo is summoned, you may send 1 Monkey Boy from your baseline to Home. If you do, you may summon 1 additional common Monkey Boy from your baseline this phase."
   },
   "tuk_sensational_swinger": {
     "name": "Tuk, Sensational Swinger",
@@ -799,9 +799,9 @@
     "rarity": "common",
     "personality": "Confident",
     "banana_size": 50,
-    "charm": 20,
-    "mischief": 20,
-    "total": 90,
+    "charm": 40,
+    "mischief": 25,
+    "total": 115,
     "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140960379240703/Benji_The_tree_Hugger.png?ex=695001cd&is=694eb04d&hm=bd2a051a1a6748b1a4c5a803929384a019840c9d37f2f7a7c0ebaf2e9ab9d40b&=&format=webp&quality=lossless&width=1317&height=1977",
     "status": "Erect, Ejaculating",
     "statuses": [
@@ -809,7 +809,7 @@
       "ejaculating"
     ],
     "image_url_web": "/static/cards/benji_the_tree_hugger.png",
-    "ability": "When Benji, The tree Hugger enters the Playing Area, you may Resummon a Monkey boy from Home. If you do Both Benji and the Resummoned Monkey Boy returns Home at the Beginning of the Snooze Phase."
+    "ability": "When Benji, The Tree Hugger is summoned, you may resummon 1 Monkey Boy from Home. If you do, both Benji and the resummoned Monkey Boy return Home at the start of your Snooze Phase."
   },
   "revy_rascal": {
     "name": "Revy Rascal",
@@ -862,7 +862,7 @@
       "briefs"
     ],
     "image_url_web": "/static/cards/tai_aspiring_veyrak.png",
-    "ability": "When Tai enter's the Playing Field, During The Playtime Phase, Select one Monkey Boy on your team with the Erect Status. The selected Monkey boy cannot be sent Home if the difference in total stat value between them and the opposing Monkey boy is greater than 20."
+    "ability": "When Tai, Aspiring Veyrak enters the Playing Field, select 1 Monkey Boy on your team with the Erect status. While Tai remains on the Playing Field, if the selected Monkey Boy would lose a Playtime encounter by more than 20, that Monkey Boy is not sent Home and playtime points are preveneted."
   },
   "leo_of_urbanwood": {
     "name": "Leo of Urbanwood",
@@ -1014,7 +1014,7 @@
       "nude"
     ],
     "image_url_web": "/static/cards/hope_the_happy_chimp.png",
-    "ability": "During your opponent's Playtime Phase, If Hope, the Happy Chimp is sent Home, you may summon another Monkey Boy with equal or lower total stats During Your Opponent Snooze Phase. That Monkey Boy's Total Stat Value is grows by 10. This ability cannot trigger if Hope is resummoned."
+    "ability": "During your opponent’s Playtime Phase, if Hope, The Happy Chimp is sent Home, you may summon 1 Monkey Boy from your baseline during your opponent’s Snooze Phase with Total equal to or less than Hope’s Total. If you do, that Monkey Boy’s Total grows by 10. This ability cannot activate if Hope was resummoned this turn."
   },
   "samari_exposed": {
     "name": "Samari, Exposed",
