@@ -1188,8 +1188,6 @@ async def wos_collection(interaction: discord.Interaction):
 async def all_card_id_autocomplete(interaction: discord.Interaction, current: str):
     """Autocomplete any card from Cards.json by card name or card_id."""
 
-    # Optional: only show autocomplete to the bot owner,
-    # since /wos_card is owner-only right now.
     if interaction.user.id != OWNER_ID:
         return []
 
@@ -1219,6 +1217,7 @@ async def all_card_id_autocomplete(interaction: discord.Interaction, current: st
         if len(choices) >= 25:
             break
 
+    print(f"🔎 /wos_card autocomplete user={interaction.user.id} current={current!r} choices={len(choices)}")
     return choices
 
 
