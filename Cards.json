@@ -1951,5 +1951,53 @@
     ],
     "image_url_web": "/static/cards/dravik_the_inkarri_echo.png",
     "ability": "You may summon Dravik from your baseline during your opponent’s Playtime Phase when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team. If you do, that encounter is decided by Mischief instead of Total. If your Monkey Boy involved in that encounter has Erect, its Mischief grows by 10 for that encounter. Dravik cannot be recalled if summoned this way."
+  },
+  "inkarri_sprite": {
+    "name": "Inkarri Sprite",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 65,
+    "charm": 50,
+    "mischief": 5,
+    "total": 120,
+    "status": "Erect, Nude",
+    "image_url": null,
+    "statuses": [
+      "erect",
+      "nude"
+    ],
+    "image_url_web": "/static/cards/inkarri_sprite.png",
+    "ability": "You may summon Inkarri Sprite from your baseline during your opponent’s Snooze Phase, before applied statuses are removed. if an opposing Monkey Boy with Total 135 or greater won a Playtime encounter this turn. If you do, choose 1 opposing Monkey Boy with Total 135 or greater that won a Playtime encounter this turn. If that monkey boy has erect status send it Home, otherwise shrink its banana size by 10. Inkarri Sprite cannot be recalled if summoned this way."
+  },
+  "inkarri_mooncub_kairo": {
+    "name": "Inkarri Mooncub Kairo",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 40,
+    "charm": 50,
+    "mischief": 35,
+    "total": 125,
+    "status": "Briefs, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs",
+      "heat"
+    ],
+    "image_url_web": "/static/cards/inkarri_mooncub_kairo.png",
+    "ability": "You may summon Kairo from your baseline during your opponent’s Snooze Phase if your opponent has a Monkey Boy on their team with current Total 135 or greater. If Kairo is summoned this way, he cannot be recalled, and while he remains on the Playing Field, opposing Monkey Boys with current Total 135 or greater cannot initiate Playtime encounters involving Monkey Boys on your team with the Gentle or Sweetheart personality."
+  },
+  "zikki_pure_inkarri_chaos": {
+    "name": "Zikki, Pure Inkarri Chaos",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 20,
+    "charm": 30,
+    "mischief": 70,
+    "total": 120,
+    "status": null,
+    "image_url": null,
+    "statuses":null,
+    "image_url_web": "/static/cards/zikki_pure_inkarri_chaos.png",
+    "ability": "You may summon Zikki from your baseline during your opponent’s Playtime Phase if 2 or more Playtime encounters resolved this turn. If Zikki is summoned this way, each player may summon common Monkey Boys from their baseline or home until their Playing Field has 3 Monkey Boys. Zikki cannot be recalled. During your next Playtime Phase, each Monkey Boy’s first Playtime encounter is decided by that Monkey Boy’s lowest current stat instead of Total."
   }
 }
