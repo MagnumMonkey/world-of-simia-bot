@@ -1185,11 +1185,48 @@ async def wos_collection(interaction: discord.Interaction):
 
 
 
+async def all_card_id_autocomplete(interaction: discord.Interaction, current: str):
+    """Autocomplete any card from Cards.json by card name or card_id."""
+
+    # Optional: only show autocomplete to the bot owner,
+    # since /wos_card is owner-only right now.
+    if interaction.user.id != OWNER_ID:
+        return []
+
+    cards_db = load_cards()
+    cur = (current or "").strip().lower()
+
+    choices = []
+
+    for cid, card in cards_db.items():
+        name = str(card.get("name", cid))
+        rarity = str(card.get("rarity", "Unknown")).title()
+
+        searchable = f"{cid} {name}".lower()
+
+        if cur and cur not in searchable:
+            continue
+
+        label = f"{name} ({rarity}) — {cid}"
+
+        choices.append(
+            app_commands.Choice(
+                name=label[:100],
+                value=cid
+            )
+        )
+
+        if len(choices) >= 25:
+            break
+
+    return choices
 
 
 
-@bot.tree.command(name="wos_card", description="Show details for a World of Simia card by ID.")
-@app_commands.describe(card_id="The internal ID of the card (e.g., rhythm_runner_rhed)")
+
+@bot.tree.command(name="wos_card", description="Show details for a World of Simia card.")
+@app_commands.describe(card_id="Start typing a card name or ID")
+@app_commands.autocomplete(card_id=all_card_id_autocomplete)
 async def wos_card(interaction: discord.Interaction, card_id: str):
     if interaction.user.id != OWNER_ID:
         await interaction.response.send_message(
