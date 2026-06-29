@@ -1999,5 +1999,74 @@
     "statuses":null,
     "image_url_web": "/static/cards/zikki_pure_inkarri_chaos.png",
     "ability": "You may summon Zikki from your baseline during your opponent’s Playtime Phase if 2 or more Playtime encounters resolved this turn. If Zikki is summoned this way, each player may summon common Monkey Boys from their baseline or home until their Playing Field has 3 Monkey Boys. Zikki cannot be recalled. During your next Playtime Phase, each Monkey Boy’s first Playtime encounter is decided by that Monkey Boy’s lowest current stat instead of Total."
+  },
+  "kageki_the_inkarri_eclipse": {
+    "name": "Kageki, The Inkarri Eclipse",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 65,
+    "charm": 30,
+    "mischief": 30,
+    "total": 125,
+    "status": "Nude, Erect, Heat",
+    "image_url": null,
+    "statuses":[
+      "nude,", 
+    "erect", 
+    "heat"],
+    "image_url_web": "/static/cards/kageki_the_inkarri_eclipse.png",
+    "ability": "You may summon Kageki from your baseline during your opponent’s Playtime Phase if a Monkey Boy on your team was sent Home this turn. If summoned this way, Kageki cannot be recalled. When Kageki enters this way, return 1 Monkey Boy with Total 120 or fewer from your Home to the Playing Field. It gains Erect, and that status is not removed this turn. You may not summon during your next Ready Phase."
+  },
+  "rokai": {
+    "name": "Rokai",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 65,
+    "charm": 0,
+    "mischief": 60,
+    "total": 125,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses":[
+      "nude,", 
+    "erect", 
+    "heat"],
+    "image_url_web": "/static/cards/rokai.png",
+    "ability": "Rokai counts as an Inkarri. You may summon Rokai from your baseline during your opponent’s Snooze Phase. If Rokai is summoned this way, he cannot be recalled. When Rokai enters the Playing Field this way, if an opposing Monkey Boy won a Playtime encounter this turn and sent a Monkey Boy on your team Home, Rokai may initiate a Playtime encounter with that opposing Monkey Boy. That encounter is decided by Mischief instead of Total. Rokai cannot earn Playtime Points from that encounter."
+  },
+  "akari": {
+    "name": "Akari",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 55,
+    "charm": 40,
+    "mischief": 28,
+    "total": 128,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses":[
+      "nude,", 
+    "erect", 
+    "heat"],
+    "image_url_web": "/static/cards/akari.png",
+    "ability": "Akari counts as Inkarri. You may summon Akari from your baseline during your opponent’s Snooze Phase if you summoned another Inkarri this turn. If Akari is summoned this way, he cannot be recalled. While Akari has Briefs, the first time an opposing Monkey Boy initiates Playtime involving another Inkarri on your team, you may have Akari become the target instead. If you do, that encounter is decided by Charm instead of Total."
+  },
+  "jyzal_the_inkarri_tamer": {
+    "name": "Jyzal the Inkarri Tamer",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 55,
+    "charm": 40,
+    "mischief": 28,
+    "total": 128,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses":[
+      "nude,", 
+    "erect", 
+    "heat"],
+    "image_url_web": "/static/cards/jyzal_the_inkarri_tamer.png",
+    "ability": "You may summon Jyzal from your baseline during your opponent’s Snooze Phase. If you do, Jyzal cannot be recalled.",
+    "skill":"(1) Heart of Inkarri: You may activate this skill only during your opponent’s Playtime Phase if Jyzal is in your baseline. Select 1 Monkey Boy in your baseline and reveal it. During your opponent’s next Snooze Phase, you may summon either Jyzal or the selected Monkey Boy from your baseline."
   }
 }
