@@ -409,10 +409,18 @@ async def get_collection_from_api(user_id: str) -> list[str]:
         async with session.get(url) as resp:
             if resp.status != 200:
                 return []
+
             payload = await resp.json()
             cards = payload.get("cards", []) or []
-            # Convert list[dict] -> list[str]
-            return [c.get("card_id") for c in cards if isinstance(c, dict) and c.get("card_id")]
+
+            result = []
+            for c in cards:
+                if isinstance(c, str):
+                    result.append(c)
+                elif isinstance(c, dict) and c.get("card_id"):
+                    result.append(c["card_id"])
+
+            return result
 
 
 # ================================
