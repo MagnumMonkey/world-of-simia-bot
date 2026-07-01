@@ -2062,11 +2062,97 @@
     "status": "Briefs, Erect, Heat",
     "image_url": null,
     "statuses":[
-      "nude,", 
+      "briefs", 
     "erect", 
     "heat"],
     "image_url_web": "/static/cards/jyzal_the_inkarri_tamer.png",
     "ability": "You may summon Jyzal from your baseline during your opponent’s Snooze Phase. If you do, Jyzal cannot be recalled.",
     "skill":"(1) Heart of Inkarri: You may activate this skill only during your opponent’s Playtime Phase if Jyzal is in your baseline. Select 1 Monkey Boy in your baseline and reveal it. During your opponent’s next Snooze Phase, you may summon either Jyzal or the selected Monkey Boy from your baseline."
+  },
+  "auriel_lumari_winggard": {
+    "name": "Auriel, Lumari Winggard",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 60,
+    "charm": 30,
+    "mischief": 30,
+    "total": 120,
+    "status": "Nude, Erect",
+    "image_url": null,
+    "statuses":[
+    "nude,", 
+    "erect"],
+    "image_url_web": "/static/cards/auriel_lumari_winggard.png",
+    "ability": "During your Snooze Phase, you may summon Auriel, Lumari Wingguard from your baseline if your opponent summoned a Monkey Boy during your turn. If Auriel is summoned this way, he cannot be recalled. When Auriel enters the Playing Field during your Snooze Phase, your opponent selects 1 Monkey Boy from their baseline and sends it Home.",
+    "skill":null
+  },
+  "lumari_halo_ayven": {
+    "name": "Lumari Halo Ayven",
+    "rarity": "rare",
+    "personality": "Gentle",
+    "banana_size": 40,
+    "charm": 40,
+    "mischief": 40,
+    "total": 120,
+    "status": "Heat, Nude",
+    "image_url": null,
+    "statuses":[
+    "nude", 
+    "heat"],
+    "image_url_web": "/static/cards/lumari_halo_ayven.png",
+    "ability": "During your Snooze Phase, you may summon Ayven from your baseline if your opponent summoned a Monkey Boy this turn. If Ayven is summoned this way, he cannot be recalled. If a Playtime encounter involving Ayven would be decided by a stat other than Total, Ayven’s matching stat grows by 15 for that encounter.",
+    "skill":null
+  },
+  "valen_lumari_steward": {
+    "name": "Valen, Lumari Steward",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 80,
+    "charm": 45,
+    "mischief": 0,
+    "total": 125,
+    "status": "Heat, Erect, Nude",
+    "image_url": null,
+    "statuses":[
+    "nude", 
+    "heat",
+    "erect"],
+    "image_url_web": "/static/cards/valen_lumari_steward.png",
+    "ability": "During your Snooze Phase, you may summon Valen from your baseline if your opponent summoned a Monkey Boy this turn. If Valen is summoned this way, he cannot be recalled. While Valen is on the Playing Field, your opponent cannot summon Monkey Boys with the Erect status during your turn.",
+    "skill":null
+  },
+  "lumari_starveil_lior": {
+    "name": "Lumari Starveil Lior",
+    "rarity": "rare",
+    "personality": "Gentle",
+    "banana_size": 50,
+    "charm": 55,
+    "mischief": 17,
+    "total": 122,
+    "status": "Nude",
+    "image_url": null,
+    "statuses":[
+    "nude" 
+    ],
+    "image_url_web": "/static/cards/lumari_starveil_lior.png",
+    "ability": "You may summon Lior from your baseline during your Snooze Phase if your opponent summoned a Monkey Boy during your turn. If Lior is summoned this way, he cannot be recalled. When Lior enters the Playing Field this way, select 1 opposing Monkey Boy that was summoned during your turn. Prevent that Monkey Boy’s abilities from activating, then return it to your opponent’s baseline.",
+    "skill":null
+  },
+  "nameless_lumari_oathblade": {
+    "name": "Nameless Lumari Oathblade",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 65,
+    "charm": 55,
+    "mischief": 8,
+    "total": 128,
+    "status": "Nude, Briefs, Erect",
+    "image_url": null,
+    "statuses":[
+    "nude", "briefs", "erect" 
+    ],
+    "image_url_web": "/static/cards/nameless_lumari_oathblade.png",
+    "ability": "During your Snooze Phase, you may summon Nameless Lumari Oathblade from your baseline if your opponent summoned a Monkey Boy during your turn. If summoned this way, he cannot be recalled. When he enters this way, select 1 opposing Monkey Boy summoned during your turn. Its Banana Size, Charm, and Mischief shrink to 0 while Oathblade remains on the Playing Field. You gain no Playtime Points from encounters involving that Monkey Boy while its stats are 0 this way.",
+    "skill":null
   }
 }
