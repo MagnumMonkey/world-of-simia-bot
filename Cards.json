@@ -2188,5 +2188,39 @@
     "image_url_web": "/static/cards/adiel_lumari_hope.png",
     "ability": "During your Snooze Phase, you may summon Adiel from your baseline if your opponent summoned a Monkey Boy this turn. If Adiel is summoned this way, he cannot be recalled. While Adiel is on the Playing Field, opposing Monkey Boys with Heat cannot initiate Playtime encounters involving Monkey Boys on your team with Charm 60 or greater.",
     "skill":null
+  },
+  "azrael_the_lumari_first_verdict": {
+    "name": "Azrael, The Lumari First Verdict",
+    "rarity": "legendary",
+    "personality": "Sweetheart",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 32,
+    "total": 132,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses":[
+    "briefs"  
+    ],
+    "image_url_web": "/static/cards/azrael_the_lumari_first_verdict.gif",
+    "ability": "During your Snooze Phase, you may summon Azrael from your baseline if your opponent summoned a Monkey Boy with the Alpha, Confident, personality during your turn. If Azrael is summoned this way, he cannot be recalled. Azrael cannot be sent Home by Playtime encounters. Once each turn, when your opponent summons a Monkey Boy during your turn, you may pay 10 Playtime Points. If you do, expel that Monkey Boy.",
+    "skill":"(2) Judgment Day: During your Snooze Phase, randomly select 1 Monkey Boy from your opponent’s baseline. Your opponent reveals that Monkey Boy and must summon it if able."
+  },
+  "elyon_lumaris_answer": {
+    "name": "Elyon, Lumari's Answer",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 60,
+    "charm": 0,
+    "mischief": 60,
+    "total": 120,
+    "status": "Nude, Erect",
+    "image_url": null,
+    "statuses":[
+    "nude", "erect"  
+    ],
+    "image_url_web": "/static/cards/elyon_lumaris_answer.png",
+    "ability": "You may summon Elyon from your baseline during your Snooze Phase only if he has 0 skill points. If Elyon is summoned this way, he cannot be recalled. When Elyon enters the Playing Field, while there are 3 or more Monkey Boys in your Home, Elyon’s Banana Size grows by 30 and he gains Heat. While Elyon has Heat, opposing Monkey Boys that would be sent Home from Playtime encounters are expelled instead.",
+    "skill":"(2) Damage Control: During your opponent's playtime phase if a Monkey boy on your team were to lose a playtime encounter grow that Monkey boy's Banana Size by 5. Activate this skill while Elyon is in your baseline."
   }
 }
