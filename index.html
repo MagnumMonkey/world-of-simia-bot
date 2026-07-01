@@ -345,6 +345,9 @@
     // Auto-load if URL is /collection/<user_id>
     const controlsEl = document.getElementById("controls");
 
+    let currentPage = 1;
+    const cardsPerPage = 18;
+
     const pathMatch = window.location.pathname.match(/^\/collection\/(\d+)\/?$/);
 
     // support BOTH ?user_id= (your Discord link) and ?u= (old)
@@ -438,9 +441,6 @@
 
 
     document.getElementById("loadBtn").addEventListener("click", loadCollection);
-
-    let currentPage = 1;
-    const cardsPerPage = 18;
 
     async function loadCollection(page = 1) {
       const userId = uidEl.value.trim();
