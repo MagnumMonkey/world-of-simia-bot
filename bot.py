@@ -448,6 +448,24 @@ def can_trade(user: dict) -> bool:
 def mark_trade(user: dict):
     user["last_trade_at"] = datetime.datetime.now(timezone.utc).isoformat()
 
+def recorded_catalog_submission_count(data: dict, user_id: str) -> int:
+    catalog = data.get("community_catalog", {})
+    if not isinstance(catalog, dict):
+        return 0
+
+    return sum(
+        1 for v in catalog.values()
+        if isinstance(v, dict) and str(v.get("submitted_by")) == user_id
+    )
+
+
+def displayed_catalog_submission_count(data: dict, user_id: str) -> int:
+    user = ensure_user_record(data, user_id)
+    recorded = recorded_catalog_submission_count(data, user_id)
+    adjustment = int(user.get("catalog_submission_adjustment", 0))
+    return max(0, recorded + adjustment)
+
+
 async def grant_card(user_id: str, card_id: str, data: dict):
     ensure_user_record(data, user_id)
     data[user_id]["cards"].append(card_id)
@@ -1636,13 +1654,7 @@ async def wos_profile(interaction: discord.Interaction):
     remaining = max(0, req - xp_in_level)
 
     # Count how many unique cards THIS user has submitted
-    catalog = data.get("community_catalog", {})
-    submitted_count = 0
-    if isinstance(catalog, dict):
-        submitted_count = sum(
-            1 for v in catalog.values()
-            if isinstance(v, dict) and str(v.get("submitted_by")) == user_id
-        )
+    submitted_count = displayed_catalog_submission_count(data, user_id)
 
     embed = discord.Embed(
         title="🐒 World of Simia Profile",
@@ -1660,19 +1672,21 @@ async def wos_profile(interaction: discord.Interaction):
 #==========================
 #MANUAL PROFILE STAT EDITS
 #==========================
-@bot.tree.command(name="wos_dev_setprofile", description="DEV ONLY: Set a player's Level, XP, and Banana Chips.")
+@bot.tree.command(name="wos_dev_setprofile", description="DEV ONLY: Set a player's profile values.")
 @app_commands.describe(
     member="Player whose profile you want to edit",
     level="New level",
     xp="Current XP within this level",
-    banana_chips="New Banana Chip amount"
+    banana_chips="New Banana Chip amount",
+    catalog_submissions="Correct total catalog submissions, or -1 to leave unchanged"
 )
 async def wos_dev_setprofile(
     interaction: discord.Interaction,
     member: discord.Member,
     level: int,
     xp: int,
-    banana_chips: int
+    banana_chips: int,
+    catalog_submissions: int = -1
 ):
     if interaction.user.id not in DEV_USER_IDS:
         await interaction.response.send_message(
@@ -1689,14 +1703,38 @@ async def wos_dev_setprofile(
         await interaction.response.send_message("❌ XP and Banana Chips cannot be negative.", ephemeral=True)
         return
 
+    if catalog_submissions < -1:
+        await interaction.response.send_message(
+            "❌ Catalog submissions must be 0 or higher, or -1 to leave unchanged.",
+            ephemeral=True
+        )
+        return
+
     user_id = str(member.id)
 
     data = load_data()
-    user = get_profile_record(data, user_id)
+    user = ensure_user_record(data, user_id)
 
     user["level"] = level
     user["xp"] = xp
     user["banana_chips"] = banana_chips
+
+    catalog_line = ""
+
+    if catalog_submissions != -1:
+        recorded = recorded_catalog_submission_count(data, user_id)
+
+        # Example:
+        # recorded = 1, desired total = 8
+        # adjustment = 7
+        user["catalog_submission_adjustment"] = catalog_submissions - recorded
+
+        displayed = displayed_catalog_submission_count(data, user_id)
+
+        catalog_line = (
+            f"\nCatalog Submissions: **{displayed}** "
+            f"(Recorded: {recorded}, Adjustment: {user['catalog_submission_adjustment']})"
+        )
 
     save_data(data)
 
@@ -1704,10 +1742,72 @@ async def wos_dev_setprofile(
         f"✅ Updated <@{user_id}>'s profile:\n"
         f"Level: **{level}**\n"
         f"XP: **{xp}**\n"
-        f"Banana Chips: **{banana_chips}** 🍌",
+        f"Banana Chips: **{banana_chips}** 🍌"
+        f"{catalog_line}",
         ephemeral=True
     )
 
+
+#====================
+#BANANA CHIPS TO ALL
+#====================    
+@bot.tree.command(name="wos_dev_givechips_all", description="DEV ONLY: Give Banana Chips to every server member.")
+@app_commands.describe(
+    amount="How many Banana Chips to give each member",
+    include_bots="Whether bots should also receive Banana Chips"
+)
+async def wos_dev_givechips_all(
+    interaction: discord.Interaction,
+    amount: int,
+    include_bots: bool = False
+):
+    # 🔒 DEV lock
+    if interaction.user.id not in DEV_USER_IDS:
+        await interaction.response.send_message(
+            "❌ You don’t have permission to use this command.",
+            ephemeral=True
+        )
+        return
+
+    if interaction.guild is None:
+        await interaction.response.send_message(
+            "❌ This command can only be used in a server.",
+            ephemeral=True
+        )
+        return
+
+    if amount <= 0:
+        await interaction.response.send_message(
+            "❌ Amount must be greater than 0.",
+            ephemeral=True
+        )
+        return
+
+    await interaction.response.defer(ephemeral=True)
+
+    data = load_data()
+
+    granted_count = 0
+    skipped_bots = 0
+
+    for member in interaction.guild.members:
+        if member.bot and not include_bots:
+            skipped_bots += 1
+            continue
+
+        user_id = str(member.id)
+        user = ensure_user_record(data, user_id)
+
+        user["banana_chips"] = int(user.get("banana_chips", 0)) + amount
+        granted_count += 1
+
+    save_data(data)
+
+    await interaction.followup.send(
+        f"✅ Granted **{amount} Banana Chips** 🍌 to **{granted_count}** member(s).\n"
+        f"Skipped bots: **{skipped_bots}**",
+        ephemeral=True
+    )
 
 
 #===================
