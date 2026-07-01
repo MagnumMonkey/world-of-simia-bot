@@ -403,6 +403,36 @@ async def grant_card(user_id: str, card_id: str, data: dict):
     await add_card_via_api(user_id, card_id)
 
 
+async def get_collection_count_from_api(user_id: str) -> int:
+    url = f"{API_BASE}/api/collection/{user_id}?page=1&limit=18"
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return 0
+
+            payload = await resp.json()
+
+            # New API shape has "total"
+            if "total" in payload:
+                try:
+                    return int(payload.get("total", 0))
+                except Exception:
+                    return 0
+
+            # Fallback for older API shape
+            cards = payload.get("cards", []) or []
+            normalized = []
+
+            for c in cards:
+                if isinstance(c, str):
+                    normalized.append(c)
+                elif isinstance(c, dict) and c.get("card_id"):
+                    normalized.append(c["card_id"])
+
+            return len(set(normalized))
+
+
 async def get_collection_from_api(user_id: str) -> list[str]:
     url = f"{API_BASE}/api/collection/{user_id}"
     async with aiohttp.ClientSession() as session:
@@ -1339,35 +1369,6 @@ async def owned_card_id_autocomplete(interaction: discord.Interaction, current: 
     return choices
 
 
-async def active_deck_card_id_autocomplete(interaction: discord.Interaction, current: str):
-    """Autocomplete card_id to ONLY show cards currently in the user's active deck."""
-    user_id = str(interaction.user.id)
-    data = load_data()
-    cards_db = load_cards()
-    user = ensure_user_record(data, user_id)
-
-    active = user.get("active_deck", "default")
-    decks = user.get("decks", {})
-    deck_cards = []
-    if isinstance(decks, dict) and active in decks:
-        deck_cards = decks[active].get("cards", [])
-
-    if not isinstance(deck_cards, list):
-        deck_cards = []
-
-    cur = (current or "").lower()
-    choices = []
-    for cid in deck_cards:
-        if cur and cur not in cid.lower():
-            continue
-        nm = cards_db.get(cid, {}).get("name", cid)
-        label = f"{nm} — {cid}"
-        choices.append(app_commands.Choice(name=label[:100], value=cid))
-        if len(choices) >= 25:
-            break
-    return choices
-
-
 @bot.tree.command(name="wos_submit", description="Submit a card to the Community Catalog (bot posts it in the forum).")
 @app_commands.describe(card_id="Choose a card you own to add to the Community Catalog")
 @app_commands.autocomplete(card_id=owned_card_id_autocomplete)
@@ -1542,7 +1543,7 @@ async def wos_profile(interaction: discord.Interaction):
     level = int(user.get("level", 1))
     xp = int(user.get("xp", 0))
     chips = int(user.get("banana_chips", 0))
-    owned_count = len(user.get("cards", []))
+    owned_count = await get_collection_count_from_api(user_id)
 
     req = xp_required_for_level(level)
     xp_in_level = max(0, min(xp, req))
@@ -1664,105 +1665,6 @@ async def wos_trade(
 #================================================
 # SHOW DECK
 #================================================
-
-@bot.tree.command(name="wos_deck_show", description="Show your active WoS deck.")
-async def wos_deck_show(interaction: discord.Interaction):
-    user_id = str(interaction.user.id)
-    data = load_data()
-    user = ensure_user_record(data, user_id)
-    save_data(data)  # keeps migrations consistent
-
-    active = user.get("active_deck")
-    decks = user.get("decks", {})
-
-    if not active or active not in decks:
-        await interaction.response.send_message(
-            "You don’t have an active deck yet. Use /wos_starter or /wos_discover to get cards first.",
-            ephemeral=True
-        )
-        return
-
-    deck = decks[active]
-    deck_name = deck.get("name", active)
-    card_list = deck.get("cards", [])
-    card_count = len(card_list)
-
-    preview = ", ".join(card_list[:20]) if card_list else "None"
-
-    embed = discord.Embed(title="🃏 Active Deck", color=discord.Color.blurple())
-    embed.add_field(name="Deck", value=f"**{deck_name}** (`{active}`)", inline=False)
-    embed.add_field(name="Card Count", value=str(card_count), inline=True)
-    embed.add_field(name="Cards (preview)", value=f"`{preview}`", inline=False)
-
-    await interaction.response.send_message(embed=embed, ephemeral=True)
-
-
-
-DECK_MAX_CARDS = 40  # change if you want
-
-@bot.tree.command(name="wos_deck_add", description="Add an owned card to your active deck.")
-@app_commands.describe(card_id="Choose a card you own to add to your active deck")
-@app_commands.autocomplete(card_id=owned_card_id_autocomplete)
-async def wos_deck_add(interaction: discord.Interaction, card_id: str):
-    user_id = str(interaction.user.id)
-    data = load_data()
-    cards_db = load_cards()
-    user = ensure_user_record(data, user_id)
-
-    # must own the card
-    if card_id not in user.get("cards", []):
-        await interaction.response.send_message("❌ You don’t own that card.", ephemeral=True)
-        return
-
-    active = user.get("active_deck", "default")
-    deck = user["decks"].setdefault(active, {"name": active, "cards": []})
-    deck_cards = deck.setdefault("cards", [])
-
-    if card_id in deck_cards:
-        await interaction.response.send_message("⚠️ That card is already in your active deck.", ephemeral=True)
-        return
-
-    if len(deck_cards) >= DECK_MAX_CARDS:
-        await interaction.response.send_message(f"⚠️ Your deck is full ({DECK_MAX_CARDS} cards).", ephemeral=True)
-        return
-
-    deck_cards.append(card_id)
-    save_data(data)
-
-    name = cards_db.get(card_id, {}).get("name", card_id)
-    await interaction.response.send_message(f"✅ Added **{name}** to your active deck.", ephemeral=True)
-
-
-
-@bot.tree.command(name="wos_deck_remove", description="Remove a card from your active deck.")
-@app_commands.describe(card_id="Choose a card from your active deck to remove")
-@app_commands.autocomplete(card_id=active_deck_card_id_autocomplete)
-async def wos_deck_remove(interaction: discord.Interaction, card_id: str):
-    user_id = str(interaction.user.id)
-    data = load_data()
-    cards_db = load_cards()
-    user = ensure_user_record(data, user_id)
-
-    active = user.get("active_deck", "default")
-    decks = user.get("decks", {})
-    if active not in decks:
-        await interaction.response.send_message("⚠️ You don’t have an active deck.", ephemeral=True)
-        return
-
-    deck_cards = decks[active].get("cards", [])
-    if not isinstance(deck_cards, list) or card_id not in deck_cards:
-        await interaction.response.send_message("⚠️ That card isn’t in your active deck.", ephemeral=True)
-        return
-
-    deck_cards.remove(card_id)
-    save_data(data)
-
-    name = cards_db.get(card_id, {}).get("name", card_id)
-    await interaction.response.send_message(f"✅ Removed **{name}** from your active deck.", ephemeral=True)
-
-
-
-
 
 @bot.tree.command(name="wos_dev_addcard", description="DEV ONLY: Add a single card to your collection (no duplicates).")
 @app_commands.describe(card_id="Exact card_id from Cards.json")
