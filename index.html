@@ -348,7 +348,7 @@
     let currentPage = 1;
     const cardsPerPage = 18;
 
-    const pathMatch = window.location.pathname.match(/^\/collection\/(\d+)\/?$/);
+    const pathMatch = window.location.pathname.match(/\/collection\/(\d+)\/?$/);
 
     // support BOTH ?user_id= (your Discord link) and ?u= (old)
     const params = new URLSearchParams(window.location.search);
@@ -429,68 +429,118 @@
   async function loadCardsDbOnce() {
     if (CARDS_DB) return CARDS_DB;
 
-    // On GitHub Pages this must match the exact filename/case: "Cards.json"
-    const res = await fetch("Cards.json");
+    const res = await fetch("https://magnummonkey.github.io/world-of-simia-bot/Cards.json");
     if (!res.ok) throw new Error(`Failed to load Cards.json (${res.status})`);
 
     CARDS_DB = await res.json();
     return CARDS_DB;
   }
 
+  function resolveImageUrl(url) {
+    if (!url) return "";
+
+    url = String(url).trim();
+
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+
+    if (url.startsWith("/")) {
+      return `https://magnummonkey.github.io/world-of-simia-bot${url}`;
+    }
+
+    return `https://magnummonkey.github.io/world-of-simia-bot/${url}`;
+  }
 
 
-
-    document.getElementById("loadBtn").addEventListener("click", loadCollection);
+    document.getElementById("loadBtn").addEventListener("click", () => loadCollection(1));
 
     async function loadCollection(page = 1) {
       const userId = uidEl.value.trim();
       if (!userId) return;
 
+      page = Number(page) || 1;
+
       currentPage = page;
       statusEl.textContent = "Loading…";
       gridEl.innerHTML = "";
 
-      const res = await fetch(
-        `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${page}&limit=${cardsPerPage}`
-      );
+      try {
+        const url = `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${page}&limit=${cardsPerPage}`;
+        console.log("Loading collection:", url);
 
-      if (!res.ok) {
-        statusEl.textContent = "User not found.";
-        return;
-      }
+        const res = await fetch(url);
 
-      const col = await res.json();
-      const cards = col.cards || [];
+        if (!res.ok) {
+          const errText = await res.text();
+          console.error("Collection API error:", res.status, errText);
+          statusEl.textContent = `Could not load collection. API returned ${res.status}.`;
+          return;
+        }
 
-      statusEl.textContent = `Page ${col.page} of ${col.total_pages} • Total cards: ${col.total}`;
+        const col = await res.json();
+        console.log("Collection payload:", col);
 
-      // Render cards
-      for (const c of cards) {
-        const name = c.name || c.card_id;
-        const imgUrl = c.image_url || "";
-        const rarity = c.rarity || "";
+        const rawCards = col.cards || [];
+        const cardsDb = await loadCardsDbOnce();
 
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
-          <div class="img">${imgUrl ? `<img src="${imgUrl}" alt="">` : "No image"}</div>
-          <div class="name">${name}</div>
-        `;
+        const cards = rawCards
+          .map((item) => {
+            const cardId = typeof item === "string" ? item : item.card_id;
+            if (!cardId) return null;
 
-        div.addEventListener("click", () => {
-          openModal({
-            name,
-            cardId: c.card_id,
-            imgUrl,
-            rarity
+            const dbCard = cardsDb[cardId] || {};
+
+            return {
+              card_id: cardId,
+              name: dbCard.name || cardId,
+              rarity: dbCard.rarity || "",
+              image_url:
+                dbCard.image_url_web ||
+                dbCard.image_url ||
+                dbCard.image_url_discord ||
+                ""
+            };
+          })
+          .filter(Boolean);
+
+        if (!cards.length) {
+          statusEl.textContent = `No cards found for this user. Total cards: ${col.total || 0}`;
+          return;
+        }
+
+        statusEl.textContent = `Page ${col.page || page} of ${col.total_pages || 1} • Total cards: ${col.total || cards.length}`;
+
+        for (const c of cards) {
+          const name = c.name || c.card_id;
+          const imgUrl = resolveImageUrl(c.image_url);
+          const rarity = c.rarity || "";
+
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+            <div class="img">${imgUrl ? `<img src="${imgUrl}" alt="">` : "No image"}</div>
+            <div class="name">${name}</div>
+          `;
+
+          div.addEventListener("click", () => {
+            openModal({
+              name,
+              cardId: c.card_id,
+              imgUrl,
+              rarity
+            });
           });
-        });
 
-        gridEl.appendChild(div);
+          gridEl.appendChild(div);
+        }
+
+        addPaginationControls(col.page || page, col.total_pages || 1);
+
+      } catch (err) {
+        console.error("Collection load failed:", err);
+        statusEl.textContent = `Collection failed to load: ${err.message}`;
       }
-
-      // Add pagination controls
-      addPaginationControls(col.page, col.total_pages);
     }
 
     function addPaginationControls(current, totalPages) {
