@@ -2171,5 +2171,22 @@
     "image_url_web": "/static/cards/luxio_lumari_dawnbringer.png",
     "ability": "During your snooze phase you may summon Luxio from your baseline if your opponent summoned a monkey boy this turn. If Luxio was summoned this way he cannot be recalled. When Luxio enters the playing Field during your snooze phase you may pay 20 playtime points. If you do expel all other monkey boys that was summoned this turn.",
     "skill":"(1)Hardened steel: Luxio grows his banana Size by 5. Luxio loses briefs and gains Nude status. "
+  },
+  "adiel_lumari_hope": {
+    "name": "Adiel, Lumari Hope",
+    "rarity": "rare",
+    "personality": "Gentle",
+    "banana_size": 20,
+    "charm": 90,
+    "mischief": 0,
+    "total": 115,
+    "status": "Briefs, Heat",
+    "image_url": null,
+    "statuses":[
+    "briefs", "heat" 
+    ],
+    "image_url_web": "/static/cards/adiel_lumari_hope.png",
+    "ability": "During your Snooze Phase, you may summon Adiel from your baseline if your opponent summoned a Monkey Boy this turn. If Adiel is summoned this way, he cannot be recalled. While Adiel is on the Playing Field, opposing Monkey Boys with Heat cannot initiate Playtime encounters involving Monkey Boys on your team with Charm 60 or greater.",
+    "skill":null
   }
 }
