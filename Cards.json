@@ -2146,13 +2146,30 @@
     "charm": 55,
     "mischief": 8,
     "total": 128,
-    "status": "Nude, Briefs, Erect",
+    "status": "Heat, Briefs, Erect",
     "image_url": null,
     "statuses":[
-    "nude", "briefs", "erect" 
+    "heat", "briefs", "erect" 
     ],
     "image_url_web": "/static/cards/nameless_lumari_oathblade.png",
     "ability": "During your Snooze Phase, you may summon Nameless Lumari Oathblade from your baseline if your opponent summoned a Monkey Boy during your turn. If summoned this way, he cannot be recalled. When he enters this way, select 1 opposing Monkey Boy summoned during your turn. Its Banana Size, Charm, and Mischief shrink to 0 while Oathblade remains on the Playing Field. You gain no Playtime Points from encounters involving that Monkey Boy while its stats are 0 this way.",
     "skill":null
+  },
+  "luxio_lumari_dawnbringer": {
+    "name": "Luxio, Lumari Dawnbringer",
+    "rarity": "rare",
+    "personality": "Gentle",
+    "banana_size": 35,
+    "charm": 40,
+    "mischief": 40,
+    "total": 115,
+    "status": "Briefs, Erect",
+    "image_url": null,
+    "statuses":[
+    "briefs", "erect" 
+    ],
+    "image_url_web": "/static/cards/luxio_lumari_dawnbringer.png",
+    "ability": "During your snooze phase you may summon Luxio from your baseline if your opponent summoned a monkey boy this turn. If Luxio was summoned this way he cannot be recalled. When Luxio enters the playing Field during your snooze phase you may pay 20 playtime points. If you do expel all other monkey boys that was summoned this turn.",
+    "skill":"(1)Hardened steel: Luxio grows his banana Size by 5. Luxio loses briefs and gains Nude status. "
   }
 }
