@@ -1677,16 +1677,14 @@ async def wos_profile(interaction: discord.Interaction):
     member="Player whose profile you want to edit",
     level="New level",
     xp="Current XP within this level",
-    banana_chips="New Banana Chip amount",
-    catalog_submissions="Correct total catalog submissions, or -1 to leave unchanged"
+    banana_chips="New Banana Chip amount"
 )
 async def wos_dev_setprofile(
     interaction: discord.Interaction,
     member: discord.Member,
     level: int,
     xp: int,
-    banana_chips: int,
-    catalog_submissions: int = -1
+    banana_chips: int
 ):
     if interaction.user.id not in DEV_USER_IDS:
         await interaction.response.send_message(
@@ -1696,16 +1694,61 @@ async def wos_dev_setprofile(
         return
 
     if level < 1:
-        await interaction.response.send_message("❌ Level must be at least 1.", ephemeral=True)
+        await interaction.response.send_message(
+            "❌ Level must be at least 1.",
+            ephemeral=True
+        )
         return
 
     if xp < 0 or banana_chips < 0:
-        await interaction.response.send_message("❌ XP and Banana Chips cannot be negative.", ephemeral=True)
+        await interaction.response.send_message(
+            "❌ XP and Banana Chips cannot be negative.",
+            ephemeral=True
+        )
         return
 
-    if catalog_submissions < -1:
+    user_id = str(member.id)
+
+    data = load_data()
+    user = get_profile_record(data, user_id)
+
+    user["level"] = level
+    user["xp"] = xp
+    user["banana_chips"] = banana_chips
+
+    save_data(data)
+
+    await interaction.response.send_message(
+        f"✅ Updated <@{user_id}>'s profile:\n"
+        f"Level: **{level}**\n"
+        f"XP: **{xp}**\n"
+        f"Banana Chips: **{banana_chips}** 🍌",
+        ephemeral=True
+    )
+
+#===================
+#ammend catalog count
+#=====================
+@bot.tree.command(name="wos_dev_setcatalogcount", description="DEV ONLY: Set a player's displayed catalog submission count.")
+@app_commands.describe(
+    member="Player whose catalog count you want to correct",
+    total="Correct total catalog submissions"
+)
+async def wos_dev_setcatalogcount(
+    interaction: discord.Interaction,
+    member: discord.Member,
+    total: int
+):
+    if interaction.user.id not in DEV_USER_IDS:
         await interaction.response.send_message(
-            "❌ Catalog submissions must be 0 or higher, or -1 to leave unchanged.",
+            "❌ You don’t have permission to use this command.",
+            ephemeral=True
+        )
+        return
+
+    if total < 0:
+        await interaction.response.send_message(
+            "❌ Catalog submissions cannot be negative.",
             ephemeral=True
         )
         return
@@ -1715,35 +1758,22 @@ async def wos_dev_setprofile(
     data = load_data()
     user = ensure_user_record(data, user_id)
 
-    user["level"] = level
-    user["xp"] = xp
-    user["banana_chips"] = banana_chips
+    recorded = recorded_catalog_submission_count(data, user_id)
 
-    catalog_line = ""
-
-    if catalog_submissions != -1:
-        recorded = recorded_catalog_submission_count(data, user_id)
-
-        # Example:
-        # recorded = 1, desired total = 8
-        # adjustment = 7
-        user["catalog_submission_adjustment"] = catalog_submissions - recorded
-
-        displayed = displayed_catalog_submission_count(data, user_id)
-
-        catalog_line = (
-            f"\nCatalog Submissions: **{displayed}** "
-            f"(Recorded: {recorded}, Adjustment: {user['catalog_submission_adjustment']})"
-        )
+    # Example:
+    # recorded = 1, desired total = 8
+    # adjustment = 7
+    user["catalog_submission_adjustment"] = total - recorded
 
     save_data(data)
 
+    displayed = displayed_catalog_submission_count(data, user_id)
+
     await interaction.response.send_message(
-        f"✅ Updated <@{user_id}>'s profile:\n"
-        f"Level: **{level}**\n"
-        f"XP: **{xp}**\n"
-        f"Banana Chips: **{banana_chips}** 🍌"
-        f"{catalog_line}",
+        f"✅ Updated <@{user_id}>'s catalog submissions.\n"
+        f"Recorded by bot: **{recorded}**\n"
+        f"Manual adjustment: **{user['catalog_submission_adjustment']}**\n"
+        f"Displayed total: **{displayed}**",
         ephemeral=True
     )
 
