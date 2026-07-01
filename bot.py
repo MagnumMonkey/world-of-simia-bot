@@ -98,6 +98,13 @@ def resolve_card_image_url(card: dict) -> str | None:
 
 TRADE_COOLDOWN_SECONDS = 2 * 60 * 60  # 2 hours
 TRADE_XP_REWARD = 10
+TRADE_CHIPS_REWARD = 5
+
+CATALOG_SUBMIT_XP_REWARD = 10
+CATALOG_SUBMIT_CHIPS_REWARD = 10
+
+DISCOVER_XP_REWARD = 10
+DISCOVER_CHIPS_REWARD = 5
 
 # ==========================
 # LEVELING CONFIG
@@ -143,6 +150,21 @@ def add_xp(user: dict, amount: int) -> list[str]:
 
     return messages
 
+def award_rewards(data: dict, user_id: str, xp: int = 0, chips: int = 0) -> list[str]:
+    """
+    Awards XP and Banana Chips to a user.
+    Returns level-up messages.
+    """
+    user = ensure_user_record(data, user_id)
+
+    level_msgs = []
+    if xp > 0:
+        level_msgs = add_xp(user, xp)
+
+    if chips > 0:
+        user["banana_chips"] = int(user.get("banana_chips", 0)) + chips
+
+    return level_msgs
 
 
 # ==========================
@@ -295,6 +317,36 @@ def ensure_user_record(data: dict, user_id: str) -> dict:
         u["active_deck"] = "default"
 
     return u
+
+def get_profile_record(data: dict, user_id: str) -> dict:
+    """
+    Returns the user's local profile record.
+
+    Also tries to migrate old/accidental nested data from:
+    data["users"][user_id]
+    into:
+    data[user_id]
+    """
+    user = ensure_user_record(data, user_id)
+
+    legacy_users = data.get("users", {})
+    legacy = None
+
+    if isinstance(legacy_users, dict):
+        possible = legacy_users.get(user_id)
+        if isinstance(possible, dict):
+            legacy = possible
+
+    if legacy:
+        # Keep the higher/better values if old data exists somewhere else
+        user["level"] = max(int(user.get("level", 1)), int(legacy.get("level", 1)))
+        user["xp"] = max(int(user.get("xp", 0)), int(legacy.get("xp", 0)))
+        user["banana_chips"] = max(
+            int(user.get("banana_chips", 0)),
+            int(legacy.get("banana_chips", 0))
+        )
+
+    return user
 
 
 def generate_daily_shop_offers(cards_db: dict) -> list[dict]:
@@ -542,7 +594,12 @@ class DiscoverButton(discord.ui.Button):
             title_line = "🐒 Duplicate discovered"
             desc_line = f"Sold for **{payout} Banana Chips**."
 
-        level_msgs = add_xp(data[user_id], 10)
+        level_msgs = award_rewards(
+            data,
+            user_id,
+            xp=DISCOVER_XP_REWARD,
+            chips=DISCOVER_CHIPS_REWARD
+        )
         save_data(data)
 
 
@@ -559,12 +616,17 @@ class DiscoverButton(discord.ui.Button):
 
         # Level-up text
         level_text = "\n\n".join(level_msgs) if level_msgs else ""
+        reward_text = (
+            f"+{DISCOVER_XP_REWARD} XP\n"
+            f"+{DISCOVER_CHIPS_REWARD} Banana Chips 🍌"
+)
 
         # Now build the embed (AFTER name/personality/status exist)
         embed = discord.Embed(
             title=name,
             description=(
-                f"{title_line}\n{desc_line}"
+                f"{title_line}\n{desc_line}\n"
+                f"{reward_text}"
                 f"{'\n\n' + level_text if level_text else ''}\n\n"
                 f"Personality: **{personality}**\n"
                 f"Status: **{status}**"
@@ -867,8 +929,20 @@ class TradeView(discord.ui.View):
         await add_card_via_api(to_id, give_id) 
 
         # XP reward (both players)
-        msgs_from = add_xp(u_from, TRADE_XP_REWARD)
-        msgs_to = add_xp(u_to, TRADE_XP_REWARD)
+        # Rewards for successful trade
+        msgs_from = award_rewards(
+            data,
+            from_id,
+            xp=TRADE_XP_REWARD,
+            chips=TRADE_CHIPS_REWARD
+        )
+
+        msgs_to = award_rewards(
+            data,
+            to_id,
+            xp=TRADE_XP_REWARD,
+            chips=TRADE_CHIPS_REWARD
+        )
 
         # Apply cooldown timestamps
         mark_trade(u_from)
@@ -889,7 +963,7 @@ class TradeView(discord.ui.View):
         done_text = (
             f"✅ Trade completed!\n"
             f"<@{from_id}> traded **{give_name}** for **{want_name}** with <@{to_id}>.\n"
-            f"+{TRADE_XP_REWARD} XP to both players."
+            f"+{TRADE_XP_REWARD} XP and +{TRADE_CHIPS_REWARD} Banana Chips 🍌 to both players."
         )
 
         # Include level-up messages (if any)
@@ -1513,18 +1587,30 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
         "thread_id": thread.id,
         "submitted_by": user_id
     }
-    save_data(data)
-    # XP reward for successful submit
-    level_msgs = []
 
-    msg = f"✅ Added **{name}** to the Community Catalog!\n+10 XP"
+    # Rewards for successful submit
+    level_msgs = award_rewards(
+        data,
+        user_id,
+        xp=CATALOG_SUBMIT_XP_REWARD,
+        chips=CATALOG_SUBMIT_CHIPS_REWARD
+    )
+
+    save_data(data)
+
+    msg = (
+        f"✅ Added **{name}** to the Community Catalog!\n"
+        f"+{CATALOG_SUBMIT_XP_REWARD} XP\n"
+        f"+{CATALOG_SUBMIT_CHIPS_REWARD} Banana Chips 🍌"
+    )
+
     if level_msgs:
         msg += "\n\n" + "\n".join(level_msgs)
 
     await interaction.response.send_message(
         msg,
-         ephemeral=True
-)
+        ephemeral=True
+    )
 
 #===============
 #PROFILE
@@ -1535,7 +1621,7 @@ async def wos_profile(interaction: discord.Interaction):
     user_id = str(interaction.user.id)
 
     data = load_data()
-    user = ensure_user_record(data, user_id)
+    user = get_profile_record(data, user_id)
 
     # ✅ THIS is what you were missing:
     save_data(data)
@@ -1569,6 +1655,58 @@ async def wos_profile(interaction: discord.Interaction):
     embed.add_field(name="Catalog Submissions", value=str(submitted_count), inline=True)
 
     await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+#==========================
+#MANUAL PROFILE STAT EDITS
+#==========================
+@bot.tree.command(name="wos_dev_setprofile", description="DEV ONLY: Set a player's Level, XP, and Banana Chips.")
+@app_commands.describe(
+    member="Player whose profile you want to edit",
+    level="New level",
+    xp="Current XP within this level",
+    banana_chips="New Banana Chip amount"
+)
+async def wos_dev_setprofile(
+    interaction: discord.Interaction,
+    member: discord.Member,
+    level: int,
+    xp: int,
+    banana_chips: int
+):
+    if interaction.user.id not in DEV_USER_IDS:
+        await interaction.response.send_message(
+            "❌ You don’t have permission to use this command.",
+            ephemeral=True
+        )
+        return
+
+    if level < 1:
+        await interaction.response.send_message("❌ Level must be at least 1.", ephemeral=True)
+        return
+
+    if xp < 0 or banana_chips < 0:
+        await interaction.response.send_message("❌ XP and Banana Chips cannot be negative.", ephemeral=True)
+        return
+
+    user_id = str(member.id)
+
+    data = load_data()
+    user = get_profile_record(data, user_id)
+
+    user["level"] = level
+    user["xp"] = xp
+    user["banana_chips"] = banana_chips
+
+    save_data(data)
+
+    await interaction.response.send_message(
+        f"✅ Updated <@{user_id}>'s profile:\n"
+        f"Level: **{level}**\n"
+        f"XP: **{xp}**\n"
+        f"Banana Chips: **{banana_chips}** 🍌",
+        ephemeral=True
+    )
 
 
 
