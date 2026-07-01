@@ -439,25 +439,33 @@
 
     document.getElementById("loadBtn").addEventListener("click", loadCollection);
 
-    async function loadCollection() {
+    let currentPage = 1;
+    const cardsPerPage = 18;
+
+    async function loadCollection(page = 1) {
       const userId = uidEl.value.trim();
       if (!userId) return;
 
+      currentPage = page;
       statusEl.textContent = "Loading…";
       gridEl.innerHTML = "";
 
-      const res = await fetch(`${API_BASE}/api/collection/${encodeURIComponent(userId)}`);
+      const res = await fetch(
+        `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${page}&limit=${cardsPerPage}`
+      );
 
       if (!res.ok) {
-        statusEl.textContent = "User not found (no record in wos_data.json).";
+        statusEl.textContent = "User not found.";
         return;
       }
 
       const col = await res.json();
+      const cards = col.cards || [];
 
-      statusEl.textContent = `Cards: ${col.count}`;
+      statusEl.textContent = `Page ${col.page} of ${col.total_pages} • Total cards: ${col.total}`;
 
-      for (const c of col.cards) {
+      // Render cards
+      for (const c of cards) {
         const name = c.name || c.card_id;
         const imgUrl = c.image_url || "";
         const rarity = c.rarity || "";
@@ -480,6 +488,30 @@
 
         gridEl.appendChild(div);
       }
+
+      // Add pagination controls
+      addPaginationControls(col.page, col.total_pages);
+    }
+
+    function addPaginationControls(current, totalPages) {
+      const paginationDiv = document.createElement("div");
+      paginationDiv.style.marginTop = "20px";
+      paginationDiv.style.textAlign = "center";
+
+      let html = "";
+
+      if (current > 1) {
+        html += `<button onclick="loadCollection(${current - 1})">← Previous</button> `;
+      }
+
+      html += ` Page ${current} of ${totalPages} `;
+
+      if (current < totalPages) {
+        html += `<button onclick="loadCollection(${current + 1})">Next →</button>`;
+      }
+
+      paginationDiv.innerHTML = html;
+      gridEl.appendChild(paginationDiv);
     }
   </script>
 </body>

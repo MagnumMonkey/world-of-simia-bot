@@ -418,65 +418,6 @@ async def get_collection_from_api(user_id: str) -> list[str]:
 # ================================
 # CLASS
 # ================================
-class CollectionSelect(discord.ui.Select):
-    def __init__(self, card_ids, cards_db):
-        self.card_ids = card_ids
-        self.cards_db = cards_db
-
-        options = []
-        for cid in card_ids[:25]:  # Discord limit: 25 options max
-            c = cards_db.get(cid, {})
-            label = c.get("name", cid)[:100]
-            desc = f"{c.get('rarity','Unknown')} • Total: {c.get('total','?')}"
-            options.append(discord.SelectOption(label=label, description=desc[:100], value=cid))
-
-        super().__init__(placeholder="Click to view a card image…", options=options, min_values=1, max_values=1)
-
-    async def callback(self, interaction: discord.Interaction):
-        card_id = self.values[0]
-        card = self.cards_db.get(card_id)
-
-        if not card:
-            await interaction.response.send_message(f"❌ Card not found: `{card_id}`", ephemeral=True)
-            return
-
-        # Build the same embed style as /wos_card
-        name = card.get("name", card_id)
-        personality = card.get("personality", "Unknown")
-        status = card.get("status", "None")
-        banana = card.get("banana_size", "?")
-        charm = card.get("charm", "?")
-        mischief = card.get("mischief", "?")
-        total = card.get("total", "?")
-        
-        
-
-        embed = discord.Embed(
-            title=name,
-            description=f"Personality: **{personality}**\nStatus: **{status}**"
-        )
-
-        # Row 1
-        embed.add_field(name="Banana Size", value=str(banana), inline=True)
-        embed.add_field(name="Charm", value=str(charm), inline=True)
-        embed.add_field(name="Mischief", value=str(mischief), inline=True)
-        embed.add_field(name="Total", value=str(total), inline=True)
-
-        image_url = resolve_card_image_url(card)
-
-        if image_url:
-            embed.set_image(url=image_url)
-
-
-        await interaction.response.send_message(embed=embed, ephemeral=True)
-
-
-class CollectionView(discord.ui.View):
-    def __init__(self, card_ids, cards_db):
-        super().__init__(timeout=180)
-        self.add_item(CollectionSelect(card_ids, cards_db))
-
-
 class DiscoverView(discord.ui.View):
     def __init__(self, owner_id: str, options: list[str]):
         super().__init__(timeout=180)
@@ -1144,20 +1085,12 @@ async def wos_starter(interaction: discord.Interaction):
 
 
 
-
-
 # ==========================
 # VIEW COLLECTION
 # ==========================
 @bot.tree.command(name="wos_collection", description="View your World of Simia card collection.")
 async def wos_collection(interaction: discord.Interaction):
     user_id = str(interaction.user.id)
-
-    collection_url = (
-        "https://magnummonkey.github.io/world-of-simia-bot/"
-        f"?user_id={user_id}"
-    )
-    
 
     user_cards = await get_collection_from_api(user_id)
 
@@ -1168,18 +1101,18 @@ async def wos_collection(interaction: discord.Interaction):
         )
         return
 
-    # (Optional) remove duplicates while keeping order
+    # Remove duplicates while preserving order
     seen = set()
-    card_ids = []
-    for cid in user_cards:
-        if cid not in seen:
-            seen.add(cid)
-            card_ids.append(cid)
+    unique_cards = [cid for cid in user_cards if not (cid in seen or seen.add(cid))]
+
+    collection_url = (
+        "https://magnummonkey.github.io/world-of-simia-bot/"
+        f"?user_id={user_id}"
+    )
 
     await interaction.response.send_message(
-        "📜 **Your World of Simia Collection**\n\n"
-        "🖥️ **View your full collection at the Naughty Playpen:**\n"
-        f"{collection_url}\n\n",
+        f"📜 **Your World of Simia Collection** (`{len(unique_cards)}` cards)\n\n"
+        f"🖥️ **View your full collection here:**\n{collection_url}",
         ephemeral=True
     )
 
