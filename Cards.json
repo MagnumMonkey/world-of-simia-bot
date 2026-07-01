@@ -1845,11 +1845,11 @@
     "mischief": 50,
     "total": "100 + X",
     "status": "Briefs",
-    "image_url": "https://cdn.discordapp.com/attachments/1452555091029786799/1510747168724619284/Ashe_and_Thorn_Inkarri_Chaos_Twins.gif?ex=6a1df071&is=6a1c9ef1&hm=84e58e96eb1a6e69f4c2505b23993e46ff215e14933b41a0febe11bcc8e76188&",
+    "image_url": null,
     "statuses": [
       "briefs"
     ],
-    "image_url_web": "/static/cards/ashe_and_thorn_inkarri_twin_chaos.gif",
+    "image_url_web": "/static/cards/ashe_and_thorn_inkarri_twin_chaos_v2.gif",
     "ability": "You may only summon Ashe & Thorn during your opponent’s Snooze Phase. To summon Ashe & Thorn, expel 2 Monkey Boys from your baseline. Ashe & Thorn’s Banana Size is X, where X is the combined Banana Size of the expelled Monkey Boys, up to 100. Ashe and thorn cannot initiate a playtime encounter unless your opponent has a monkey boy with confident or flirty personality on their team."
   },
   "inkarri_sprout_zihppi": {
