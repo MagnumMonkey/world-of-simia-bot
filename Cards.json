@@ -2222,5 +2222,39 @@
     "image_url_web": "/static/cards/elyon_lumaris_answer.png",
     "ability": "You may summon Elyon from your baseline during your Snooze Phase only if he has 0 skill points. If Elyon is summoned this way, he cannot be recalled. When Elyon enters the Playing Field, while there are 3 or more Monkey Boys in your Home, Elyon’s Banana Size grows by 30 and he gains Heat. While Elyon has Heat, opposing Monkey Boys that would be sent Home from Playtime encounters are expelled instead.",
     "skill":"(2) Damage Control: During your opponent's playtime phase if a Monkey boy on your team were to lose a playtime encounter grow that Monkey boy's Banana Size by 5. Activate this skill while Elyon is in your baseline."
+  },
+  "nicholas": {
+    "name": "Nicholas",
+    "rarity": "rare",
+    "personality": "Gentle",
+    "banana_size": 65,
+    "charm": 30,
+    "mischief": 30,
+    "total": 125,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses":[
+    "briefs"  
+    ],
+    "image_url_web": "/static/cards/nicholas.png",
+    "ability": "Nicholas counts as Lumari. During your Snooze Phase, you may summon Nicholas from your baseline if your opponent summoned a Monkey Boy this turn. If Nicholas is summoned this way, he cannot be recalled. During your opponent’s Snooze Phase, select 1 opposing Monkey Boy. If that Monkey Boy initiated a Playtime encounter involving Nicholas this turn, send that Monkey Boy Home.",
+    "skill":null
+  },
+  "lumari_dylan": {
+    "name": "Lumari Dylan",
+    "rarity": "rare",
+    "personality": "Flirty",
+    "banana_size": 50,
+    "charm": 0,
+    "mischief": 72,
+    "total": 122,
+    "status": "Heat, Erect, Ejaculating, Nude",
+    "image_url": null,
+    "statuses":[
+    "briefs", "heat", "ejaculating", "nude"  
+    ],
+    "image_url_web": "/static/cards/lumari_dylan.png",
+    "ability": "During your Snooze Phase, you may summon Dylan from your baseline if your opponent summoned a Monkey Boy this turn. If Dylan is summoned this way, he cannot be recalled. When Dylan enters the Playing Field, if you have a Monkey Boy with the Gentle or Sweetheart personality on your team, Dylan’s Banana Size and Mischief grow by 5. Monkey boys on your team with Gentle or Sweetheart personality cannot be sent home from playtime encounter while Dylan is on the Playing Field.",
+    "skill":null
   }
 }
