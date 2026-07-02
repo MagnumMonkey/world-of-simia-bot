@@ -488,4 +488,4 @@ def buy_shop_card(
         "xp": int(user.get("xp", 0)),
         "level_messages": level_messages
     }
-    }
+    
