@@ -1119,6 +1119,11 @@ class TradeConfirmButton(discord.ui.Button):
 
 API_BASE = "https://wos-api-production.up.railway.app".rstrip("/")
 
+WOS_ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
+
+def api_admin_headers() -> dict:
+    return {"X-WOS-ADMIN-KEY": WOS_ADMIN_KEY}
+
 
 async def add_card_via_api(user_id: str, card_id: str) -> None:
     url = f"{API_BASE}/api/collection/{user_id}/add"
@@ -1688,7 +1693,7 @@ async def wos_profile(interaction: discord.Interaction):
 #==========================
 #MANUAL PROFILE STAT EDITS
 #==========================
-@bot.tree.command(name="wos_dev_setprofile", description="DEV ONLY: Set a player's profile values.")
+@bot.tree.command(name="wos_dev_setprofile", description="DEV ONLY: Set a player's API profile values.")
 @app_commands.describe(
     member="Player whose profile you want to edit",
     level="New level",
@@ -1723,29 +1728,62 @@ async def wos_dev_setprofile(
         )
         return
 
+    if not WOS_ADMIN_KEY:
+        await interaction.response.send_message(
+            "❌ WOS_ADMIN_KEY is not set on the bot service.",
+            ephemeral=True
+        )
+        return
+
+    await interaction.response.defer(ephemeral=True)
+
     user_id = str(member.id)
+    url = f"{API_BASE}/api/profile/{user_id}/set"
 
-    data = load_data()
-    user = get_profile_record(data, user_id)
+    payload = {
+        "level": level,
+        "xp": xp,
+        "banana_chips": banana_chips
+    }
 
-    user["level"] = level
-    user["xp"] = xp
-    user["banana_chips"] = banana_chips
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                url,
+                json=payload,
+                headers=api_admin_headers()
+            )
 
-    save_data(data)
+        if r.status_code != 200:
+            await interaction.followup.send(
+                f"❌ API rejected the profile update.\n"
+                f"Status: `{r.status_code}`\n"
+                f"Response: `{r.text[:500]}`",
+                ephemeral=True
+            )
+            return
 
-    await interaction.response.send_message(
-        f"✅ Updated <@{user_id}>'s profile:\n"
-        f"Level: **{level}**\n"
-        f"XP: **{xp}**\n"
-        f"Banana Chips: **{banana_chips}** 🍌",
+        result = r.json()
+
+    except Exception as e:
+        await interaction.followup.send(
+            f"❌ Failed to update profile through the API: `{e}`",
+            ephemeral=True
+        )
+        return
+
+    await interaction.followup.send(
+        f"✅ Updated <@{user_id}>'s API profile:\n"
+        f"Level: **{result.get('level', level)}**\n"
+        f"XP: **{result.get('xp', xp)}**\n"
+        f"Banana Chips: **{result.get('banana_chips', banana_chips)}** 🍌",
         ephemeral=True
     )
 
 #===================
 #ammend catalog count
 #=====================
-@bot.tree.command(name="wos_dev_setcatalogcount", description="DEV ONLY: Set a player's displayed catalog submission count.")
+@bot.tree.command(name="wos_dev_setcatalogcount", description="DEV ONLY: Set a player's API catalog submission count.")
 @app_commands.describe(
     member="Player whose catalog count you want to correct",
     total="Correct total catalog submissions"
@@ -1769,27 +1807,49 @@ async def wos_dev_setcatalogcount(
         )
         return
 
+    if not WOS_ADMIN_KEY:
+        await interaction.response.send_message(
+            "❌ WOS_ADMIN_KEY is not set on the bot service.",
+            ephemeral=True
+        )
+        return
+
+    await interaction.response.defer(ephemeral=True)
+
     user_id = str(member.id)
+    url = f"{API_BASE}/api/profile/{user_id}/catalog_count/set"
 
-    data = load_data()
-    user = ensure_user_record(data, user_id)
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            r = await client.post(
+                url,
+                json={"total": total},
+                headers=api_admin_headers()
+            )
 
-    recorded = recorded_catalog_submission_count(data, user_id)
+        if r.status_code != 200:
+            await interaction.followup.send(
+                f"❌ API rejected the catalog update.\n"
+                f"Status: `{r.status_code}`\n"
+                f"Response: `{r.text[:500]}`",
+                ephemeral=True
+            )
+            return
 
-    # Example:
-    # recorded = 1, desired total = 8
-    # adjustment = 7
-    user["catalog_submission_adjustment"] = total - recorded
+        result = r.json()
 
-    save_data(data)
+    except Exception as e:
+        await interaction.followup.send(
+            f"❌ Failed to update catalog count through the API: `{e}`",
+            ephemeral=True
+        )
+        return
 
-    displayed = displayed_catalog_submission_count(data, user_id)
-
-    await interaction.response.send_message(
-        f"✅ Updated <@{user_id}>'s catalog submissions.\n"
-        f"Recorded by bot: **{recorded}**\n"
-        f"Manual adjustment: **{user['catalog_submission_adjustment']}**\n"
-        f"Displayed total: **{displayed}**",
+    await interaction.followup.send(
+        f"✅ Updated <@{user_id}>'s API catalog submissions.\n"
+        f"Recorded by API: **{result.get('recorded', 0)}**\n"
+        f"Manual adjustment: **{result.get('adjustment', 0)}**\n"
+        f"Displayed total: **{result.get('displayed_total', total)}**",
         ephemeral=True
     )
 
