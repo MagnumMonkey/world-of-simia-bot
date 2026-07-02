@@ -1644,7 +1644,6 @@ async def wos_dev_givechips_all(
     amount: int,
     include_bots: bool = False
 ):
-    # 🔒 DEV lock
     if interaction.user.id not in DEV_USER_IDS:
         await interaction.response.send_message(
             "❌ You don’t have permission to use this command.",
@@ -1666,12 +1665,18 @@ async def wos_dev_givechips_all(
         )
         return
 
-    await interaction.response.defer(ephemeral=True)
+    if not WOS_ADMIN_KEY:
+        await interaction.response.send_message(
+            "❌ WOS_ADMIN_KEY is not set on the bot service.",
+            ephemeral=True
+        )
+        return
 
-    data = load_data()
+    await interaction.response.defer(ephemeral=True)
 
     granted_count = 0
     skipped_bots = 0
+    failed = []
 
     for member in interaction.guild.members:
         if member.bot and not include_bots:
@@ -1679,16 +1684,32 @@ async def wos_dev_givechips_all(
             continue
 
         user_id = str(member.id)
-        user = ensure_user_record(data, user_id)
 
-        user["banana_chips"] = int(user.get("banana_chips", 0)) + amount
-        granted_count += 1
+        try:
+            await reward_profile_via_api(
+                user_id,
+                xp=0,
+                banana_chips=amount
+            )
+            granted_count += 1
 
-    save_data(data)
+        except Exception as e:
+            failed.append(f"{member.display_name}: {e}")
+
+    msg = (
+        f"✅ Granted **{amount} Banana Chips** 🍌 to **{granted_count}** member(s).\n"
+        f"Skipped bots: **{skipped_bots}**"
+    )
+
+    if failed:
+        shown = "\n".join(failed[:5])
+        msg += (
+            f"\n\n⚠️ Failed for **{len(failed)}** member(s)."
+            f"\nFirst few failures:\n```text\n{shown[:1500]}\n```"
+        )
 
     await interaction.followup.send(
-        f"✅ Granted **{amount} Banana Chips** 🍌 to **{granted_count}** member(s).\n"
-        f"Skipped bots: **{skipped_bots}**",
+        msg,
         ephemeral=True
     )
 
