@@ -1718,46 +1718,62 @@ async def wos_dev_givechips_all(
 # ADD CARD
 #================================================
 
-@bot.tree.command(name="wos_dev_addcard", description="DEV ONLY: Add a single card to your collection (no duplicates).")
-@app_commands.describe(card_id="Exact card_id from Cards.json")
-async def wos_dev_addcard(interaction: discord.Interaction, card_id: str):
+@bot.tree.command(name="wos_dev_addcard", description="DEV ONLY: Add a single card to a player's API collection.")
+@app_commands.describe(
+    member="Player who should receive the card",
+    card_id="Exact card_id from Cards.json"
+)
+async def wos_dev_addcard(
+    interaction: discord.Interaction,
+    member: discord.Member,
+    card_id: str
+):
     # 🔒 DEV lock
     if interaction.user.id not in DEV_USER_IDS:
-        await interaction.response.send_message("❌ You don’t have permission to use this command.", ephemeral=True)
+        await interaction.response.send_message(
+            "❌ You don’t have permission to use this command.",
+            ephemeral=True
+        )
         return
 
     await interaction.response.defer(ephemeral=True)
 
     # 📘 Validate card exists
     cards_db = load_cards()
-    if card_id not in cards_db:
+    card = cards_db.get(card_id)
+
+    if not card:
         await interaction.followup.send(
             f"❌ Unknown card_id `{card_id}` (not found in Cards.json).",
             ephemeral=True
         )
         return
 
-    user_id = str(interaction.user.id)
-    data = load_data()
+    user_id = str(member.id)
 
-    # 🧍 Ensure user exists
-    users = data.setdefault("users", {})
-    user = users.setdefault(user_id, {})
-    cards = user.setdefault("cards", [])
+    # ✅ API is source of truth for ownership
+    owned_ids = await get_collection_from_api(user_id)
 
-    # 🚫 Prevent duplicates
-    if card_id in cards:
+    if card_id in owned_ids:
         await interaction.followup.send(
-            f"⚠️ You already own `{card_id}`. No duplicate added.",
+            f"⚠️ <@{user_id}> already owns `{card_id}`. No duplicate added.",
             ephemeral=True
         )
         return
 
-    # ✅ Grant exactly ONE card (uses your existing logic + API update)
-    await grant_card(user_id, card_id, data)
+    try:
+        await add_card_via_api(user_id, card_id)
+    except Exception as e:
+        await interaction.followup.send(
+            f"❌ Failed to add card through the API: `{e}`",
+            ephemeral=True
+        )
+        return
+
+    name = card.get("name", card_id)
 
     await interaction.followup.send(
-        f"✅ Added `{card_id}` to your collection.",
+        f"✅ Added **{name}** (`{card_id}`) to <@{user_id}>'s API collection.",
         ephemeral=True
     )
 
