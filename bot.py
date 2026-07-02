@@ -476,23 +476,34 @@ async def get_collection_count_from_api(user_id: str) -> int:
 
 
 async def get_collection_from_api(user_id: str) -> list[str]:
-    url = f"{API_BASE}/api/collection/{user_id}"
+    result = []
+    page = 1
+
     async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            if resp.status != 200:
-                return []
+        while True:
+            url = f"{API_BASE}/api/collection/{user_id}?page={page}&limit=18"
 
-            payload = await resp.json()
-            cards = payload.get("cards", []) or []
+            async with session.get(url) as resp:
+                if resp.status != 200:
+                    return result
 
-            result = []
-            for c in cards:
-                if isinstance(c, str):
-                    result.append(c)
-                elif isinstance(c, dict) and c.get("card_id"):
-                    result.append(c["card_id"])
+                payload = await resp.json()
+                cards = payload.get("cards", []) or []
 
-            return result
+                for c in cards:
+                    if isinstance(c, str):
+                        result.append(c)
+                    elif isinstance(c, dict) and c.get("card_id"):
+                        result.append(c["card_id"])
+
+                total_pages = int(payload.get("total_pages", 1))
+
+                if page >= total_pages:
+                    break
+
+                page += 1
+
+    return result
 
 async def get_profile_from_api(user_id: str) -> dict | None:
     url = f"{API_BASE}/api/profile/{user_id}"
@@ -540,6 +551,24 @@ async def submit_catalog_to_api(user_id: str, card_id: str, thread_id: int) -> d
 
     return r.json()
 
+async def reward_profile_via_api(user_id: str, xp: int = 0, banana_chips: int = 0) -> dict:
+    url = f"{API_BASE}/api/profile/{user_id}/reward"
+
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.post(
+            url,
+            json={
+                "xp": xp,
+                "banana_chips": banana_chips
+            },
+            headers=api_admin_headers()
+        )
+
+    if r.status_code != 200:
+        raise RuntimeError(f"API reward error {r.status_code}: {r.text[:500]}")
+
+    return r.json()
+
 
 # ================================
 # CLASS
@@ -562,8 +591,12 @@ class DiscoverButton(discord.ui.Button):
 
     async def callback(self, interaction: discord.Interaction):
         view: DiscoverView = self.view  # type: ignore
+
         if str(interaction.user.id) != view.owner_id:
-            await interaction.response.send_message("❌ This discovery isn’t yours.", ephemeral=True)
+            await interaction.response.send_message(
+                "❌ This discovery isn’t yours.",
+                ephemeral=True
+            )
             return
 
         data = load_data()
@@ -571,24 +604,18 @@ class DiscoverButton(discord.ui.Button):
         user_id = str(interaction.user.id)
         today = today_ymd()
 
-        # Ensure user record exists
-        if user_id not in data:
-            data[user_id] = {"cards": [], "banana_chips": 0}
-
-        # Ensure banana chips exist (for older saves)
-        if "banana_chips" not in data[user_id]:
-            data[user_id]["banana_chips"] = 0
+        user = ensure_user_record(data, user_id)
 
         # If they already claimed today, block
-        if data[user_id].get("last_discover_date") == today:
+        if user.get("last_discover_date") == today:
             await interaction.response.send_message(
                 "⏳ You already discovered a card today. Come back tomorrow!",
                 ephemeral=True
             )
             return
 
-        # Must have a pending discovery to claim (prevents reroll abuse)
-        pending = data[user_id].get("pending_discover")
+        # Must have a pending discovery to claim
+        pending = user.get("pending_discover")
         if not pending or pending.get("date") != today or not pending.get("options"):
             await interaction.response.send_message(
                 "⚠️ Your discovery expired. Run `/wos_discover` again.",
@@ -606,41 +633,56 @@ class DiscoverButton(discord.ui.Button):
             )
             return
 
-        # Lock the day now
-        data[user_id]["last_discover_date"] = today
-        data[user_id].pop("pending_discover", None)
+        card = cards_db.get(chosen_id, {})
+        if not card:
+            await interaction.response.send_message(
+                f"❌ Card `{chosen_id}` was not found in Cards.json.",
+                ephemeral=True
+            )
+            return
 
-        owned = data[user_id].get("cards", [])
-        is_new = chosen_id not in owned
+        # ✅ API is source of truth for ownership
+        owned_ids = await get_collection_from_api(user_id)
+        is_new = chosen_id not in owned_ids
 
-        # Apply outcome
-        if is_new:
-            owned.append(chosen_id)
-            data[user_id]["cards"] = owned
-            await add_card_via_api(user_id, chosen_id)
-            title_line = "🎉 New discovery!"
-            desc_line = "Added to your collection."
-        else:
-            # Duplicate → sell for banana chips
-            card = cards_db.get(chosen_id, {})
-            rarity = normalize_rarity(card.get("rarity", "common"))
-            payout = int(DUP_SELL_VALUES.get(rarity, 0))
-            data[user_id]["banana_chips"] += payout
+        duplicate_payout = 0
 
-            title_line = "🐒 Duplicate discovered"
-            desc_line = f"Sold for **{payout} Banana Chips**."
+        try:
+            if is_new:
+                await add_card_via_api(user_id, chosen_id)
+                title_line = "🎉 New discovery!"
+                desc_line = "Added to your collection."
+            else:
+                rarity = normalize_rarity(card.get("rarity", "common"))
+                duplicate_payout = int(DUP_SELL_VALUES.get(rarity, 0))
+                title_line = "🐒 Duplicate discovered"
+                desc_line = f"Sold for **{duplicate_payout} Banana Chips**."
 
-        level_msgs = award_rewards(
-            data,
-            user_id,
-            xp=DISCOVER_XP_REWARD,
-            chips=DISCOVER_CHIPS_REWARD
-        )
+            total_chips_reward = DISCOVER_CHIPS_REWARD + duplicate_payout
+
+            reward_result = await reward_profile_via_api(
+                user_id,
+                xp=DISCOVER_XP_REWARD,
+                banana_chips=total_chips_reward
+            )
+
+        except Exception as e:
+            await interaction.response.send_message(
+                f"❌ Discovery reward failed through the API: `{e}`",
+                ephemeral=True
+            )
+            return
+
+        # Lock the day only after API success
+        user["last_discover_date"] = today
+        user.pop("pending_discover", None)
+
+        # Optional local mirror for old commands; API remains source of truth
+        if is_new and chosen_id not in user.get("cards", []):
+            user.setdefault("cards", []).append(chosen_id)
+
         save_data(data)
 
-
-        # Build result embed (your existing full card embed)
-        card = cards_db.get(chosen_id, {})
         name = card.get("name", chosen_id)
         personality = card.get("personality", "Unknown")
         status = card.get("status", card.get("Status", "None"))
@@ -650,18 +692,23 @@ class DiscoverButton(discord.ui.Button):
         total = card.get("total", "?")
         image_url = resolve_card_image_url(card)
 
-        # Level-up text
-        level_text = "\n\n".join(level_msgs) if level_msgs else ""
+        level_msgs = reward_result.get("level_messages", []) or []
+
         reward_text = (
             f"+{DISCOVER_XP_REWARD} XP\n"
             f"+{DISCOVER_CHIPS_REWARD} Banana Chips 🍌"
-)
+        )
 
-        # Now build the embed (AFTER name/personality/status exist)
+        if duplicate_payout:
+            reward_text += f"\n+{duplicate_payout} Duplicate Banana Chips 🍌"
+
+        level_text = "\n\n".join(level_msgs) if level_msgs else ""
+
         embed = discord.Embed(
             title=name,
             description=(
-                f"{title_line}\n{desc_line}\n"
+                f"{title_line}\n"
+                f"{desc_line}\n"
                 f"{reward_text}"
                 f"{'\n\n' + level_text if level_text else ''}\n\n"
                 f"Personality: **{personality}**\n"
@@ -669,29 +716,14 @@ class DiscoverButton(discord.ui.Button):
             )
         )
 
-
-        embed = discord.Embed(
-            title=name,
-            description=(
-                f"{title_line}\n{desc_line}"
-                f"{'\n\n' + level_text if level_text else ''}\n\n"
-                f"Personality: **{personality}**\n"
-                f"Status: **{status}**"
-            )
-
-        )
         embed.add_field(name="Banana Size", value=str(banana), inline=True)
         embed.add_field(name="Charm", value=str(charm), inline=True)
         embed.add_field(name="Mischief", value=str(mischief), inline=True)
         embed.add_field(name="Total", value=str(total), inline=True)
 
-        image_url = resolve_card_image_url(card)
-
         if image_url:
             embed.set_image(url=image_url)
 
-
-        # Disable buttons after selection
         for item in view.children:
             item.disabled = True
 
@@ -1079,11 +1111,10 @@ async def wos_discover(interaction: discord.Interaction):
     cards_db = load_cards()
 
     # Ensure user record exists
-    if user_id not in data:
-        data[user_id] = {"cards": []}
+    user = ensure_user_record(data, user_id)
 
     # If they already completed a discovery today, block
-    if data[user_id].get("last_discover_date") == today:
+    if user.get("last_discover_date") == today:
         await interaction.response.send_message(
             "⏳ You already discovered a card today. Come back tomorrow!",
             ephemeral=True
@@ -1091,7 +1122,7 @@ async def wos_discover(interaction: discord.Interaction):
         return
 
     # If they already have a pending discovery today, re-show the SAME options (prevents reroll abuse)
-    pending = data[user_id].get("pending_discover")
+    pending = user.get("pending_discover")
     if pending and pending.get("date") == today and pending.get("options"):
         options = pending["options"]
     else:
@@ -1100,7 +1131,7 @@ async def wos_discover(interaction: discord.Interaction):
         options = [roll_card_id(cards_db, rarity_index) for _ in range(3)]
 
         # Save pending options for today
-        data[user_id]["pending_discover"] = {"date": today, "options": options}
+        user["pending_discover"] = {"date": today, "options": options}
         save_data(data)
 
     # Build a simple preview embed (names + rarity only)
