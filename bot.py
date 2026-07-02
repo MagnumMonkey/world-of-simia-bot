@@ -373,10 +373,7 @@ def generate_daily_shop_offers(cards_db: dict) -> list[dict]:
     # If card pool is tiny and we couldn't fill, just return what we have
     return offers
 
-def build_shop_embed(user: dict, cards_db: dict, offers: list[dict]) -> discord.Embed:
-    chips = int(user.get("banana_chips", 0))
-    owned = set(user.get("cards", []))
-
+def build_shop_embed(chips: int, owned_ids: set[str], cards_db: dict, offers: list[dict]) -> discord.Embed:
     embed = discord.Embed(
         title="🍌 Banana Chip Shop",
         description=f"**Banana Chips:** `{chips}`\nChoose a card to buy (5 offers daily)."
@@ -395,9 +392,9 @@ def build_shop_embed(user: dict, cards_db: dict, offers: list[dict]) -> discord.
         flags = []
         if sold:
             flags.append("SOLD")
-        if cid in owned:
+        if cid in owned_ids:
             flags.append("OWNED")
-        if not sold and cid not in owned and chips < price:
+        if not sold and cid not in owned_ids and chips < price:
             flags.append("CAN'T AFFORD")
 
         flag_text = f" — {' | '.join(flags)}" if flags else ""
@@ -566,6 +563,24 @@ async def reward_profile_via_api(user_id: str, xp: int = 0, banana_chips: int = 
 
     if r.status_code != 200:
         raise RuntimeError(f"API reward error {r.status_code}: {r.text[:500]}")
+
+    return r.json()
+
+async def buy_shop_card_via_api(user_id: str, card_id: str, price: int) -> dict:
+    url = f"{API_BASE}/api/shop/{user_id}/buy"
+
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.post(
+            url,
+            json={
+                "card_id": card_id,
+                "price": int(price)
+            },
+            headers=api_admin_headers()
+        )
+
+    if r.status_code != 200:
+        raise RuntimeError(f"API shop error {r.status_code}: {r.text[:500]}")
 
     return r.json()
 
@@ -741,8 +756,12 @@ class ShopBuyButton(discord.ui.Button):
 
     async def callback(self, interaction: discord.Interaction):
         view: ShopView = self.view  # type: ignore
+
         if str(interaction.user.id) != view.owner_id:
-            await interaction.response.send_message("❌ This shop isn’t yours.", ephemeral=True)
+            await interaction.response.send_message(
+                "❌ This shop isn’t yours.",
+                ephemeral=True
+            )
             return
 
         user_id = view.owner_id
@@ -752,86 +771,99 @@ class ShopBuyButton(discord.ui.Button):
         cards_db = load_cards()
         user = ensure_user_record(data, user_id)
 
-        # Validate shop is still today's and offers exist
         if user.get("shop_date") != today or not user.get("shop_offers"):
-            await interaction.response.send_message("⚠️ Your shop expired. Run `/wos_shop` again.", ephemeral=True)
+            await interaction.response.send_message(
+                "⚠️ Your shop expired. Run `/wos_shop` again.",
+                ephemeral=True
+            )
             return
 
         offers = user.get("shop_offers", [])
+
         if self.slot_index < 0 or self.slot_index >= len(offers):
-            await interaction.response.send_message("⚠️ Invalid shop selection.", ephemeral=True)
+            await interaction.response.send_message(
+                "⚠️ Invalid shop selection.",
+                ephemeral=True
+            )
             return
 
         offer = offers[self.slot_index]
+
         if offer.get("sold", False):
-            await interaction.response.send_message("⚠️ That item is already SOLD.", ephemeral=True)
+            await interaction.response.send_message(
+                "⚠️ That item is already SOLD.",
+                ephemeral=True
+            )
             return
 
         cid = offer.get("card_id")
         price = int(offer.get("price", 0))
 
-        # Block purchasing owned cards (your rule)
-        owned = set(user.get("cards", []))
-        if cid in owned:
-            await interaction.response.send_message("⚠️ You already own this card (cannot buy duplicates).", ephemeral=True)
+        if cid not in cards_db:
+            await interaction.response.send_message(
+                "❌ That shop card no longer exists in Cards.json.",
+                ephemeral=True
+            )
             return
 
-        chips = int(user.get("banana_chips", 0))
-        if chips < price:
-            await interaction.response.send_message("⚠️ Not enough Banana Chips.", ephemeral=True)
+        try:
+            result = await buy_shop_card_via_api(user_id, cid, price)
+        except Exception as e:
+            await interaction.response.send_message(
+                f"❌ Purchase failed through the API: `{e}`",
+                ephemeral=True
+            )
             return
 
-        # Purchase success
-        user["banana_chips"] = chips - price
-        user["cards"].append(cid)
         offer["sold"] = True
-
-        await add_card_via_api(user_id, cid)
-
-        # XP for shop purchase
-        level_msgs = add_xp(user, 5)
-
-
         save_data(data)
 
-        # Rebuild UI (disable buttons appropriately)
-        new_embed = build_shop_embed(user, cards_db, offers)
+        chips = int(result.get("banana_chips", 0))
+        owned_ids = set(await get_collection_from_api(user_id))
+
+        new_embed = build_shop_embed(chips, owned_ids, cards_db, offers)
+
+        level_msgs = result.get("level_messages", []) or []
+        xp_reward = int(result.get("xp_reward", 0))
+
+        card_name = cards_db.get(cid, {}).get("name", cid)
+
+        new_embed.description += (
+            f"\n\n✅ Purchased **{card_name}** for **{price} Banana Chips** 🍌"
+            f"\n+{xp_reward} XP"
+        )
+
         if level_msgs:
             new_embed.description += "\n\n" + "\n".join(level_msgs)
-        
-        view.refresh_buttons(user)
+
+        view.refresh_buttons(offers, chips, owned_ids)
 
         await interaction.response.edit_message(
-            embed=new_embed, 
+            embed=new_embed,
             view=view
         )
 
 
 class ShopView(discord.ui.View):
-    def __init__(self, owner_id: str, user: dict):
+    def __init__(self, owner_id: str, offers: list[dict], chips: int, owned_ids: set[str]):
         super().__init__(timeout=180)
         self.owner_id = owner_id
 
-        # Add 5 buttons
         for i in range(SHOP_SIZE):
             self.add_item(ShopBuyButton(i))
 
-        self.refresh_buttons(user)
+        self.refresh_buttons(offers, chips, owned_ids)
 
-    def refresh_buttons(self, user: dict):
-        """Enable/disable buttons based on current user state + offer state."""
-        chips = int(user.get("banana_chips", 0))
-        owned = set(user.get("cards", []))
-        offers = user.get("shop_offers", [])
-
+    def refresh_buttons(self, offers: list[dict], chips: int, owned_ids: set[str]):
         for item in self.children:
             if not isinstance(item, ShopBuyButton):
                 continue
 
             idx = item.slot_index
+
             if idx >= len(offers):
                 item.disabled = True
-                item.label = f"Buy #{idx+1}"
+                item.label = f"Buy #{idx + 1}"
                 continue
 
             offer = offers[idx]
@@ -841,10 +873,10 @@ class ShopView(discord.ui.View):
 
             if sold:
                 item.disabled = True
-                item.label = f"SOLD #{idx+1}"
-            elif cid in owned:
+                item.label = f"SOLD #{idx + 1}"
+            elif cid in owned_ids:
                 item.disabled = True
-                item.label = f"OWNED #{idx+1}"
+                item.label = f"OWNED #{idx + 1}"
             elif chips < price:
                 item.disabled = True
                 item.label = f"{price} chips"
@@ -1164,7 +1196,6 @@ async def wos_shop(interaction: discord.Interaction):
     cards_db = load_cards()
     user = ensure_user_record(data, user_id)
 
-    # Ensure today's shop exists (and is stable—no rerolls)
     if user.get("shop_date") != today or not user.get("shop_offers"):
         user["shop_date"] = today
         user["shop_offers"] = generate_daily_shop_offers(cards_db)
@@ -1172,10 +1203,30 @@ async def wos_shop(interaction: discord.Interaction):
 
     offers = user.get("shop_offers", [])
 
-    embed = build_shop_embed(user, cards_db, offers)
-    view = ShopView(owner_id=user_id, user=user)
+    profile = await get_profile_from_api(user_id)
+    if not profile:
+        await interaction.response.send_message(
+            "❌ I couldn’t load your profile from the API.",
+            ephemeral=True
+        )
+        return
 
-    await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+    chips = int(profile.get("banana_chips", 0))
+    owned_ids = set(await get_collection_from_api(user_id))
+
+    embed = build_shop_embed(chips, owned_ids, cards_db, offers)
+    view = ShopView(
+        owner_id=user_id,
+        offers=offers,
+        chips=chips,
+        owned_ids=owned_ids
+    )
+
+    await interaction.response.send_message(
+        embed=embed,
+        view=view,
+        ephemeral=True
+    )
 
 
 
