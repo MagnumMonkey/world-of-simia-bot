@@ -9,8 +9,8 @@ INPUT_DIR = REPO_ROOT / "static" / "cards"
 OUTPUT_DIR = REPO_ROOT / "static" / "cards_web"
 CARDS_JSON = REPO_ROOT / "Cards.json"
 
-MAX_HEIGHT = 900
-QUALITY = 78
+MAX_HEIGHT = 1600
+QUALITY = 90
 
 SUPPORTED = {".png", ".jpg", ".jpeg"}
 
