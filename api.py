@@ -25,6 +25,7 @@ app.add_middleware(
 DATA_FILE = Path("/data/wos_data.json")
 ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
 
+LEVEL_REWARD_CHIPS = 25
 CATALOG_SUBMIT_XP_REWARD = 10
 CATALOG_SUBMIT_CHIPS_REWARD = 10
 LEVEL_REWARD_CHIPS = 25
@@ -134,6 +135,38 @@ def api_displayed_catalog_submission_count(data: dict, user_id: str) -> int:
     recorded = api_recorded_catalog_submission_count(data, user_id)
     adjustment = int(user.get("catalog_submission_adjustment", 0))
     return max(0, recorded + adjustment)
+
+def api_add_xp(user: dict, amount: int) -> list[str]:
+    """
+    Adds XP, handles level-ups, and awards Banana Chips.
+    Returns level-up messages.
+    """
+    user["level"] = int(user.get("level", 1))
+    user["xp"] = int(user.get("xp", 0))
+    user["banana_chips"] = int(user.get("banana_chips", 0))
+
+    messages = []
+    user["xp"] += amount
+
+    while True:
+        needed = api_xp_required_for_level(user["level"])
+
+        if user["xp"] < needed:
+            break
+
+        user["xp"] -= needed
+        user["level"] += 1
+        user["banana_chips"] += LEVEL_REWARD_CHIPS
+
+        messages.append(
+            f"🐒 **Level Up!** You reached **Level {user['level']}** and earned **{LEVEL_REWARD_CHIPS} Banana Chips** 🍌"
+        )
+
+    return messages
+
+class RewardRequest(BaseModel):
+    xp: int = 0
+    banana_chips: int = 0
 
 
 @app.get("/api/profile/{user_id}")
@@ -358,4 +391,53 @@ def submit_to_catalog(
         "catalog_submissions_recorded": recorded_catalog,
         "catalog_submissions": displayed_catalog,
         "level_messages": level_msgs
+    }
+
+@app.post("/api/profile/{user_id}/reward")
+def reward_profile(
+    user_id: str,
+    payload: RewardRequest,
+    x_wos_admin_key: str | None = Header(default=None)
+):
+    check_admin_key(x_wos_admin_key)
+
+    if payload.xp < 0 or payload.banana_chips < 0:
+        raise HTTPException(
+            status_code=400,
+            detail="XP and Banana Chips rewards cannot be negative."
+        )
+
+    data = load_data()
+    user = ensure_api_user_record(data, user_id)
+
+    level_messages = []
+
+    if payload.xp > 0:
+        level_messages = api_add_xp(user, payload.xp)
+
+    if payload.banana_chips > 0:
+        user["banana_chips"] = int(user.get("banana_chips", 0)) + payload.banana_chips
+
+    save_data(data)
+
+    level = int(user.get("level", 1))
+    xp = int(user.get("xp", 0))
+    banana_chips = int(user.get("banana_chips", 0))
+
+    xp_required = api_xp_required_for_level(level)
+    xp_in_level = max(0, min(xp, xp_required))
+    xp_remaining = max(0, xp_required - xp_in_level)
+
+    return {
+        "ok": True,
+        "user_id": user_id,
+        "xp_reward": payload.xp,
+        "chips_reward": payload.banana_chips,
+        "level": level,
+        "xp": xp,
+        "xp_in_level": xp_in_level,
+        "xp_required": xp_required,
+        "xp_remaining": xp_remaining,
+        "banana_chips": banana_chips,
+        "level_messages": level_messages
     }
