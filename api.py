@@ -445,6 +445,7 @@ def reward_profile(
         "xp_remaining": xp_remaining,
         "banana_chips": banana_chips,
         "level_messages": level_messages
+    }
 
 @app.post("/api/shop/{user_id}/buy")
 def buy_shop_card(
