@@ -1179,13 +1179,33 @@ async def wos_discover(interaction: discord.Interaction):
         rr = normalize_rarity(c.get("rarity", "common")).title()
         lines.append(f"**{i}. {nm}** — {rr}")
 
-    embed = discord.Embed(
-        title="🧭 Today’s Discoveries",
-        description="Choose **1 of 3**. This locks your discovery for today.\n\n" + "\n".join(lines)
-    )
+    # Build preview embeds with images
+    embeds = []
+
+    for i, cid in enumerate(options, start=1):
+        c = cards_db.get(cid, {})
+        nm = c.get("name", cid)
+        rr = normalize_rarity(c.get("rarity", "common")).title()
+        image_url = resolve_card_image_url(c)
+
+        embed = discord.Embed(
+            title=f"{i}. {nm}",
+            description=f"Rarity: **{rr}**"
+        )
+
+        if image_url:
+            embed.set_image(url=image_url)
+
+        embeds.append(embed)
 
     view = DiscoverView(owner_id=user_id, options=options)
-    await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+
+    await interaction.response.send_message(
+        content="🧭 **Today’s Discoveries**\nChoose **1 of 3**. This locks your discovery for today.",
+        embeds=embeds,
+        view=view,
+        ephemeral=True
+    )
 
     #==============================
     #SHOP
