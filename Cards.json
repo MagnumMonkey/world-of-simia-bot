@@ -1224,7 +1224,7 @@
     "charm": 5,
     "mischief": 50,
     "total": 120,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455066445082787890/Drayco_Cinderfang_Watcher.png?ex=69535fba&is=69520e3a&hm=9d1423a7ede66cd83c55d7daaa81fb3a251e4516ecd03984697c57f4ec6b19cf&=&format=webp&quality=lossless&width=1221&height=1831",
+    "image_url": null,
     "status": "Briefs",
     "statuses": [
       "briefs"
@@ -1413,12 +1413,12 @@
     "mischief": 55,
     "total": 115,
     "status": "Erect",
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1455971826252382392/Juan_The_Willie_Waver.png?ex=6956aaee&is=6955596e&hm=a3ce6dd838d8a7a8833ccb93ef8dae71986bf4dcc26d46d87266fdb68a42a7df&=&format=webp&quality=lossless&width=1322&height=1983",
+    "image_url": null,
     "statuses": [
       "erect"
     ],
     "image_url_web": "/static/cards/juan_the_weenie_waver.png",
-    "skill": "(1)Reveal: Juan, the Willie Waver gains the Nude status.  "
+    "skill": "(1)Reveal: Juan, the Weenie Waver gains the Nude status."
   },
   "chip_the_eager_chimp": {
     "name": "Chip, The Eager Chimp",
