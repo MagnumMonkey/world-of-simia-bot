@@ -95,11 +95,6 @@ def resolve_card_image_url(card: dict) -> str | None:
     return url
 
 
-
-TRADE_COOLDOWN_SECONDS = 2 * 60 * 60  # 2 hours
-TRADE_XP_REWARD = 10
-TRADE_CHIPS_REWARD = 5
-
 CATALOG_SUBMIT_XP_REWARD = 10
 CATALOG_SUBMIT_CHIPS_REWARD = 10
 
@@ -302,9 +297,7 @@ def ensure_user_record(data: dict, user_id: str) -> dict:
     u.setdefault("level", 1)
     u.setdefault("xp", 0)
 
-    # trading
-    u.setdefault("last_trade_at", None)
-
+    
     # decks
     if "decks" not in u or not isinstance(u["decks"], dict):
         u["decks"] = {}
@@ -427,27 +420,6 @@ def xp_required_for_level(level: int) -> int:
     # Smooth curve that caps at 100
     return min(100, 15 + level * 5)
 
-def ensure_pending_trades(data: dict) -> dict:
-    if "pending_trades" not in data or not isinstance(data["pending_trades"], dict):
-        data["pending_trades"] = {}
-    return data["pending_trades"]
-
-def can_trade(user: dict) -> bool:
-    last = user.get("last_trade_at")
-    if not last:
-        return True
-
-    try:
-        last_dt = datetime.datetime.fromisoformat(last)
-    except Exception:
-        return True
-
-    now = datetime.datetime.now(timezone.utc)
-    return (now - last_dt).total_seconds() >= TRADE_COOLDOWN_SECONDS
-
-def mark_trade(user: dict):
-    user["last_trade_at"] = datetime.datetime.now(timezone.utc).isoformat()
-
 def recorded_catalog_submission_count(data: dict, user_id: str) -> int:
     catalog = data.get("community_catalog", {})
     if not isinstance(catalog, dict):
@@ -537,6 +509,36 @@ WOS_ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
 
 def api_admin_headers() -> dict:
     return {"X-WOS-ADMIN-KEY": WOS_ADMIN_KEY}
+
+
+async def get_catalog_entry_from_api(card_id: str) -> dict | None:
+    url = f"{API_BASE}/api/catalog/{card_id}"
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return None
+
+            return await resp.json()
+
+
+async def submit_catalog_to_api(user_id: str, card_id: str, thread_id: int) -> dict:
+    url = f"{API_BASE}/api/catalog/{user_id}/submit"
+
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.post(
+            url,
+            json={
+                "card_id": card_id,
+                "thread_id": int(thread_id)
+            },
+            headers=api_admin_headers()
+        )
+
+    if r.status_code != 200:
+        raise RuntimeError(f"API error {r.status_code}: {r.text[:500]}")
+
+    return r.json()
 
 
 # ================================
@@ -818,304 +820,6 @@ class ShopView(discord.ui.View):
                 item.disabled = False
                 item.label = f"Buy {price}"
 
-# ==========================
-# TRADING UI (Step 2)
-# ==========================
-
-def build_trade_embed(trade: dict, cards_db: dict, status_line: str = "") -> discord.Embed:
-    """Build a nice embed for the trade message."""
-    from_id = str(trade["from"])
-    to_id = str(trade["to"])
-    give_id = trade["give"]
-    want_id = trade["want"]
-
-    give_name = cards_db.get(give_id, {}).get("name", give_id)
-    want_name = cards_db.get(want_id, {}).get("name", want_id)
-
-    desc = (
-        f"**From:** <@{from_id}>\n"
-        f"**To:** <@{to_id}>\n\n"
-        f"**Offer:** **{give_name}** (`{give_id}`)\n"
-        f"**For:** **{want_name}** (`{want_id}`)\n"
-    )
-    if status_line:
-        desc += f"\n{status_line}"
-
-    embed = discord.Embed(title="🔁 World of Simia Trade", description=desc)
-    return embed
-
-
-class TradeView(discord.ui.View):
-    """
-    Phase 1: target user Accept/Decline
-    Phase 2: BOTH users Confirm (two separate buttons)
-    """
-    def __init__(self, trade_id: str, from_id: str, to_id: str, give_id: str, want_id: str):
-        super().__init__(timeout=15 * 60)  # 15 min timeout
-        self.trade_id = trade_id
-        self.from_id = str(from_id)
-        self.to_id = str(to_id)
-        self.give_id = give_id
-        self.want_id = want_id
-
-        # Phase 1 buttons
-        self.add_item(TradeAcceptButton())
-        self.add_item(TradeDeclineButton())
-
-        # Phase 2 buttons (disabled until accepted)
-        self.confirm_from = TradeConfirmButton(who="from")
-        self.confirm_to = TradeConfirmButton(who="to")
-        self.confirm_from.disabled = True
-        self.confirm_to.disabled = True
-        self.add_item(self.confirm_from)
-        self.add_item(self.confirm_to)
-
-    async def on_timeout(self):
-        # Mark trade as expired (remove from pending_trades)
-        data = load_data()
-        pending = ensure_pending_trades(data)
-        if self.trade_id in pending:
-            del pending[self.trade_id]
-            save_data(data)
-
-        # Disable buttons (best effort)
-        for item in self.children:
-            item.disabled = True
-
-    def _is_from(self, user_id: str) -> bool:
-        return str(user_id) == self.from_id
-
-    def _is_to(self, user_id: str) -> bool:
-        return str(user_id) == self.to_id
-
-    def _status_line(self, trade: dict) -> str:
-        phase = trade.get("phase", "offer")  # "offer" or "confirm"
-        if phase == "offer":
-            return "🟦 Waiting for the target player to **Accept** or **Decline**."
-        else:
-            conf = trade.get("confirmed", {})
-            a = "✅" if conf.get("from") else "⬜"
-            b = "✅" if conf.get("to") else "⬜"
-            return f"🟨 Confirmations: <@{self.from_id}> {a}  |  <@{self.to_id}> {b}"
-
-    async def refresh_message(self, interaction: discord.Interaction, trade: dict):
-        cards_db = load_cards()
-        embed = build_trade_embed(trade, cards_db, status_line=self._status_line(trade))
-        await interaction.response.edit_message(embed=embed, view=self)
-
-    async def finalize_trade(self, interaction: discord.Interaction):
-        """
-        Called when BOTH confirm. Re-check ownership, do swap, give XP, apply cooldown.
-        """
-        data = load_data()
-        pending = ensure_pending_trades(data)
-
-        trade = pending.get(self.trade_id)
-        if not trade:
-            # trade gone / expired
-            for item in self.children:
-                item.disabled = True
-            await interaction.response.edit_message(content="❌ Trade expired.", view=self)
-            return
-
-        from_id = str(trade["from"])
-        to_id = str(trade["to"])
-        give_id = trade["give"]
-        want_id = trade["want"]
-
-        # Ensure users exist
-        u_from = ensure_user_record(data, from_id)
-        u_to = ensure_user_record(data, to_id)
-
-        # Cooldown check at finalize (prevents abuse)
-        if not can_trade(u_from):
-            await interaction.response.send_message("❌ The trade proposer is on trade cooldown.", ephemeral=True)
-            return
-        if not can_trade(u_to):
-            await interaction.response.send_message("❌ The other player is on trade cooldown.", ephemeral=True)
-            return
-
-        # Verify both still own the cards right now
-        if give_id not in u_from.get("cards", []):
-            for item in self.children:
-                item.disabled = True
-            del pending[self.trade_id]
-            save_data(data)
-            await interaction.response.edit_message(content="❌ Trade failed: proposer no longer owns the offered card.", view=self)
-            return
-
-        if want_id not in u_to.get("cards", []):
-            for item in self.children:
-                item.disabled = True
-            del pending[self.trade_id]
-            save_data(data)
-            await interaction.response.edit_message(content="❌ Trade failed: target no longer owns the requested card.", view=self)
-            return
-
-        # Swap (1-to-1)
-        u_from["cards"].remove(give_id)
-        u_to["cards"].remove(want_id)
-
-        u_from["cards"].append(want_id)
-        u_to["cards"].append(give_id)
-
-        await add_card_via_api(from_id, want_id)
-        await add_card_via_api(to_id, give_id) 
-
-        # XP reward (both players)
-        # Rewards for successful trade
-        msgs_from = award_rewards(
-            data,
-            from_id,
-            xp=TRADE_XP_REWARD,
-            chips=TRADE_CHIPS_REWARD
-        )
-
-        msgs_to = award_rewards(
-            data,
-            to_id,
-            xp=TRADE_XP_REWARD,
-            chips=TRADE_CHIPS_REWARD
-        )
-
-        # Apply cooldown timestamps
-        mark_trade(u_from)
-        mark_trade(u_to)
-
-        # Remove pending trade
-        del pending[self.trade_id]
-        save_data(data)
-
-        # Disable buttons
-        for item in self.children:
-            item.disabled = True
-
-        cards_db = load_cards()
-        give_name = cards_db.get(give_id, {}).get("name", give_id)
-        want_name = cards_db.get(want_id, {}).get("name", want_id)
-
-        done_text = (
-            f"✅ Trade completed!\n"
-            f"<@{from_id}> traded **{give_name}** for **{want_name}** with <@{to_id}>.\n"
-            f"+{TRADE_XP_REWARD} XP and +{TRADE_CHIPS_REWARD} Banana Chips 🍌 to both players."
-        )
-
-        # Include level-up messages (if any)
-        extra = []
-        if msgs_from:
-            extra.append(f"\n**<@{from_id}>**:\n" + "\n".join(msgs_from))
-        if msgs_to:
-            extra.append(f"\n**<@{to_id}>**:\n" + "\n".join(msgs_to))
-        if extra:
-            done_text += "\n\n" + "\n\n".join(extra)
-
-        await interaction.response.edit_message(content=done_text, view=self, embed=None)
-
-
-class TradeAcceptButton(discord.ui.Button):
-    def __init__(self):
-        super().__init__(style=discord.ButtonStyle.success, label="Accept")
-
-    async def callback(self, interaction: discord.Interaction):
-        view: TradeView = self.view  # type: ignore
-
-        # Only the target can accept
-        if str(interaction.user.id) != view.to_id:
-            await interaction.response.send_message("❌ Only the invited player can accept.", ephemeral=True)
-            return
-
-        data = load_data()
-        pending = ensure_pending_trades(data)
-        trade = pending.get(view.trade_id)
-
-        if not trade:
-            await interaction.response.send_message("❌ This trade expired.", ephemeral=True)
-            return
-
-        # Move to confirm phase
-        trade["phase"] = "confirm"
-        trade["confirmed"] = {"from": False, "to": False}
-        save_data(data)
-
-        # Disable accept/decline, enable confirm buttons
-        for item in view.children:
-            if isinstance(item, (TradeAcceptButton, TradeDeclineButton)):
-                item.disabled = True
-        view.confirm_from.disabled = False
-        view.confirm_to.disabled = False
-
-        await view.refresh_message(interaction, trade)
-
-
-class TradeDeclineButton(discord.ui.Button):
-    def __init__(self):
-        super().__init__(style=discord.ButtonStyle.danger, label="Decline")
-
-    async def callback(self, interaction: discord.Interaction):
-        view: TradeView = self.view  # type: ignore
-
-        # Only the target can decline
-        if str(interaction.user.id) != view.to_id:
-            await interaction.response.send_message("❌ Only the invited player can decline.", ephemeral=True)
-            return
-
-        data = load_data()
-        pending = ensure_pending_trades(data)
-        trade = pending.get(view.trade_id)
-
-        if trade and view.trade_id in pending:
-            del pending[view.trade_id]
-            save_data(data)
-
-        for item in view.children:
-            item.disabled = True
-
-        await interaction.response.edit_message(content="❌ Trade declined.", view=view, embed=None)
-
-
-class TradeConfirmButton(discord.ui.Button):
-    def __init__(self, who: str):
-        self.who = who  # "from" or "to"
-        label = "Confirm (Proposer)" if who == "from" else "Confirm (Target)"
-        super().__init__(style=discord.ButtonStyle.primary, label=label)
-
-    async def callback(self, interaction: discord.Interaction):
-        view: TradeView = self.view  # type: ignore
-        user_id = str(interaction.user.id)
-
-        # Only the correct person can click their confirm button
-        if self.who == "from" and user_id != view.from_id:
-            await interaction.response.send_message("❌ Only the proposer can click this.", ephemeral=True)
-            return
-        if self.who == "to" and user_id != view.to_id:
-            await interaction.response.send_message("❌ Only the invited player can click this.", ephemeral=True)
-            return
-
-        data = load_data()
-        pending = ensure_pending_trades(data)
-        trade = pending.get(view.trade_id)
-
-        if not trade:
-            await interaction.response.send_message("❌ This trade expired.", ephemeral=True)
-            return
-
-        # Must be in confirm phase
-        if trade.get("phase") != "confirm":
-            await interaction.response.send_message("❌ This trade is not ready to confirm yet.", ephemeral=True)
-            return
-
-        conf = trade.get("confirmed") or {}
-        conf[self.who] = True
-        trade["confirmed"] = conf
-        save_data(data)
-
-        # If both confirmed -> finalize
-        if conf.get("from") and conf.get("to"):
-            await view.finalize_trade(interaction)
-            return
-
-        # Otherwise update embed status
-        await view.refresh_message(interaction, trade)
 
 API_BASE = "https://wos-api-production.up.railway.app".rstrip("/")
 
@@ -1486,89 +1190,69 @@ async def owned_card_id_autocomplete(interaction: discord.Interaction, current: 
 @app_commands.describe(card_id="Choose a card you own to add to the Community Catalog")
 @app_commands.autocomplete(card_id=owned_card_id_autocomplete)
 async def wos_submit(interaction: discord.Interaction, card_id: str):
-    # Must be used in a server
     if interaction.guild_id is None:
-        await interaction.response.send_message("❌ This command can only be used in a server.", ephemeral=True)
+        await interaction.response.send_message(
+            "❌ This command can only be used in a server.",
+            ephemeral=True
+        )
         return
+
+    if not WOS_ADMIN_KEY:
+        await interaction.response.send_message(
+            "❌ WOS_ADMIN_KEY is not set on the bot service.",
+            ephemeral=True
+        )
+        return
+
+    await interaction.response.defer(ephemeral=True)
 
     user_id = str(interaction.user.id)
 
-    data = load_data()
     cards_db = load_cards()
 
-    # Must own the card (check the API, not local JSON)
-    owned_ids = await get_collection_from_api(user_id)  # this should return list[str] card_ids
+    owned_ids = await get_collection_from_api(user_id)
     if card_id not in owned_ids:
-        await interaction.response.send_message("❌ You can only submit cards you own.", ephemeral=True)
+        await interaction.followup.send(
+            "❌ You can only submit cards you own.",
+            ephemeral=True
+        )
         return
 
-
-
-    # Must exist in Cards.json
     card = cards_db.get(card_id)
     if not card:
-        await interaction.response.send_message("❌ That card_id doesn’t exist in Cards.json.", ephemeral=True)
+        await interaction.followup.send(
+            "❌ That card_id doesn’t exist in Cards.json.",
+            ephemeral=True
+        )
         return
 
-    # Community catalog registry
-    catalog = ensure_community_catalog(data)
+    catalog_entry = await get_catalog_entry_from_api(card_id)
 
-    # If already cataloged, verify whether the saved thread still exists.
-    # If it was deleted, remove the stale registry entry and allow resubmit.
-    if card_id in catalog:
-        thread_id = catalog[card_id].get("thread_id")
+    if catalog_entry and catalog_entry.get("exists"):
+        await interaction.followup.send(
+            "🐒 That card is already in the Community Catalog.",
+            ephemeral=True
+        )
+        return
 
-        if thread_id:
-            try:
-                thread = bot.get_channel(int(thread_id))
-                if thread is None:
-                    thread = await bot.fetch_channel(int(thread_id))
-
-                # If fetch works, thread still exists -> block duplicate
-                await interaction.response.send_message(
-                    "🐒 That card is already in the Community Catalog.",
-                    ephemeral=True
-                )
-                return
-
-            except discord.NotFound:
-                # Thread was deleted -> remove stale entry and continue
-                del catalog[card_id]
-                save_data(data)
-
-            except discord.Forbidden:
-                await interaction.response.send_message(
-                    "❌ I can’t verify whether the existing catalog thread still exists (missing permissions).",
-                    ephemeral=True
-                )
-                return
-
-            except Exception:
-                await interaction.response.send_message(
-                    "❌ Something went wrong while checking the existing catalog entry.",
-                    ephemeral=True
-                )
-                return
-        else:
-            # No thread_id stored -> stale entry, remove and continue
-            del catalog[card_id]
-            save_data(data)
-
-    # Fetch the forum channel
     try:
         chan = bot.get_channel(CATALOG_FORUM_CHANNEL_ID)
         if chan is None:
             chan = await bot.fetch_channel(CATALOG_FORUM_CHANNEL_ID)
     except Exception:
-        await interaction.response.send_message("❌ I couldn’t access the catalog forum channel.", ephemeral=True)
+        await interaction.followup.send(
+            "❌ I couldn’t access the catalog forum channel.",
+            ephemeral=True
+        )
         return
 
-    # Must be a ForumChannel
     if not isinstance(chan, discord.ForumChannel):
-        await interaction.response.send_message("❌ The catalog channel is not a Forum Channel.", ephemeral=True)
+        await interaction.followup.send(
+            "❌ The catalog channel is not a Forum Channel.",
+            ephemeral=True
+        )
         return
 
-    # Build embed from card fields
     name = card.get("name", card_id)
     rarity = normalize_rarity(card.get("rarity", "common")).title()
     personality = card.get("personality", "Unknown")
@@ -1579,74 +1263,85 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
     total = card.get("total", "?")
     image_url = resolve_card_image_url(card)
 
-
     embed = discord.Embed(
         title=f"{name} — {card_id}",
-        description=f"Rarity: **{rarity}**\nPersonality: **{personality}**\nStatus: **{status}**"
+        description=(
+            f"Rarity: **{rarity}**\n"
+            f"Personality: **{personality}**\n"
+            f"Status: **{status}**"
+        )
     )
+
     embed.add_field(name="Banana Size", value=str(banana), inline=True)
     embed.add_field(name="Charm", value=str(charm), inline=True)
     embed.add_field(name="Mischief", value=str(mischief), inline=True)
     embed.add_field(name="Total", value=str(total), inline=True)
+
     if image_url:
         embed.set_image(url=image_url)
 
-    # Create the forum thread
     thread = None
+
     try:
-        # discord.py supports this signature on many versions
-        thread, first_message = await chan.create_thread(
-            name=f"{name} — {card_id}"[:100],
-            content=f"Submitted by <@{interaction.user.id}>",
-            embed=embed
-        )
-    except TypeError:
-        # Fallback: create thread with content, then send embed into it
-        thread = await chan.create_thread(
-            name=f"{name} — {card_id}"[:100],
-            content=f"Submitted by <@{interaction.user.id}>"
-        )
-        await thread.send(embed=embed)
+        try:
+            thread, first_message = await chan.create_thread(
+                name=f"{name} — {card_id}"[:100],
+                content=f"Submitted by <@{interaction.user.id}>",
+                embed=embed
+            )
+        except TypeError:
+            thread = await chan.create_thread(
+                name=f"{name} — {card_id}"[:100],
+                content=f"Submitted by <@{interaction.user.id}>"
+            )
+            await thread.send(embed=embed)
+
     except discord.Forbidden:
-        await interaction.response.send_message(
+        await interaction.followup.send(
             "❌ I don’t have permission to create posts in that forum channel.",
             ephemeral=True
         )
         return
-    except Exception:
-        await interaction.response.send_message(
-            "❌ Failed to create the forum post (unexpected error).",
+
+    except Exception as e:
+        await interaction.followup.send(
+            f"❌ Failed to create the forum post: `{e}`",
             ephemeral=True
         )
         return
 
-    # Record in registry (prevents duplicates)
-    catalog = ensure_community_catalog(data)  # re-get to be safe
-    catalog[card_id] = {
-        "thread_id": thread.id,
-        "submitted_by": user_id
-    }
+    try:
+        result = await submit_catalog_to_api(
+            user_id=user_id,
+            card_id=card_id,
+            thread_id=int(thread.id)
+        )
 
-    # Rewards for successful submit
-    level_msgs = award_rewards(
-        data,
-        user_id,
-        xp=CATALOG_SUBMIT_XP_REWARD,
-        chips=CATALOG_SUBMIT_CHIPS_REWARD
-    )
+    except Exception as e:
+        await interaction.followup.send(
+            "⚠️ The forum post was created, but the API failed to record the catalog submission.\n"
+            f"Error: `{e}`\n\n"
+            "The banana accountant tripped. Check the API logs before submitting again.",
+            ephemeral=True
+        )
+        return
 
-    save_data(data)
+    xp_reward = int(result.get("xp_reward", CATALOG_SUBMIT_XP_REWARD))
+    chips_reward = int(result.get("chips_reward", CATALOG_SUBMIT_CHIPS_REWARD))
+    catalog_total = int(result.get("catalog_submissions", 0))
+    level_msgs = result.get("level_messages", []) or []
 
     msg = (
         f"✅ Added **{name}** to the Community Catalog!\n"
-        f"+{CATALOG_SUBMIT_XP_REWARD} XP\n"
-        f"+{CATALOG_SUBMIT_CHIPS_REWARD} Banana Chips 🍌"
+        f"+{xp_reward} XP\n"
+        f"+{chips_reward} Banana Chips 🍌\n"
+        f"Catalog Submissions: **{catalog_total}**"
     )
 
     if level_msgs:
         msg += "\n\n" + "\n".join(level_msgs)
 
-    await interaction.response.send_message(
+    await interaction.followup.send(
         msg,
         ephemeral=True
     )
@@ -1916,98 +1611,8 @@ async def wos_dev_givechips_all(
     )
 
 
-#===================
-#  TRADE
-#===================
-
-
-@bot.tree.command(name="wos_trade", description="Propose a 1-to-1 card trade with another player (cards only).")
-@app_commands.describe(
-    member="The player you want to trade with",
-    your_card_id="Card ID you will give",
-    their_card_id="Card ID you want from them"
-)
-async def wos_trade(
-    interaction: discord.Interaction,
-    member: discord.Member,
-    your_card_id: str,
-    their_card_id: str
-):
-    # Must be used in a server
-    if interaction.guild_id is None:
-        await interaction.response.send_message("❌ This command can only be used in a server.", ephemeral=True)
-        return
-
-    from_id = str(interaction.user.id)
-    to_id = str(member.id)
-
-    # Can't trade yourself
-    if from_id == to_id:
-        await interaction.response.send_message("❌ You can’t trade with yourself.", ephemeral=True)
-        return
-
-    data = load_data()
-    cards_db = load_cards()
-
-    u_from = ensure_user_record(data, from_id)
-    u_to = ensure_user_record(data, to_id)
-
-    # Cooldown check (both users)
-    if not can_trade(u_from):
-        await interaction.response.send_message("⏳ You’re on trade cooldown (1 trade per 2 hours).", ephemeral=True)
-        return
-    if not can_trade(u_to):
-        await interaction.response.send_message("⏳ That player is on trade cooldown (1 trade per 2 hours).", ephemeral=True)
-        return
-
-    # Validate IDs exist in Cards.json (optional but recommended)
-    if your_card_id not in cards_db:
-        await interaction.response.send_message("❌ Your card_id doesn’t exist in Cards.json.", ephemeral=True)
-        return
-    if their_card_id not in cards_db:
-        await interaction.response.send_message("❌ Their card_id doesn’t exist in Cards.json.", ephemeral=True)
-        return
-
-    # Ownership checks
-    if your_card_id not in u_from.get("cards", []):
-        await interaction.response.send_message("❌ You don’t own that card.", ephemeral=True)
-        return
-    if their_card_id not in u_to.get("cards", []):
-        await interaction.response.send_message("❌ That player doesn’t own the requested card.", ephemeral=True)
-        return
-
-    # Create pending trade record
-    pending = ensure_pending_trades(data)
-
-    # Unique trade id
-    trade_id = f"{int(time.time())}_{from_id}_{to_id}"
-
-    trade = {
-        "from": from_id,
-        "to": to_id,
-        "give": your_card_id,
-        "want": their_card_id,
-        "phase": "offer",        # offer -> confirm
-        "confirmed": {},         # used in confirm phase
-    }
-
-    pending[trade_id] = trade
-    save_data(data)
-
-    # Build embed + view
-    embed = build_trade_embed(trade, cards_db, status_line="🟦 Waiting for the target player to **Accept** or **Decline**.")
-    view = TradeView(trade_id=trade_id, from_id=from_id, to_id=to_id, give_id=your_card_id, want_id=their_card_id)
-
-    # Send NON-ephemeral so both can click
-    await interaction.response.send_message(
-        content=f"🔔 <@{to_id}> trade request from <@{from_id}>",
-        embed=embed,
-        view=view
-    )
-
-
 #================================================
-# SHOW DECK
+# ADD CARD
 #================================================
 
 @bot.tree.command(name="wos_dev_addcard", description="DEV ONLY: Add a single card to your collection (no duplicates).")
