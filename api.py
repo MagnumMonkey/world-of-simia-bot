@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import json
 from pathlib import Path
 
+API_VERSION = "profile-route-1"
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
