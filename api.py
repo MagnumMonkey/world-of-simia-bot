@@ -29,6 +29,7 @@ LEVEL_REWARD_CHIPS = 25
 CATALOG_SUBMIT_XP_REWARD = 10
 CATALOG_SUBMIT_CHIPS_REWARD = 10
 LEVEL_REWARD_CHIPS = 25
+SHOP_BUY_XP_REWARD = 5
 
 def load_data():
     if not DATA_FILE.exists():
@@ -216,6 +217,10 @@ class SetCatalogCountRequest(BaseModel):
 class CatalogSubmitRequest(BaseModel):
     card_id: str
     thread_id: int
+
+class ShopBuyRequest(BaseModel):
+    card_id: str
+    price: int
 
 
 def check_admin_key(x_wos_admin_key: str | None):
@@ -440,4 +445,47 @@ def reward_profile(
         "xp_remaining": xp_remaining,
         "banana_chips": banana_chips,
         "level_messages": level_messages
+
+@app.post("/api/shop/{user_id}/buy")
+def buy_shop_card(
+    user_id: str,
+    payload: ShopBuyRequest,
+    x_wos_admin_key: str | None = Header(default=None)
+):
+    check_admin_key(x_wos_admin_key)
+
+    if payload.price <= 0:
+        raise HTTPException(status_code=400, detail="Price must be greater than 0.")
+
+    data = load_data()
+    user = ensure_api_user_record(data, user_id)
+
+    cards = user.setdefault("cards", [])
+    chips = int(user.get("banana_chips", 0))
+
+    if payload.card_id in cards:
+        raise HTTPException(status_code=409, detail="User already owns this card.")
+
+    if chips < payload.price:
+        raise HTTPException(status_code=400, detail="Not enough Banana Chips.")
+
+    user["banana_chips"] = chips - payload.price
+    cards.append(payload.card_id)
+
+    level_messages = api_add_xp(user, SHOP_BUY_XP_REWARD)
+
+    save_data(data)
+
+    return {
+        "ok": True,
+        "user_id": user_id,
+        "card_id": payload.card_id,
+        "price": payload.price,
+        "xp_reward": SHOP_BUY_XP_REWARD,
+        "banana_chips": int(user.get("banana_chips", 0)),
+        "cards_owned": len(list(dict.fromkeys(cards))),
+        "level": int(user.get("level", 1)),
+        "xp": int(user.get("xp", 0)),
+        "level_messages": level_messages
+    }
     }
