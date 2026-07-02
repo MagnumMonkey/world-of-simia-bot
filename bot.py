@@ -533,6 +533,12 @@ async def get_profile_from_api(user_id: str) -> dict | None:
             return await resp.json()
 
 
+WOS_ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
+
+def api_admin_headers() -> dict:
+    return {"X-WOS-ADMIN-KEY": WOS_ADMIN_KEY}
+
+
 # ================================
 # CLASS
 # ================================
