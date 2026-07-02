@@ -522,6 +522,16 @@ async def get_collection_from_api(user_id: str) -> list[str]:
 
             return result
 
+async def get_profile_from_api(user_id: str) -> dict | None:
+    url = f"{API_BASE}/api/profile/{user_id}"
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                return None
+
+            return await resp.json()
+
 
 # ================================
 # CLASS
@@ -1638,28 +1648,28 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
 async def wos_profile(interaction: discord.Interaction):
     user_id = str(interaction.user.id)
 
-    data = load_data()
-    user = get_profile_record(data, user_id)
+    profile = await get_profile_from_api(user_id)
 
-    # ✅ THIS is what you were missing:
-    save_data(data)
+    if not profile:
+        await interaction.response.send_message(
+            "❌ I couldn’t load your profile from the API.",
+            ephemeral=True
+        )
+        return
 
-    level = int(user.get("level", 1))
-    xp = int(user.get("xp", 0))
-    chips = int(user.get("banana_chips", 0))
-    owned_count = await get_collection_count_from_api(user_id)
-
-    req = xp_required_for_level(level)
-    xp_in_level = max(0, min(xp, req))
-    remaining = max(0, req - xp_in_level)
-
-    # Count how many unique cards THIS user has submitted
-    submitted_count = displayed_catalog_submission_count(data, user_id)
+    level = int(profile.get("level", 1))
+    xp_in_level = int(profile.get("xp_in_level", 0))
+    req = int(profile.get("xp_required", 20))
+    remaining = int(profile.get("xp_remaining", max(0, req - xp_in_level)))
+    chips = int(profile.get("banana_chips", 0))
+    owned_count = int(profile.get("cards_owned", 0))
+    submitted_count = int(profile.get("catalog_submissions", 0))
 
     embed = discord.Embed(
         title="🐒 World of Simia Profile",
         description=f"**{interaction.user.display_name}**"
     )
+
     embed.add_field(name="Level", value=str(level), inline=True)
     embed.add_field(name="XP", value=f"{xp_in_level}/{req}  (**{remaining}** to level up)", inline=True)
     embed.add_field(name="Banana Chips", value=str(chips), inline=True)
