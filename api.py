@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import json
 from pathlib import Path
+from fastapi import FastAPI, Header, HTTPException
+import os
 
 # Force Railway deploy with profile route
 API_VERSION = "profile-route-1"
@@ -21,6 +23,7 @@ app.add_middleware(
 )
 
 DATA_FILE = Path("/data/wos_data.json")
+ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
 
 def load_data():
     if not DATA_FILE.exists():
@@ -162,4 +165,79 @@ def get_profile(user_id: str):
         "catalog_submissions": displayed_catalog,
         "catalog_submissions_recorded": recorded_catalog,
         "catalog_submission_adjustment": int(user.get("catalog_submission_adjustment", 0))
+    }
+
+class SetProfileRequest(BaseModel):
+    level: int
+    xp: int
+    banana_chips: int
+
+
+class SetCatalogCountRequest(BaseModel):
+    total: int
+
+
+def check_admin_key(x_wos_admin_key: str | None):
+    if not ADMIN_KEY:
+        raise HTTPException(status_code=500, detail="WOS_ADMIN_KEY is not set on the API.")
+    if x_wos_admin_key != ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Invalid admin key.")
+
+
+@app.post("/api/profile/{user_id}/set")
+def set_profile(
+    user_id: str,
+    payload: SetProfileRequest,
+    x_wos_admin_key: str | None = Header(default=None)
+):
+    check_admin_key(x_wos_admin_key)
+
+    if payload.level < 1:
+        raise HTTPException(status_code=400, detail="Level must be at least 1.")
+    if payload.xp < 0 or payload.banana_chips < 0:
+        raise HTTPException(status_code=400, detail="XP and Banana Chips cannot be negative.")
+
+    data = load_data()
+    user = ensure_api_user_record(data, user_id)
+
+    user["level"] = payload.level
+    user["xp"] = payload.xp
+    user["banana_chips"] = payload.banana_chips
+
+    save_data(data)
+
+    return {
+        "ok": True,
+        "user_id": user_id,
+        "level": user["level"],
+        "xp": user["xp"],
+        "banana_chips": user["banana_chips"]
+    }
+
+
+@app.post("/api/profile/{user_id}/catalog_count/set")
+def set_catalog_count(
+    user_id: str,
+    payload: SetCatalogCountRequest,
+    x_wos_admin_key: str | None = Header(default=None)
+):
+    check_admin_key(x_wos_admin_key)
+
+    if payload.total < 0:
+        raise HTTPException(status_code=400, detail="Catalog count cannot be negative.")
+
+    data = load_data()
+    user = ensure_api_user_record(data, user_id)
+
+    recorded = api_recorded_catalog_submission_count(data, user_id)
+    user["catalog_submission_adjustment"] = payload.total - recorded
+
+    save_data(data)
+
+    return {
+        "ok": True,
+        "user_id": user_id,
+        "recorded": recorded,
+        "adjustment": user["catalog_submission_adjustment"],
+        "displayed_total": api_displayed_catalog_submission_count(data, user_id)
     }
