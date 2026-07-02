@@ -590,7 +590,7 @@ async def buy_shop_card_via_api(user_id: str, card_id: str, price: int) -> dict:
 # ================================
 class DiscoverView(discord.ui.View):
     def __init__(self, owner_id: str, options: list[str]):
-        super().__init__(timeout=180)
+        super().__init__(timeout=900)
         self.owner_id = owner_id
         self.options = options  # list of 3 card_ids
 
@@ -613,6 +613,8 @@ class DiscoverButton(discord.ui.Button):
                 ephemeral=True
             )
             return
+        
+        await interaction.response.defer()
 
         data = load_data()
         cards_db = load_cards()
@@ -682,7 +684,7 @@ class DiscoverButton(discord.ui.Button):
             )
 
         except Exception as e:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"❌ Discovery reward failed through the API: `{e}`",
                 ephemeral=True
             )
@@ -742,7 +744,7 @@ class DiscoverButton(discord.ui.Button):
         for item in view.children:
             item.disabled = True
 
-        await interaction.response.edit_message(
+        await interaction.edit_original_response(
             content="✅ Choice locked for today.",
             embed=embed,
             view=view
@@ -752,7 +754,7 @@ class DiscoverButton(discord.ui.Button):
 class ShopBuyButton(discord.ui.Button):
     def __init__(self, slot_index: int):
         super().__init__(style=discord.ButtonStyle.success, label=f"Buy #{slot_index+1}")
-        self.slot_index = slot_index  # 0-based
+        self.slot_index = slot_index
 
     async def callback(self, interaction: discord.Interaction):
         view: ShopView = self.view  # type: ignore
@@ -764,6 +766,9 @@ class ShopBuyButton(discord.ui.Button):
             )
             return
 
+        # Tell Discord immediately: "I'm working on it."
+        await interaction.response.defer()
+
         user_id = view.owner_id
         today = today_ymd()
 
@@ -772,7 +777,7 @@ class ShopBuyButton(discord.ui.Button):
         user = ensure_user_record(data, user_id)
 
         if user.get("shop_date") != today or not user.get("shop_offers"):
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 "⚠️ Your shop expired. Run `/wos_shop` again.",
                 ephemeral=True
             )
@@ -781,7 +786,7 @@ class ShopBuyButton(discord.ui.Button):
         offers = user.get("shop_offers", [])
 
         if self.slot_index < 0 or self.slot_index >= len(offers):
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 "⚠️ Invalid shop selection.",
                 ephemeral=True
             )
@@ -790,7 +795,7 @@ class ShopBuyButton(discord.ui.Button):
         offer = offers[self.slot_index]
 
         if offer.get("sold", False):
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 "⚠️ That item is already SOLD.",
                 ephemeral=True
             )
@@ -800,7 +805,7 @@ class ShopBuyButton(discord.ui.Button):
         price = int(offer.get("price", 0))
 
         if cid not in cards_db:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 "❌ That shop card no longer exists in Cards.json.",
                 ephemeral=True
             )
@@ -809,7 +814,7 @@ class ShopBuyButton(discord.ui.Button):
         try:
             result = await buy_shop_card_via_api(user_id, cid, price)
         except Exception as e:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"❌ Purchase failed through the API: `{e}`",
                 ephemeral=True
             )
@@ -838,7 +843,7 @@ class ShopBuyButton(discord.ui.Button):
 
         view.refresh_buttons(offers, chips, owned_ids)
 
-        await interaction.response.edit_message(
+        await interaction.edit_original_response(
             embed=new_embed,
             view=view
         )
@@ -846,7 +851,7 @@ class ShopBuyButton(discord.ui.Button):
 
 class ShopView(discord.ui.View):
     def __init__(self, owner_id: str, offers: list[dict], chips: int, owned_ids: set[str]):
-        super().__init__(timeout=180)
+        super().__init__(timeout=900)
         self.owner_id = owner_id
 
         for i in range(SHOP_SIZE):
