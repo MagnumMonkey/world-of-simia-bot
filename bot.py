@@ -11,6 +11,7 @@ from datetime import timezone
 import httpx
 from pathlib import Path
 import aiohttp
+import asyncio
 
 # Persistent storage directory (Railway volume mount)
 WOS_DATA_DIR = Path(os.getenv("WOS_DATA_DIR", "/data"))
@@ -1452,6 +1453,200 @@ async def wos_submit(interaction: discord.Interaction, card_id: str):
         msg,
         ephemeral=True
     )
+
+
+ # ==============================
+# DEV: REFRESH CATALOG IMAGES
+# ==============================
+
+def build_catalog_card_embed(card_id: str, card: dict) -> discord.Embed:
+    name = card.get("name", card_id)
+    rarity = normalize_rarity(card.get("rarity", "common")).title()
+    personality = card.get("personality", "Unknown")
+    status = card.get("status", card.get("Status", "None"))
+    banana = card.get("banana_size", "?")
+    charm = card.get("charm", "?")
+    mischief = card.get("mischief", "?")
+    total = card.get("total", "?")
+    image_url = resolve_card_image_url(card)
+
+    embed = discord.Embed(
+        title=f"{name} — {card_id}",
+        description=(
+            f"Rarity: **{rarity}**\n"
+            f"Personality: **{personality}**\n"
+            f"Status: **{status}**"
+        )
+    )
+
+    embed.add_field(name="Banana Size", value=str(banana), inline=True)
+    embed.add_field(name="Charm", value=str(charm), inline=True)
+    embed.add_field(name="Mischief", value=str(mischief), inline=True)
+    embed.add_field(name="Total", value=str(total), inline=True)
+
+    if image_url:
+        embed.set_image(url=image_url)
+
+    return embed
+
+
+def find_catalog_card_id(text: str | None, cards_db: dict) -> str | None:
+    if not text:
+        return None
+
+    text = str(text).strip()
+
+    # Most catalog titles look like:
+    # Card Name — card_id
+    if "—" in text:
+        possible_id = text.rsplit("—", 1)[1].strip()
+        if possible_id in cards_db:
+            return possible_id
+
+    # Fallback: search for any card_id inside the title/text
+    for card_id in cards_db.keys():
+        if card_id in text:
+            return card_id
+
+    return None
+
+
+async def iter_catalog_threads(channel: discord.ForumChannel):
+    seen_thread_ids = set()
+
+    # Active forum posts
+    for thread in channel.threads:
+        if thread.id not in seen_thread_ids:
+            seen_thread_ids.add(thread.id)
+            yield thread
+
+    # Archived forum posts
+    try:
+        async for thread in channel.archived_threads(limit=None):
+            if thread.id not in seen_thread_ids:
+                seen_thread_ids.add(thread.id)
+                yield thread
+    except Exception as e:
+        print(f"[WARN] Could not read archived catalog threads: {e}")
+
+
+@bot.tree.command(
+    name="wos_dev_refresh_catalog_images",
+    description="DEV: Refresh Community Catalog images from Cards.json."
+)
+async def wos_dev_refresh_catalog_images(interaction: discord.Interaction):
+    if interaction.user.id not in DEV_USER_IDS:
+        await interaction.response.send_message(
+            "❌ You don’t have permission to use this command.",
+            ephemeral=True
+        )
+        return
+
+    await interaction.response.defer(ephemeral=True, thinking=True)
+
+    cards_db = load_cards()
+
+    try:
+        channel = bot.get_channel(CATALOG_FORUM_CHANNEL_ID)
+        if channel is None:
+            channel = await bot.fetch_channel(CATALOG_FORUM_CHANNEL_ID)
+    except Exception as e:
+        await interaction.followup.send(
+            f"❌ I could not access the catalog forum channel.\n`{e}`",
+            ephemeral=True
+        )
+        return
+
+    if not isinstance(channel, discord.ForumChannel):
+        await interaction.followup.send(
+            "❌ The catalog channel is not a Forum Channel.",
+            ephemeral=True
+        )
+        return
+
+    checked = 0
+    updated = 0
+    skipped = 0
+    failed = 0
+
+    skipped_examples = []
+    failed_examples = []
+
+    async for thread in iter_catalog_threads(channel):
+        checked += 1
+
+        card_id = find_catalog_card_id(thread.name, cards_db)
+        target_message = None
+
+        try:
+            # If the thread is archived, try to temporarily unarchive it.
+            rearchive_after = False
+            if getattr(thread, "archived", False) and not getattr(thread, "locked", False):
+                try:
+                    await thread.edit(archived=False)
+                    rearchive_after = True
+                except Exception:
+                    pass
+
+            # Find the first message in the thread that has an embed.
+            async for msg in thread.history(limit=10, oldest_first=True):
+                if msg.embeds:
+                    target_message = msg
+
+                    # Try embed title too, in case thread name was shortened.
+                    if not card_id:
+                        card_id = find_catalog_card_id(msg.embeds[0].title, cards_db)
+
+                    break
+
+            if not card_id or card_id not in cards_db:
+                skipped += 1
+                if len(skipped_examples) < 5:
+                    skipped_examples.append(thread.name)
+                continue
+
+            if target_message is None:
+                skipped += 1
+                if len(skipped_examples) < 5:
+                    skipped_examples.append(f"{thread.name} — no embed found")
+                continue
+
+            card = cards_db[card_id]
+            new_embed = build_catalog_card_embed(card_id, card)
+
+            await target_message.edit(embed=new_embed)
+            updated += 1
+
+            # Small pause so the banana goblin does not anger Discord rate limits.
+            await asyncio.sleep(0.35)
+
+        except Exception as e:
+            failed += 1
+            if len(failed_examples) < 5:
+                failed_examples.append(f"{thread.name}: {e}")
+
+        finally:
+            if "rearchive_after" in locals() and rearchive_after:
+                try:
+                    await thread.edit(archived=True)
+                except Exception:
+                    pass
+
+    msg = (
+        "✅ Catalog image refresh finished.\n\n"
+        f"Checked: **{checked}**\n"
+        f"Updated: **{updated}**\n"
+        f"Skipped: **{skipped}**\n"
+        f"Failed: **{failed}**"
+    )
+
+    if skipped_examples:
+        msg += "\n\nSkipped examples:\n" + "\n".join(f"- `{x}`" for x in skipped_examples)
+
+    if failed_examples:
+        msg += "\n\nFailed examples:\n" + "\n".join(f"- `{x}`" for x in failed_examples)
+
+    await interaction.followup.send(msg, ephemeral=True)   
 
 #===============
 #PROFILE
