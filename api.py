@@ -25,6 +25,10 @@ app.add_middleware(
 DATA_FILE = Path("/data/wos_data.json")
 ADMIN_KEY = os.getenv("WOS_ADMIN_KEY", "")
 
+CATALOG_SUBMIT_XP_REWARD = 10
+CATALOG_SUBMIT_CHIPS_REWARD = 10
+LEVEL_REWARD_CHIPS = 25
+
 def load_data():
     if not DATA_FILE.exists():
         return {}
@@ -176,6 +180,10 @@ class SetProfileRequest(BaseModel):
 class SetCatalogCountRequest(BaseModel):
     total: int
 
+class CatalogSubmitRequest(BaseModel):
+    card_id: str
+    thread_id: int
+
 
 def check_admin_key(x_wos_admin_key: str | None):
     if not ADMIN_KEY:
@@ -240,4 +248,114 @@ def set_catalog_count(
         "recorded": recorded,
         "adjustment": user["catalog_submission_adjustment"],
         "displayed_total": api_displayed_catalog_submission_count(data, user_id)
+    }
+
+
+def ensure_api_community_catalog(data: dict) -> dict:
+    if "community_catalog" not in data or not isinstance(data["community_catalog"], dict):
+        data["community_catalog"] = {}
+    return data["community_catalog"]
+
+
+def api_add_xp(user: dict, amount: int) -> list[str]:
+    """
+    Adds XP, handles level-ups, and awards Banana Chips.
+    Returns level-up messages.
+    """
+    user["level"] = int(user.get("level", 1))
+    user["xp"] = int(user.get("xp", 0))
+    user["banana_chips"] = int(user.get("banana_chips", 0))
+
+    messages = []
+    user["xp"] += amount
+
+    while True:
+        needed = api_xp_required_for_level(user["level"])
+
+        if user["xp"] < needed:
+            break
+
+        user["xp"] -= needed
+        user["level"] += 1
+        user["banana_chips"] += LEVEL_REWARD_CHIPS
+
+        messages.append(
+            f"🐒 **Level Up!** You reached **Level {user['level']}** and earned **{LEVEL_REWARD_CHIPS} Banana Chips** 🍌"
+        )
+
+    return messages
+
+@app.get("/api/catalog/{card_id}")
+def get_catalog_entry(card_id: str):
+    data = load_data()
+    catalog = data.get("community_catalog", {})
+
+    if not isinstance(catalog, dict) or card_id not in catalog:
+        return {
+            "exists": False,
+            "card_id": card_id
+        }
+
+    entry = catalog.get(card_id, {})
+
+    return {
+        "exists": True,
+        "card_id": card_id,
+        "thread_id": entry.get("thread_id"),
+        "submitted_by": entry.get("submitted_by")
+    }
+
+
+@app.post("/api/catalog/{user_id}/submit")
+def submit_to_catalog(
+    user_id: str,
+    payload: CatalogSubmitRequest,
+    x_wos_admin_key: str | None = Header(default=None)
+):
+    check_admin_key(x_wos_admin_key)
+
+    data = load_data()
+    user = ensure_api_user_record(data, user_id)
+    catalog = ensure_api_community_catalog(data)
+
+    cards = user.get("cards", []) or []
+
+    if payload.card_id not in cards:
+        raise HTTPException(
+            status_code=400,
+            detail="User does not own this card."
+        )
+
+    if payload.card_id in catalog:
+        raise HTTPException(
+            status_code=409,
+            detail="That card is already in the Community Catalog."
+        )
+
+    catalog[payload.card_id] = {
+        "thread_id": payload.thread_id,
+        "submitted_by": str(user_id)
+    }
+
+    level_msgs = api_add_xp(user, CATALOG_SUBMIT_XP_REWARD)
+    user["banana_chips"] = int(user.get("banana_chips", 0)) + CATALOG_SUBMIT_CHIPS_REWARD
+
+    recorded_catalog = api_recorded_catalog_submission_count(data, user_id)
+    displayed_catalog = api_displayed_catalog_submission_count(data, user_id)
+
+    save_data(data)
+
+    return {
+        "ok": True,
+        "user_id": user_id,
+        "card_id": payload.card_id,
+        "thread_id": payload.thread_id,
+        "xp_reward": CATALOG_SUBMIT_XP_REWARD,
+        "chips_reward": CATALOG_SUBMIT_CHIPS_REWARD,
+        "level": user.get("level", 1),
+        "xp": user.get("xp", 0),
+        "banana_chips": user.get("banana_chips", 0),
+        "catalog_submissions_recorded": recorded_catalog,
+        "catalog_submissions": displayed_catalog,
+        "level_messages": level_msgs
     }
