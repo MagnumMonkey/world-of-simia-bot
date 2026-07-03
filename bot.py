@@ -12,6 +12,7 @@ import httpx
 from pathlib import Path
 import aiohttp
 import asyncio
+from urllib.parse import quote
 
 # Persistent storage directory (Railway volume mount)
 WOS_DATA_DIR = Path(os.getenv("WOS_DATA_DIR", "/data"))
@@ -1030,9 +1031,12 @@ async def wos_collection(interaction: discord.Interaction):
     seen = set()
     unique_cards = [cid for cid in user_cards if not (cid in seen or seen.add(cid))]
 
+    display_name = interaction.user.display_name or interaction.user.name
+    safe_display_name = quote(display_name, safe="")
+
     collection_url = (
         "https://magnummonkey.github.io/world-of-simia-bot/"
-        f"?user_id={user_id}"
+        f"?user_id={user_id}&username={safe_display_name}"
     )
 
     await interaction.response.send_message(

@@ -469,6 +469,7 @@
     // support BOTH ?user_id= (your Discord link) and ?u= (old)
     const params = new URLSearchParams(window.location.search);
     const urlUser = params.get("user_id") || params.get("u");
+    const urlUsername = params.get("username") || params.get("name") || params.get("display_name") || "";
 
     const autoUserId = (pathMatch && pathMatch[1]) ? pathMatch[1] : (urlUser || null);
 
@@ -626,6 +627,16 @@
 
     const userId = profile?.user_id || uidEl.value.trim();
 
+    const displayName =
+      profile?.display_name ||
+      profile?.username ||
+      urlUsername ||
+      "";
+
+    const profileTitle = displayName
+      ? `${displayName}'s Collection`
+      : "Player Profile";
+
     const level = numberOrZero(profile?.level) || 1;
     const xpInLevel = numberOrZero(profile?.xp_in_level ?? profile?.xp);
     const xpRequired = numberOrZero(profile?.xp_required) || 20;
@@ -642,7 +653,7 @@
       <div class="profile-top">
         <div>
           <div class="profile-eyebrow">World of Simia Profile</div>
-          <div class="profile-title">Player Profile</div>
+          <div class="profile-title">${escapeHtml(profileTitle)}</div>
           <div class="profile-user-id">Discord ID: ${escapeHtml(userId)}</div>
         </div>
 
