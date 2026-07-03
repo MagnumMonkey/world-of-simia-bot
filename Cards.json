@@ -2266,13 +2266,32 @@
     "status": "Heat, Erect, Ejaculating, Nude",
     "image_url": null,
     "statuses": [
-      "briefs",
+      "erect",
       "heat",
       "ejaculating",
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/lumari_dylan.png",
     "ability": "During your Snooze Phase, you may summon Dylan from your baseline if your opponent summoned a Monkey Boy this turn. If Dylan is summoned this way, he cannot be recalled. When Dylan enters the Playing Field, if you have a Monkey Boy with the Gentle or Sweetheart personality on your team, Dylan’s Banana Size and Mischief grow by 5. Monkey boys on your team with Gentle or Sweetheart personality cannot be sent home from playtime encounter while Dylan is on the Playing Field.",
+    "skill": null
+  },
+  "orion_the_lumari_steel": {
+    "name": "Orion, The Lumari Steel",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 80,
+    "charm": 20,
+    "mischief": 25,
+    "total": 125,
+    "status": "Heat, Erect, Nude",
+    "image_url": null,
+    "statuses": [
+      "heat",
+      "erect",
+      "nude"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/orion_the_lumari_steel.png",
+    "ability": "During your snooze phase you may summon Orion from your baseline if your opponent summoned a Monkey boy this turn. If Orion is summoned this way he cannot be recalled. Once during your Playtime Phase, Orion may initiate 1 additional Playtime encounter involving an opposing Monkey Boy with the Alpha or Confident personality. If Orion wins that encounter, subtract half of the Playtime Points earned from that encounter from your opponent’s Playtime Points, rounded down.",
     "skill": null
   }
 }
