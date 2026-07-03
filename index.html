@@ -291,7 +291,120 @@
   max-width: none;       /* max-width was limiting you */
 }
 
+/* --- PROFILE HEADER --- */
+.profile-card {
+  display: none;
+  max-width: 980px;
+  margin: 16px auto 18px auto;
+  padding: 18px;
+  border-radius: 20px;
+  color: #fff7df;
+  background:
+    linear-gradient(135deg, rgba(39, 20, 3, 0.92), rgba(105, 65, 11, 0.86)),
+    rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 210, 96, 0.75);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+}
 
+.profile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-eyebrow {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.profile-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 32px;
+  line-height: 1.05;
+}
+
+.profile-user-id {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+.profile-level {
+  text-align: center;
+  background: rgba(255, 220, 120, 0.16);
+  border: 1px solid rgba(255, 220, 120, 0.5);
+  border-radius: 16px;
+  padding: 10px 18px;
+  min-width: 110px;
+  font-weight: 700;
+}
+
+.profile-level span {
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  color: #ffe28a;
+}
+
+.profile-xp-row {
+  margin-top: 14px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.profile-xpbar {
+  height: 12px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.2);
+  overflow: hidden;
+}
+
+.profile-xpbar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffd76a, #ff9f1c);
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.profile-stat {
+  background: rgba(255,255,255,0.11);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+}
+
+.profile-stat-label {
+  font-size: 12px;
+  opacity: 0.78;
+}
+
+.profile-stat-value {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 25px;
+  margin-top: 2px;
+}
+
+.profile-loading {
+  text-align: center;
+  font-weight: 700;
+  opacity: 0.9;
+}
 
   </style>
 </head>
@@ -305,6 +418,8 @@
     </label>
     <button id="loadBtn">Load</button>
   </header>
+
+  <section id="profileCard" class="profile-card"></section>
 
   <div id="status"></div>
   <div id="grid" class="grid"></div>
@@ -342,6 +457,7 @@
     const statusEl = document.getElementById("status");
     const gridEl = document.getElementById("grid");
     const uidEl = document.getElementById("uid");
+    const profileCardEl = document.getElementById("profileCard");
     // Auto-load if URL is /collection/<user_id>
     const controlsEl = document.getElementById("controls");
 
@@ -452,6 +568,120 @@
     return `https://magnummonkey.github.io/world-of-simia-bot/${url}`;
   }
 
+    function escapeHtml(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function numberOrZero(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function formatNumber(value) {
+    return numberOrZero(value).toLocaleString();
+  }
+
+  async function loadProfile(userId) {
+    if (!profileCardEl) return;
+
+    profileCardEl.style.display = "block";
+    profileCardEl.innerHTML = `<div class="profile-loading">Loading profile…</div>`;
+
+    try {
+      const url = `${API_BASE}/api/profile/${encodeURIComponent(userId)}`;
+      console.log("Loading profile:", url);
+
+      const res = await fetch(url);
+
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Profile API error:", res.status, errText);
+        throw new Error(`Profile API returned ${res.status}`);
+      }
+
+      const profile = await res.json();
+      renderProfile(profile);
+
+    } catch (err) {
+      console.error("Profile load failed:", err);
+      profileCardEl.innerHTML = `
+        <div class="profile-top">
+          <div>
+            <div class="profile-eyebrow">World of Simia Profile</div>
+            <div class="profile-title">Profile unavailable</div>
+            <div class="profile-user-id">The collection can still load below.</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function renderProfile(profile) {
+    if (!profileCardEl) return;
+
+    const userId = profile?.user_id || uidEl.value.trim();
+
+    const level = numberOrZero(profile?.level) || 1;
+    const xpInLevel = numberOrZero(profile?.xp_in_level ?? profile?.xp);
+    const xpRequired = numberOrZero(profile?.xp_required) || 20;
+    const xpRemaining = numberOrZero(profile?.xp_remaining);
+    const bananaChips = numberOrZero(profile?.banana_chips);
+    const cardsOwned = numberOrZero(profile?.cards_owned);
+    const catalogSubmissions = numberOrZero(profile?.catalog_submissions);
+
+    const xpPercent = xpRequired > 0
+      ? Math.max(0, Math.min(100, Math.round((xpInLevel / xpRequired) * 100)))
+      : 0;
+
+    profileCardEl.innerHTML = `
+      <div class="profile-top">
+        <div>
+          <div class="profile-eyebrow">World of Simia Profile</div>
+          <div class="profile-title">Player Profile</div>
+          <div class="profile-user-id">Discord ID: ${escapeHtml(userId)}</div>
+        </div>
+
+        <div class="profile-level">
+          Level
+          <span>${formatNumber(level)}</span>
+        </div>
+      </div>
+
+      <div class="profile-xp-row">
+        XP: <strong>${formatNumber(xpInLevel)}</strong> / ${formatNumber(xpRequired)}
+        • ${formatNumber(xpRemaining)} XP to next level
+      </div>
+
+      <div class="profile-xpbar" aria-label="XP progress">
+        <span style="width: ${xpPercent}%"></span>
+      </div>
+
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="profile-stat-label">Banana Chips</div>
+          <div class="profile-stat-value">${formatNumber(bananaChips)} 🍌</div>
+        </div>
+
+        <div class="profile-stat">
+          <div class="profile-stat-label">Cards Owned</div>
+          <div class="profile-stat-value">${formatNumber(cardsOwned)}</div>
+        </div>
+
+        <div class="profile-stat">
+          <div class="profile-stat-label">Catalog Submissions</div>
+          <div class="profile-stat-value">${formatNumber(catalogSubmissions)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  
+
 
     document.getElementById("loadBtn").addEventListener("click", () => loadCollection(1));
 
@@ -464,6 +694,8 @@
       currentPage = page;
       statusEl.textContent = "Loading…";
       gridEl.innerHTML = "";
+
+      loadProfile(userId);
 
       try {
         const url = `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${page}&limit=${cardsPerPage}`;
