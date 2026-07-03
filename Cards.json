@@ -2328,5 +2328,22 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/helio_lumari_purity.png",
     "ability": "During your snooze phase, you may summon Helio from your baseline if your opponent summoned a Monkey boy this turn. If Helio is summoned this way, he cannot be recalled. Once per turn, while Helio is on the Playing Field, when your opponent summons a Monkey Boy with Briefs, you may summon 1 Monkey Boy with Briefs from your baseline. If you do, expel 1 Monkey Boy with Heat from your opponent’s Home.",
     "skill": null
+  },
+  "little_haloheart_avi": {
+    "name": "Little Haloheart Avi",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 22,
+    "charm": 70,
+    "mischief": 31,
+    "total": 123,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/little_haloheart_avi.png",
+    "ability": "Avi counts as Lumari. During your snooze phase you may summon Avi from your baseline if your opponent summoned a Monkey boy this turn. If Avi is summoned this way he cannot be recalled. While Avi is on the Playing Field, the first time each turn a Monkey Boy on your team would be sent Home from a Playtime encounter, that Monkey Boy is not sent Home. Instead, its Banana Size, Charm, and Mischief become 0 until your next Ready Phase. No Playtime Points are earned from Playtime encounters involving that Monkey Boy while its stats are 0.",
+    "skill": null
   }
 }
