@@ -2345,5 +2345,22 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/little_haloheart_avi.png",
     "ability": "Avi counts as Lumari. During your snooze phase you may summon Avi from your baseline if your opponent summoned a Monkey boy this turn. If Avi is summoned this way he cannot be recalled. While Avi is on the Playing Field, the first time each turn a Monkey Boy on your team would be sent Home from a Playtime encounter, that Monkey Boy is not sent Home. Instead, its Banana Size, Charm, and Mischief become 0 until your next Ready Phase. No Playtime Points are earned from Playtime encounters involving that Monkey Boy while its stats are 0.",
     "skill": null
+  },
+  "eli_and_enzo_lumari_dawnwatchers": {
+    "name": "Eli and Enzo, Lumari Dawnwatchers",
+    "rarity": "rare",
+    "personality": "Sweetheart, Gentle",
+    "banana_size": 25,
+    "charm": 40,
+    "mischief": 50,
+    "total": 115,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/eli_and_enzo_lumari_dawnwatchers.png",
+    "ability": "During your Snooze Phase, you may summon Eli and Enzo from your baseline if your opponent summoned a Monkey Boy this turn. If summoned this way, they cannot be recalled. When this card enters the Playing Field, its name becomes Enzo. If this card would be sent Home from a Playtime encounter while named Enzo, it is not sent Home. Instead, its name becomes Eli, its Banana Size and Mischief grow by 20, it gains Erect, Heat, and Nude, and loses Briefs. After this card resolves its next Playtime encounter, expel it. During your next Playtime Phase, if this card is named Eli, it must initiate a Playtime encounter, if able. Otherwise, expel it.",
+    "skill": null
   }
 }
