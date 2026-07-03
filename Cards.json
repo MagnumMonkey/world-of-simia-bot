@@ -2293,5 +2293,23 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/orion_the_lumari_steel.png",
     "ability": "During your snooze phase you may summon Orion from your baseline if your opponent summoned a Monkey boy this turn. If Orion is summoned this way he cannot be recalled. Once during your Playtime Phase, Orion may initiate 1 additional Playtime encounter involving an opposing Monkey Boy with the Alpha or Confident personality. If Orion wins that encounter, subtract half of the Playtime Points earned from that encounter from your opponent’s Playtime Points, rounded down.",
     "skill": null
+  },
+  "luke_the_innocence_lumari": {
+    "name": "Luke, The Innocence Lumari",
+    "rarity": "rare",
+    "personality": "Sweetheart",
+    "banana_size": 30,
+    "charm": 75,
+    "mischief": 0,
+    "total": 105,
+    "status": "Nude, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "ejaculating",
+      "nude"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/luke_the_innocence_lumari.png",
+    "ability": "During your snooze phase you may summon Luke from your baseline if your opponent summoned a monkey boy this turn. If Luke is summoned this way he cannot be recalled. While Luke has 0 skill points, playtime encounters involving Luke are decided by charm instead of total.",
+    "skill": "(1) Absolution: During your opponent’s Playtime Phase, before a Playtime encounter is declared, activate this Skill. Playtime encounters cannot be declared for the rest of that phase."
   }
 }
