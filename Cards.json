@@ -2360,7 +2360,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/eli_and_enzo_lumari_dawnwatchers.png",
-    "ability": "During your Snooze Phase, you may summon Eli and Enzo from your baseline if your opponent summoned a Monkey Boy this turn. If summoned this way, they cannot be recalled. When this card enters the Playing Field, its name becomes Enzo. If this card would be sent Home from a Playtime encounter while named Enzo, it is not sent Home. Instead, its name becomes Eli, its Banana Size and Mischief grow by 20, it gains Erect, Heat, and Nude, and loses Briefs. After this card resolves its next Playtime encounter, expel it. During your next Playtime Phase, if this card is named Eli, it must initiate a Playtime encounter, if able. Otherwise, expel it.",
-    "skill": null
+    "ability": ["When Eli and Enzo enter the Playing Field this card's name become Enzo.","When this card becomes Eli, grow his Banana Size by 35. Eli loses Briefs and gains Erect, Heat, and Nude. During your Playtime Phase, Eli must initiate Playtime encounters with each opposing Monkey Boy if able. During your Snooze Phase, expel this card."],
+    "skill": "(1) Brother’s Guard: While named Enzo, before Playtime resolution, if Enzo would be sent Home from a Playtime encounter, he is not sent Home. Instead, this card’s name becomes Eli."
   }
 }
