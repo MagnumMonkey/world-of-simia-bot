@@ -1739,7 +1739,7 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zen_the_enforcer_inkarri.png",
-    "ability": "You may summon Zen during your opponent’s Snooze Phase. If you do, Zen cannot be recalled. When Zen is summoned this way, choose an opposing Monkey Boy. That Monkey Boy’s Total shrinks by 15 until the end of your turn."
+    "ability": "You may summon Zen during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do, Zen cannot be recalled. When Zen is summoned this way, choose an opposing Monkey Boy. That Monkey Boy’s Total shrinks by 15 until the end of your turn."
   },
   "kusiq_the_inkarri_monkey": {
     "name": "Kusiq, The Inkarri Monkey",
@@ -1756,7 +1756,7 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/kusiq_the_inkarri_monkey.png",
-    "ability": "You May summon Kusiq, The Inkarri Monkey During your opponent's snooze phase. If you do, Kusiq Cannot be recalled. If Kusiq was summoned during your opponents snooze phase, monkey boys you resummon total stat value grow by 5 while Kusiq is in Play."
+    "ability": "You May summon Kusiq, The Inkarri Monkey During your opponent's snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do, Kusiq Cannot be recalled. If Kusiq was summoned during your opponents snooze phase, monkey boys you resummon total stat value grow by 5 while Kusiq is in Play."
   },
   "kuro_the_inkarri_shadow": {
     "name": "Kuro, The Inkarri Shadow",
@@ -1772,7 +1772,7 @@
       "nude, erect, heat"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/kuro_the_inkarri_shadow.png",
-    "ability": "You may summon Kuro during your opponent’s Snooze Phase. If you do, Kuro cannot be recalled. When Kuro is summoned During opponent's snooze phase, you may send one Inkarri from your team to home. If you do, Kuro’s Banana Size grows by 30 until the end of your turn. If Kuro wins a Playtime Encounter and the difference in Banana Size between Kuro and the opposing Monkey Boy is greater than 40, you gain 5 additional Playtime Points."
+    "ability": "You may summon Kuro during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy during this Snooze Phase. If you do, Kuro cannot be recalled. When Kuro enters the Playing Field during your opponent’s Snooze Phase, you may send 1 other Inkarri Monkey Boy from your team Home. If you do, Kuro’s Banana Size grows by 30 until the end of your turn. If Kuro wins a Playtime encounter and the difference between Kuro’s Banana Size and the losing Monkey Boy’s Banana Size is greater than 40, you gain 10 additional Playtime Points."
   },
   "rai_the_inkarri_dynamo": {
     "name": "Rai, The Inkarri Dynamo",
@@ -1788,7 +1788,7 @@
       "ejaculating, erect, nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/rai_the_inkarri_dynamo.png",
-    "ability": "You may summon Rai the Inkarri Dynamo during your opponents snooze phase. If you do Rai cannot be recalled. If Rai is Summoned during your opponents snooze phase, Until the end of your turn: Rai's banana Size grows by 10 if an opposing Monkey boy has erect status. Rai's Mischief Grows by 20 if an opposing Monkey boy has heat status."
+    "ability": "You may summon Rai the Inkarri Dynamo during your opponents snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Rai cannot be recalled. If Rai is Summoned during your opponents snooze phase, Until the end of your turn: Rai's banana Size grows by 10 if an opposing Monkey boy has erect status. Rai's Mischief Grows by 20 if an opposing Monkey boy has heat status."
   },
   "inkarri_kiddo": {
     "name": "Inkarri Kiddo",
@@ -1804,7 +1804,7 @@
       "erect, nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/inkarri_kiddo.png",
-    "ability": "You May summon Inkarri Kiddo during your opponents snooze phase. If you do Inkarri Kiddo cannot be recalled. When Inkarri Kiddo enters the Playing Field during your opponent’s Snooze Phase, Inkarri Kiddo’s Mischief grows by half your opponent's current Playtime Points, rounded down."
+    "ability": "You May summon Inkarri Kiddo during your opponents snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Inkarri Kiddo cannot be recalled. When Inkarri Kiddo enters the Playing Field during your opponent’s Snooze Phase, Inkarri Kiddo’s Mischief grows by half your opponent's current Playtime Points, rounded down."
   },
   "zaraki": {
     "name": "Zaraki",
@@ -1820,7 +1820,7 @@
       "erect, heat, nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zaraki.png",
-    "ability": "You May summon Zaraki during your opponent's snooze phase. If you do Zaraki cannot be recalled. If your opponent scored any playtime points this turn, Zaraki Banana size grows by 30 until the end of your next turn. All playtime encounters involving Zaraki are decided by the greater banana Size stat."
+    "ability": "You May summon Zaraki during your opponent's snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Zaraki cannot be recalled. If your opponent scored any playtime points this turn, Zaraki Banana size grows by 30 until the end of your next turn. All playtime encounters involving Zaraki are decided by the greater banana Size stat."
   },
   "reaver_raze": {
     "name": "Reaver Raze",
@@ -1837,7 +1837,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/reaver_raze.png",
-    "ability": "You May summon Reaver Raze During your opponent Snooze phase. If you do Raze cannot be recalled. When Raze Enters the playing field During your opponents snooze phase, you may summon one additional Inkarri from your baseline and Negate their abilities. That Monkey boy total stat value grows by 5 for each Inkarri in play."
+    "ability": "You may summon Reaver Raze during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do, Raze cannot be recalled. Playtime encounters involving Raze are decided by Banana Size instead of Total. If Raze wins a Playtime encounter and the losing Monkey Boy remains on the Playing Field, expel that Monkey Boy."
   },
   "ashe_and_thorn_inkarri_twin_chaos": {
     "name": "Ashe & Thorn, Inkarri Twin Chaos",
@@ -1869,7 +1869,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/inkarri_sprout_zihppi.png",
-    "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase. If you do Zihppi cannot be recalled. If Zihppi was summoned from the skill Sprout and shout, Zihppi may not use any skills this turn.",
+    "ability": "You may summon Inkarri Sprout Zihppi During your opponent Snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Zihppi cannot be recalled. If Zihppi was summoned from the skill Sprout and shout, Zihppi may not use any skills this turn.",
     "skill": "(1) Sprout and Shout!: Send Zihppi home from your playing field to summon Inkarri Sprout Zahppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
   "inkarri_sprout_zahppi": {
@@ -1886,7 +1886,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/inkarri_sprout_zahppi.png",
-    "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase. If you do Zahppi cannot be recalled. If Zahppi was summoned from the skill Sprout and shout, Zahppi may not use any skills this turn.",
+    "ability": "You may summon Inkarri Sprout Zahppi During your opponent Snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Zahppi cannot be recalled. If Zahppi was summoned from the skill Sprout and shout, Zahppi may not use any skills this turn.",
     "skill": "(1) Sprout and Shout!: Send Zahppi home from your playing field to summon Inkarri Sprout Zihppi or Inkarri Sprout Zhoom from your baseline or collection."
   },
   "inkarri_sprout_zhoom": {
@@ -1903,7 +1903,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/inkarri_sprout_zhoom.png",
-    "ability": "You may summon Inkarri Sprout Zhoom During your opponent Snooze phase. If you do Zhoom cannot be recalled. If Zhoom was summoned from the skill Sprout and shout, Zhoom may not use any skills this turn.",
+    "ability": "You may summon Inkarri Sprout Zhoom During your opponent Snooze phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Zhoom cannot be recalled. If Zhoom was summoned from the skill Sprout and shout, Zhoom may not use any skills this turn.",
     "skill": "(1) Sprout and Shout!: Send Zhoom home from your playing field to summon Inkarri Sprout Zihppi or Inkarri Sprout Zahppi from your baseline or collection."
   },
   "zihppi_zahppi_zhoom_inkarri_sprout_trio": {
@@ -1936,7 +1936,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/varrik_the_unseen_inkarri.png",
-    "ability": "You May summon Varrik the unseen during your opponent's snooze Phase. If you do Varrik cannot be recalled. If Varrik is summoned this way you may also resummon 1 monkey boy that was sent to your home this turn from a playtime encounter. That Monkey Boy banana size Grows by 10."
+    "ability": "You May summon Varrik the unseen during your opponent's snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do Varrik cannot be recalled. If Varrik is summoned this way you may also resummon 1 monkey boy that was sent to your home this turn from a playtime encounter. That Monkey Boy banana size Grows by 10."
   },
   "dravik_the_inkarri_echo": {
     "name": "Dravik, The Inkarri Echo",
@@ -1970,7 +1970,7 @@
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/inkarri_sprite.png",
-    "ability": "You may summon Inkarri Sprite from your baseline during your opponent’s Snooze Phase, before applied statuses are removed. if an opposing Monkey Boy with Total 135 or greater won a Playtime encounter this turn. If you do, choose 1 opposing Monkey Boy with Total 135 or greater that won a Playtime encounter this turn. If that monkey boy has erect status send it Home, otherwise shrink its banana size by 10. Inkarri Sprite cannot be recalled if summoned this way."
+    "ability": "You may summon Inkarri Sprite from your baseline during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. During the snooze phase, before applied statuses are removed, if an opposing Monkey Boy with Total 135 or greater won a Playtime encounter this turn, if that Monkey boy has erect or heat status send it home. Otherwise shrink their Banana size by 10."
   },
   "inkarri_mooncub_kairo": {
     "name": "Inkarri Mooncub Kairo",
@@ -2037,7 +2037,7 @@
       "heat"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/rokai.png",
-    "ability": "Rokai counts as an Inkarri. You may summon Rokai from your baseline during your opponent’s Snooze Phase. If Rokai is summoned this way, he cannot be recalled. When Rokai enters the Playing Field this way, if an opposing Monkey Boy won a Playtime encounter this turn and sent a Monkey Boy on your team Home, Rokai may initiate a Playtime encounter with that opposing Monkey Boy. That encounter is decided by Mischief instead of Total. Rokai cannot earn Playtime Points from that encounter."
+    "ability": "Rokai counts as an Inkarri. You may summon Rokai during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. If Rokai is summoned this way, he cannot be recalled. When Rokai enters the Playing Field this way, if an opposing Monkey Boy won a Playtime encounter this turn and sent a Monkey Boy on your team Home, Rokai may initiate a Playtime encounter with that opposing Monkey Boy. That encounter is decided by Mischief instead of Total. Rokai cannot earn Playtime Points from that encounter."
   },
   "akari": {
     "name": "Akari",
@@ -2073,7 +2073,7 @@
       "heat"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/jyzal_the_inkarri_tamer.png",
-    "ability": "You may summon Jyzal from your baseline during your opponent’s Snooze Phase. If you do, Jyzal cannot be recalled.",
+    "ability": "You may summon Jyzal from your baseline during your opponent’s Snooze Phase only if you have not summoned an Inkarri Monkey Boy this turn. If you do, Jyzal cannot be recalled.",
     "skill": "(1) Heart of Inkarri: You may activate this skill only during your opponent’s Playtime Phase if Jyzal is in your baseline. Select 1 Monkey Boy in your baseline and reveal it. During your opponent’s next Snooze Phase, you may summon either Jyzal or the selected Monkey Boy from your baseline."
   },
   "auriel_lumari_winggard": {
