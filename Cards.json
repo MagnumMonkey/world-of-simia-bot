@@ -2091,8 +2091,8 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/auriel_lumari_winggard.png",
-    "ability": "During your Snooze Phase, you may summon Auriel, Lumari Wingguard from your baseline if your opponent summoned a Monkey Boy during your turn. If Auriel is summoned this way, he cannot be recalled. When Auriel enters the Playing Field during your Snooze Phase, your opponent selects 1 Monkey Boy from their baseline and sends it Home.",
-    "skill": null
+    "ability": null,
+    "skill": "(3) Summon: During your Ready Phase, you may activate this skill from your baseline once per turn only if your opponent has more Playtime Points than you. Reveal this card, then Summon 1 Monkey Boy from your baseline. (1) Smite: During your opponent’s Snooze Phase, you may activate this skill from your baseline only if your opponent scored Playtime Points this turn and you have not activated another Lumari Baseline Skill this phase. Select the opposing Monkey Boy with the highest Total and send it Home. If there is a tie, you choose."
   },
   "lumari_halo_ayven": {
     "name": "Lumari Halo Ayven",
@@ -2109,17 +2109,17 @@
       "heat"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/lumari_halo_ayven.png",
-    "ability": "During your Snooze Phase, you may summon Ayven from your baseline if your opponent summoned a Monkey Boy this turn. If Ayven is summoned this way, he cannot be recalled. If a Playtime encounter involving Ayven would be decided by a stat other than Total, Ayven’s matching stat grows by 15 for that encounter.",
-    "skill": null
+    "ability": "If Playtime involving Ayven is decided by Banana Size, Charm, or Mischief instead of Total, Ayven’s deciding stat grows by 15 for that encounter.",
+    "skill": "(2) Blessing: During a Playtime encounter involving another Monkey Boy on your team, before resolution, if one of Ayven’s stats grew this turn, choose 1 stat that grew. That Monkey Boy’s same stat grows by the amount Ayven’s chosen stat grew this turn for that encounter."
   },
   "valen_lumari_steward": {
     "name": "Valen, Lumari Steward",
     "rarity": "rare",
     "personality": "Alpha",
-    "banana_size": 80,
+    "banana_size": 75,
     "charm": 45,
     "mischief": 0,
-    "total": 125,
+    "total": 120,
     "status": "Heat, Erect, Nude",
     "image_url": null,
     "statuses": [
@@ -2128,7 +2128,7 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/valen_lumari_steward.png",
-    "ability": "During your Snooze Phase, you may summon Valen from your baseline if your opponent summoned a Monkey Boy this turn. If Valen is summoned this way, he cannot be recalled. While Valen is on the Playing Field, your opponent cannot summon Monkey Boys with the Erect status during your turn.",
+    "ability": "While Valen is on the Playing Field, when your opponent initiates a Playtime encounter involving a Monkey Boy on your team, if Valen’s Banana Size is greater than the initiating Monkey Boy’s Banana Size, that Monkey Boy’s Banana Size shrinks by 10 for that encounter.",
     "skill": null
   },
   "lumari_starveil_lior": {
@@ -2145,8 +2145,8 @@
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/lumari_starveil_lior.png",
-    "ability": "You may summon Lior from your baseline during your Snooze Phase if your opponent summoned a Monkey Boy during your turn. If Lior is summoned this way, he cannot be recalled. When Lior enters the Playing Field this way, select 1 opposing Monkey Boy that was summoned during your turn. Prevent that Monkey Boy’s abilities from activating, then return it to your opponent’s baseline.",
-    "skill": null
+    "ability": null,
+    "skill": "(1) Judgment at the Gate: During your opponent’s Ready Phase, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. Reveal Lior. The first time your opponent summons a Monkey Boy this phase, prevent that Monkey Boy’s abilities from activating, then return it to your opponent’s baseline."
   },
   "nameless_lumari_oathblade": {
     "name": "Nameless Lumari Oathblade",
@@ -2164,8 +2164,8 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/nameless_lumari_oathblade.png",
-    "ability": "During your Snooze Phase, you may summon Nameless Lumari Oathblade from your baseline if your opponent summoned a Monkey Boy during your turn. If summoned this way, he cannot be recalled. When he enters this way, select 1 opposing Monkey Boy summoned during your turn. Its Banana Size, Charm, and Mischief shrink to 0 while Oathblade remains on the Playing Field. You gain no Playtime Points from encounters involving that Monkey Boy while its stats are 0 this way.",
-    "skill": null
+    "ability": null,
+    "skill": "(1) Oathbound Intercept: During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates Playtime involving a Monkey Boy on your team, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. Reveal Oathblade. The opposing Monkey Boy involved in that encounter has its Banana Size, Charm, and Mischief shrink to 0 for that encounter. You gain no Playtime Points from that encounter."
   },
   "luxio_lumari_dawnbringer": {
     "name": "Luxio, Lumari Dawnbringer",
@@ -2182,8 +2182,8 @@
       "erect"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/luxio_lumari_dawnbringer.png",
-    "ability": "During your snooze phase you may summon Luxio from your baseline if your opponent summoned a monkey boy this turn. If Luxio was summoned this way he cannot be recalled. When Luxio enters the playing Field during your snooze phase you may pay 20 playtime points. If you do expel all other monkey boys that was summoned this turn.",
-    "skill": "(1)Hardened steel: Luxio grows his banana Size by 5. Luxio loses briefs and gains Nude status. "
+    "ability": null,
+    "skill": "(1) Hardened Steel: During your opponent’s Playtime Phase, when an opposing Monkey Boy initiates a Playtime encounter involving a Monkey Boy on your team, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. Reveal Luxio. That Monkey Boy on your team’s Banana Size grows by 10 for that encounter. If that Monkey Boy is Erect its banana size grow by 15 for that encounter instead."
   },
   "adiel_lumari_hope": {
     "name": "Adiel, Lumari Hope",
@@ -2192,7 +2192,7 @@
     "banana_size": 20,
     "charm": 90,
     "mischief": 0,
-    "total": 115,
+    "total": 110,
     "status": "Briefs, Heat",
     "image_url": null,
     "statuses": [
@@ -2200,8 +2200,8 @@
       "heat"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/adiel_lumari_hope.png",
-    "ability": "During your Snooze Phase, you may summon Adiel from your baseline if your opponent summoned a Monkey Boy this turn. If Adiel is summoned this way, he cannot be recalled. While Adiel is on the Playing Field, opposing Monkey Boys with Heat cannot initiate Playtime encounters involving Monkey Boys on your team with Charm 60 or greater.",
-    "skill": null
+    "ability": null,
+    "skill": "(1) Temperance: During your opponent’s Playtime Phase, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. Reveal Adiel. Until the end of this turn, opposing Monkey Boys with Heat cannot initiate Playtime encounters involving Monkey Boys on your team. Opposing Monkey Boys without Heat have their Banana Size shrink by 5 until the end of this turn."
   },
   "azrael_the_lumari_first_verdict": {
     "name": "Azrael, The Lumari First Verdict",
@@ -2217,8 +2217,8 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/azrael_the_lumari_first_verdict.gif",
-    "ability": "During your Snooze Phase, you may summon Azrael from your baseline if your opponent summoned a Monkey Boy with the Alpha, Confident, personality during your turn. If Azrael is summoned this way, he cannot be recalled. Azrael cannot be sent Home by Playtime encounters. Once each turn, when your opponent summons a Monkey Boy during your turn, you may pay 10 Playtime Points. If you do, expel that Monkey Boy.",
-    "skill": "(2) Judgment Day: During your Snooze Phase, randomly select 1 Monkey Boy from your opponent’s baseline. Your opponent reveals that Monkey Boy and must summon it if able."
+    "ability": "You may summon Azrael from your baseline by expelling 2 Lumari Monkey Boys from your team and/or baseline whose combined Banana Size is 100 or greater. Azrael cannot be sent Home by Playtime encounters. Once each turn, when your opponent summons a Monkey Boy during your turn, you may pay 10 Playtime Points. If you do, expel that Monkey Boy.",
+    "skill": "(2) Judgment Day: During your Snooze Phase, randomly select 1 Monkey Boy from your opponent’s baseline. Your opponent reveals that Monkey Boy and must summon it if able. If your opponent summons a Monkey Boy with the Alpha or Confident personality this way, Azrael’s Banana Size grows by 5."
   },
   "elyon_lumaris_answer": {
     "name": "Elyon, Lumari's Answer",
@@ -2236,7 +2236,7 @@
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/elyon_lumaris_answer.png",
     "ability": "You may summon Elyon from your baseline during your Snooze Phase only if he has 0 skill points. If Elyon is summoned this way, he cannot be recalled. When Elyon enters the Playing Field, while there are 3 or more Monkey Boys in your Home, Elyon’s Banana Size grows by 30 and he gains Heat. While Elyon has Heat, opposing Monkey Boys that would be sent Home from Playtime encounters are expelled instead.",
-    "skill": "(2) Damage Control: During your opponent's playtime phase if a Monkey boy on your team were to lose a playtime encounter grow that Monkey boy's Banana Size by 5. Activate this skill while Elyon is in your baseline."
+    "skill": "(2) Damage Control: During your opponent’s Playtime Phase, if a Monkey Boy on your team would lose a Playtime encounter, activate this skill before Playtime resolution while Elyon is in your baseline. That Monkey Boy’s Banana Size grows by 5 for that encounter."
   },
   "nicholas": {
     "name": "Nicholas",
@@ -2252,7 +2252,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/nicholas.png",
-    "ability": "Nicholas counts as Lumari. During your Snooze Phase, you may summon Nicholas from your baseline if your opponent summoned a Monkey Boy this turn. If Nicholas is summoned this way, he cannot be recalled. During your opponent’s Snooze Phase, select 1 opposing Monkey Boy. If that Monkey Boy initiated a Playtime encounter involving Nicholas this turn, send that Monkey Boy Home.",
+    "ability": "Nicholas counts as Lumari. During your Snooze Phase, you may summon Nicholas from your baseline if your opponent summoned a Monkey Boy this turn. If Nicholas is summoned this way, you cannot summon another Lumari Monkey Boy from your baseline this turn. When Nicholas enters the Playing Field this way, select 1 opposing Monkey Boy. While Nicholas is on the Playing Field, the selected Monkey Boy cannot initiate Playtime involving Nicholas unless your opponent first sends 1 Monkey Boy from their baseline to the bottom of their collection.",
     "skill": null
   },
   "lumari_dylan": {
@@ -2272,7 +2272,7 @@
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/lumari_dylan.png",
-    "ability": "During your Snooze Phase, you may summon Dylan from your baseline if your opponent summoned a Monkey Boy this turn. If Dylan is summoned this way, he cannot be recalled. When Dylan enters the Playing Field, if you have a Monkey Boy with the Gentle or Sweetheart personality on your team, Dylan’s Banana Size and Mischief grow by 5. Monkey boys on your team with Gentle or Sweetheart personality cannot be sent home from playtime encounter while Dylan is on the Playing Field.",
+    "ability": "You may summon Dylan from your baseline during your Snooze Phase if your opponent summoned a Monkey Boy this turn. If Dylan is summoned this way, he cannot be recalled. While Dylan is on the Playing Field, your opponent cannot score Playtime Points from encounters involving Gentle or Sweetheart Monkey Boys on your team. If Dylan was summoned during your Snooze Phase, Playtime encounters involving Dylan are decided by Mischief instead of Total.",
     "skill": null
   },
   "orion_the_lumari_steel": {
@@ -2291,8 +2291,8 @@
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/orion_the_lumari_steel.png",
-    "ability": "During your snooze phase you may summon Orion from your baseline if your opponent summoned a Monkey boy this turn. If Orion is summoned this way he cannot be recalled. Once during your Playtime Phase, Orion may initiate 1 additional Playtime encounter involving an opposing Monkey Boy with the Alpha or Confident personality. If Orion wins that encounter, subtract half of the Playtime Points earned from that encounter from your opponent’s Playtime Points, rounded down.",
-    "skill": null
+    "ability": null,
+    "skill": "(1) Starfall Warrant: During your Playtime Phase, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. Select 1 Monkey Boy on your team. That Monkey Boy may initiate 1 additional Playtime encounter this phase involving an opposing Monkey Boy with the Alpha or Confident personality. If your Monkey Boy wins that encounter, subtract half the Playtime Points earned from that encounter from your opponent’s Playtime Points, rounded down."
   },
   "luke_the_innocence_lumari": {
     "name": "Luke, The Innocence Lumari",
@@ -2309,8 +2309,8 @@
       "nude"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/luke_the_innocence_lumari.png",
-    "ability": "During your snooze phase you may summon Luke from your baseline if your opponent summoned a monkey boy this turn. If Luke is summoned this way he cannot be recalled. While Luke has 0 skill points, playtime encounters involving Luke are decided by charm instead of total.",
-    "skill": "(1) Absolution: During your opponent’s Playtime Phase, before a Playtime encounter is declared, activate this Skill. Playtime encounters cannot be declared for the rest of that phase."
+    "ability": "While Luke has 0 skill points, playtime encounters involving Luke are decided by charm instead of total.",
+    "skill": "(1) Absolution: During your opponent’s Playtime Phase, before a Playtime encounter is declared, activate this skill. Your opponent may declare only 1 Playtime encounter this phase."
   },
   "helio_lumari_purity": {
     "name": "Helio, Lumari Purity",
@@ -2326,8 +2326,8 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/helio_lumari_purity.png",
-    "ability": "During your snooze phase, you may summon Helio from your baseline if your opponent summoned a Monkey boy this turn. If Helio is summoned this way, he cannot be recalled. Once per turn, while Helio is on the Playing Field, when your opponent summons a Monkey Boy with Briefs, you may summon 1 Monkey Boy with Briefs from your baseline. If you do, expel 1 Monkey Boy with Heat from your opponent’s Home.",
-    "skill": null
+    "ability": null,
+    "skill": "(1) Summon Audit: During your Snooze Phase, you may activate this skill from your baseline only if you have not activated another Lumari Baseline Skill this phase. If your opponent summoned a Monkey Boy with Briefs this turn, you may summon 1 Lumari Monkey Boy with Briefs from your baseline. Then, if able, expel 1 Monkey Boy with Heat from your opponent’s Home."
   },
   "little_haloheart_avi": {
     "name": "Little Haloheart Avi",
@@ -2343,8 +2343,8 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/little_haloheart_avi.png",
-    "ability": "Avi counts as Lumari. During your snooze phase you may summon Avi from your baseline if your opponent summoned a Monkey boy this turn. If Avi is summoned this way he cannot be recalled. While Avi is on the Playing Field, the first time each turn a Monkey Boy on your team would be sent Home from a Playtime encounter, that Monkey Boy is not sent Home. Instead, its Banana Size, Charm, and Mischief become 0 until your next Ready Phase. No Playtime Points are earned from Playtime encounters involving that Monkey Boy while its stats are 0.",
-    "skill": null
+    "ability": null,
+    "skill": "(2) Salvation: Before Playtime resolution, you may activate this skill from your baseline. If a Monkey Boy on your team would be sent Home from that encounter, it is not sent Home. Instead, its Banana Size, Charm, and Mischief become 0 until your next Ready Phase. No Playtime Points are earned from Playtime encounters involving that Monkey Boy while its stats are 0."
   },
   "eli_and_enzo_lumari_dawnwatchers": {
     "name": "Eli and Enzo, Lumari Dawnwatchers",
@@ -2360,7 +2360,7 @@
       "briefs"
     ],
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/eli_and_enzo_lumari_dawnwatchers.png",
-    "ability": ["When Eli and Enzo enter the Playing Field this card's name become Enzo.","When this card becomes Eli, grow his Banana Size by 35. Eli loses Briefs and gains Erect, Heat, and Nude. During your Playtime Phase, Eli must initiate Playtime encounters with each opposing Monkey Boy if able. During your Snooze Phase, expel this card."],
+    "ability": "When Eli and Enzo enter the Playing Field this card's name become Enzo. When this card becomes Eli, grow his Banana Size by 35. Eli loses Briefs and gains Erect, Heat, and Nude. During your Playtime Phase, Eli must initiate Playtime encounters with each opposing Monkey Boy if able. During your Snooze Phase, expel this card.",
     "skill": "(1) Brother’s Guard: While named Enzo, before Playtime resolution, if Enzo would be sent Home from a Playtime encounter, he is not sent Home. Instead, this card’s name becomes Eli."
   }
 }
