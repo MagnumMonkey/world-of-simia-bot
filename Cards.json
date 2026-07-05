@@ -2515,5 +2515,23 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/buddy.png",
     "ability": null,
     "skill": "(3) Splash Zone: During your Playtime Phase, when Buddy initiates Playtime, activate this skill before resolution. The opposing Monkey Boy gains Ejaculating, and its Charm shrinks by 10 for that encounter."
+  },
+  "zak_unapologetically_pampered": {
+    "name": "Zak, Unapologetically Pampered",
+    "rarity": "common",
+    "personality": "Flirty",
+    "banana_size": 60,
+    "charm": 50,
+    "mischief": 17,
+    "total": 115,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zak_unapologetically_pampered.png",
+    "ability": null,
+    "skill": null 
   }
+  
 }
