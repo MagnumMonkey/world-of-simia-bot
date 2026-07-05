@@ -522,6 +522,7 @@
     let currentPage = 1;
     const cardsPerPage = 18;
 
+    let CARDS_DB = null;
     let ALL_COLLECTION_CARDS = [];
     let FILTERED_COLLECTION_CARDS = [];
 
@@ -533,14 +534,6 @@
     const urlUsername = params.get("username") || params.get("name") || params.get("display_name") || "";
 
     const autoUserId = (pathMatch && pathMatch[1]) ? pathMatch[1] : (urlUser || null);
-
-    if (autoUserId) {
-      uidEl.value = autoUserId;     // <-- this is the key (real value, not placeholder)
-      loadCollection();
-
-      // Hide input UI in shareable mode
-      if (controlsEl) controlsEl.style.display = "none";
-    }
 
 
     // Modal elements
@@ -602,7 +595,6 @@
         if (e.key === "Escape") closeModal();
     });
 
-  let CARDS_DB = null;
 
   async function loadCardsDbOnce() {
     if (CARDS_DB) return CARDS_DB;
@@ -869,6 +861,77 @@ function buildSearchBlob(card) {
     applyFilters(1);
   });
 
+
+function buildTagDropdown() {
+  const tagSelect = document.getElementById("tagFilter");
+  if (!tagSelect) return;
+
+  const currentValue = tagSelect.value;
+
+  tagSelect.innerHTML = `<option value="">All Tags</option>`;
+
+  const allTags = Array.from(
+    new Set(ALL_COLLECTION_CARDS.flatMap(card => card.tagsGenerated || []))
+  ).sort();
+
+  allTags.forEach(tag => {
+    const option = document.createElement("option");
+    option.value = tag;
+    option.textContent = tag;
+    tagSelect.appendChild(option);
+  });
+
+  tagSelect.value = currentValue;
+}
+
+function applyFilters(page = 1) {
+  const searchValue = document.getElementById("searchInput")?.value.toLowerCase().trim() || "";
+  const rarityValue = document.getElementById("rarityFilter")?.value || "";
+  const tagValue = document.getElementById("tagFilter")?.value || "";
+  const sortValue = document.getElementById("sortFilter")?.value || "name";
+
+  FILTERED_COLLECTION_CARDS = ALL_COLLECTION_CARDS.filter(card => {
+    const searchBlob = buildSearchBlob(card);
+
+    const matchesSearch = !searchValue || searchBlob.includes(searchValue);
+    const matchesRarity = !rarityValue || String(card.rarity || "").toLowerCase() === rarityValue;
+    const matchesTag = !tagValue || (card.tagsGenerated || []).includes(tagValue);
+
+    return matchesSearch && matchesRarity && matchesTag;
+  });
+
+  FILTERED_COLLECTION_CARDS.sort((a, b) => {
+    if (sortValue === "total") {
+      return getNumberField(b, "total", "Total") - getNumberField(a, "total", "Total");
+    }
+
+    if (sortValue === "banana") {
+      return getNumberField(b, "banana_size", "bananaSize", "banana", "Banana Size") -
+             getNumberField(a, "banana_size", "bananaSize", "banana", "Banana Size");
+    }
+
+    if (sortValue === "charm") {
+      return getNumberField(b, "charm", "Charm") - getNumberField(a, "charm", "Charm");
+    }
+
+    if (sortValue === "mischief") {
+      return getNumberField(b, "mischief", "Mischief") - getNumberField(a, "mischief", "Mischief");
+    }
+
+    if (sortValue === "rarity") {
+      const rarityOrder = { legendary: 4, rare: 3, uncommon: 2, common: 1 };
+      return (rarityOrder[String(b.rarity || "").toLowerCase()] || 0) -
+             (rarityOrder[String(a.rarity || "").toLowerCase()] || 0);
+    }
+
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  });
+
+  renderCollectionPage(page);
+}
+
+
+
 async function loadCollection(page = 1) {
   const userId = uidEl.value.trim();
   if (!userId) return;
@@ -1025,6 +1088,14 @@ function addPaginationControls(current, totalPages) {
 
   gridEl.appendChild(paginationDiv);
 }
+
+if (autoUserId) {
+      uidEl.value = autoUserId;     // <-- this is the key (real value, not placeholder)
+      loadCollection();
+
+      // Hide input UI in shareable mode
+      if (controlsEl) controlsEl.style.display = "none";
+    }
   </script>
 </body>
 </html>
