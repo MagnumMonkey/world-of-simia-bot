@@ -406,6 +406,36 @@
   opacity: 0.9;
 }
 
+.filter-bar {
+  max-width: 1100px;
+  margin: 0 auto 18px auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(30, 18, 5, 0.78);
+  border: 1px solid rgba(255, 210, 96, 0.55);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+
+.filter-bar input,
+.filter-bar select,
+.filter-bar button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 210, 96, 0.5);
+  background: rgba(255, 248, 220, 0.95);
+  color: #241506;
+  font-weight: 700;
+}
+
+.filter-bar input {
+  width: 260px;
+  max-width: 90vw;
+}
+
   </style>
 </head>
 <body>
@@ -422,6 +452,34 @@
   <section id="profileCard" class="profile-card"></section>
 
   <div id="status"></div>
+
+  <section id="filterBar" class="filter-bar" style="display:none;">
+    <input id="searchInput" type="text" placeholder="Search cards..." />
+
+    <select id="rarityFilter">
+      <option value="">All Rarities</option>
+      <option value="common">Common</option>
+      <option value="uncommon">Uncommon</option>
+      <option value="rare">Rare</option>
+      <option value="legendary">Legendary</option>
+    </select>
+
+    <select id="tagFilter">
+      <option value="">All Tags</option>
+    </select>
+
+    <select id="sortFilter">
+      <option value="name">Name A-Z</option>
+      <option value="rarity">Rarity</option>
+      <option value="total">Total High to Low</option>
+      <option value="banana">Banana Size High to Low</option>
+      <option value="charm">Charm High to Low</option>
+      <option value="mischief">Mischief High to Low</option>
+    </select>
+
+    <button id="clearFiltersBtn">Clear Filters</button>
+  </section>
+
   <div id="grid" class="grid"></div>
 
   <!-- Modal -->
@@ -463,6 +521,9 @@
 
     let currentPage = 1;
     const cardsPerPage = 18;
+
+    let ALL_COLLECTION_CARDS = [];
+    let FILTERED_COLLECTION_CARDS = [];
 
     const pathMatch = window.location.pathname.match(/\/collection\/(\d+)\/?$/);
 
@@ -568,6 +629,105 @@
 
     return `https://magnummonkey.github.io/world-of-simia-bot/${url}`;
   }
+
+  function getNumberField(card, ...keys) {
+  for (const key of keys) {
+    const value = card?.[key];
+    const n = Number(value);
+    if (Number.isFinite(n)) return n;
+  }
+  return 0;
+}
+
+function getCardTags(card) {
+  const tags = new Set();
+
+  const text = Object.values(card || {})
+    .flatMap(value => Array.isArray(value) ? value : [value])
+    .filter(value => value !== null && value !== undefined)
+    .join(" ")
+    .toLowerCase();
+
+  if (card.rarity) tags.add(String(card.rarity).toLowerCase());
+
+  if (card.personality) {
+    String(card.personality)
+      .toLowerCase()
+      .split(/[,/]/)
+      .map(p => p.trim())
+      .filter(Boolean)
+      .forEach(p => tags.add(p));
+  }
+
+  if (Array.isArray(card.statuses)) {
+    card.statuses.forEach(status => tags.add(String(status).toLowerCase()));
+  }
+
+  if (card.status) {
+    String(card.status)
+      .toLowerCase()
+      .split(/[,\s]+/)
+      .map(s => s.trim())
+      .filter(Boolean)
+      .forEach(s => tags.add(s));
+  }
+
+  if (text.includes("lumari")) tags.add("lumari");
+  if (text.includes("inkarri")) tags.add("inkarri");
+
+  if (text.includes("baseline skill")) tags.add("baseline skill");
+  if (text.includes("summon")) tags.add("summon");
+  if (text.includes("resummon")) tags.add("resummon");
+  if (text.includes("expel")) tags.add("expel");
+  if (text.includes("send") && text.includes("home")) tags.add("send home");
+
+  if (text.includes("wake-up")) tags.add("wake-up phase");
+  if (text.includes("ready phase")) tags.add("ready phase");
+  if (text.includes("playtime phase")) tags.add("playtime phase");
+  if (text.includes("snooze phase")) tags.add("snooze phase");
+
+  if (text.includes("banana size")) tags.add("banana size matters");
+  if (text.includes("charm")) tags.add("charm matters");
+  if (text.includes("mischief")) tags.add("mischief matters");
+  if (text.includes("total")) tags.add("total matters");
+
+  if (text.includes("grow") || text.includes("grows")) tags.add("stat grow");
+  if (text.includes("shrink") || text.includes("shrinks")) tags.add("stat shrink");
+
+  if (text.includes("heat")) tags.add("heat matters");
+  if (text.includes("briefs")) tags.add("briefs matters");
+  if (text.includes("erect")) tags.add("erect matters");
+  if (text.includes("nude")) tags.add("nude matters");
+  if (text.includes("ejaculating")) tags.add("ejaculating matters");
+
+  if (text.includes("playtime points")) tags.add("point modifier");
+  if (text.includes("additional playtime")) tags.add("extra playtime");
+  if (text.includes("cannot be sent home")) tags.add("home protection");
+
+  if (Array.isArray(card.tags)) {
+    card.tags.forEach(tag => tags.add(String(tag).toLowerCase()));
+  }
+
+  return Array.from(tags).sort();
+}
+
+function buildSearchBlob(card) {
+  return [
+    card.name,
+    card.card_id,
+    card.rarity,
+    card.personality,
+    card.status,
+    card.ability,
+    card.skill,
+    card.skills,
+    card.flavor_text,
+    card.tagsGenerated?.join(" ")
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
 
     function escapeHtml(value) {
     return String(value ?? "")
@@ -696,117 +856,175 @@
 
     document.getElementById("loadBtn").addEventListener("click", () => loadCollection(1));
 
-    async function loadCollection(page = 1) {
-      const userId = uidEl.value.trim();
-      if (!userId) return;
+    document.getElementById("searchInput")?.addEventListener("input", () => applyFilters(1));
+    document.getElementById("rarityFilter")?.addEventListener("change", () => applyFilters(1));
+    document.getElementById("tagFilter")?.addEventListener("change", () => applyFilters(1));
+    document.getElementById("sortFilter")?.addEventListener("change", () => applyFilters(1));
 
-      page = Number(page) || 1;
+  document.getElementById("clearFiltersBtn")?.addEventListener("click", () => {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("rarityFilter").value = "";
+    document.getElementById("tagFilter").value = "";
+    document.getElementById("sortFilter").value = "name";
+    applyFilters(1);
+  });
 
-      currentPage = page;
-      statusEl.textContent = "Loading…";
-      gridEl.innerHTML = "";
+async function loadCollection(page = 1) {
+  const userId = uidEl.value.trim();
+  if (!userId) return;
 
-      loadProfile(userId);
+  currentPage = Number(page) || 1;
+  statusEl.textContent = "Loading…";
+  gridEl.innerHTML = "";
 
-      try {
-        const url = `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${page}&limit=${cardsPerPage}`;
-        console.log("Loading collection:", url);
+  const filterBar = document.getElementById("filterBar");
+  if (filterBar) filterBar.style.display = "none";
 
-        const res = await fetch(url);
+  loadProfile(userId);
 
-        if (!res.ok) {
-          const errText = await res.text();
-          console.error("Collection API error:", res.status, errText);
-          statusEl.textContent = `Could not load collection. API returned ${res.status}.`;
-          return;
-        }
+  try {
+    const cardsDb = await loadCardsDbOnce();
 
-        const col = await res.json();
-        console.log("Collection payload:", col);
+    const limit = 500;
+    let apiPage = 1;
+    let totalPages = 1;
+    let rawCards = [];
 
-        const rawCards = col.cards || [];
-        const cardsDb = await loadCardsDbOnce();
+    do {
+      const url = `${API_BASE}/api/collection/${encodeURIComponent(userId)}?page=${apiPage}&limit=${limit}`;
+      console.log("Loading collection page:", url);
 
-        const cards = rawCards
-          .map((item) => {
-            const cardId = typeof item === "string" ? item : item.card_id;
-            if (!cardId) return null;
+      const res = await fetch(url);
 
-            const dbCard = cardsDb[cardId] || {};
-
-            return {
-              card_id: cardId,
-              name: dbCard.name || cardId,
-              rarity: dbCard.rarity || "",
-              image_url:
-                dbCard.image_url_web ||
-                dbCard.image_url ||
-                dbCard.image_url_discord ||
-                ""
-            };
-          })
-          .filter(Boolean);
-
-        if (!cards.length) {
-          statusEl.textContent = `No cards found for this user. Total cards: ${col.total || 0}`;
-          return;
-        }
-
-        statusEl.textContent = `Page ${col.page || page} of ${col.total_pages || 1} • Total cards: ${col.total || cards.length}`;
-
-        for (const c of cards) {
-          const name = c.name || c.card_id;
-          const imgUrl = resolveImageUrl(c.image_url);
-          const rarity = c.rarity || "";
-
-          const div = document.createElement("div");
-          div.className = "card";
-          div.innerHTML = `
-            <div class="img">${imgUrl ? `<img src="${imgUrl}" alt="">` : "No image"}</div>
-            <div class="name">${name}</div>
-          `;
-
-          div.addEventListener("click", () => {
-            openModal({
-              name,
-              cardId: c.card_id,
-              imgUrl,
-              rarity
-            });
-          });
-
-          gridEl.appendChild(div);
-        }
-
-        addPaginationControls(col.page || page, col.total_pages || 1);
-
-      } catch (err) {
-        console.error("Collection load failed:", err);
-        statusEl.textContent = `Collection failed to load: ${err.message}`;
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Collection API error:", res.status, errText);
+        statusEl.textContent = `Could not load collection. API returned ${res.status}.`;
+        return;
       }
+
+      const col = await res.json();
+      rawCards = rawCards.concat(col.cards || []);
+      totalPages = Number(col.total_pages || 1);
+      apiPage += 1;
+    } while (apiPage <= totalPages);
+
+    ALL_COLLECTION_CARDS = rawCards
+      .map((item, index) => {
+        const cardId = typeof item === "string" ? item : item.card_id;
+        if (!cardId) return null;
+
+        const dbCard = cardsDb[cardId] || {};
+
+        const fullCard = {
+          ...dbCard,
+          instance_id: `${cardId}-${index}`,
+          card_id: cardId,
+          name: dbCard.name || cardId,
+          rarity: dbCard.rarity || "",
+          image_url:
+            dbCard.image_url_web ||
+            dbCard.image_url ||
+            dbCard.image_url_discord ||
+            ""
+        };
+
+        fullCard.tagsGenerated = getCardTags(fullCard);
+
+        return fullCard;
+      })
+      .filter(Boolean);
+
+    if (!ALL_COLLECTION_CARDS.length) {
+      statusEl.textContent = "No cards found for this user.";
+      return;
     }
 
-    function addPaginationControls(current, totalPages) {
-      const paginationDiv = document.createElement("div");
-      paginationDiv.style.marginTop = "20px";
-      paginationDiv.style.textAlign = "center";
-      paginationDiv.style.gridColumn = "1 / -1";
+    buildTagDropdown();
 
-      let html = "";
+    if (filterBar) filterBar.style.display = "flex";
 
-      if (current > 1) {
-        html += `<button onclick="loadCollection(${current - 1})">← Previous</button> `;
-      }
+    applyFilters(1);
 
-      html += ` Page ${current} of ${totalPages} `;
+  } catch (err) {
+    console.error("Collection load failed:", err);
+    statusEl.textContent = `Collection failed to load: ${err.message}`;
+  }
+}
 
-      if (current < totalPages) {
-        html += `<button onclick="loadCollection(${current + 1})">Next →</button>`;
-      }
+function renderCollectionPage(page = 1) {
+  currentPage = Number(page) || 1;
+  gridEl.innerHTML = "";
 
-      paginationDiv.innerHTML = html;
-      gridEl.appendChild(paginationDiv);
-    }
+  const totalCards = FILTERED_COLLECTION_CARDS.length;
+  const totalPages = Math.max(1, Math.ceil(totalCards / cardsPerPage));
+
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const pageCards = FILTERED_COLLECTION_CARDS.slice(startIndex, startIndex + cardsPerPage);
+
+  statusEl.textContent =
+    `Showing ${pageCards.length ? startIndex + 1 : 0}-${Math.min(startIndex + pageCards.length, totalCards)} of ${totalCards} cards`;
+
+  if (!pageCards.length) {
+    gridEl.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-weight:700;">No cards match those filters.</div>`;
+    return;
+  }
+
+  for (const c of pageCards) {
+    const name = c.name || c.card_id;
+    const imgUrl = resolveImageUrl(c.image_url);
+    const rarity = c.rarity || "";
+
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <div class="img">${imgUrl ? `<img src="${imgUrl}" alt="">` : "No image"}</div>
+      <div class="name">${escapeHtml(name)}</div>
+    `;
+
+    div.addEventListener("click", () => {
+      openModal({
+        name,
+        cardId: c.card_id,
+        imgUrl,
+        rarity
+      });
+    });
+
+    gridEl.appendChild(div);
+  }
+
+  addPaginationControls(currentPage, totalPages);
+}
+
+function addPaginationControls(current, totalPages) {
+  const paginationDiv = document.createElement("div");
+  paginationDiv.style.marginTop = "20px";
+  paginationDiv.style.textAlign = "center";
+  paginationDiv.style.gridColumn = "1 / -1";
+
+  const prevBtn = document.createElement("button");
+  prevBtn.textContent = "← Previous";
+  prevBtn.disabled = current <= 1;
+  prevBtn.addEventListener("click", () => renderCollectionPage(current - 1));
+
+  const pageText = document.createElement("span");
+  pageText.textContent = ` Page ${current} of ${totalPages} `;
+  pageText.style.margin = "0 10px";
+
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Next →";
+  nextBtn.disabled = current >= totalPages;
+  nextBtn.addEventListener("click", () => renderCollectionPage(current + 1));
+
+  paginationDiv.appendChild(prevBtn);
+  paginationDiv.appendChild(pageText);
+  paginationDiv.appendChild(nextBtn);
+
+  gridEl.appendChild(paginationDiv);
+}
   </script>
 </body>
 </html>
