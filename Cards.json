@@ -2362,5 +2362,90 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/eli_and_enzo_lumari_dawnwatchers.png",
     "ability": "When Eli and Enzo enter the Playing Field this card's name become Enzo. When this card becomes Eli, grow his Banana Size by 35. Eli loses Briefs and gains Erect, Heat, and Nude. During your Playtime Phase, Eli must initiate Playtime encounters with each opposing Monkey Boy if able. During your Snooze Phase, expel this card.",
     "skill": "(1) Brother’s Guard: While named Enzo, before Playtime resolution, if Enzo would be sent Home from a Playtime encounter, he is not sent Home. Instead, this card’s name becomes Eli."
+  },
+  "shredded_shift": {
+    "name": "Shredded Shift",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 50,
+    "charm": 30,
+    "mischief": 25,
+    "total": 105,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "erect", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/shredded_shift.png",
+    "ability": "During your Wake-up, if Shift was not involved in a Playtime encounter last turn, Shift’s Banana Size grows by 15 and Shift gains Heat until the start of your Snooze Phase.",
+    "skill": null
+  },
+  "flustered_frank": {
+    "name": "Flustered Frank",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 50,
+    "charm": 25,
+    "mischief": 25,
+    "total": 100,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/flustered_frank.png",
+    "ability": "During your Wake-Up Phase, if Frank was on your Playing Field during your last turn, Franks’s Banana Size grows by 25 until the end of this turn. Frank gains Erect and loses Briefs.",
+    "skill": null
+  },
+  "wendel_strongwood": {
+    "name": "Wendel Strongwood",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 50,
+    "charm": 25,
+    "mischief": 25,
+    "total": 100,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/wendel_strongwood.png",
+    "ability": "During your Wake-Up Phase, if Wendel was on your Playing Field during your last turn, wendel’s Banana Size grows by 25 until the end of this turn. Wendel gains Erect and loses Briefs.",
+    "skill": null
+  },
+  "ready_rex": {
+    "name": "Ready Rex",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 65,
+    "charm": 55,
+    "mischief": 5,
+    "total": 125,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "erect", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/ready_rex.png",
+    "ability": null,
+    "skill": null
+  },
+  "asad": {
+    "name": "Asad",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 50,
+    "charm": 50,
+    "mischief": 17,
+    "total": 117,
+    "status": "Briefs, Erect",
+    "image_url": null,
+    "statuses": [
+      "briefs", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/asad.png",
+    "ability": "When Asad Enter the Playing Field, Asad's Banana Size Grow by 5 when there is another Monkey boy with the confident personality on the Playing Field.",
+    "skill": null
   }
 }
