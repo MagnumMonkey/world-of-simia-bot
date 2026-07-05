@@ -2481,5 +2481,39 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/bean_diaper_boy_delight.png",
     "ability": "While Bean is in your Home, Monkey Boys in your Home cannot be resummoned.",
     "skill": null
+  },
+  "raviel_diaper_deluge": {
+    "name": "Raviel, Diaper Deluge",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 30,
+    "charm": 30,
+    "mischief": 60,
+    "total": 120,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/raviel_diaper_deluge.png",
+    "ability": "When Raviel Enters the Playing Field, Select a Monkey boy. Selected Monkey boy gains Erect.",
+    "skill": null
+  },
+  "buddy": {
+    "name": "Buddy",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 50,
+    "charm": 15,
+    "mischief": 50,
+    "total": 115,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/buddy.png",
+    "ability": null,
+    "skill": "(3) Splash Zone: During your Playtime Phase, when Buddy initiates Playtime, activate this skill before resolution. The opposing Monkey Boy gains Ejaculating, and its Charm shrinks by 10 for that encounter."
   }
 }
