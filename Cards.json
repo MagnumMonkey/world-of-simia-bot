@@ -2447,5 +2447,39 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/asad.png",
     "ability": "When Asad Enter the Playing Field, Asad's Banana Size Grow by 5 when there is another Monkey boy with the confident personality on the Playing Field.",
     "skill": null
+  },
+  "riven_diaper_bound_beauty": {
+    "name": "Riven, Diaper Bound Beauty",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 20,
+    "charm": 30,
+    "mischief": 75,
+    "total": 125,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/riven_diaper_bound_beauty.png",
+    "ability": null,
+    "skill": null
+  },
+  "bean_diaper_boy_delight": {
+    "name": "Bean, Diaper boy delight",
+    "rarity": "common",
+    "personality": "Rascal",
+    "banana_size": 40,
+    "charm": 10,
+    "mischief": 75,
+    "total": 125,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/bean_diaper_boy_delight.png",
+    "ability": "While Bean is in your Home, Monkey Boys in your Home cannot be resummoned.",
+    "skill": null
   }
 }
