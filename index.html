@@ -948,7 +948,7 @@ async function loadCollection(page = 1) {
   try {
     const cardsDb = await loadCardsDbOnce();
 
-    const limit = 500;
+    const limit = cardsPerPage; // keep this at 18 because the API paginates correctly this way
     let apiPage = 1;
     let totalPages = 1;
     let rawCards = [];
@@ -967,8 +967,11 @@ async function loadCollection(page = 1) {
       }
 
       const col = await res.json();
+      console.log("Collection API page payload:", col);
+
       rawCards = rawCards.concat(col.cards || []);
       totalPages = Number(col.total_pages || 1);
+
       apiPage += 1;
     } while (apiPage <= totalPages);
 
