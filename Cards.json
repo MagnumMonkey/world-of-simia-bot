@@ -675,7 +675,7 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/liar_lux.png",
     "ability": "When Lux enters the playing Field, Until the end of the snooze phase, Select 1 Monkey Boy on your team. If the Selected Monkey Boy has an acquired Status, that monkey boy may have two playtime encounters this turn."
   },
-  "rebellious_ryden": {
+  "rebellious_ryder": {
     "name": "Rebellious Ryden",
     "rarity": "uncommon",
     "personality": "Rascal",
@@ -683,7 +683,7 @@
     "charm": 18,
     "mischief": 51,
     "total": 120,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1454140822063939786/Rebellious_Ryden.png?ex=695001ac&is=694eb02c&hm=50c28d339d4606630d794541bed3c6d2a00bad26195f98d1d86034c976f5947b&=&format=webp&quality=lossless&width=1317&height=1977",
+    "image_url": null,
     "status": "Erect, Ejaculating",
     "statuses": [
       "erect",
