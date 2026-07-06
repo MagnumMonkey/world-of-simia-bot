@@ -2651,5 +2651,73 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/bandit_the_magnum_bully.png",
     "ability":"During your Ready Phase, you may summon Bandit, the Magnum Bully only if Monkey Steel Bandit is in your Home. While Bandit is on the Playing Field, Monkey Steel Bandit cannot be resummoned or moved to the bottom of your collection. At the start of your opponent’s Playtime Phase, Bandit may initiate Playtime involving an opposing Monkey Boy with the Gentle, Sweetheart, Rascal, or Prankster personality. Bandit cannot gain Playtime Points from that encounter.",
     "skill": null 
+  },
+  "zimo_tree_stalker": {
+    "name": "Zimo, Tree Stalker",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 70,
+    "charm": 5,
+    "mischief": 50,
+    "total": 125,
+    "status": "Nude, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "nude", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zimo_tree_stalker.png",
+    "ability":null,
+    "skill": null 
+  },
+  "dax_tree_watcher": {
+    "name": "Dax, Tree Watcher",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 60,
+    "charm": 20,
+    "mischief": 45,
+    "total": 125,
+    "status": "Nude, Heat",
+    "image_url": null,
+    "statuses": [
+      "nude", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/dax_tree_watcher.png",
+    "ability":"During your Ready Phase, if an opposing Monkey Boy has the Nude status, Dax’s Mischief grows by 5 until the end of this turn. If that Monkey Boy also has the Erect status, Dax’s Banana Size grows by 5 until the end of this turn.",
+    "skill": null 
+  },
+  "kip_the_sinful": {
+    "name": "Kip, The Sinful",
+    "rarity": "rare",
+    "personality": "Confident",
+    "banana_size": 80,
+    "charm": 0,
+    "mischief": 30,
+    "total": 110,
+    "status": "Nude, Erect, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/kip_the_sinful.png",
+    "ability":"You may summon Kip from your baseline during your opponent’s Playtime Phase when an opposing Monkey Boy’s stat would grow for a Playtime encounter. If Kip is summoned this way, prevent that growth. Kip’s Banana Size grows by that amount instead.",
+    "skill": null 
+  },
+  "griffin": {
+    "name": "Griffin",
+    "rarity": "rare",
+    "personality": "Bravado",
+    "banana_size": 60,
+    "charm": 60,
+    "mischief": 0,
+    "total": 120,
+    "status": "Nude",
+    "image_url": null,
+    "statuses": [
+      "nude"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/griffin.png",
+    "ability":"When Griffin is resummoned he Gain Briefs and loses Nude. Griffin can initiate a playtime encounter on the turn he was resummoned.",
+    "skill": "Tight Underwear: During a Playtime encounter involving Griffin, activate this skill before resolution. If Griffin has Briefs, Griffin’s Banana Size grows by 15 for that encounter. After resolution, Griffin loses Briefs." 
   }
 }
