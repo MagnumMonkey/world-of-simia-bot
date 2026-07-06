@@ -2532,6 +2532,124 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zak_unapologetically_pampered.png",
     "ability": null,
     "skill": null 
+  },
+  "monkey_boy_kavi": {
+    "name": "Monkey Boy Kavi",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 10,
+    "charm": 50,
+    "mischief": 55,
+    "total": 115,
+    "status": "Briefs, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/monkey_boy_kavi.png",
+    "ability": "When Kavi enters the Playing Field, select 1 opposing Monkey Boy whose highest stat is Mischief. Kavi’s Mischief grows until it is 5 higher than that Monkey Boy’s Mischief until the end of this turn.",
+    "skill": null 
+  },
+  "cassius_self_served": {
+    "name": "Cassius, Self Served",
+    "rarity": "uncommon",
+    "personality": "Sweetheart",
+    "banana_size": 55,
+    "charm": 14,
+    "mischief": 50,
+    "total": 119,
+    "status": "Nude, Ejaculating, Heat, Erect",
+    "image_url": null,
+    "statuses": [
+      "nude", "ejaculating", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/cassius_self_served.png",
+    "ability": "When Cassius enters the Playing Field, reveal the top card of your collection. If it is a Monkey Boy with the Ejaculating status, you may summon it if able. If you do not summon it, put it on the bottom of your collection.",
+    "skill": null 
+  },
+  "juno_the_roaring_stream": {
+    "name": "Juno, The Roaring Stream",
+    "rarity": "common",
+    "personality": "Confident",
+    "banana_size": 40,
+    "charm": 30,
+    "mischief": 45,
+    "total": 115,
+    "status": "Nude, Ejaculating, Heat, Erect",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/juno_the_roaring_stream.png",
+    "ability": "When your opponent activates a skill from their baseline, you may summon Juno from your baseline if able.",
+    "skill": null 
+  },
+  "monkey_boy_kanu": {
+    "name": "Monkey Boy Kanu",
+    "rarity": "common",
+    "personality": "Gentle",
+    "banana_size": 55,
+    "charm": 50,
+    "mischief": 5,
+    "total": 110,
+    "status": "Nude, Heat",
+    "image_url": null,
+    "statuses": [
+      "nude", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/monkey_boy_kanu.png",
+    "ability": "When this Monkey Boy enters the Playing Field, your opponent reveals 1 random Monkey Boy from their baseline.",
+    "skill": null 
+  },
+  "monkey_boy_bandit": {
+    "name": "Monkey Boy Bandit",
+    "rarity": "common",
+    "personality": "Flirty",
+    "banana_size": 40,
+    "charm": 50,
+    "mischief": 30,
+    "total": 120,
+    "status": "Briefs, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/monkey_boy_bandit.png",
+    "ability":null,
+    "skill": null 
+  },
+  "monkey_steel_bandit": {
+    "name": "Monkey Steel Bandit",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 70,
+    "charm": 20,
+    "mischief": 40,
+    "total": 130,
+    "status": "Briefs, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/monkey_steel_bandit.png",
+    "ability":"During your ready phase, You Can only summon Monkey Steel Bandit from your Baseline or Collection by expelling Monkey boy bandit from home. When Steel Bandit is summoned this way you cannot summon or resummon any other Monkey boy this phase. ",
+    "skill": null 
+  },
+  "bandit_the_magnum_bully": {
+    "name": "Bandit, The Magnum Bully",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 70,
+    "charm": 0,
+    "mischief": 60,
+    "total": 130,
+    "status": "Nude, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "nude", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/bandit_the_magnum_bully.png",
+    "ability":"During your Ready Phase, you may summon Bandit, the Magnum Bully only if Monkey Steel Bandit is in your Home. While Bandit is on the Playing Field, Monkey Steel Bandit cannot be resummoned or moved to the bottom of your collection. At the start of your opponent’s Playtime Phase, Bandit may initiate Playtime involving an opposing Monkey Boy with the Gentle, Sweetheart, Rascal, or Prankster personality. Bandit cannot gain Playtime Points from that encounter.",
+    "skill": null 
   }
-  
 }
