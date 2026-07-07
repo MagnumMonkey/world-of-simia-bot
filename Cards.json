@@ -3008,5 +3008,39 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/diaper_boy_derek.png",
     "ability": null,
     "skill": "(1) Backup Padding: During Playtime involving a Monkey Boy on your team, activate this skill while Derek is in your Home before resolution. if that Monkey Boy is Nude, that Monkey Boy gains Briefs and cannot be sent home from that encounter."
+  },
+  "mushroom_overflowing_diaper_boy": {
+    "name": "Mushroom, Overflowing Diaper Boy",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 30,
+    "charm": 10,
+    "mischief": 70,
+    "total": 110,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating","heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/mushroom_overflowing_diaper_boy.png",
+    "ability": null,
+    "skill": "(1) Jolly Overload: During Playtime involving Mushroom, activate this skill before resolution. Mushroom Mischief Grows by 10 if the Opposing Monkey boy has Ejaculating Status."
+  },
+  "messy_menace_mochi": {
+    "name": "Messy Menace Mochi",
+    "rarity": "rare",
+    "personality": "Prankster",
+    "banana_size": 40,
+    "charm": 30,
+    "mischief": 50,
+    "total": 120,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating","heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/messy_menace_mochi.png",
+    "ability": null,
+    "skill": "(1) Twin Splooge: During your Ready Phase, activate this skill while Mochi is in your Home. Select 1 other Monkey Boy in your Home with the Ejaculating status. If you have not summoned or resummoned a Monkey Boy this turn, resummon Mochi and the selected Monkey Boy if able. Monkey Boys resummoned this way have their Mischief grow by 10 and may initiate Playtime this turn. During your Snooze Phase, send both Monkey Boys Home."
   }
 }
