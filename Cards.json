@@ -1240,13 +1240,13 @@
     "charm": 40,
     "mischief": 50,
     "total": 150,
-    "image_url": "https://media.discordapp.net/attachments/1452555091029786799/1513746590739861514/Ignivar_Child_of_Crimsimia.png?ex=6a28d9df&is=6a27885f&hm=25a47d33d22be265ca2c599c1b9f9b170ed0c3191ad4ff43e4e18d3f5a0385b6&=&format=webp&quality=lossless&width=1322&height=1983",
+    "image_url": null,
     "status": "Briefs, Heat",
     "statuses": [
       "briefs",
       "heat"
     ],
-    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/Ignivar_child_of_crimsimia.png",
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/ignivar_child_of_crimsimia.png",
     "ability": "You may summon Ignivar, Child of Crimsimia by sending 2 Monkey Boys with the same personality from your team to Home. During your Playtime Phase, if you would gain Playtime Points from a Playtime encounter involving Ignivar, your opponent loses that many Playtime Points instead."
   },
   "fenryx_child_of_crimsimia": {
@@ -2567,7 +2567,7 @@
     "ability": "When Cassius enters the Playing Field, reveal the top card of your collection. If it is a Monkey Boy with the Ejaculating status, you may summon it if able. If you do not summon it, put it on the bottom of your collection.",
     "skill": null 
   },
-  "juno_the_roaring_stream": {
+  "juno_the roaring_stream": {
     "name": "Juno, The Roaring Stream",
     "rarity": "common",
     "personality": "Confident",
@@ -2580,7 +2580,7 @@
     "statuses": [
       "nude", "erect", "ejaculating", "heat"
     ],
-    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/juno_the_roaring_stream.png",
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/juno_the roaring_stream.png",
     "ability": "When your opponent activates a skill from their baseline, you may summon Juno from your baseline if able.",
     "skill": null 
   },
