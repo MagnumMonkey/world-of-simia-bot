@@ -51,10 +51,10 @@ RARITY_WEIGHTS = {
 SHOP_SIZE = 5  # always 5 cards in shop
 
 PRICE_RANGES = {
-    "common": (10, 20),
-    "uncommon": (30, 40),
-    "rare": (100, 150),
-    "legendary": (300, 500)
+    "common": (20, 100),
+    "uncommon": (100, 350),
+    "rare": (350, 500),
+    "legendary": (500, 1000)
 }
 
 DUP_SELL_VALUES = {
