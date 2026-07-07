@@ -2719,5 +2719,175 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/griffin.png",
     "ability":"When Griffin is resummoned he Gain Briefs and loses Nude. Griffin can initiate a playtime encounter on the turn he was resummoned.",
     "skill": "Tight Underwear: During a Playtime encounter involving Griffin, activate this skill before resolution. If Griffin has Briefs, Griffin’s Banana Size grows by 15 for that encounter. After resolution, Griffin loses Briefs." 
+  },
+  "diaper_boy_bandit": {
+    "name": "Diaper Boy Bandit",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 40,
+    "charm": 50,
+    "mischief": 25,
+    "total": 115,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs","ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/diaper_boy_bandit.png",
+    "ability":"When Bandit enters the Playing Field, select 1 opposing Monkey Boy with the Nude status. If you do, Bandit’s Mischief grows by 5. When the selected Monkey Boy leaves the Playing Field, Bandit gains Nude.",
+    "skill": null
+  },
+  "tiny_grove_titan": {
+    "name": "Tiny Grove Titan",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 80,
+    "charm": 45,
+    "mischief": 15,
+    "total": 140,
+    "status": "Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "erect", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/tiny_grove_titan.png",
+    "ability": null,
+    "sk,ill": null
+  },
+  "cyrus_roadside_showoff": {
+    "name": "Cyrus, Roadside Showoff",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 45,
+    "charm": 30,
+    "mischief": 35,
+    "total": 110,
+    "status": "Erect, Nude, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "erect", "nude", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/cyrus_roadside_showoff.png",
+    "ability": null,
+    "skill": null
+  },
+  "bandit_the_magnum_burst": {
+    "name": "Bandit, The Magnum Burst",
+    "rarity": "rare",
+    "personality": "Rascal",
+    "banana_size": 65,
+    "charm": 0,
+    "mischief": 65,
+    "total": 130,
+    "status": "Erect, Nude, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "erect", "nude", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/bandit_the_magnum_burst.png",
+    "ability": "When Bandit gains Heat, Bandit’s Banana Size grows by 10 For each opposing Monkey Boy. During any Playtime Phase, if Bandit has Heat and a Playtime encounter can be initiated involving Bandit, Bandit must be involved in the first Playtime encounter this phase. At the start of the next Snooze Phase, send Bandit Home.",
+    "skill": null
+  },
+  "zahvian_trailblazing_trouble": {
+    "name": "Zahvian, Trailblazing Trouble",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 20,
+    "charm": 34,
+    "mischief": 72,
+    "total": 130,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/zahvian_trailblazing_trouble.png",
+    "ability": null,
+    "skill": "(2) Indecent Exposure: During your Ready Phase, activate this skill. Zahvian loses Briefs and gains Nude. Zahvian’s Mischief grows by 3."
+  },
+  "crazy_monkey_cody": {
+    "name": "Crazy Monkey Cody",
+    "rarity": "rare",
+    "personality": "Alpha",
+    "banana_size": 60,
+    "charm": 0,
+    "mischief": 50,
+    "total": 110,
+    "status": "Briefs, Ejaculating, Heat, Erect",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/crazy_monkey_cody.png",
+    "ability": "You may summon Cody only if an opposing Monkey Boy has Heat. Cody cannot be recalled. Cody cannot be sent Home by Playtime encounters. During your Playtime Phase, Cody must initiate Playtime if able. Opposing Monkey Boys are not sent Home by Playtime encounters involving Cody. After Cody is involved in Playtime, Cody’s Banana Size grows by 10. During your Wake-Up Phase, if Cody’s Banana Size is 110 or greater, expel Cody.",
+    "skill": null
+  },
+  "ludo_uncivilized": {
+    "name": "Ludo, Uncivilized",
+    "rarity": "Common",
+    "personality": "Prankster",
+    "banana_size": 50,
+    "charm": 0,
+    "mischief": 65,
+    "total": 115,
+    "status": "Briefs, Ejaculating, Heat, Erect",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/ludo_uncivilized.png",
+    "ability": "During your opponent’s Ready Phase, when your opponent summons a Monkey Boy while Ludo is on the Playing Field, that Monkey Boy’s Charm shrinks by 5.",
+    "skill": null
+  },
+  "axel_bed_wetter": {
+    "name": "Axel, Bed Wetter",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 65,
+    "charm": 55,
+    "mischief": 0,
+    "total": 120,
+    "status": "Nude, Ejaculating, Erect",
+    "image_url": null,
+    "statuses": [
+      "nude", "ejaculating", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/axel_bed_wetter.png",
+    "ability": "During Your Wake up Phase, Select 1 Monkey boy on your team with Briefs. That monkey boy Loses Briefs and Gains Nude.",
+    "skill": null
+  },
+  "big_dreamer_koda": {
+    "name": "Big Dreamer Koda",
+    "rarity": "Common",
+    "personality": "Prankster",
+    "banana_size": 65,
+    "charm": 26,
+    "mischief": 30,
+    "total": 121,
+    "status": "Nude, Erect",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/big_dreamer_koda.png",
+    "ability": null,
+    "skill": null
+  },
+  "rafi_morning_glory": {
+    "name": "Rafi, Morning GLory",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 60,
+    "charm": 20,
+    "mischief": 40,
+    "total": 120,
+    "status": "Nude, Heat",
+    "image_url": null,
+    "statuses": [
+      "nude", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/rafi_morning_glory.png",
+    "ability": "During your Wake up Phase, If Rafi was on the Playing Field During your last turn, Rafi Gains Erect. If Rafi did not initiate a playtime encounter during your last turn, Rafi's Banana Size grows by 7.",
+    "skill": null
   }
 }
