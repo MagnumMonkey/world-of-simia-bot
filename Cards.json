@@ -2889,5 +2889,39 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/rafi_morning_glory.png",
     "ability": "During your Wake up Phase, If Rafi was on the Playing Field During your last turn, Rafi Gains Erect. If Rafi did not initiate a playtime encounter during your last turn, Rafi's Banana Size grows by 7.",
     "skill": null
+  },
+  "malachi_the_merciless": {
+    "name": "Malachi, The Merciless",
+    "rarity": "Common",
+    "personality": "Alpha",
+    "banana_size": 45,
+    "charm": 45,
+    "mischief": 45,
+    "total": 135,
+    "status": "Briefs",
+    "image_url": null,
+    "statuses": [
+      "briefs"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/malachi_the_merciless.png",
+    "ability": null,
+    "skill": null
+  },
+   "veyrak_recruiter_kellan": {
+    "name": "Veyrak Recruiter Kellan",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 60,
+    "charm": 40,
+    "mischief": 10,
+    "total": 110,
+    "status": "Nude, Erect",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/veyrak_recruiter_kellan.png",
+    "ability": "When Kellan enters the Playing Field, reveal the top card of your collection. If it is a Monkey Boy with the Briefs status, you may summon it if able. If you do not summon the revealed card, put it on the bottom of your collection. During your Snooze Phase, if the summoned Monkey Boy is still on your Playing Field, put it on the bottom of your collection.",
+    "skill": null
   }
 }
