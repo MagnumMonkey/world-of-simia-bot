@@ -2567,7 +2567,7 @@
     "ability": "When Cassius enters the Playing Field, reveal the top card of your collection. If it is a Monkey Boy with the Ejaculating status, you may summon it if able. If you do not summon it, put it on the bottom of your collection.",
     "skill": null 
   },
-  "juno_the roaring_stream": {
+  "juno_the_roaring_stream": {
     "name": "Juno, The Roaring Stream",
     "rarity": "common",
     "personality": "Confident",
@@ -2580,7 +2580,7 @@
     "statuses": [
       "nude", "erect", "ejaculating", "heat"
     ],
-    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/juno_the roaring_stream.png",
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/juno_the_roaring_stream.png",
     "ability": "When your opponent activates a skill from their baseline, you may summon Juno from your baseline if able.",
     "skill": null 
   },
