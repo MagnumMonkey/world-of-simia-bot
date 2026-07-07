@@ -2923,5 +2923,90 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/veyrak_recruiter_kellan.png",
     "ability": "When Kellan enters the Playing Field, reveal the top card of your collection. If it is a Monkey Boy with the Briefs status, you may summon it if able. If you do not summon the revealed card, put it on the bottom of your collection. During your Snooze Phase, if the summoned Monkey Boy is still on your Playing Field, put it on the bottom of your collection.",
     "skill": null
+  },
+  "insatiable_flex": {
+    "name": "Insatiable Flex",
+    "rarity": "uncommon",
+    "personality": "Confident",
+    "banana_size": 75,
+    "charm": 25,
+    "mischief": 21,
+    "total": 121,
+    "status": "Nude, Erect, Heat, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "heat", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/veyrak_recruiter_kellan.png",
+    "ability": null,
+    "skill": "(2) Again: During your Playtime Phase, after Flex wins a Playtime encounter, activate this skill. Flex may initiate 1 additional Playtime encounter this phase."
+  },
+  "splooge_boy_spot": {
+    "name": "Splooge boy Spot",
+    "rarity": "Common",
+    "personality": "Bravado",
+    "banana_size": 60,
+    "charm": 50,
+    "mischief": 10,
+    "total": 120,
+    "status": "Nude, Erect, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/splooge_boy_spot.png",
+    "ability": null,
+    "skill": "(2) Sticky Distraction: During Playtime involving Spot, activate this skill before resolution. This encounter cannot be decided by Mischief. If it would be decided by Mischief, decide it by Total instead."
+  },
+  "soft_eyed_rojelio": {
+    "name": "Soft Eyed Rojelio",
+    "rarity": "rare",
+    "personality": "Flirty",
+    "banana_size": 50,
+    "charm": 30,
+    "mischief": 35,
+    "total": 115,
+    "status": "Nude, Erect, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/soft_eyed_rojelio.png",
+    "ability": null,
+    "skill": "(1) Euphoric Release: During your opponent’s Playtime Phase, before a Playtime encounter is declared, activate this skill only if Rojelio was involved in Playtime during your last turn. Select 1 opposing Monkey Boy. That Monkey Boy cannot initiate Playtime this phase. This skill may also be activated from home."
+  },
+  "home_boy_raul": {
+    "name": "Home Boy Raul",
+    "rarity": "common",
+    "personality": "Sweetheart",
+    "banana_size": 35,
+    "charm": 50,
+    "mischief": 20,
+    "total": 105,
+    "status": "Nude, Erect, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "nude", "erect", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/home_boy_raul.png",
+    "ability": null,
+    "skill": "(2) Jolly Recharge: During your Ready Phase, activate this skill while Raul is in your Home. Restore 1 skill point to 1 Monkey Boy on your Playing Field."
+  },
+  "diaper_boy_derek": {
+    "name": "Diaper Boy Derek",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 30,
+    "charm": 20,
+    "mischief": 50,
+    "total": 100,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/diaper_boy_derek.png",
+    "ability": null,
+    "skill": "(1) Backup Padding: During Playtime involving a Monkey Boy on your team, activate this skill while Derek is in your Home before resolution. if that Monkey Boy is Nude, that Monkey Boy gains Briefs and cannot be sent home from that encounter."
   }
 }
