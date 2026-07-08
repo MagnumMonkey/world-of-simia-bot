@@ -3042,5 +3042,73 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/messy_menace_mochi.png",
     "ability": null,
     "skill": "(1) Twin Splooge: During your Ready Phase, activate this skill while Mochi is in your Home. Select 1 other Monkey Boy in your Home with the Ejaculating status. If you have not summoned or resummoned a Monkey Boy this turn, resummon Mochi and the selected Monkey Boy if able. Monkey Boys resummoned this way have their Mischief grow by 10 and may initiate Playtime this turn. During your Snooze Phase, send both Monkey Boys Home."
+  },
+  "noah_diaper_defiance": {
+    "name": "Noah, Diaper Defiance",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 10,
+    "charm": 10,
+    "mischief": 90,
+    "total": 110,
+    "status": "Briefs, Ejaculating, Erect",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating","erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/noah_diaper_defiance.png",
+    "ability": null,
+    "skill": "(1) Containment Breach: During Playtime involving this Monkey Boy, activate this skill before resolution. If this Monkey Boy has Briefs and Erect, his Banana Size grows by 20 for that encounter. After resolution, he loses Briefs."
+  },
+  "diaper_destroyer_dash": {
+    "name": "Diaper Destroyer Dash",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 50,
+    "charm": 15,
+    "mischief": 55,
+    "total": 120,
+    "status": "Briefs, Ejaculating, Erect, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating","erect"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/diaper_destroyer_dash.png",
+    "ability": "When Thickening has 0 skill points remaining, Dash loses Briefs. Dash cannot have Briefs while Thickening has 0 skill points remaining.",
+    "skill": "(3) Thickening: During your opponent’s Ready Phase, when an opposing Monkey Boy with the Erect status enters the Playing Field, activate this skill. Dash’s Banana Size grows by 5 until the next Playtime encounter involving Dash resolves."
+  },
+  "jolly_diaper_boy_jay": {
+    "name": "Jolly Diaper Boy Jay",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 45,
+    "charm": 40,
+    "mischief": 45,
+    "total": 130,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating","heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/jolly_diaper_boy_jay.png",
+    "ability": null,
+    "skill": "(1) Backup Diaper: During a Playtime encounter involving a Monkey Boy on your team, activate this skill while this Monkey Boy is in your Home before resolution. That Monkey Boy gains Briefs for that encounter. Playtime Points earned from that encounter, if any, are halved, rounded down."
+  },
+  "wonderfully_soaked_soren": {
+    "name": "Wonderfully Soaked Soren",
+    "rarity": "common",
+    "personality": "Prankster",
+    "banana_size": 30,
+    "charm": 30,
+    "mischief": 50,
+    "total": 110,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/wonderfully_soaked_soren.png",
+    "ability": null,
+    "skill": "(2) Spiteful Reversal: When an opposing Monkey Boy’s stat would grow, activate this skill from your baseline. That stat shrinks by that amount instead."
   }
 }
