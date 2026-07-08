@@ -3110,5 +3110,124 @@
     "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/wonderfully_soaked_soren.png",
     "ability": null,
     "skill": "(2) Spiteful Reversal: When an opposing Monkey Boy’s stat would grow, activate this skill from your baseline. That stat shrinks by that amount instead."
+  },
+  "oozing_diaper_boy_ollie": {
+    "name": "Oozing Diaper Boy Ollie",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 30,
+    "charm": 25,
+    "mischief": 60,
+    "total": 115,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/oozing_diaper_boy_ollie.png",
+    "ability": null,
+    "skill": "(3) Mess on Mess: During your Ready Phase, activate this skill. Ollie’s Mischief grows by 3 until your Snooze Phase for each Monkey Boy on the Playing Field with the Ejaculating status."
+  },
+  "pamper_soaker_fitch": {
+    "name": "Pamper Soaker Fitch",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 20,
+    "charm": 25,
+    "mischief": 70,
+    "total": 115,
+    "status": "Briefs, Ejaculating",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/pamper_soaker_fitch.png",
+    "ability": null,
+    "skill": "(2) Ripened Banana Showoff: During your Ready Phase, activate this skill. Fitch loses Briefs and gains Erect. Each opposing Monkey Boy gains the Ejaculating status."
+  },
+  "kane_pampered_bad_apple": {
+    "name": "Kane, Pampered Bad Apple",
+    "rarity": "legendary",
+    "personality": "Prankster",
+    "banana_size": 10,
+    "charm": 0,
+    "mischief": 100,
+    "total": 110,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/kane_pampered_bad_apple.gif",
+    "ability": "You may summon Kane from your baseline only by sending 2 Monkey Boys with the Ejaculating status from your Playing Field Home. During your opponent’s Playtime Phase, if a Playtime encounter would be decided by Total, Playtime Points earned from that encounter are halved, rounded down.",
+    "skill": "(3) Riot: At the start of your opponent’s Playtime Phase, before any Playtime encounter is declared, activate this skill. Kane may initiate 1 Playtime encounter involving an opposing Monkey Boy. That encounter must be the first Playtime encounter this phase and is decided by Mischief instead of Total."
+  },
+  "spunky_diaper_boy_miracle": {
+    "name": "Spunky, Diaper Boy Miracle",
+    "rarity": "rare",
+    "personality": "Prankster",
+    "banana_size": 30,
+    "charm": 25,
+    "mischief": 70,
+    "total": 125,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/spunky_diaper_boy_miracle.png",
+    "ability": null,
+    "skill": "(3) Banana Milk Blessing: Once per turn, when a Monkey Boy on the Playing Field gains or loses a status, activate this skill. Restore 1 skill point to another Monkey Boy in your baseline, Home, or Playing Field."
+  },
+  "lionel_diaper_boy_temptation": {
+    "name": "Lionel, Diaper Boy Temptation",
+    "rarity": "uncommon",
+    "personality": "Flirty",
+    "banana_size": 30,
+    "charm": 15,
+    "mischief": 70,
+    "total": 115,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/lionel_diaper_boy_temptation.png",
+    "ability": "When Lionel loses Briefs, until your next Snooze Phase, Lionel’s Banana Size grows by 15 and he gains Erect.",
+    "skill": null
+  },
+  "jaxton_growing_chaos": {
+    "name": "Jaxton, Growing Chaos",
+    "rarity": "uncommon",
+    "personality": "Prankster",
+    "banana_size": 40,
+    "charm": 15,
+    "mischief": 62,
+    "total": 117,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/jaxton_growing_chaos.png",
+    "ability": "Whenever a Monkey Boy on your opponent’s team gains or loses a status, Jaxton’s Mischief grows by 5 until your Snooze Phase.",
+    "skill": null
+  },
+  "scram_the_stubborn": {
+    "name": "Scram, The Stubborn",
+    "rarity": "rare",
+    "personality": "Prankster",
+    "banana_size": 25,
+    "charm": 42,
+    "mischief": 60,
+    "total": 127,
+    "status": "Briefs, Ejaculating, Heat",
+    "image_url": null,
+    "statuses": [
+      "briefs", "ejaculating", "heat"
+    ],
+    "image_url_web": "https://pub-91a76053b7694c91a647e52db71e1f9d.r2.dev/cards/scram_the_stubborn.png",
+    "ability": "When Scram is sent Home by a Playtime encounter, during your next Snooze Phase, you may resummon Scram if able if any Monkey Boy on the Playing Field has the Ejaculating status.",
+    "skill": null
   }
 }
