@@ -44,7 +44,7 @@ DEV_USER_IDS = {1295073412980674682}  # <-- replace/add your ID(s)
 RARITY_WEIGHTS = {
     "common": 64,
     "uncommon": 30.75,
-    "rare": 5.,
+    "rare": 5,
     "legendary": 0.25
 }
 
@@ -52,16 +52,16 @@ SHOP_SIZE = 5  # always 5 cards in shop
 
 PRICE_RANGES = {
     "common": (20, 100),
-    "uncommon": (100, 350),
-    "rare": (350, 500),
-    "legendary": (500, 1000)
+    "uncommon": (100, 150),
+    "rare": (200, 250),
+    "legendary": (300, 500)
 }
 
 DUP_SELL_VALUES = {
-    "common": 5,
-    "uncommon": 10,
-    "rare": 30,
-    "legendary": 100
+    "common": 10,
+    "uncommon": 15,
+    "rare": 60,
+    "legendary": 200
 }
 
 IMAGE_BASE_URL = os.getenv(
